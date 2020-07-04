@@ -57,7 +57,8 @@
 
 
 c: new PerspectiveCamera(pos=Position3D(5, 5, 5), rot=[-45, 180])
-w: new Window3D(camera=c, vsync=False, width=1280, height=720)
+ortho: new OrthographicCamera()
+w: new Window3D(camera=c, vsync=False, width=1280, height=720, resizable=True)
 
 l: new DynamicLabel3D(text="KEYFIRE 2.1 BETA 5", font="Calibri", font_size=144, pos=Position2D(w.width / 2, w.height), size=KFE_AUTO_SIZE, bold=true, anchor_x='center', anchor_y='bottom', color=Color(255, 255, 255).rgb); 
 l2: new DynamicLabel3D(text="OUT NOW!", font="Calibri Light", font_size=72, pos=Position2D(w.width / 2, w.height - 110), size=KFE_AUTO_SIZE, bold=false, anchor_x='center', anchor_y='top', color=Color(255, 255, 255).rgb); 

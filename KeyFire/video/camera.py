@@ -173,7 +173,6 @@ class PerspectiveCamera(Camera):
 
     def render(self):
         # Render the 3D objects in the
-        engine.get_main_window().clear()
         OpenGL.glClear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT)
 
         if engine.get_main_window().lighting: OpenGL.glEnable(OpenGL.GL_LIGHTING)
@@ -307,13 +306,19 @@ class OrthographicCamera(Camera):
 
 
     def render(self):
-        engine.get_main_window().clear()
+        # Render the 3D objects in the
         OpenGL.glClear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT)
 
-        OpenGL.gluPerspective(0, engine.get_main_window().width, 0, engine.get_main_window().height)
+        OpenGL.glDisable(OpenGL.GL_LIGHTING)
+        width, height = engine.get_main_window().get_size()
+        viewport = engine.get_main_window().get_viewport_size()
+        OpenGL.glViewport(0, 0, max(1, viewport[0]), max(1, viewport[1]))
+        OpenGL.glMatrixMode(OpenGL.GL_PROJECTION)
+        OpenGL.glLoadIdentity()
+        OpenGL.glOrtho(0, max(1, width), 0, max(1, height), -1, 1)
         OpenGL.glMatrixMode(OpenGL.GL_MODELVIEW)
         OpenGL.glLoadIdentity()
-        # graphics.draw_gui()
+        graphics.draw_gui()
 
 
     def rotate(self, dx, dy):
@@ -322,3 +327,4 @@ class OrthographicCamera(Camera):
 
     def key_listener(self, handler):
         pass
+˜

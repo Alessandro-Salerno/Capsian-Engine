@@ -65,25 +65,25 @@ func on_create()
 {
 	t: new Texture3D("assets/textures/glass.png");
 	m: new Material(texture=t);
-	s: new Scene(KFE_3D_SCENE);  
-	w.enable(KFE_TRANSPARENCY); 
-	w.enable(KFE_DYNAMIC_HUD); 
+	s: new Scene(KFE_3D_SCENE);
+	// s2: new Scene(KFE_GUI_SCENE)
+	// w.enable(KFE_TRANSPARENCY); 
+	// w.enable(KFE_DYNAMIC_HUD); 
 	w.enable(KFE_LIGHTING); 
-
 
 	l1: new AmbientLight(Position3D(9, 9, 9), Color(255, 0, 0).rgb); 
 	l2: new AmbientLight(Position3D(1, 1, 1), Color(0, 0, 255).rgb); 
 
 	OpenGL.glDisable(OpenGL.GL_CULL_FACE); 
-	c: new Cube(material=m, scene=s, size=Size3D(10, 10, 10)); 
+	cube: new Cube(material=m, scene=s, size=Size3D(10, 10, 10));
 }
 
 
 // What happens every frame
 func on_update()
 {
-	l.move_to(w.width / 2, w.height/ 2);
-	l2.move_to(w.width / 2, w.height / 2 - 10); 
+	l.move_to(w.width / 2, w.height);
+	l2.move_to(w.width / 2, w.height - 105); 
 }
 
 

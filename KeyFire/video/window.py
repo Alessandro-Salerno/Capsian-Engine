@@ -237,6 +237,7 @@ class Window3D(Window):
         :return: Nothing
         """
 
+        self.clear()
         self.view_port.render()
 
 

@@ -1,0 +1,80 @@
+Date : 2020-07-04 18:58:59
+Directory : /Users/alessandrosalerno/Documents/KeyFire
+Total : 41 files,  1457 codes, 2407 comments, 780 blanks, all 4644 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| Python   |         36 |      1,209 |      2,407 |        780 |      4,396 |
+| XML      |          5 |        248 |          0 |          0 |        248 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                      | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                         |         41 |      1,457 |      2,407 |        780 |      4,644 |
+| .idea                                                                                     |          5 |        248 |          0 |          0 |        248 |
+| .idea/inspectionProfiles                                                                  |          1 |          6 |          0 |          0 |          6 |
+| KeyFire                                                                                   |         30 |        911 |      2,192 |        673 |      3,776 |
+| KeyFire/GUI                                                                               |          3 |         46 |        207 |         44 |        297 |
+| KeyFire/audio                                                                             |          3 |         26 |        191 |         37 |        254 |
+| KeyFire/entities                                                                          |          5 |        217 |        475 |        173 |        865 |
+| KeyFire/input                                                                             |          2 |          8 |        115 |         18 |        141 |
+| KeyFire/maths                                                                             |          2 |          8 |        105 |         14 |        127 |
+| KeyFire/texturing                                                                         |          3 |         84 |        172 |         52 |        308 |
+| KeyFire/video                                                                             |          6 |        333 |        525 |        213 |      1,071 |
+| KeyFire/world                                                                             |          2 |         29 |        147 |         39 |        215 |
+| assets                                                                                    |          1 |         51 |          0 |         14 |         65 |
+| assets/python                                                                             |          1 |         51 |          0 |         14 |         65 |
+| scripts                                                                                   |          1 |          0 |         48 |          4 |         52 |
++-------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                                  | language | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| /Users/alessandrosalerno/Documents/KeyFire/.idea/KeyFire.iml                              | XML      |          8 |          0 |          0 |          8 |
+| /Users/alessandrosalerno/Documents/KeyFire/.idea/inspectionProfiles/profiles_settings.xml | XML      |          6 |          0 |          0 |          6 |
+| /Users/alessandrosalerno/Documents/KeyFire/.idea/misc.xml                                 | XML      |          4 |          0 |          0 |          4 |
+| /Users/alessandrosalerno/Documents/KeyFire/.idea/modules.xml                              | XML      |          8 |          0 |          0 |          8 |
+| /Users/alessandrosalerno/Documents/KeyFire/.idea/workspace.xml                            | XML      |        222 |          0 |          0 |        222 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/GUI/__init__.py                        | Python   |          0 |         48 |          4 |         52 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/GUI/label.py                           | Python   |         37 |        100 |         27 |        164 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/GUI/sprite.py                          | Python   |          9 |         59 |         13 |         81 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/__init__.py                            | Python   |          0 |         48 |          4 |         52 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/audio/__init__.py                      | Python   |          0 |         48 |          4 |         52 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/audio/music.py                         | Python   |         11 |         67 |         14 |         92 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/audio/sound.py                         | Python   |         15 |         76 |         19 |        110 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/engine.py                              | Python   |         53 |         57 |         34 |        144 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/entities/__init__.py                   | Python   |          0 |         48 |          4 |         52 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/entities/cube.py                       | Python   |         49 |         84 |         31 |        164 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/entities/object.py                     | Python   |         18 |        100 |         25 |        143 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/entities/particle_system.py            | Python   |         69 |        125 |         51 |        245 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/entities/square.py                     | Python   |         81 |        118 |         62 |        261 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/input/__init__.py                      | Python   |          0 |         48 |          4 |         52 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/input/keyboard.py                      | Python   |          8 |         67 |         14 |         89 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/log.py                                 | Python   |         72 |        102 |         35 |        209 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/maths/__init__.py                      | Python   |          0 |         48 |          4 |         52 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/maths/math.py                          | Python   |          8 |         57 |         10 |         75 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/texturing/__init__.py                  | Python   |          0 |         48 |          4 |         52 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/texturing/material.py                  | Python   |          8 |         56 |         10 |         74 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/texturing/texture.py                   | Python   |         76 |         68 |         38 |        182 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/values.py                              | Python   |         35 |         48 |         10 |         93 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/video/__init__.py                      | Python   |          0 |         48 |          4 |         52 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/video/camera.py                        | Python   |        144 |        107 |         73 |        324 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/video/graphics.py                      | Python   |         31 |         78 |         25 |        134 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/video/light.py                         | Python   |         26 |         72 |         20 |        118 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/video/scene.py                         | Python   |         23 |         60 |         17 |        100 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/video/window.py                        | Python   |        109 |        160 |         74 |        343 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/world/__init__.py                      | Python   |          0 |         48 |          4 |         52 |
+| /Users/alessandrosalerno/Documents/KeyFire/KeyFire/world/format.py                        | Python   |         29 |         99 |         35 |        163 |
+| /Users/alessandrosalerno/Documents/KeyFire/assets/python/noise_gen.py                     | Python   |         51 |          0 |         14 |         65 |
+| /Users/alessandrosalerno/Documents/KeyFire/console.py                                     | Python   |         49 |         48 |         31 |        128 |
+| /Users/alessandrosalerno/Documents/KeyFire/locals.py                                      | Python   |         35 |         52 |          5 |         92 |
+| /Users/alessandrosalerno/Documents/KeyFire/main.py                                        | Python   |          8 |         53 |          9 |         70 |
+| /Users/alessandrosalerno/Documents/KeyFire/scripts/__init__.py                            | Python   |          0 |         48 |          4 |         52 |
+| /Users/alessandrosalerno/Documents/KeyFire/tzylang.py                                     | Python   |        155 |         14 |         44 |        213 |
+| Total                                                                                     |          |      1,457 |      2,407 |        780 |      4,644 |
++-------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+

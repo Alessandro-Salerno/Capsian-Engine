@@ -1,0 +1,26 @@
+**Already added feature**
++ Added Static HUD Support (High performance, low flexibility) StaticLabel3D
++ Added Fog support
++ Added Colored Lights!
++ Changed Window3D.turn to Window3D.enable/Window3D.disable
++ Improved customizable of the window (Ability to choose the clear and fog colors)
++ Added Face Culling for better performance
++ Added Dynamic HUD Support (Lower performance, higher flexibility) DynamicLabel3D
++ Added TzyLang support
++ Added Sprites for GUI and HUD
++ Added support for the TermColor class (Previously only used internally in the engine)
++ Updated pyglet version (1.5.5 to 1.5.6)
++ Updated KeyboardInputHandler
++ Improved logging
++ Improved squares (Just technically)
++ Added automatic position, size and color conversion (Position2D(x, y), Position3D(x, y, z)...)
++ Quality of Life improvements
+
+**Features to add**
++ Add dynamic GUI support
+
+**Bug fixes**
+- Having a label would cause problems when closing a Window (FIXED)
+- GUI and GAME scenes would merge together. This would allow all your GUI to be rendered in 3D space as well (Fixed)
+- Inconsistent behaviour of fullscreen windows on multi-monitor setups. The Window will now always open on the x0 y0 monitor - your main monitor
+

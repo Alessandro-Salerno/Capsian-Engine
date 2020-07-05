@@ -67,3 +67,4 @@ with open("scripts/script.kfel", "r") as file:
     source = translate.build(file.read())
 
 exec(compile(source=source, filename="", mode="exec", optimize=1))
+print()

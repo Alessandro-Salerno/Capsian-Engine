@@ -327,4 +327,3 @@ class OrthographicCamera(Camera):
 
     def key_listener(self, handler):
         pass
-˜

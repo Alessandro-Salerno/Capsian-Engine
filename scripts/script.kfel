@@ -59,31 +59,52 @@
 #using scripts/objects
 #using scripts/declarations
 
-i = Input()
+i <- Input()
+
+
+<class> LightSource(AmbientLight):
+	<constructor>(this, pos) <>
+		pass;
+	</>
+</class>
 
 func on_create()
 {
-	t: new Texture3D("assets/textures/glass.png");
-	m: new Material(texture=t);
+	w.set_clear_color(Color(0, 0, 30).to_gl_float_color)
+
+	grass: new Texture3D("assets/textures/terrain.png");
+	m_grass: new Material(texture=grass);
+
+	stonebricks: new Texture3D("assets/textures/glass.png");
+	m_stonebricks: new Material(texture=stonebricks);
+
+	glowstone: new Texture3D("assets/textures/glowstone.png");
+	m_glowstone: new Material(texture=glowstone);
+
+	w.enable(KFE_LIGHTING);
+
 	s: new Scene(KFE_3D_SCENE);
-	// s2: new Scene(KFE_GUI_SCENE)
-	// w.enable(KFE_TRANSPARENCY); 
-	// w.enable(KFE_DYNAMIC_HUD); 
-	w.enable(KFE_LIGHTING); 
 
-	l1: new AmbientLight(Position3D(9, 9, 9), Color(255, 0, 0).rgb); 
-	l2: new AmbientLight(Position3D(1, 1, 1), Color(0, 0, 255).rgb); 
+	for x -> range(0, 100) {
+		for z -> range(0, 100) {
+			Cube(pos=Position3D(x, 0, z), material=m_grass, scene=s);
+		}
+	}
 
-	OpenGL.glDisable(OpenGL.GL_CULL_FACE); 
-	cube: new Cube(material=m, scene=s, size=Size3D(10, 10, 10));
+	for x -> range(0, 100) {
+		for y -> range(0, 5) {
+			Cube(pos=Position3D(x, y, 5), material=m_stonebricks, scene=s);
+		}
+	}
+
+
 }
 
 
 // What happens every frame
 func on_update()
 {
-	l.move_to(w.width / 2, w.height);
-	l2.move_to(w.width / 2, w.height - 105); 
+	pass;
 }
 
 

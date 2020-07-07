@@ -203,9 +203,10 @@ global block_z;
 i = Input()
 
 
-<class> LightSource(AmbientLight):
-	<constructor>(this, pos) <>
-		pass;
+<class> LightSource:
+	<constructor>(this, pos, scene, material) <>
+		self.cube: new Cube(pos=pos, scene=s, material=material);
+		self.light: new AmbientLight(pos=pos, color=Color(250, 250, 5).rgb)
 	</>
 </class>
 
@@ -215,12 +216,13 @@ def on_create():
 	grass: new Texture3D("assets/textures/terrain.png");
 	m_grass: new Material(texture=grass);
 
-	stonebricks: new Texture3D("assets/textures/glass.png");
+	stonebricks: new Texture3D("assets/textures/stone_bricks.png");
 	m_stonebricks: new Material(texture=stonebricks);
 
 	glowstone: new Texture3D("assets/textures/glowstone.png");
 	m_glowstone: new Material(texture=glowstone);
 
+	w.enable(KFE_TRANSPARENCY);
 	w.enable(KFE_LIGHTING);
 
 	s: new Scene(KFE_3D_SCENE);
@@ -237,7 +239,9 @@ def on_create():
 		
 	
 
-
+	for x -> range(0, 100, 8):
+		LightSource(pos=Position3D(x + 0.5, 5.5, 5.5), scene=s, material=m_glowstone);
+	
 
 
 

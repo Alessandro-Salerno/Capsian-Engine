@@ -1,10 +1,10 @@
 # Details
 
-Date : 2020-07-04 18:58:59
+Date : 2020-07-07 11:54:28
 
 Directory /Users/alessandrosalerno/Documents/KeyFire
 
-Total : 41 files,  1457 codes, 2407 comments, 780 blanks, all 4644 lines
+Total : 41 files,  1488 codes, 2412 comments, 783 blanks, all 4683 lines
 
 [summary](results.md)
 
@@ -39,7 +39,7 @@ Total : 41 files,  1457 codes, 2407 comments, 780 blanks, all 4644 lines
 | [KeyFire/texturing/texture.py](/KeyFire/texturing/texture.py) | Python | 76 | 68 | 38 | 182 |
 | [KeyFire/values.py](/KeyFire/values.py) | Python | 35 | 48 | 10 | 93 |
 | [KeyFire/video/__init__.py](/KeyFire/video/__init__.py) | Python | 0 | 48 | 4 | 52 |
-| [KeyFire/video/camera.py](/KeyFire/video/camera.py) | Python | 144 | 107 | 73 | 324 |
+| [KeyFire/video/camera.py](/KeyFire/video/camera.py) | Python | 150 | 107 | 73 | 330 |
 | [KeyFire/video/graphics.py](/KeyFire/video/graphics.py) | Python | 31 | 78 | 25 | 134 |
 | [KeyFire/video/light.py](/KeyFire/video/light.py) | Python | 26 | 72 | 20 | 118 |
 | [KeyFire/video/scene.py](/KeyFire/video/scene.py) | Python | 23 | 60 | 17 | 100 |
@@ -47,9 +47,9 @@ Total : 41 files,  1457 codes, 2407 comments, 780 blanks, all 4644 lines
 | [KeyFire/world/__init__.py](/KeyFire/world/__init__.py) | Python | 0 | 48 | 4 | 52 |
 | [KeyFire/world/format.py](/KeyFire/world/format.py) | Python | 29 | 99 | 35 | 163 |
 | [assets/python/noise_gen.py](/assets/python/noise_gen.py) | Python | 51 | 0 | 14 | 65 |
-| [console.py](/console.py) | Python | 49 | 48 | 31 | 128 |
+| [console.py](/console.py) | Python | 73 | 53 | 35 | 161 |
 | [locals.py](/locals.py) | Python | 35 | 52 | 5 | 92 |
-| [main.py](/main.py) | Python | 8 | 53 | 9 | 70 |
+| [main.py](/main.py) | Python | 9 | 53 | 8 | 70 |
 | [scripts/__init__.py](/scripts/__init__.py) | Python | 0 | 48 | 4 | 52 |
 | [tzylang.py](/tzylang.py) | Python | 155 | 14 | 44 | 213 |
 

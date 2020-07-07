@@ -55,9 +55,10 @@
 
 from locals import *
 from os import system
+import os
 import tzylang as translate
 
-system("cls")
+system("cls") if os.name == "nt" else system("clear")
 
 global source
 

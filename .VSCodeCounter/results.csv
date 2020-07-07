@@ -27,7 +27,7 @@
 "/Users/alessandrosalerno/Documents/KeyFire/KeyFire/texturing/texture.py", "Python", 76, 0, 68, 38, 182
 "/Users/alessandrosalerno/Documents/KeyFire/KeyFire/values.py", "Python", 35, 0, 48, 10, 93
 "/Users/alessandrosalerno/Documents/KeyFire/KeyFire/video/__init__.py", "Python", 0, 0, 48, 4, 52
-"/Users/alessandrosalerno/Documents/KeyFire/KeyFire/video/camera.py", "Python", 144, 0, 107, 73, 324
+"/Users/alessandrosalerno/Documents/KeyFire/KeyFire/video/camera.py", "Python", 150, 0, 107, 73, 330
 "/Users/alessandrosalerno/Documents/KeyFire/KeyFire/video/graphics.py", "Python", 31, 0, 78, 25, 134
 "/Users/alessandrosalerno/Documents/KeyFire/KeyFire/video/light.py", "Python", 26, 0, 72, 20, 118
 "/Users/alessandrosalerno/Documents/KeyFire/KeyFire/video/scene.py", "Python", 23, 0, 60, 17, 100
@@ -35,9 +35,9 @@
 "/Users/alessandrosalerno/Documents/KeyFire/KeyFire/world/__init__.py", "Python", 0, 0, 48, 4, 52
 "/Users/alessandrosalerno/Documents/KeyFire/KeyFire/world/format.py", "Python", 29, 0, 99, 35, 163
 "/Users/alessandrosalerno/Documents/KeyFire/assets/python/noise_gen.py", "Python", 51, 0, 0, 14, 65
-"/Users/alessandrosalerno/Documents/KeyFire/console.py", "Python", 49, 0, 48, 31, 128
+"/Users/alessandrosalerno/Documents/KeyFire/console.py", "Python", 73, 0, 53, 35, 161
 "/Users/alessandrosalerno/Documents/KeyFire/locals.py", "Python", 35, 0, 52, 5, 92
-"/Users/alessandrosalerno/Documents/KeyFire/main.py", "Python", 8, 0, 53, 9, 70
+"/Users/alessandrosalerno/Documents/KeyFire/main.py", "Python", 9, 0, 53, 8, 70
 "/Users/alessandrosalerno/Documents/KeyFire/scripts/__init__.py", "Python", 0, 0, 48, 4, 52
 "/Users/alessandrosalerno/Documents/KeyFire/tzylang.py", "Python", 155, 0, 14, 44, 213
-"Total", "-", 1209, 248, 2407, 780, 4644
+"Total", "-", 1240, 248, 2412, 783, 4683

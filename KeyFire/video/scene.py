@@ -76,24 +76,17 @@ class Scene:
                 graphics.hud_scenes.append(self)
 
         # Defines lists of objects
-        self.batches = [Framework.graphics.Batch()]
+        self.batch = Framework.graphics.Batch()
         self.objects2D = []
         self.gui_batches = []
         self.hud_batches = []
         self.dynamic_gui = []
         self.dynamic_hud = []
 
-
         # Add to KeyFire stack
         graphics.stack.append(self)
 
 
-    # Draw the scene's batch
-    def draw(self):
-        for batch in self.batches:
-            batch.draw()
-
-
-    # Adds something to the batch
+    # Adds somethings to the batch
     def add(self, *args, **kwargs):
-        self.batches[0].add(*args, **kwargs)
+        self.batch.add(*args, **kwargs)

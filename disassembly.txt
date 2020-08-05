@@ -1,0 +1,1258 @@
+None 54           0 LOAD_CONST               0 (0)
+              2 LOAD_CONST               1 (('Framework',))
+              4 IMPORT_NAME              0 (locals)
+              6 IMPORT_FROM              1 (Framework)
+              8 STORE_NAME               1 (Framework)
+             10 POP_TOP
+
+ 55          12 LOAD_CONST               0 (0)
+             14 LOAD_CONST               2 (('graphics',))
+             16 IMPORT_NAME              0 (locals)
+             18 IMPORT_FROM              2 (graphics)
+             20 STORE_NAME               2 (graphics)
+             22 POP_TOP
+
+ 56          24 LOAD_CONST               0 (0)
+             26 LOAD_CONST               3 (('OpenGL',))
+             28 IMPORT_NAME              0 (locals)
+             30 IMPORT_FROM              3 (OpenGL)
+             32 STORE_NAME               3 (OpenGL)
+             34 POP_TOP
+
+ 57          36 LOAD_CONST               0 (0)
+             38 LOAD_CONST               4 (None)
+             40 IMPORT_NAME              4 (KeyFire.maths.math)
+             42 IMPORT_FROM              5 (maths)
+             44 ROT_TWO
+             46 POP_TOP
+             48 IMPORT_FROM              6 (math)
+             50 STORE_NAME               7 (kmath)
+             52 POP_TOP
+
+ 58          54 LOAD_CONST               0 (0)
+             56 LOAD_CONST               5 (('engine',))
+             58 IMPORT_NAME              0 (locals)
+             60 IMPORT_FROM              8 (engine)
+             62 STORE_NAME               8 (engine)
+             64 POP_TOP
+
+ 59          66 LOAD_CONST               0 (0)
+             68 LOAD_CONST               4 (None)
+             70 IMPORT_NAME              6 (math)
+             72 STORE_NAME               6 (math)
+
+ 62          74 LOAD_BUILD_CLASS
+             76 LOAD_CONST               6 (<code object Camera at 0x0188C5A0, file "camera.py", line 62>)
+             78 LOAD_CONST               7 ('Camera')
+             80 MAKE_FUNCTION            0
+             82 LOAD_CONST               7 ('Camera')
+             84 CALL_FUNCTION            2
+             86 STORE_NAME               9 (Camera)
+
+157          88 LOAD_BUILD_CLASS
+             90 LOAD_CONST               8 (<code object PerspectiveCamera at 0x0188C808, file "camera.py", line 157>)
+             92 LOAD_CONST               9 ('PerspectiveCamera')
+             94 MAKE_FUNCTION            0
+             96 LOAD_CONST               9 ('PerspectiveCamera')
+             98 LOAD_NAME                9 (Camera)
+            100 CALL_FUNCTION            3
+            102 STORE_NAME              10 (PerspectiveCamera)
+
+295         104 LOAD_BUILD_CLASS
+            106 LOAD_CONST              10 (<code object OrthographicCamera at 0x0188CA70, file "camera.py", line 295>)
+            108 LOAD_CONST              11 ('OrthographicCamera')
+            110 MAKE_FUNCTION            0
+            112 LOAD_CONST              11 ('OrthographicCamera')
+            114 LOAD_NAME                9 (Camera)
+            116 CALL_FUNCTION            3
+            118 STORE_NAME              11 (OrthographicCamera)
+            120 LOAD_CONST               4 (None)
+            122 RETURN_VALUE
+
+Disassembly of <code object Camera at 0x0188C5A0, file "camera.py", line 62>:
+ 62           0 LOAD_NAME                0 (__name__)
+              2 STORE_NAME               1 (__module__)
+              4 LOAD_CONST               0 ('Camera')
+              6 STORE_NAME               2 (__qualname__)
+
+ 63           8 LOAD_CONST               1 (0)
+             10 LOAD_CONST               1 (0)
+             12 LOAD_CONST               1 (0)
+             14 BUILD_LIST               3
+             16 LOAD_CONST               1 (0)
+             18 LOAD_CONST               1 (0)
+             20 BUILD_LIST               2
+             22 LOAD_CONST               2 (90)
+             24 LOAD_CONST               3 (5000)
+             26 LOAD_CONST               4 (0.05)
+             28 BUILD_TUPLE              5
+             30 LOAD_CONST               5 (<code object __init__ at 0x0188C3E8, file "camera.py", line 63>)
+             32 LOAD_CONST               6 ('Camera.__init__')
+             34 MAKE_FUNCTION            1
+             36 STORE_NAME               3 (__init__)
+
+114          38 LOAD_CONST               7 (<code object update at 0x0188C440, file "camera.py", line 114>)
+             40 LOAD_CONST               8 ('Camera.update')
+             42 MAKE_FUNCTION            0
+             44 STORE_NAME               4 (update)
+
+132          46 LOAD_CONST               9 (<code object get_field_of_view at 0x0188C498, file "camera.py", line 132>)
+             48 LOAD_CONST              10 ('Camera.get_field_of_view')
+             50 MAKE_FUNCTION            0
+             52 STORE_NAME               5 (get_field_of_view)
+
+142          54 LOAD_CONST              11 (<code object set_field_of_view at 0x0188C4F0, file "camera.py", line 142>)
+             56 LOAD_CONST              12 ('Camera.set_field_of_view')
+             58 MAKE_FUNCTION            0
+             60 STORE_NAME               6 (set_field_of_view)
+             62 LOAD_CONST              13 (None)
+             64 RETURN_VALUE
+
+Disassembly of <code object __init__ at 0x0188C3E8, file "camera.py", line 63>:
+ 74           0 LOAD_GLOBAL              0 (list)
+              2 LOAD_FAST                1 (pos)
+              4 CALL_FUNCTION            1
+              6 LOAD_FAST                0 (self)
+              8 STORE_ATTR               1 (pos)
+
+ 75          10 LOAD_GLOBAL              0 (list)
+             12 LOAD_FAST                2 (rot)
+             14 CALL_FUNCTION            1
+             16 LOAD_FAST                0 (self)
+             18 STORE_ATTR               2 (rot)
+
+ 78          20 LOAD_CONST               1 (0)
+             22 LOAD_FAST                0 (self)
+             24 STORE_ATTR               3 (dy)
+
+ 79          26 LOAD_CONST               1 (0)
+             28 LOAD_FAST                0 (self)
+             30 STORE_ATTR               4 (dx)
+
+ 80          32 LOAD_CONST               1 (0)
+             34 LOAD_FAST                0 (self)
+             36 STORE_ATTR               5 (dz)
+
+ 81          38 LOAD_CONST               1 (0)
+             40 LOAD_FAST                0 (self)
+             42 STORE_ATTR               6 (rotY)
+
+ 82          44 LOAD_CONST               1 (0)
+             46 LOAD_FAST                0 (self)
+             48 STORE_ATTR               7 (rotX)
+
+ 85          50 LOAD_CONST               2 (0.1)
+             52 LOAD_FAST                0 (self)
+             54 STORE_ATTR               8 (sens)
+
+ 86          56 LOAD_CONST               1 (0)
+             58 LOAD_FAST                0 (self)
+             60 STORE_ATTR               9 (s)
+
+ 87          62 LOAD_CONST               3 (None)
+             64 LOAD_FAST                0 (self)
+             66 STORE_ATTR              10 (keys)
+
+ 90          68 LOAD_FAST                3 (fov)
+             70 LOAD_FAST                0 (self)
+             72 STORE_ATTR              11 (fov)
+
+ 91          74 LOAD_GLOBAL             12 (int)
+             76 LOAD_FAST                4 (far)
+             78 CALL_FUNCTION            1
+             80 LOAD_FAST                0 (self)
+             82 STORE_ATTR              13 (far)
+
+ 92          84 LOAD_GLOBAL             14 (float)
+             86 LOAD_FAST                5 (near)
+             88 CALL_FUNCTION            1
+             90 LOAD_FAST                0 (self)
+             92 STORE_ATTR              15 (near)
+
+ 95          94 LOAD_GLOBAL             16 (Framework)
+             96 LOAD_ATTR               17 (window)
+             98 LOAD_ATTR               18 (key)
+            100 LOAD_ATTR               19 (W)
+
+ 96         102 LOAD_GLOBAL             16 (Framework)
+            104 LOAD_ATTR               17 (window)
+            106 LOAD_ATTR               18 (key)
+            108 LOAD_ATTR               20 (A)
+
+ 97         110 LOAD_GLOBAL             16 (Framework)
+            112 LOAD_ATTR               17 (window)
+            114 LOAD_ATTR               18 (key)
+            116 LOAD_ATTR               21 (S)
+
+ 98         118 LOAD_GLOBAL             16 (Framework)
+            120 LOAD_ATTR               17 (window)
+            122 LOAD_ATTR               18 (key)
+            124 LOAD_ATTR               22 (D)
+
+ 99         126 LOAD_GLOBAL             16 (Framework)
+            128 LOAD_ATTR               17 (window)
+            130 LOAD_ATTR               18 (key)
+            132 LOAD_ATTR               23 (LSHIFT)
+
+100         134 LOAD_GLOBAL             16 (Framework)
+            136 LOAD_ATTR               17 (window)
+            138 LOAD_ATTR               18 (key)
+            140 LOAD_ATTR               24 (SPACE)
+            142 BUILD_LIST               6
+            144 LOAD_FAST                0 (self)
+            146 STORE_ATTR              10 (keys)
+
+104         148 LOAD_FAST                0 (self)
+            150 LOAD_ATTR               10 (keys)
+            152 LOAD_CONST               1 (0)
+            154 BINARY_SUBSCR
+            156 LOAD_CONST               4 ('forwards')
+
+105         158 LOAD_FAST                0 (self)
+            160 LOAD_ATTR               10 (keys)
+            162 LOAD_CONST               5 (1)
+            164 BINARY_SUBSCR
+            166 LOAD_CONST               6 ('left')
+
+106         168 LOAD_FAST                0 (self)
+            170 LOAD_ATTR               10 (keys)
+            172 LOAD_CONST               7 (2)
+            174 BINARY_SUBSCR
+            176 LOAD_CONST               8 ('backwards')
+
+107         178 LOAD_FAST                0 (self)
+            180 LOAD_ATTR               10 (keys)
+            182 LOAD_CONST               9 (3)
+            184 BINARY_SUBSCR
+            186 LOAD_CONST              10 ('right')
+
+108         188 LOAD_FAST                0 (self)
+            190 LOAD_ATTR               10 (keys)
+            192 LOAD_CONST              11 (4)
+            194 BINARY_SUBSCR
+            196 LOAD_CONST              12 ('down')
+
+109         198 LOAD_FAST                0 (self)
+            200 LOAD_ATTR               10 (keys)
+            202 LOAD_CONST              13 (5)
+            204 BINARY_SUBSCR
+            206 LOAD_CONST              14 ('up')
+            208 BUILD_MAP                6
+            210 LOAD_FAST                0 (self)
+            212 STORE_ATTR              25 (args)
+            214 LOAD_CONST               3 (None)
+            216 RETURN_VALUE
+
+Disassembly of <code object update at 0x0188C440, file "camera.py", line 114>:
+123           0 LOAD_FAST                1 (delta_time)
+              2 LOAD_CONST               1 (50)
+              4 BINARY_MULTIPLY
+              6 LOAD_FAST                0 (self)
+              8 STORE_ATTR               0 (s)
+
+124          10 LOAD_FAST                0 (self)
+             12 LOAD_ATTR                1 (rot)
+             14 LOAD_CONST               2 (1)
+             16 BINARY_SUBSCR
+             18 UNARY_NEGATIVE
+             20 LOAD_CONST               3 (180)
+             22 BINARY_TRUE_DIVIDE
+             24 LOAD_GLOBAL              2 (math)
+             26 LOAD_ATTR                3 (pi)
+             28 BINARY_MULTIPLY
+             30 LOAD_FAST                0 (self)
+             32 STORE_ATTR               4 (rotY)
+
+126          34 LOAD_FAST                0 (self)
+             36 LOAD_ATTR                0 (s)
+             38 LOAD_GLOBAL              2 (math)
+             40 LOAD_METHOD              5 (sin)
+             42 LOAD_FAST                0 (self)
+             44 LOAD_ATTR                4 (rotY)
+             46 CALL_METHOD              1
+             48 BINARY_MULTIPLY
+             50 LOAD_FAST                0 (self)
+             52 STORE_ATTR               6 (dx)
+
+127          54 LOAD_FAST                0 (self)
+             56 LOAD_ATTR                0 (s)
+             58 LOAD_GLOBAL              2 (math)
+             60 LOAD_METHOD              7 (cos)
+             62 LOAD_FAST                0 (self)
+             64 LOAD_ATTR                4 (rotY)
+             66 CALL_METHOD              1
+             68 BINARY_MULTIPLY
+             70 LOAD_FAST                0 (self)
+             72 STORE_ATTR               8 (dz)
+
+129          74 LOAD_FAST                2 (keys)
+             76 LOAD_FAST                0 (self)
+             78 STORE_ATTR               9 (keys)
+             80 LOAD_CONST               4 (None)
+             82 RETURN_VALUE
+
+Disassembly of <code object get_field_of_view at 0x0188C498, file "camera.py", line 132>:
+139           0 LOAD_FAST                0 (self)
+              2 LOAD_ATTR                0 (fov)
+              4 RETURN_VALUE
+
+Disassembly of <code object set_field_of_view at 0x0188C4F0, file "camera.py", line 142>:
+151           0 LOAD_FAST                1 (fov)
+              2 LOAD_FAST                0 (self)
+              4 STORE_ATTR               0 (fov)
+              6 LOAD_CONST               1 (None)
+              8 RETURN_VALUE
+
+Disassembly of <code object PerspectiveCamera at 0x0188C808, file "camera.py", line 157>:
+157           0 LOAD_NAME                0 (__name__)
+              2 STORE_NAME               1 (__module__)
+              4 LOAD_CONST               0 ('PerspectiveCamera')
+              6 STORE_NAME               2 (__qualname__)
+
+158           8 LOAD_CONST               1 (0)
+             10 LOAD_CONST               1 (0)
+             12 LOAD_CONST               1 (0)
+             14 BUILD_LIST               3
+             16 LOAD_CONST               1 (0)
+             18 LOAD_CONST               1 (0)
+             20 BUILD_LIST               2
+             22 LOAD_CONST               2 (90)
+             24 LOAD_CONST               3 (5000)
+             26 LOAD_CONST               4 (0.05)
+             28 BUILD_TUPLE              5
+             30 LOAD_CLOSURE             0 (__class__)
+             32 BUILD_TUPLE              1
+             34 LOAD_CONST               5 (<code object __init__ at 0x0188C548, file "camera.py", line 158>)
+             36 LOAD_CONST               6 ('PerspectiveCamera.__init__')
+             38 MAKE_FUNCTION            9
+             40 STORE_NAME               3 (__init__)
+
+162          42 LOAD_CONST               7 (<code object init at 0x0188C650, file "camera.py", line 162>)
+             44 LOAD_CONST               8 ('PerspectiveCamera.init')
+             46 MAKE_FUNCTION            0
+             48 STORE_NAME               4 (init)
+
+174          50 LOAD_CONST               9 (<code object render at 0x0188C6A8, file "camera.py", line 174>)
+             52 LOAD_CONST              10 ('PerspectiveCamera.render')
+             54 MAKE_FUNCTION            0
+             56 STORE_NAME               5 (render)
+
+226          58 LOAD_CONST              11 (<code object rotate at 0x0188C700, file "camera.py", line 226>)
+             60 LOAD_CONST              12 ('PerspectiveCamera.rotate')
+             62 MAKE_FUNCTION            0
+             64 STORE_NAME               6 (rotate)
+
+245          66 LOAD_CONST              13 (<code object key_listener at 0x0188C758, file "camera.py", line 245>)
+             68 LOAD_CONST              14 ('PerspectiveCamera.key_listener')
+             70 MAKE_FUNCTION            0
+             72 STORE_NAME               7 (key_listener)
+
+261          74 LOAD_CONST              15 (<code object move at 0x0188C7B0, file "camera.py", line 261>)
+             76 LOAD_CONST              16 ('PerspectiveCamera.move')
+             78 MAKE_FUNCTION            0
+             80 STORE_NAME               8 (move)
+             82 LOAD_CLOSURE             0 (__class__)
+             84 DUP_TOP
+             86 STORE_NAME               9 (__classcell__)
+             88 RETURN_VALUE
+
+Disassembly of <code object __init__ at 0x0188C548, file "camera.py", line 158>:
+159           0 LOAD_GLOBAL              0 (super)
+              2 CALL_FUNCTION            0
+              4 LOAD_METHOD              1 (__init__)
+              6 LOAD_FAST                1 (pos)
+              8 LOAD_FAST                2 (rot)
+             10 LOAD_FAST                3 (fov)
+             12 LOAD_FAST                4 (far)
+             14 LOAD_FAST                5 (near)
+             16 CALL_METHOD              5
+             18 POP_TOP
+             20 LOAD_CONST               0 (None)
+             22 RETURN_VALUE
+
+Disassembly of <code object init at 0x0188C650, file "camera.py", line 162>:
+163           0 LOAD_GLOBAL              0 (graphics)
+              2 LOAD_ATTR                1 (view)
+              4 LOAD_METHOD              2 (__setitem__)
+              6 LOAD_CONST               1 ('Camera')
+              8 LOAD_FAST                0 (self)
+             10 CALL_METHOD              2
+             12 POP_TOP
+
+165          14 LOAD_GLOBAL              3 (OpenGL)
+             16 LOAD_METHOD              4 (glEnable)
+             18 LOAD_GLOBAL              3 (OpenGL)
+             20 LOAD_ATTR                5 (GL_DEPTH_TEST)
+             22 CALL_METHOD              1
+             24 POP_TOP
+
+166          26 LOAD_GLOBAL              3 (OpenGL)
+             28 LOAD_METHOD              4 (glEnable)
+             30 LOAD_GLOBAL              3 (OpenGL)
+             32 LOAD_ATTR                6 (GL_NORMALIZE)
+             34 CALL_METHOD              1
+             36 POP_TOP
+
+167          38 LOAD_GLOBAL              3 (OpenGL)
+             40 LOAD_METHOD              4 (glEnable)
+             42 LOAD_GLOBAL              3 (OpenGL)
+             44 LOAD_ATTR                7 (GL_CULL_FACE)
+             46 CALL_METHOD              1
+             48 POP_TOP
+
+168          50 LOAD_GLOBAL              3 (OpenGL)
+             52 LOAD_METHOD              8 (glCullFace)
+             54 LOAD_GLOBAL              3 (OpenGL)
+             56 LOAD_ATTR                9 (GL_BACK)
+             58 CALL_METHOD              1
+             60 POP_TOP
+
+170          62 LOAD_GLOBAL             10 (engine)
+             64 LOAD_METHOD             11 (get_main_window)
+             66 CALL_METHOD              0
+             68 LOAD_METHOD             12 (set_lock)
+             70 LOAD_CONST               2 (True)
+             72 CALL_METHOD              1
+             74 POP_TOP
+
+171          76 LOAD_GLOBAL             10 (engine)
+             78 LOAD_METHOD             11 (get_main_window)
+             80 CALL_METHOD              0
+             82 LOAD_METHOD             13 (set_caption)
+             84 LOAD_CONST               3 ('KeyFire 2.1 Window - 3D Mode')
+             86 CALL_METHOD              1
+             88 POP_TOP
+             90 LOAD_CONST               0 (None)
+             92 RETURN_VALUE
+
+Disassembly of <code object render at 0x0188C6A8, file "camera.py", line 174>:
+176           0 LOAD_GLOBAL              0 (OpenGL)
+              2 LOAD_METHOD              1 (glClear)
+              4 LOAD_GLOBAL              0 (OpenGL)
+              6 LOAD_ATTR                2 (GL_COLOR_BUFFER_BIT)
+              8 LOAD_GLOBAL              0 (OpenGL)
+             10 LOAD_ATTR                3 (GL_DEPTH_BUFFER_BIT)
+             12 BINARY_OR
+             14 CALL_METHOD              1
+             16 POP_TOP
+
+178          18 LOAD_GLOBAL              4 (engine)
+             20 LOAD_METHOD              5 (get_main_window)
+             22 CALL_METHOD              0
+             24 LOAD_ATTR                6 (lighting)
+             26 POP_JUMP_IF_FALSE       40
+             28 LOAD_GLOBAL              0 (OpenGL)
+             30 LOAD_METHOD              7 (glEnable)
+             32 LOAD_GLOBAL              0 (OpenGL)
+             34 LOAD_ATTR                8 (GL_LIGHTING)
+             36 CALL_METHOD              1
+             38 POP_TOP
+
+180     >>   40 LOAD_GLOBAL              0 (OpenGL)
+             42 LOAD_METHOD              9 (glMatrixMode)
+             44 LOAD_GLOBAL              0 (OpenGL)
+             46 LOAD_ATTR               10 (GL_PROJECTION)
+             48 CALL_METHOD              1
+             50 POP_TOP
+
+181          52 LOAD_GLOBAL              0 (OpenGL)
+             54 LOAD_METHOD             11 (glLoadIdentity)
+             56 CALL_METHOD              0
+             58 POP_TOP
+
+183          60 LOAD_GLOBAL              0 (OpenGL)
+             62 LOAD_METHOD             12 (gluPerspective)
+             64 LOAD_FAST                0 (self)
+             66 LOAD_ATTR               13 (fov)
+
+184          68 LOAD_GLOBAL              4 (engine)
+             70 LOAD_METHOD              5 (get_main_window)
+             72 CALL_METHOD              0
+             74 LOAD_ATTR               14 (width)
+             76 LOAD_GLOBAL              4 (engine)
+             78 LOAD_METHOD              5 (get_main_window)
+             80 CALL_METHOD              0
+             82 LOAD_ATTR               15 (height)
+             84 BINARY_TRUE_DIVIDE
+
+185          86 LOAD_FAST                0 (self)
+             88 LOAD_ATTR               16 (near)
+
+186          90 LOAD_FAST                0 (self)
+             92 LOAD_ATTR               17 (far)
+             94 CALL_METHOD              4
+             96 POP_TOP
+
+188          98 LOAD_GLOBAL              0 (OpenGL)
+            100 LOAD_METHOD              9 (glMatrixMode)
+            102 LOAD_GLOBAL              0 (OpenGL)
+            104 LOAD_ATTR               18 (GL_MODELVIEW)
+            106 CALL_METHOD              1
+            108 POP_TOP
+
+189         110 LOAD_GLOBAL              0 (OpenGL)
+            112 LOAD_METHOD             11 (glLoadIdentity)
+            114 CALL_METHOD              0
+            116 POP_TOP
+
+191         118 LOAD_GLOBAL              0 (OpenGL)
+            120 LOAD_METHOD             19 (glPushMatrix)
+            122 CALL_METHOD              0
+            124 POP_TOP
+
+192         126 LOAD_GLOBAL              0 (OpenGL)
+            128 LOAD_METHOD             20 (glRotatef)
+            130 LOAD_FAST                0 (self)
+            132 LOAD_ATTR               21 (rot)
+            134 LOAD_CONST               1 (0)
+            136 BINARY_SUBSCR
+            138 UNARY_NEGATIVE
+            140 LOAD_CONST               2 (1)
+            142 LOAD_CONST               1 (0)
+            144 LOAD_CONST               1 (0)
+            146 CALL_METHOD              4
+            148 POP_TOP
+
+193         150 LOAD_GLOBAL              0 (OpenGL)
+            152 LOAD_METHOD             20 (glRotatef)
+            154 LOAD_FAST                0 (self)
+            156 LOAD_ATTR               21 (rot)
+            158 LOAD_CONST               2 (1)
+            160 BINARY_SUBSCR
+            162 UNARY_NEGATIVE
+            164 LOAD_CONST               1 (0)
+            166 LOAD_CONST               2 (1)
+            168 LOAD_CONST               1 (0)
+            170 CALL_METHOD              4
+            172 POP_TOP
+
+194         174 LOAD_GLOBAL              0 (OpenGL)
+            176 LOAD_METHOD             22 (glTranslatef)
+            178 LOAD_FAST                0 (self)
+            180 LOAD_ATTR               23 (pos)
+            182 LOAD_CONST               1 (0)
+            184 BINARY_SUBSCR
+            186 UNARY_NEGATIVE
+            188 LOAD_FAST                0 (self)
+            190 LOAD_ATTR               23 (pos)
+            192 LOAD_CONST               2 (1)
+            194 BINARY_SUBSCR
+            196 UNARY_NEGATIVE
+            198 LOAD_FAST                0 (self)
+            200 LOAD_ATTR               23 (pos)
+            202 LOAD_CONST               3 (2)
+            204 BINARY_SUBSCR
+            206 UNARY_NEGATIVE
+            208 CALL_METHOD              3
+            210 POP_TOP
+
+196         212 LOAD_GLOBAL             24 (graphics)
+            214 LOAD_METHOD             25 (draw)
+            216 CALL_METHOD              0
+            218 POP_TOP
+
+197         220 LOAD_GLOBAL              0 (OpenGL)
+            222 LOAD_METHOD             26 (glPopMatrix)
+            224 CALL_METHOD              0
+            226 POP_TOP
+
+200         228 LOAD_GLOBAL              4 (engine)
+            230 LOAD_METHOD              5 (get_main_window)
+            232 CALL_METHOD              0
+            234 LOAD_ATTR               27 (render_static_hud)
+            236 EXTENDED_ARG             1
+            238 POP_JUMP_IF_FALSE      396
+
+201         240 LOAD_GLOBAL              0 (OpenGL)
+            242 LOAD_METHOD             28 (glDisable)
+            244 LOAD_GLOBAL              0 (OpenGL)
+            246 LOAD_ATTR                8 (GL_LIGHTING)
+            248 CALL_METHOD              1
+            250 POP_TOP
+
+202         252 LOAD_GLOBAL              4 (engine)
+            254 LOAD_METHOD              5 (get_main_window)
+            256 CALL_METHOD              0
+            258 LOAD_METHOD             29 (get_size)
+            260 CALL_METHOD              0
+            262 UNPACK_SEQUENCE          2
+            264 STORE_FAST               1 (width)
+            266 STORE_FAST               2 (height)
+
+203         268 LOAD_GLOBAL              4 (engine)
+            270 LOAD_METHOD              5 (get_main_window)
+            272 CALL_METHOD              0
+            274 LOAD_METHOD             30 (get_viewport_size)
+            276 CALL_METHOD              0
+            278 STORE_FAST               3 (viewport)
+
+204         280 LOAD_GLOBAL              0 (OpenGL)
+            282 LOAD_METHOD             31 (glViewport)
+            284 LOAD_CONST               1 (0)
+            286 LOAD_CONST               1 (0)
+            288 LOAD_GLOBAL             32 (max)
+            290 LOAD_CONST               2 (1)
+            292 LOAD_FAST                3 (viewport)
+            294 LOAD_CONST               1 (0)
+            296 BINARY_SUBSCR
+            298 CALL_FUNCTION            2
+            300 LOAD_GLOBAL             32 (max)
+            302 LOAD_CONST               2 (1)
+            304 LOAD_FAST                3 (viewport)
+            306 LOAD_CONST               2 (1)
+            308 BINARY_SUBSCR
+            310 CALL_FUNCTION            2
+            312 CALL_METHOD              4
+            314 POP_TOP
+
+205         316 LOAD_GLOBAL              0 (OpenGL)
+            318 LOAD_METHOD              9 (glMatrixMode)
+            320 LOAD_GLOBAL              0 (OpenGL)
+            322 LOAD_ATTR               10 (GL_PROJECTION)
+            324 CALL_METHOD              1
+            326 POP_TOP
+
+206         328 LOAD_GLOBAL              0 (OpenGL)
+            330 LOAD_METHOD             11 (glLoadIdentity)
+            332 CALL_METHOD              0
+            334 POP_TOP
+
+207         336 LOAD_GLOBAL              0 (OpenGL)
+            338 LOAD_METHOD             33 (glOrtho)
+            340 LOAD_CONST               1 (0)
+            342 LOAD_GLOBAL             32 (max)
+            344 LOAD_CONST               2 (1)
+            346 LOAD_FAST                1 (width)
+            348 CALL_FUNCTION            2
+            350 LOAD_CONST               1 (0)
+            352 LOAD_GLOBAL             32 (max)
+            354 LOAD_CONST               2 (1)
+            356 LOAD_FAST                2 (height)
+            358 CALL_FUNCTION            2
+            360 LOAD_CONST               4 (-1)
+            362 LOAD_CONST               2 (1)
+            364 CALL_METHOD              6
+            366 POP_TOP
+
+208         368 LOAD_GLOBAL              0 (OpenGL)
+            370 LOAD_METHOD              9 (glMatrixMode)
+            372 LOAD_GLOBAL              0 (OpenGL)
+            374 LOAD_ATTR               18 (GL_MODELVIEW)
+            376 CALL_METHOD              1
+            378 POP_TOP
+
+209         380 LOAD_GLOBAL              0 (OpenGL)
+            382 LOAD_METHOD             11 (glLoadIdentity)
+            384 CALL_METHOD              0
+            386 POP_TOP
+
+210         388 LOAD_GLOBAL             24 (graphics)
+            390 LOAD_METHOD             34 (draw_hud)
+            392 CALL_METHOD              0
+            394 POP_TOP
+
+212     >>  396 LOAD_GLOBAL              4 (engine)
+            398 LOAD_METHOD              5 (get_main_window)
+            400 CALL_METHOD              0
+            402 LOAD_ATTR               35 (render_dynamic_hud)
+            404 EXTENDED_ARG             2
+            406 POP_JUMP_IF_FALSE      564
+
+213         408 LOAD_GLOBAL              0 (OpenGL)
+            410 LOAD_METHOD             28 (glDisable)
+            412 LOAD_GLOBAL              0 (OpenGL)
+            414 LOAD_ATTR                8 (GL_LIGHTING)
+            416 CALL_METHOD              1
+            418 POP_TOP
+
+214         420 LOAD_GLOBAL              4 (engine)
+            422 LOAD_METHOD              5 (get_main_window)
+            424 CALL_METHOD              0
+            426 LOAD_METHOD             29 (get_size)
+            428 CALL_METHOD              0
+            430 UNPACK_SEQUENCE          2
+            432 STORE_FAST               1 (width)
+            434 STORE_FAST               2 (height)
+
+215         436 LOAD_GLOBAL              4 (engine)
+            438 LOAD_METHOD              5 (get_main_window)
+            440 CALL_METHOD              0
+            442 LOAD_METHOD             30 (get_viewport_size)
+            444 CALL_METHOD              0
+            446 STORE_FAST               3 (viewport)
+
+216         448 LOAD_GLOBAL              0 (OpenGL)
+            450 LOAD_METHOD             31 (glViewport)
+            452 LOAD_CONST               1 (0)
+            454 LOAD_CONST               1 (0)
+            456 LOAD_GLOBAL             32 (max)
+            458 LOAD_CONST               2 (1)
+            460 LOAD_FAST                3 (viewport)
+            462 LOAD_CONST               1 (0)
+            464 BINARY_SUBSCR
+            466 CALL_FUNCTION            2
+            468 LOAD_GLOBAL             32 (max)
+            470 LOAD_CONST               2 (1)
+            472 LOAD_FAST                3 (viewport)
+            474 LOAD_CONST               2 (1)
+            476 BINARY_SUBSCR
+            478 CALL_FUNCTION            2
+            480 CALL_METHOD              4
+            482 POP_TOP
+
+217         484 LOAD_GLOBAL              0 (OpenGL)
+            486 LOAD_METHOD              9 (glMatrixMode)
+            488 LOAD_GLOBAL              0 (OpenGL)
+            490 LOAD_ATTR               10 (GL_PROJECTION)
+            492 CALL_METHOD              1
+            494 POP_TOP
+
+218         496 LOAD_GLOBAL              0 (OpenGL)
+            498 LOAD_METHOD             11 (glLoadIdentity)
+            500 CALL_METHOD              0
+            502 POP_TOP
+
+219         504 LOAD_GLOBAL              0 (OpenGL)
+            506 LOAD_METHOD             33 (glOrtho)
+            508 LOAD_CONST               1 (0)
+            510 LOAD_GLOBAL             32 (max)
+            512 LOAD_CONST               2 (1)
+            514 LOAD_FAST                1 (width)
+            516 CALL_FUNCTION            2
+            518 LOAD_CONST               1 (0)
+            520 LOAD_GLOBAL             32 (max)
+            522 LOAD_CONST               2 (1)
+            524 LOAD_FAST                2 (height)
+            526 CALL_FUNCTION            2
+            528 LOAD_CONST               4 (-1)
+            530 LOAD_CONST               2 (1)
+            532 CALL_METHOD              6
+            534 POP_TOP
+
+220         536 LOAD_GLOBAL              0 (OpenGL)
+            538 LOAD_METHOD              9 (glMatrixMode)
+            540 LOAD_GLOBAL              0 (OpenGL)
+            542 LOAD_ATTR               18 (GL_MODELVIEW)
+            544 CALL_METHOD              1
+            546 POP_TOP
+
+221         548 LOAD_GLOBAL              0 (OpenGL)
+            550 LOAD_METHOD             11 (glLoadIdentity)
+            552 CALL_METHOD              0
+            554 POP_TOP
+
+222         556 LOAD_GLOBAL             24 (graphics)
+            558 LOAD_METHOD             36 (draw_dynamic_hud)
+            560 CALL_METHOD              0
+            562 POP_TOP
+        >>  564 LOAD_CONST               0 (None)
+            566 RETURN_VALUE
+
+Disassembly of <code object rotate at 0x0188C700, file "camera.py", line 226>:
+235           0 LOAD_FAST                1 (dx)
+              2 LOAD_CONST               1 (8)
+              4 INPLACE_TRUE_DIVIDE
+              6 STORE_FAST               1 (dx)
+
+236           8 LOAD_FAST                2 (dy)
+             10 LOAD_CONST               1 (8)
+             12 INPLACE_TRUE_DIVIDE
+             14 STORE_FAST               2 (dy)
+
+238          16 LOAD_FAST                0 (self)
+             18 LOAD_ATTR                0 (rot)
+             20 LOAD_CONST               2 (0)
+             22 DUP_TOP_TWO
+             24 BINARY_SUBSCR
+             26 LOAD_FAST                2 (dy)
+             28 INPLACE_ADD
+             30 ROT_THREE
+             32 STORE_SUBSCR
+
+239          34 LOAD_FAST                0 (self)
+             36 LOAD_ATTR                0 (rot)
+             38 LOAD_CONST               3 (1)
+             40 DUP_TOP_TWO
+             42 BINARY_SUBSCR
+             44 LOAD_FAST                1 (dx)
+             46 INPLACE_SUBTRACT
+             48 ROT_THREE
+             50 STORE_SUBSCR
+
+241          52 LOAD_GLOBAL              1 (kmath)
+             54 LOAD_METHOD              2 (clamp)
+             56 LOAD_CONST               4 (90)
+             58 LOAD_CONST               5 (-90)
+             60 LOAD_FAST                0 (self)
+             62 LOAD_ATTR                0 (rot)
+             64 LOAD_CONST               2 (0)
+             66 BINARY_SUBSCR
+             68 CALL_METHOD              3
+             70 LOAD_FAST                0 (self)
+             72 LOAD_ATTR                0 (rot)
+             74 LOAD_CONST               2 (0)
+             76 STORE_SUBSCR
+             78 LOAD_CONST               6 (None)
+             80 RETURN_VALUE
+
+Disassembly of <code object key_listener at 0x0188C758, file "camera.py", line 245>:
+253           0 SETUP_LOOP              56 (to 58)
+              2 LOAD_FAST                0 (self)
+              4 LOAD_ATTR                0 (keys)
+              6 GET_ITER
+        >>    8 FOR_ITER                46 (to 56)
+             10 STORE_FAST               2 (k)
+
+254          12 LOAD_FAST                1 (handler)
+             14 LOAD_FAST                2 (k)
+             16 BINARY_SUBSCR
+             18 POP_JUMP_IF_FALSE        8
+             20 LOAD_FAST                2 (k)
+             22 LOAD_FAST                0 (self)
+             24 LOAD_ATTR                1 (args)
+             26 LOAD_METHOD              0 (keys)
+             28 CALL_METHOD              0
+             30 COMPARE_OP               6 (in)
+             32 POP_JUMP_IF_FALSE        8
+
+255          34 LOAD_FAST                0 (self)
+             36 LOAD_METHOD              2 (move)
+             38 LOAD_FAST                0 (self)
+             40 LOAD_ATTR                1 (args)
+             42 LOAD_FAST                2 (k)
+             44 BINARY_SUBSCR
+             46 CALL_METHOD              1
+             48 POP_TOP
+             50 JUMP_ABSOLUTE            8
+
+257          52 JUMP_ABSOLUTE            8
+             54 JUMP_ABSOLUTE            8
+        >>   56 POP_BLOCK
+        >>   58 LOAD_CONST               1 (None)
+             60 RETURN_VALUE
+
+Disassembly of <code object move at 0x0188C7B0, file "camera.py", line 261>:
+269           0 LOAD_FAST                1 (direction)
+              2 LOAD_CONST               1 ('forwards')
+              4 COMPARE_OP               2 (==)
+              6 POP_JUMP_IF_FALSE       80
+
+270           8 LOAD_FAST                0 (self)
+             10 LOAD_ATTR                0 (pos)
+             12 LOAD_CONST               2 (0)
+             14 DUP_TOP_TWO
+             16 BINARY_SUBSCR
+             18 LOAD_FAST                0 (self)
+             20 LOAD_ATTR                1 (dx)
+             22 LOAD_FAST                0 (self)
+             24 LOAD_ATTR                2 (sens)
+             26 BINARY_MULTIPLY
+             28 LOAD_GLOBAL              3 (engine)
+             30 LOAD_METHOD              4 (get_main_window)
+             32 CALL_METHOD              0
+             34 LOAD_ATTR                5 (alive)
+             36 BINARY_MULTIPLY
+             38 INPLACE_ADD
+             40 ROT_THREE
+             42 STORE_SUBSCR
+
+271          44 LOAD_FAST                0 (self)
+             46 LOAD_ATTR                0 (pos)
+             48 LOAD_CONST               3 (2)
+             50 DUP_TOP_TWO
+             52 BINARY_SUBSCR
+             54 LOAD_FAST                0 (self)
+             56 LOAD_ATTR                6 (dz)
+             58 LOAD_FAST                0 (self)
+             60 LOAD_ATTR                2 (sens)
+             62 BINARY_MULTIPLY
+             64 LOAD_GLOBAL              3 (engine)
+             66 LOAD_METHOD              4 (get_main_window)
+             68 CALL_METHOD              0
+             70 LOAD_ATTR                5 (alive)
+             72 BINARY_MULTIPLY
+             74 INPLACE_SUBTRACT
+             76 ROT_THREE
+             78 STORE_SUBSCR
+
+273     >>   80 LOAD_FAST                1 (direction)
+             82 LOAD_CONST               4 ('backwards')
+             84 COMPARE_OP               2 (==)
+             86 POP_JUMP_IF_FALSE      160
+
+274          88 LOAD_FAST                0 (self)
+             90 LOAD_ATTR                0 (pos)
+             92 LOAD_CONST               2 (0)
+             94 DUP_TOP_TWO
+             96 BINARY_SUBSCR
+             98 LOAD_FAST                0 (self)
+            100 LOAD_ATTR                1 (dx)
+            102 LOAD_FAST                0 (self)
+            104 LOAD_ATTR                2 (sens)
+            106 BINARY_MULTIPLY
+            108 LOAD_GLOBAL              3 (engine)
+            110 LOAD_METHOD              4 (get_main_window)
+            112 CALL_METHOD              0
+            114 LOAD_ATTR                5 (alive)
+            116 BINARY_MULTIPLY
+            118 INPLACE_SUBTRACT
+            120 ROT_THREE
+            122 STORE_SUBSCR
+
+275         124 LOAD_FAST                0 (self)
+            126 LOAD_ATTR                0 (pos)
+            128 LOAD_CONST               3 (2)
+            130 DUP_TOP_TWO
+            132 BINARY_SUBSCR
+            134 LOAD_FAST                0 (self)
+            136 LOAD_ATTR                6 (dz)
+            138 LOAD_FAST                0 (self)
+            140 LOAD_ATTR                2 (sens)
+            142 BINARY_MULTIPLY
+            144 LOAD_GLOBAL              3 (engine)
+            146 LOAD_METHOD              4 (get_main_window)
+            148 CALL_METHOD              0
+            150 LOAD_ATTR                5 (alive)
+            152 BINARY_MULTIPLY
+            154 INPLACE_ADD
+            156 ROT_THREE
+            158 STORE_SUBSCR
+
+277     >>  160 LOAD_FAST                1 (direction)
+            162 LOAD_CONST               5 ('right')
+            164 COMPARE_OP               2 (==)
+            166 POP_JUMP_IF_FALSE      240
+
+278         168 LOAD_FAST                0 (self)
+            170 LOAD_ATTR                0 (pos)
+            172 LOAD_CONST               2 (0)
+            174 DUP_TOP_TWO
+            176 BINARY_SUBSCR
+            178 LOAD_FAST                0 (self)
+            180 LOAD_ATTR                6 (dz)
+            182 LOAD_FAST                0 (self)
+            184 LOAD_ATTR                2 (sens)
+            186 BINARY_MULTIPLY
+            188 LOAD_GLOBAL              3 (engine)
+            190 LOAD_METHOD              4 (get_main_window)
+            192 CALL_METHOD              0
+            194 LOAD_ATTR                5 (alive)
+            196 BINARY_MULTIPLY
+            198 INPLACE_ADD
+            200 ROT_THREE
+            202 STORE_SUBSCR
+
+279         204 LOAD_FAST                0 (self)
+            206 LOAD_ATTR                0 (pos)
+            208 LOAD_CONST               3 (2)
+            210 DUP_TOP_TWO
+            212 BINARY_SUBSCR
+            214 LOAD_FAST                0 (self)
+            216 LOAD_ATTR                1 (dx)
+            218 LOAD_FAST                0 (self)
+            220 LOAD_ATTR                2 (sens)
+            222 BINARY_MULTIPLY
+            224 LOAD_GLOBAL              3 (engine)
+            226 LOAD_METHOD              4 (get_main_window)
+            228 CALL_METHOD              0
+            230 LOAD_ATTR                5 (alive)
+            232 BINARY_MULTIPLY
+            234 INPLACE_ADD
+            236 ROT_THREE
+            238 STORE_SUBSCR
+
+281     >>  240 LOAD_FAST                1 (direction)
+            242 LOAD_CONST               6 ('left')
+            244 COMPARE_OP               2 (==)
+            246 EXTENDED_ARG             1
+            248 POP_JUMP_IF_FALSE      322
+
+282         250 LOAD_FAST                0 (self)
+            252 LOAD_ATTR                0 (pos)
+            254 LOAD_CONST               2 (0)
+            256 DUP_TOP_TWO
+            258 BINARY_SUBSCR
+            260 LOAD_FAST                0 (self)
+            262 LOAD_ATTR                6 (dz)
+            264 LOAD_FAST                0 (self)
+            266 LOAD_ATTR                2 (sens)
+            268 BINARY_MULTIPLY
+            270 LOAD_GLOBAL              3 (engine)
+            272 LOAD_METHOD              4 (get_main_window)
+            274 CALL_METHOD              0
+            276 LOAD_ATTR                5 (alive)
+            278 BINARY_MULTIPLY
+            280 INPLACE_SUBTRACT
+            282 ROT_THREE
+            284 STORE_SUBSCR
+
+283         286 LOAD_FAST                0 (self)
+            288 LOAD_ATTR                0 (pos)
+            290 LOAD_CONST               3 (2)
+            292 DUP_TOP_TWO
+            294 BINARY_SUBSCR
+            296 LOAD_FAST                0 (self)
+            298 LOAD_ATTR                1 (dx)
+            300 LOAD_FAST                0 (self)
+            302 LOAD_ATTR                2 (sens)
+            304 BINARY_MULTIPLY
+            306 LOAD_GLOBAL              3 (engine)
+            308 LOAD_METHOD              4 (get_main_window)
+            310 CALL_METHOD              0
+            312 LOAD_ATTR                5 (alive)
+            314 BINARY_MULTIPLY
+            316 INPLACE_SUBTRACT
+            318 ROT_THREE
+            320 STORE_SUBSCR
+
+285     >>  322 LOAD_FAST                1 (direction)
+            324 LOAD_CONST               7 ('down')
+            326 COMPARE_OP               2 (==)
+            328 EXTENDED_ARG             1
+            330 POP_JUMP_IF_FALSE      366
+
+286         332 LOAD_FAST                0 (self)
+            334 LOAD_ATTR                0 (pos)
+            336 LOAD_CONST               8 (1)
+            338 DUP_TOP_TWO
+            340 BINARY_SUBSCR
+            342 LOAD_FAST                0 (self)
+            344 LOAD_ATTR                7 (s)
+            346 LOAD_CONST               9 (10)
+            348 BINARY_TRUE_DIVIDE
+            350 LOAD_GLOBAL              3 (engine)
+            352 LOAD_METHOD              4 (get_main_window)
+            354 CALL_METHOD              0
+            356 LOAD_ATTR                5 (alive)
+            358 BINARY_MULTIPLY
+            360 INPLACE_SUBTRACT
+            362 ROT_THREE
+            364 STORE_SUBSCR
+
+288     >>  366 LOAD_FAST                1 (direction)
+            368 LOAD_CONST              10 ('up')
+            370 COMPARE_OP               2 (==)
+            372 EXTENDED_ARG             1
+            374 POP_JUMP_IF_FALSE      410
+
+289         376 LOAD_FAST                0 (self)
+            378 LOAD_ATTR                0 (pos)
+            380 LOAD_CONST               8 (1)
+            382 DUP_TOP_TWO
+            384 BINARY_SUBSCR
+            386 LOAD_FAST                0 (self)
+            388 LOAD_ATTR                7 (s)
+            390 LOAD_CONST               9 (10)
+            392 BINARY_TRUE_DIVIDE
+            394 LOAD_GLOBAL              3 (engine)
+            396 LOAD_METHOD              4 (get_main_window)
+            398 CALL_METHOD              0
+            400 LOAD_ATTR                5 (alive)
+            402 BINARY_MULTIPLY
+            404 INPLACE_ADD
+            406 ROT_THREE
+            408 STORE_SUBSCR
+        >>  410 LOAD_CONST              11 (None)
+            412 RETURN_VALUE
+
+Disassembly of <code object OrthographicCamera at 0x0188CA70, file "camera.py", line 295>:
+295           0 LOAD_NAME                0 (__name__)
+              2 STORE_NAME               1 (__module__)
+              4 LOAD_CONST               0 ('OrthographicCamera')
+              6 STORE_NAME               2 (__qualname__)
+
+296           8 LOAD_CONST               1 (0)
+             10 LOAD_CONST               1 (0)
+             12 LOAD_CONST               1 (0)
+             14 BUILD_LIST               3
+             16 LOAD_CONST               1 (0)
+             18 LOAD_CONST               1 (0)
+             20 BUILD_LIST               2
+             22 LOAD_CONST               2 (90)
+             24 BUILD_TUPLE              3
+             26 LOAD_CLOSURE             0 (__class__)
+             28 BUILD_TUPLE              1
+             30 LOAD_CONST               3 (<code object __init__ at 0x0188C8B8, file "camera.py", line 296>)
+             32 LOAD_CONST               4 ('OrthographicCamera.__init__')
+             34 MAKE_FUNCTION            9
+             36 STORE_NAME               3 (__init__)
+
+300          38 LOAD_CONST               5 (<code object init at 0x0188C910, file "camera.py", line 300>)
+             40 LOAD_CONST               6 ('OrthographicCamera.init')
+             42 MAKE_FUNCTION            0
+             44 STORE_NAME               4 (init)
+
+308          46 LOAD_CONST               7 (<code object render at 0x0188C968, file "camera.py", line 308>)
+             48 LOAD_CONST               8 ('OrthographicCamera.render')
+             50 MAKE_FUNCTION            0
+             52 STORE_NAME               5 (render)
+
+324          54 LOAD_CONST               9 (<code object rotate at 0x0188C9C0, file "camera.py", line 324>)
+             56 LOAD_CONST              10 ('OrthographicCamera.rotate')
+             58 MAKE_FUNCTION            0
+             60 STORE_NAME               6 (rotate)
+
+328          62 LOAD_CONST              11 (<code object key_listener at 0x0188CA18, file "camera.py", line 328>)
+             64 LOAD_CONST              12 ('OrthographicCamera.key_listener')
+             66 MAKE_FUNCTION            0
+             68 STORE_NAME               7 (key_listener)
+             70 LOAD_CLOSURE             0 (__class__)
+             72 DUP_TOP
+             74 STORE_NAME               8 (__classcell__)
+             76 RETURN_VALUE
+
+Disassembly of <code object __init__ at 0x0188C8B8, file "camera.py", line 296>:
+297           0 LOAD_GLOBAL              0 (super)
+              2 CALL_FUNCTION            0
+              4 LOAD_ATTR                1 (__init__)
+              6 LOAD_FAST                1 (pos)
+              8 LOAD_FAST                2 (rot)
+             10 LOAD_FAST                3 (fov)
+             12 LOAD_CONST               1 (('pos', 'rot', 'fov'))
+             14 CALL_FUNCTION_KW         3
+             16 POP_TOP
+             18 LOAD_CONST               0 (None)
+             20 RETURN_VALUE
+
+Disassembly of <code object init at 0x0188C910, file "camera.py", line 300>:
+301           0 LOAD_GLOBAL              0 (graphics)
+              2 LOAD_ATTR                1 (view)
+              4 LOAD_METHOD              2 (__setitem__)
+              6 LOAD_CONST               1 ('Camera')
+              8 LOAD_FAST                0 (self)
+             10 CALL_METHOD              2
+             12 POP_TOP
+
+303          14 LOAD_GLOBAL              3 (OpenGL)
+             16 LOAD_METHOD              4 (glDisable)
+             18 LOAD_GLOBAL              3 (OpenGL)
+             20 LOAD_ATTR                5 (GL_DEPTH_TEST)
+             22 CALL_METHOD              1
+             24 POP_TOP
+
+304          26 LOAD_GLOBAL              6 (engine)
+             28 LOAD_METHOD              7 (get_main_window)
+             30 CALL_METHOD              0
+             32 LOAD_METHOD              8 (set_lock)
+             34 LOAD_CONST               2 (False)
+             36 CALL_METHOD              1
+             38 POP_TOP
+
+305          40 LOAD_GLOBAL              6 (engine)
+             42 LOAD_METHOD              7 (get_main_window)
+             44 CALL_METHOD              0
+             46 LOAD_METHOD              9 (set_caption)
+             48 LOAD_CONST               3 ('KeyFire 2.1 Window - GUI Mode')
+             50 CALL_METHOD              1
+             52 POP_TOP
+             54 LOAD_CONST               0 (None)
+             56 RETURN_VALUE
+
+Disassembly of <code object render at 0x0188C968, file "camera.py", line 308>:
+310           0 LOAD_GLOBAL              0 (OpenGL)
+              2 LOAD_METHOD              1 (glClear)
+              4 LOAD_GLOBAL              0 (OpenGL)
+              6 LOAD_ATTR                2 (GL_COLOR_BUFFER_BIT)
+              8 LOAD_GLOBAL              0 (OpenGL)
+             10 LOAD_ATTR                3 (GL_DEPTH_BUFFER_BIT)
+             12 BINARY_OR
+             14 CALL_METHOD              1
+             16 POP_TOP
+
+312          18 LOAD_GLOBAL              0 (OpenGL)
+             20 LOAD_METHOD              4 (glDisable)
+             22 LOAD_GLOBAL              0 (OpenGL)
+             24 LOAD_ATTR                5 (GL_LIGHTING)
+             26 CALL_METHOD              1
+             28 POP_TOP
+
+313          30 LOAD_GLOBAL              6 (engine)
+             32 LOAD_METHOD              7 (get_main_window)
+             34 CALL_METHOD              0
+             36 LOAD_METHOD              8 (get_size)
+             38 CALL_METHOD              0
+             40 UNPACK_SEQUENCE          2
+             42 STORE_FAST               1 (width)
+             44 STORE_FAST               2 (height)
+
+314          46 LOAD_GLOBAL              6 (engine)
+             48 LOAD_METHOD              7 (get_main_window)
+             50 CALL_METHOD              0
+             52 LOAD_METHOD              9 (get_viewport_size)
+             54 CALL_METHOD              0
+             56 STORE_FAST               3 (viewport)
+
+315          58 LOAD_GLOBAL              0 (OpenGL)
+             60 LOAD_METHOD             10 (glViewport)
+             62 LOAD_CONST               1 (0)
+             64 LOAD_CONST               1 (0)
+             66 LOAD_GLOBAL             11 (max)
+             68 LOAD_CONST               2 (1)
+             70 LOAD_FAST                3 (viewport)
+             72 LOAD_CONST               1 (0)
+             74 BINARY_SUBSCR
+             76 CALL_FUNCTION            2
+             78 LOAD_GLOBAL             11 (max)
+             80 LOAD_CONST               2 (1)
+             82 LOAD_FAST                3 (viewport)
+             84 LOAD_CONST               2 (1)
+             86 BINARY_SUBSCR
+             88 CALL_FUNCTION            2
+             90 CALL_METHOD              4
+             92 POP_TOP
+
+316          94 LOAD_GLOBAL              0 (OpenGL)
+             96 LOAD_METHOD             12 (glMatrixMode)
+             98 LOAD_GLOBAL              0 (OpenGL)
+            100 LOAD_ATTR               13 (GL_PROJECTION)
+            102 CALL_METHOD              1
+            104 POP_TOP
+
+317         106 LOAD_GLOBAL              0 (OpenGL)
+            108 LOAD_METHOD             14 (glLoadIdentity)
+            110 CALL_METHOD              0
+            112 POP_TOP
+
+318         114 LOAD_GLOBAL              0 (OpenGL)
+            116 LOAD_METHOD             15 (glOrtho)
+            118 LOAD_CONST               1 (0)
+            120 LOAD_GLOBAL             11 (max)
+            122 LOAD_CONST               2 (1)
+            124 LOAD_FAST                1 (width)
+            126 CALL_FUNCTION            2
+            128 LOAD_CONST               1 (0)
+            130 LOAD_GLOBAL             11 (max)
+            132 LOAD_CONST               2 (1)
+            134 LOAD_FAST                2 (height)
+            136 CALL_FUNCTION            2
+            138 LOAD_CONST               3 (-1)
+            140 LOAD_CONST               2 (1)
+            142 CALL_METHOD              6
+            144 POP_TOP
+
+319         146 LOAD_GLOBAL              0 (OpenGL)
+            148 LOAD_METHOD             12 (glMatrixMode)
+            150 LOAD_GLOBAL              0 (OpenGL)
+            152 LOAD_ATTR               16 (GL_MODELVIEW)
+            154 CALL_METHOD              1
+            156 POP_TOP
+
+320         158 LOAD_GLOBAL              0 (OpenGL)
+            160 LOAD_METHOD             14 (glLoadIdentity)
+            162 CALL_METHOD              0
+            164 POP_TOP
+
+321         166 LOAD_GLOBAL             17 (graphics)
+            168 LOAD_METHOD             18 (draw_gui)
+            170 CALL_METHOD              0
+            172 POP_TOP
+            174 LOAD_CONST               0 (None)
+            176 RETURN_VALUE
+
+Disassembly of <code object rotate at 0x0188C9C0, file "camera.py", line 324>:
+325           0 LOAD_CONST               0 (None)
+              2 RETURN_VALUE
+
+Disassembly of <code object key_listener at 0x0188CA18, file "camera.py", line 328>:
+329           0 LOAD_CONST               0 (None)
+              2 RETURN_VALUE

@@ -171,17 +171,17 @@ class PerspectiveCamera(Camera):
         engine.get_main_window().set_caption("KeyFire 2.1 Window - 3D Mode")
 
 
-    def render(self):
+    def render(self, window):
         # Render the 3D objects in the
         OpenGL.glClear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT)
 
-        if engine.get_main_window().lighting: OpenGL.glEnable(OpenGL.GL_LIGHTING)
+        if window.lighting: OpenGL.glEnable(OpenGL.GL_LIGHTING)
 
         OpenGL.glMatrixMode(OpenGL.GL_PROJECTION)
         OpenGL.glLoadIdentity()
 
         OpenGL.gluPerspective(self.fov,
-                              engine.get_main_window().width / engine.get_main_window().height,
+                              window.width / window.height,
                               self.near,
                               self.far)
 
@@ -197,10 +197,10 @@ class PerspectiveCamera(Camera):
         OpenGL.glPopMatrix()
 
         # Render the HUD in the scene
-        if engine.get_main_window().render_static_hud:
+        if window.render_static_hud:
             OpenGL.glDisable(OpenGL.GL_LIGHTING)
-            width, height = engine.get_main_window().get_size()
-            viewport = engine.get_main_window().get_viewport_size()
+            width, height = window.get_size()
+            viewport = window.get_viewport_size()
             OpenGL.glViewport(0, 0, max(1, viewport[0]), max(1, viewport[1]))
             OpenGL.glMatrixMode(OpenGL.GL_PROJECTION)
             OpenGL.glLoadIdentity()
@@ -209,10 +209,10 @@ class PerspectiveCamera(Camera):
             OpenGL.glLoadIdentity()
             graphics.draw_hud()
 
-        if engine.get_main_window().render_dynamic_hud:
+        if window.render_dynamic_hud:
             OpenGL.glDisable(OpenGL.GL_LIGHTING)
-            width, height = engine.get_main_window().get_size()
-            viewport = engine.get_main_window().get_viewport_size()
+            width, height = window.get_size()
+            viewport = window.get_viewport_size()
             OpenGL.glViewport(0, 0, max(1, viewport[0]), max(1, viewport[1]))
             OpenGL.glMatrixMode(OpenGL.GL_PROJECTION)
             OpenGL.glLoadIdentity()
@@ -305,13 +305,13 @@ class OrthographicCamera(Camera):
         engine.get_main_window().set_caption("KeyFire 2.1 Window - GUI Mode")
 
 
-    def render(self):
+    def render(self, window):
         # Render the 3D objects in the
         OpenGL.glClear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT)
 
         OpenGL.glDisable(OpenGL.GL_LIGHTING)
-        width, height = engine.get_main_window().get_size()
-        viewport = engine.get_main_window().get_viewport_size()
+        width, height = window.get_size()
+        viewport = window.get_viewport_size()
         OpenGL.glViewport(0, 0, max(1, viewport[0]), max(1, viewport[1]))
         OpenGL.glMatrixMode(OpenGL.GL_PROJECTION)
         OpenGL.glLoadIdentity()

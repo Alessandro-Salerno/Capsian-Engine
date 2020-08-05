@@ -118,7 +118,6 @@ class Log:
             # Load all necessary libs
             from os import system
             from locals import engine
-            from locals import KFE_WINDOW3D_GUI_MODE, KFE_GUI_SCENE
             from locals import Scene
             from locals import OrthographicCamera
 
@@ -132,14 +131,11 @@ class Log:
             OpenGL.glDisable(OpenGL.GL_LIGHTING)
 
             engine.get_main_window().set_fullscreen(False)
-            system("color 4f")
 
             engine.get_main_window().set_caption("KeyFire 2.1 - UNSTABLE STATE")
 
             # Print the error to the console
-            print(
-                f"{TermColor.FAIL} [{time()} FATAL ERROR] {text} {TermColor.END_COLOR}"
-            )
+            print(f"{TermColor.FAIL} [{time()} FATAL ERROR] {text} {TermColor.END_COLOR}")
 
             # Draw the message
             error_scene = Scene(KFE_GUI_SCENE)
@@ -151,9 +147,7 @@ class Log:
                 anchor_x="left", anchor_y="top",
                 batch=error_scene, multiline=True)
         except:
-            print(
-                f"{TermColor.FAIL} [{time()} FATAL ERROR] {text} {TermColor.END_COLOR}"
-            )
+            print(f"{TermColor.FAIL} [{time()} FATAL ERROR] {text} {TermColor.END_COLOR}")
 
         try:
             from locals import engine

@@ -90,7 +90,7 @@ def draw():
     """
 
     for scene in scenes:
-        scene.draw()
+        scene.batch.draw()
 
     for object2D in objects2D:
         if object2D.is_visible():
@@ -108,7 +108,7 @@ def draw_gui():
     """
 
     for gui_scene in gui_scenes:
-        gui_scene.draw()
+        gui_scene.batch.draw()
 
 
 def draw_hud():
@@ -119,7 +119,7 @@ def draw_hud():
     """
 
     for hud_scene in hud_scenes:
-        hud_scene.draw()
+        hud_scene.batch.draw()
 
 
 def draw_dynamic_hud():

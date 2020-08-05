@@ -238,7 +238,7 @@ class Window3D(Window):
         """
 
         self.clear()
-        self.view_port.render()
+        self.view_port.render(self)
 
 
     # When mouse is moved

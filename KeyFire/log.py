@@ -121,16 +121,14 @@ class Log:
             from locals import Scene
             from locals import OrthographicCamera
 
+            engine.get_main_window().set_fullscreen(False)
+
             # Prepare window
             camera = OrthographicCamera()
 
             # Setup the Window
-            engine.get_main_window().set_viewport(camera)
             engine.get_main_window().set_clear_color([0.8, 0.0, 0.0, 1.0])
-
-            OpenGL.glDisable(OpenGL.GL_LIGHTING)
-
-            engine.get_main_window().set_fullscreen(False)
+            engine.get_main_window().set_viewport(camera)   
 
             engine.get_main_window().set_caption("KeyFire 2.1 - UNSTABLE STATE")
 
@@ -139,13 +137,15 @@ class Log:
 
             # Draw the message
             error_scene = Scene(KFE_GUI_SCENE)
+
+
             error = Framework.text.Label(
                 text=f"CRITICAL ERROR :(\n\n{text}\n\nThe program has been stopped, press ENTER or ESCAPE to terminate it.\n_",
                 font_name="consolas", font_size=24, bold=True,
                 width=engine.get_main_window().width - 25, italic=False,
                 x=10, y=engine.get_main_window().height,
                 anchor_x="left", anchor_y="top",
-                batch=error_scene, multiline=True)
+                batch=error_scene.batch, multiline=True)
         except:
             print(f"{TermColor.FAIL} [{time()} FATAL ERROR] {text} {TermColor.END_COLOR}")
 

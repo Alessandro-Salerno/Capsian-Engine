@@ -307,8 +307,6 @@ class OrthographicCamera(Camera):
 
     def render(self, window):
         # Render the 3D objects in the
-        OpenGL.glClear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT)
-
         OpenGL.glDisable(OpenGL.GL_LIGHTING)
         width, height = window.get_size()
         viewport = window.get_viewport_size()

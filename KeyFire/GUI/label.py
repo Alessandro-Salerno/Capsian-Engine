@@ -70,7 +70,7 @@ class StaticLabel2D(Framework.text.Label):
 
         if scene.mode == KFE_GUI_SCENE:
             super().__init__(text=text, font_name=font, font_size=font_size, bold=False, italic=False, x=pos[0],
-                             y=pos[1], width=size[0], height=size[1], batch=scene, color=color, *args, **kwargs)
+                             y=pos[1], width=size[0], height=size[1], batch=scene.batch, color=color, *args, **kwargs)
 
             graphics.stack.append(self)
         else:
@@ -93,7 +93,7 @@ class StaticLabel3D(Framework.text.Label):
 
         if scene.mode == KFE_HUD_SCENE:
             super().__init__(text=text, font_name=font, font_size=font_size, bold=False, italic=False, x=pos[0],
-                             y=pos[1], width=size[0], height=size[1], batch=scene, color=color, *args, **kwargs)
+                             y=pos[1], width=size[0], height=size[1], batch=scene.batch, color=color, *args, **kwargs)
 
             graphics.stack.append(self)
         else:
@@ -160,4 +160,3 @@ class DynamicLabel3D(Framework.text.Label):
 
         self.x = int(x)
         self.y = int(y)
-        # Log.successful(f"Moved label '{self.text}' to {x}, {y}")

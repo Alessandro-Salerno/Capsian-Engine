@@ -1,10 +1,10 @@
 # Details
 
-Date : 2020-07-07 11:54:28
+Date : 2020-08-06 12:00:21
 
-Directory /Users/alessandrosalerno/Documents/KeyFire
+Directory x:\Programming\Python\KeyFire
 
-Total : 41 files,  1488 codes, 2412 comments, 783 blanks, all 4683 lines
+Total : 42 files,  1484 codes, 2411 comments, 781 blanks, all 4676 lines
 
 [summary](results.md)
 
@@ -31,7 +31,7 @@ Total : 41 files,  1488 codes, 2412 comments, 783 blanks, all 4683 lines
 | [KeyFire/entities/square.py](/KeyFire/entities/square.py) | Python | 81 | 118 | 62 | 261 |
 | [KeyFire/input/__init__.py](/KeyFire/input/__init__.py) | Python | 0 | 48 | 4 | 52 |
 | [KeyFire/input/keyboard.py](/KeyFire/input/keyboard.py) | Python | 8 | 67 | 14 | 89 |
-| [KeyFire/log.py](/KeyFire/log.py) | Python | 72 | 102 | 35 | 209 |
+| [KeyFire/log.py](/KeyFire/log.py) | Python | 65 | 102 | 36 | 203 |
 | [KeyFire/maths/__init__.py](/KeyFire/maths/__init__.py) | Python | 0 | 48 | 4 | 52 |
 | [KeyFire/maths/math.py](/KeyFire/maths/math.py) | Python | 8 | 57 | 10 | 75 |
 | [KeyFire/texturing/__init__.py](/KeyFire/texturing/__init__.py) | Python | 0 | 48 | 4 | 52 |
@@ -39,17 +39,18 @@ Total : 41 files,  1488 codes, 2412 comments, 783 blanks, all 4683 lines
 | [KeyFire/texturing/texture.py](/KeyFire/texturing/texture.py) | Python | 76 | 68 | 38 | 182 |
 | [KeyFire/values.py](/KeyFire/values.py) | Python | 35 | 48 | 10 | 93 |
 | [KeyFire/video/__init__.py](/KeyFire/video/__init__.py) | Python | 0 | 48 | 4 | 52 |
-| [KeyFire/video/camera.py](/KeyFire/video/camera.py) | Python | 150 | 107 | 73 | 330 |
+| [KeyFire/video/camera.py](/KeyFire/video/camera.py) | Python | 149 | 107 | 72 | 328 |
 | [KeyFire/video/graphics.py](/KeyFire/video/graphics.py) | Python | 31 | 78 | 25 | 134 |
 | [KeyFire/video/light.py](/KeyFire/video/light.py) | Python | 26 | 72 | 20 | 118 |
-| [KeyFire/video/scene.py](/KeyFire/video/scene.py) | Python | 23 | 60 | 17 | 100 |
+| [KeyFire/video/scene.py](/KeyFire/video/scene.py) | Python | 20 | 59 | 13 | 92 |
 | [KeyFire/video/window.py](/KeyFire/video/window.py) | Python | 109 | 160 | 74 | 343 |
 | [KeyFire/world/__init__.py](/KeyFire/world/__init__.py) | Python | 0 | 48 | 4 | 52 |
 | [KeyFire/world/format.py](/KeyFire/world/format.py) | Python | 29 | 99 | 35 | 163 |
 | [assets/python/noise_gen.py](/assets/python/noise_gen.py) | Python | 51 | 0 | 14 | 65 |
 | [console.py](/console.py) | Python | 73 | 53 | 35 | 161 |
+| [disassembler.py](/disassembler.py) | Python | 6 | 0 | 2 | 8 |
 | [locals.py](/locals.py) | Python | 35 | 52 | 5 | 92 |
-| [main.py](/main.py) | Python | 9 | 53 | 8 | 70 |
+| [main.py](/main.py) | Python | 10 | 53 | 8 | 71 |
 | [scripts/__init__.py](/scripts/__init__.py) | Python | 0 | 48 | 4 | 52 |
 | [tzylang.py](/tzylang.py) | Python | 155 | 14 | 44 | 213 |
 

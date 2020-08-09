@@ -87,7 +87,7 @@ class Light3D:
 
 
     # Draw the light
-    def draw(self):
+    def render(self):
         """
         Draws the light.
         This method is called by graphics.draw() and MUST NOT be called by other cde

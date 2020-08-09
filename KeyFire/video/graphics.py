@@ -86,7 +86,7 @@ def draw():
     """
     This function calls all draw methods (For objects, particles, lights ecc)
 
-    :return:
+    :return: Nothing
     """
 
     for scene in scenes:
@@ -97,14 +97,14 @@ def draw():
             object2D.quad()
 
     for light in lights:
-        light.draw()
+        light.render()
 
 
 def draw_gui():
     """
     Calls all GUI draw methods (label ecc)
 
-    :return:
+    :return: Nothing
     """
 
     for gui_scene in gui_scenes:

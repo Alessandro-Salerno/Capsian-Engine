@@ -58,12 +58,60 @@ import tzylang as translate
 
 system("cls") if os.name == "nt" else system("clear")
 
-global source
 
-########################################################################################################################
+# Eval the contens of the options file
+with open("scripts/options.kson", "r") as preferences:
+    global options
+    _options = preferences.read()
+    options = eval(compile(source=_options, filename="options", mode="eval", optimize=1))
 
-with open("scripts/script.kfel", "r") as file:
-    source = translate.build(file.read())
 
+# Read the code contained in the main file and run some checks
+with open(options["main file"], "r") as file:
+    global source
+
+    if options["language"] == "tzylang":
+        source = translate.build(file.read())
+        Log.successful("Parsed tzylang script")
+    elif options["language"] == "python":
+        source = file.read()
+        Log.successful("Loaded python script")
+    else:
+        Log.critical("The specified language is not supported!")
+
+
+# Compiles all the code
 exec(compile(source=source, filename="", mode="exec", optimize=1))
+
+
+# Enable KeyFire Transparency if required
+if options["use transparency"]:
+    engine.get_main_window().enable(KFE_TRANSPARENCY)
+
+# Enable KeyFire Basic Lighting if required
+if options["use basic lighting"]:
+    engine.get_main_window().enable(KFE_LIGHTING)
+    engine.get_main_window().enable(KFE_AMBIENT_LIGHT)
+
+# Set OpenGL Clear Color
+engine.get_main_window().set_clear_color(options["clear color"])
+
+# Set Fog color
+engine.get_main_window().set_fog_color(options["fog color"])
+
+# Enable Fog if required
+if options["enable fog"] == "default":
+    engine.get_main_window().enable(KFE_FOG)
+elif options["enable fog"] == "nice":
+    engine.get_main_window().enable(KFE_NICE_FOG)
+
+# Set the render distance
+engine.get_main_window().set_render_distance(options["render distance"])
+
+
+# Runs all the code
+engine.start(main_function=on_create, update_function=on_update, end_function=on_close)
+engine.run()
+
+# Random print() to make the output look cleaner
 print()

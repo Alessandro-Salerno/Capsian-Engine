@@ -1,0 +1,15 @@
+# This file is not protected by copyright and is designed to modified
+# You can add anything you want to this dictionary, but removing things is not racomended
+
+
+{
+    "main file": "scripts/script.kfel",
+    "language": "tzylang",
+    "use transparency": False,
+    "use basic lighting": False,
+    "enable fog": False,
+    "fog color": KFE_DEFAULT_FOG_COLOR,
+    "use enhanced perspective": False,
+    "clear color": KFE_DEFAULT_CLEAR_COLOR,
+    "render distance": 5000,
+}

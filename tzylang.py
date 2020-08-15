@@ -207,6 +207,4 @@ def build(source, mode="compile"):
 
     source = source.replace(KFEL_IN, PYTHON_IN)
 
-    if mode == "compile":
-        source += "\n\nengine.start(main_function=on_create, update_function=on_update, end_function=on_close)\nengine.run()"
     return source

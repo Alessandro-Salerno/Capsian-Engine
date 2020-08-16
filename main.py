@@ -60,24 +60,28 @@ system("cls") if os.name == "nt" else system("clear")
 
 
 # Eval the contens of the options file
-with open("scripts/options.kson", "r") as preferences:
+with open("options.kson", "r") as preferences:
     global options
     _options = preferences.read()
     options = eval(compile(source=_options, filename="options", mode="eval", optimize=1))
 
 
 # Read the code contained in the main file and run some checks
-with open(options["main file"], "r") as file:
-    global source
+if options["main file"] is not None:
+    with open(options["main file"], "r") as file:
+        global source
 
-    if options["language"] == "tzylang":
-        source = translate.build(file.read())
-        Log.successful("Parsed tzylang script")
-    elif options["language"] == "python":
-        source = file.read()
-        Log.successful("Loaded python script")
-    else:
-        Log.critical("The specified language is not supported!")
+        if options["language"] == "tzylang":
+            source = translate.build(file.read())
+            Log.successful("Parsed tzylang script")
+        elif options["language"] == "python":
+            source = file.read()
+            Log.successful("Loaded python script")
+        else:
+            Log.critical("The specified language is not supported!")
+else:
+    Log.critical("No main file specified!")
+    input()
 
 
 # Compiles all the code
@@ -91,10 +95,12 @@ if options["use transparency"]:
 # Enable KeyFire Basic Lighting if required
 if options["use basic lighting"]:
     engine.get_main_window().enable(KFE_LIGHTING)
-    engine.get_main_window().enable(KFE_AMBIENT_LIGHT)
 
 # Set OpenGL Clear Color
 engine.get_main_window().set_clear_color(options["clear color"])
+
+# Set the render distance
+engine.get_main_window().set_render_distance(options["render distance"])
 
 # Set Fog color
 engine.get_main_window().set_fog_color(options["fog color"])
@@ -105,8 +111,11 @@ if options["enable fog"] == "default":
 elif options["enable fog"] == "nice":
     engine.get_main_window().enable(KFE_NICE_FOG)
 
-# Set the render distance
-engine.get_main_window().set_render_distance(options["render distance"])
+# Enable HUD if required
+if options["use dynamic hud"]:
+    engine.get_main_window().enable(KFE_DYNAMIC_HUD)
+if options["use static hud"]:
+    engine.get_main_window().enable(KFE_STATIC_HUD)
 
 
 # Runs all the code

@@ -3,13 +3,14 @@
 
 
 {
-    "main file": "scripts/script.kfel",
+    "main file": None,
     "language": "tzylang",
-    "use transparency": False,
+    "use transparency": True,
     "use basic lighting": False,
     "enable fog": False,
     "fog color": KFE_DEFAULT_FOG_COLOR,
-    "use enhanced perspective": False,
+    "use dynamic hud": True,
+    "use static hud": True,
     "clear color": KFE_DEFAULT_CLEAR_COLOR,
     "render distance": 5000,
 }

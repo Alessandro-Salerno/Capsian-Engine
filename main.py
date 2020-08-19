@@ -63,7 +63,7 @@ system("cls") if os.name == "nt" else system("clear")
 with open("options.kson", "r") as preferences:
     global options
     _options = preferences.read()
-    options = eval(compile(source=_options, filename="options", mode="eval", optimize=1))
+    options  = eval(compile(source=_options, filename="options", mode="eval", optimize=1))
 
 
 # Read the code contained in the main file and run some checks
@@ -87,39 +87,42 @@ else:
 # Compiles all the code
 exec(compile(source=source, filename="", mode="exec", optimize=1))
 
+try: 
+    # Enable KeyFire Transparency if required
+    if options["use transparency"]:
+        engine.main_window.enable(KFE_TRANSPARENCY)
 
-# Enable KeyFire Transparency if required
-if options["use transparency"]:
-    engine.get_main_window().enable(KFE_TRANSPARENCY)
+    # Enable KeyFire Basic Lighting if required
+    if options["use basic lighting"]:
+        engine.main_window.enable(KFE_LIGHTING)
 
-# Enable KeyFire Basic Lighting if required
-if options["use basic lighting"]:
-    engine.get_main_window().enable(KFE_LIGHTING)
+    # Set OpenGL Clear Color
+    engine.main_window.set_clear_color(options["clear color"])
 
-# Set OpenGL Clear Color
-engine.get_main_window().set_clear_color(options["clear color"])
+    # Set the render distance
+    engine.main_window.set_render_distance(options["render distance"])
 
-# Set the render distance
-engine.get_main_window().set_render_distance(options["render distance"])
+    # Set Fog color
+    engine.main_window.set_fog_color(options["fog color"])
 
-# Set Fog color
-engine.get_main_window().set_fog_color(options["fog color"])
+    # Enable Fog if required
+    if options["enable fog"]   == "default":
+        engine.main_window.enable(KFE_FOG)
+    elif options["enable fog"] == "nice":
+        engine.main_window.enable(KFE_NICE_FOG)
 
-# Enable Fog if required
-if options["enable fog"] == "default":
-    engine.get_main_window().enable(KFE_FOG)
-elif options["enable fog"] == "nice":
-    engine.get_main_window().enable(KFE_NICE_FOG)
-
-# Enable HUD if required
-if options["use dynamic hud"]:
-    engine.get_main_window().enable(KFE_DYNAMIC_HUD)
-if options["use static hud"]:
-    engine.get_main_window().enable(KFE_STATIC_HUD)
+    # Enable HUD if required
+    if options["use dynamic hud"]:
+        engine.main_window.enable(KFE_DYNAMIC_HUD)
+    if options["use static hud"]:
+        engine.main_window.enable(KFE_STATIC_HUD)
+except:
+    _errcam = OrthographicCamera()
+    _errwin = Window3D(camera=_errcam)
+    Log.critical("Something went wrong while setting up your game. This is usually caused by the absence of a default window and/or camera")
 
 
-# Runs all the code
-engine.start(main_function=on_create, update_function=on_update, end_function=on_close)
+# Runs all the code3
 engine.run()
 
 # Random print() to make the output look cleaner

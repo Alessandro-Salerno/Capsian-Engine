@@ -3,8 +3,8 @@
 
 
 {
-    "main file": None,
-    "language": "tzylang",
+    "main file": "scripts/script.py",
+    "language": "python",
     "use transparency": True,
     "use basic lighting": False,
     "enable fog": False,

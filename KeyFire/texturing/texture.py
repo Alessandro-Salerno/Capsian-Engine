@@ -56,14 +56,14 @@ from locals import *
 
 class Texture:
     def __init__(self, file, texture_type, flags={"is_empty": True}):
-        self.path = file
+        self.path         = file
         self.texture_type = texture_type
 
-        self.flags = {
+        self.flags        = {
             "texture_mode": KFE_DEFAULT_TEXTURE_MODE
         }
 
-        temp_flags = {}
+        temp_flags        = {}
 
         if not flags.get("is_empty"):
             try:
@@ -145,7 +145,7 @@ class SmartTexture3D(Texture):
         """
 
         super().__init__(file=file, texture_type="smart_texture3D", flags=flags)
-        self.pos = coords
+        self.pos  = coords
         self.size = size
 
 
@@ -165,7 +165,7 @@ class SmartTexture3D(Texture):
 
 class Image2D:
     def __init__(self, file):
-        self.path = file
+        self.path  = file
         self.image = self.get_image()
         graphics.stack.append(self)
 

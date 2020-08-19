@@ -54,30 +54,30 @@
 from locals import OpenGL
 
 
-KFE_DEFAULT_DELTA_TIME = 1/120
-KFE_WINDOW3D_GUI_MODE = "gui"
-KFE_WINDOW3D_GAME_MODE = "game"
-KFE_WINDOW2D_GUI_MODE = "gui2D"
-KFE_WINDOW2D_GAME_MODE = "game2D"
+KFE_DEFAULT_DELTA_TIME   = 1/120
+KFE_WINDOW3D_GUI_MODE    = "gui"
+KFE_WINDOW3D_GAME_MODE   = "game"
+KFE_WINDOW2D_GUI_MODE    = "gui2D"
+KFE_WINDOW2D_GAME_MODE   = "game2D"
 KFE_DEFAULT_TEXTURE_MODE = [OpenGL.GL_TEXTURE_MIN_FILTER, OpenGL.GL_TEXTURE_MAG_FILTER, OpenGL.GL_NEAREST]
-KFE_SMART_TEXTURE = True
-KFE_NORMAL_TEXTURE = False
-KFE_AUTO_SIZE = [None, None]
-KFE_3D_SCENE = "game_batch"
-KFE_GUI_SCENE = "gui_batch"
-KFE_AMBIENT_LIGHT = OpenGL.GL_AMBIENT
-KFE_LIGHTING = "if mode == 'enable':\n\tglEnable(GL_LIGHTING)\n\tself.lighting = True\nelse:\n\tglDisable(GL_LIGHTING)\n\tself.lighting = False"
-KFE_TRANSPARENCY = "if mode == 'enable':\n\tglEnable(GL_BLEND)\n\tglBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)\nelse:\n\tglDisable(GL_BLEND)"
+KFE_SMART_TEXTURE        = True
+KFE_NORMAL_TEXTURE       = False
+KFE_AUTO_SIZE            = [None, None]
+KFE_3D_SCENE             = "game_batch"
+KFE_GUI_SCENE            = "gui_batch"
+KFE_AMBIENT_LIGHT        = OpenGL.GL_AMBIENT
+KFE_LIGHTING             = "if mode == 'enable':\n\tglEnable(GL_LIGHTING)\n\tself.lighting = True\nelse:\n\tglDisable(GL_LIGHTING)\n\tself.lighting = False"
+KFE_TRANSPARENCY         = "if mode == 'enable':\n\tglEnable(GL_BLEND)\n\tglBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)\nelse:\n\tglDisable(GL_BLEND)"
 KFE_ENHANCED_PERSPECTIVE = "if mode == 'enable':\n\tglHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST)\nelse:\n\tglHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_DONT_CARE)"
-KFE_FOG = "if mode == 'enable':\n\tglEnable(GL_FOG)\n\tglFogfv(GL_FOG_COLOR, (GLfloat * 4)(self.fog_color[0], self.fog_color[1], self.fog_color[2], self.fog_color[3]))\n\tglHint(GL_FOG_HINT, GL_DONT_CARE)\n\tglFogi(GL_FOG_MODE, GL_LINEAR)\n\tglFogf(GL_FOG_START, self.render_distance - 10)\n\tglFogf(GL_FOG_END, self.render_distance)\n\t\nelse:\n\tglDisable(GL_FOG)"
-KFE_NICE_FOG = "if mode == 'enable':\n\tglEnable(GL_FOG)\n\tglFogfv(GL_FOG_COLOR, (GLfloat * 4)(self.fog_color[0], self.fog_color[1], self.fog_color[2], self.fog_color[3]))\n\tglHint(GL_FOG_HINT, GL_NICEST)\n\tglFogf(GL_FOG_MODE, GL_LINEAR)\n\tglFogf(GL_FOG_START, self.render_distance - 10)\n\tglFogf(GL_FOG_END, self.render_distance)\n\t\nelse:\n\tglDisable(GL_FOG)"
-KFE_HUD_SCENE = "hud_batch"
-KFE_DEFAULT_FOG_COLOR = [0.5, 0.69, 1.0, 1]
-KFE_DEFAULT_CLEAR_COLOR = [0.5, 0.65, 1.0, 1.0]
-KFE_STATIC_HUD = "if mode == 'enable':\n\tself.render_static_hud = True\nelse:\n\tself.render_static_hud = False"
-KFE_DYNAMIC_HUD = "if mode == 'enable':\n\tself.render_dynamic_hud = True\nelse:\n\tself.render_dynamic_hud = False"
-KFE_VERBOSE_MODE = "for line in lines:\n\tprint(translate.build(line, mode='dont_compile'), end='')\n\ttime.sleep(0.03)"
-KFE_NORMAL_MODE = ""
+KFE_FOG                  = "if mode == 'enable':\n\tglEnable(GL_FOG)\n\tglFogfv(GL_FOG_COLOR, (GLfloat * 4)(self.fog_color[0], self.fog_color[1], self.fog_color[2], self.fog_color[3]))\n\tglHint(GL_FOG_HINT, GL_DONT_CARE)\n\tglFogi(GL_FOG_MODE, GL_LINEAR)\n\tglFogf(GL_FOG_START, self.render_distance - 10)\n\tglFogf(GL_FOG_END, self.render_distance)\n\t\nelse:\n\tglDisable(GL_FOG)"
+KFE_NICE_FOG             = "if mode == 'enable':\n\tglEnable(GL_FOG)\n\tglFogfv(GL_FOG_COLOR, (GLfloat * 4)(self.fog_color[0], self.fog_color[1], self.fog_color[2], self.fog_color[3]))\n\tglHint(GL_FOG_HINT, GL_NICEST)\n\tglFogf(GL_FOG_MODE, GL_LINEAR)\n\tglFogf(GL_FOG_START, self.render_distance - 10)\n\tglFogf(GL_FOG_END, self.render_distance)\n\t\nelse:\n\tglDisable(GL_FOG)"
+KFE_HUD_SCENE            = "hud_batch"
+KFE_DEFAULT_FOG_COLOR    = [0.5, 0.69, 1.0, 1]
+KFE_DEFAULT_CLEAR_COLOR  = [0.5, 0.65, 1.0, 1.0]
+KFE_STATIC_HUD           = "if mode == 'enable':\n\tself.render_static_hud = True\nelse:\n\tself.render_static_hud = False"
+KFE_DYNAMIC_HUD          = "if mode == 'enable':\n\tself.render_dynamic_hud = True\nelse:\n\tself.render_dynamic_hud = False"
+KFE_VERBOSE_MODE         = "for line in lines:\n\tprint(translate.build(line, mode='dont_compile'), end='')\n\ttime.sleep(0.03)"
+KFE_NORMAL_MODE          = ""
 
 
 lights = [

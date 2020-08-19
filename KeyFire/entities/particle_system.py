@@ -59,12 +59,12 @@ from KeyFire.entities.square import Square
 
 class Particle:
     def __init__(self, pos=[0, 0, 0], quantity=1, direction=[0, -0.01, 0], size=[0.25, 0.25, 0.25], lifetime=240):
-        self.pos = pos
-        self.quantity = quantity
-        self.lifetime = lifetime
-        self.dead = 0
-        self.quads = []
-        self.size = size
+        self.pos       = pos
+        self.quantity  = quantity
+        self.lifetime  = lifetime
+        self.dead      = 0
+        self.quads     = []
+        self.size      = size
         self.direction = direction
 
         graphics.stack.append(self)

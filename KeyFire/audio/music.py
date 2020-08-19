@@ -71,14 +71,13 @@ class Track:
         :param auto_play: Weather it should play as soon as it's created or not (Boolean)
         """
 
-        self.file = file
+        self.file      = file
         self.streaming = streaming
-        self.audio = Framework.resource.media(file, streaming=streaming)
+        self.audio     = Framework.resource.media(file, streaming=streaming)
 
         graphics.stack.append(self)
 
-        if auto_play:
-            self.play()
+        if auto_play: self.play()
 
 
     # Plays the track

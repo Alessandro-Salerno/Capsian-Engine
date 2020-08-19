@@ -71,9 +71,9 @@ class DirectionalSound:
         :param auto_play: Weather it should play as soon as it's created or not (Boolean)
         """
 
-        self.player = Framework.media.player.Player()
+        self.player          = Framework.media.player.Player()
         self.player.position = pos
-        self.source = source
+        self.source          = source
 
         if auto_play: self.play()
 

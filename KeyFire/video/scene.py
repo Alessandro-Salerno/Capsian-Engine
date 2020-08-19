@@ -64,10 +64,10 @@ class Scene:
         """
 
         # Set mode
-        self.mode = mode
+        self.mode        = mode
 
         # Check mode
-        if mode == KFE_3D_SCENE:
+        if mode     == KFE_3D_SCENE:
             graphics.scenes.append(self)
         else:
             if mode == KFE_GUI_SCENE:
@@ -76,8 +76,8 @@ class Scene:
                 graphics.hud_scenes.append(self)
 
         # Defines lists of objects
-        self.batch = Framework.graphics.Batch()
-        self.objects2D = []
+        self.batch       = Framework.graphics.Batch()
+        self.objects2D   = []
         self.gui_batches = []
         self.hud_batches = []
         self.dynamic_gui = []

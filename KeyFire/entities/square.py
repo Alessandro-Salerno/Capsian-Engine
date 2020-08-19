@@ -75,31 +75,27 @@ class Square(Object):
         """
 
         super().__init__(size=size, pos=pos, rot=rot, batch=None)
-        self.color = color
+        x                = size[0] / 2
+        y                = size[1] / 2
+        z                = size[2] / 2
 
-        x = size[0] / 2
-        y = size[1] / 2
-        z = size[2] / 2
-
-        self.currentX = x
-        self.currentY = y
-
-        c = color
+        self.currentX    = x
+        self.currentY    = y
 
         self.vertex_list = Framework.graphics.vertex_list(4,
                                                           ('v3f', [0, 0, 0, self.size[0], 0, 0, self.size[0], self.size[1], 0, 0, self.size[1], 0]),
                                                           ('t3f', [0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0])
                                                           )
 
-        self.color = color
+        self.color       = color
 
-        self.visible = True
+        self.visible     = True
 
-        self.flags = {
+        self.flags       = {
             "look_at_camera": False,
         }
 
-        self.id = len(graphics.objects2D)
+        self.id          = len(graphics.objects2D)
         graphics.objects2D.insert(self.id, self)
 
 

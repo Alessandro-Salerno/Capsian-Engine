@@ -141,7 +141,7 @@ class DynamicLabel3D(Framework.text.Label):
         """
 
         try:
-            self.text = str(self.text_pointer())
+            self.text     = str(self.text_pointer())
         except:
             try:
                 self.text = str(self.text_pointer)

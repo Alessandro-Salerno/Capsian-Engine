@@ -68,6 +68,7 @@ class Material:
 
         self.fallSound = fallSound
         self.walkSound = walkSound
-        self.runSound = runSound
-        self.texture = texture.get_texture()
+        self.runSound  = runSound
+        self.texture   = texture.get_texture()
+        
         graphics.stack.append(self)

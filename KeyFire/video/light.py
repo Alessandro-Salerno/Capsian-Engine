@@ -65,9 +65,9 @@ class Light3D:
         :param color: The color and intensity of the light (Array, [R, G, B]) - You can set any of value to whatever you want (Example: R = 3435)
         """
 
-        self.type = light_type
-        self.pos = pos
-        self.intensity = color
+        self.type          = light_type
+        self.pos           = pos
+        self.intensity     = color
 
         try:
             if len(lights) > 0:
@@ -75,8 +75,7 @@ class Light3D:
                 lights.pop(0)
             else:
                 self.light = OpenGL.GL_LIGHT0
-                Log.critical(
-                    f"The Light3D object at world position [{pos[0]}, {pos[1]}, {pos[2]} could not be created as there is no OpenGL light available. You can have a maximum of 8 lights in your program for now. This will be fixed in a later version though!")
+                Log.critical(f"The Light3D object at world position [{pos[0]}, {pos[1]}, {pos[2]} could not be created as there is no OpenGL light available. You can have a maximum of 8 lights in your program for now. This will be fixed in a later version though!")
         except:
             Log.critical("Unable to create light. Something went extremely wrong!")
 

@@ -71,9 +71,9 @@ class Object:
         :param batch: The scene in which the object should be rendered
         """
 
-        self.size = size
-        self.pos = pos
-        self.rot = rot
+        self.size  = size
+        self.pos   = pos
+        self.rot   = rot
         self.batch = batch
         graphics.stack.append(self)
 

@@ -64,13 +64,13 @@ class TermColor:
 
     """
 
-    HEADER = '\033[95m'
-    OK_BLUE = '\033[94m'
-    OK_GREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
+    HEADER    = '\033[95m'
+    OK_BLUE   = '\033[94m'
+    OK_GREEN  = '\033[92m'
+    WARNING   = '\033[93m'
+    FAIL      = '\033[91m'
     END_COLOR = '\033[0m'
-    BOLD = '\033[1m'
+    BOLD      = '\033[1m'
     UNDERLINE = '\033[4m'
 
 
@@ -121,16 +121,16 @@ class Log:
             from locals import Scene
             from locals import OrthographicCamera
 
-            engine.get_main_window().set_fullscreen(False)
+            engine.main_window.set_fullscreen(False)
 
             # Prepare window
             camera = OrthographicCamera()
 
             # Setup the Window
-            engine.get_main_window().set_clear_color([0.8, 0.0, 0.0, 1.0])
-            engine.get_main_window().set_viewport(camera)   
+            engine.main_window.set_clear_color([0.8, 0.0, 0.0, 1.0])
+            engine.main_window.set_viewport(camera)   
 
-            engine.get_main_window().set_caption("KeyFire 2.1 - UNSTABLE STATE")
+            engine.main_window.set_caption("KeyFire 2.1 - UNSTABLE STATE")
 
             # Print the error to the console
             print(f"{TermColor.FAIL} [{time()} FATAL ERROR] {text} {TermColor.END_COLOR}")
@@ -142,8 +142,8 @@ class Log:
             error = Framework.text.Label(
                 text=f"CRITICAL ERROR :(\n\n{text}\n\nThe program has been stopped, press ENTER or ESCAPE to terminate it.\n_",
                 font_name="consolas", font_size=24, bold=True,
-                width=engine.get_main_window().width - 25, italic=False,
-                x=10, y=engine.get_main_window().height,
+                width=engine.main_window.width - 25, italic=False,
+                x=10, y=engine.main_window.height,
                 anchor_x="left", anchor_y="top",
                 batch=error_scene.batch, multiline=True)
         except:
@@ -151,7 +151,7 @@ class Log:
 
         try:
             from locals import engine
-            engine.get_main_window().alive = 0
+            engine.main_window.alive = 0
         except:
             pass
 

@@ -51,93 +51,66 @@
 # ----------------------------------------------------------------------------
 
 
-from locals import *
+from locals                   import *
 import KeyFire.video.graphics as graphics
 
-frames = []
-functions = {
-    "run": False,
-    "update_function": None,
-    "end_function": None
-}
+# Declare vars
+main_window       = None
+main_camera       = None
+main_key_listener = None
+scheduled         = []
 
 
-# Calls s the main function in the script
-def start(main_function, update_function, end_function):
-    main_function()
+def update(dt):
+    """
+    This function runs in the background ever 120th of a second.
+    It's used to update the pyglet clock and call all the looping functions in the stack
 
-    functions.__setitem__("update_function", update_function)
-    functions.__setitem__("end_function", end_function)
-    functions.__setitem__("run", True)
+    :return: None
+    """
 
-
-# Get frame-rate
-def frame_rate(delta_time):
-    if get_main_window().alive > 0:
-        fps = Framework.clock.get_fps()
-        frames.append(fps)
-        Log.info(f"{round(fps)} FPS")
-
-
-# Ticks
-def update(delta_time):
     Framework.clock.tick()
 
-    if functions.get("run"):
-        get_update_function()()
-
-
-# Returns the main camera used in the application
-def get_main_camera():
-    return graphics.view.get("Camera")
-
-
-# Returns the main window of the applicatin
-def get_main_window():
-    return graphics.view.get("Window")
-
-
-# Returns the update function
-def get_update_function():
-    return functions.get("update_function")
-
-
-# Returns the end function of the program
-def get_end_function():
-    return functions.get("end_function")
-
-
-# Set switch main camera
-def set_main_camera(new_camera):
-    graphics.view.__setitem__("Camera", new_camera)
-    get_main_window().view_port = new_camera
+    for func in scheduled:
+        func()
 
 
 # Prepares the application
 def run():
+    """
+    Starts the engine and (Ironically) also stops it
+
+    :return: None
+    """
+
     Framework.app.run()
-
-    try:
-        print("Highest frame-rate: ", max(frames))
-        total = sum(frames)
-        avg = total / len(frames)
-        print("Avg frame-rate: ", avg)
-        frames.sort()
-        print("Lowest frame-rate: ", *frames[:1])
-        print("Running pyglet version: ", Framework.version)
-    except:
-        Log.error("Unable to determine frame-rates")
-
-    for obj in graphics.stack:
-        obj
-
-    graphics.stack.clear()
-    Log.warning("Deleted all objects from the KeyFire Stack")
-
-    get_end_function()()
-
     Framework.app.exit()
 
 
+class Scheduled:
+    """
+    This is a lower level class not directly exposed to the scripting library.
+    It's used to add and remove looping functions from a stack.
+    'engine.loops' is an instance of this class
+    """
+
+    def __add__(self, func):
+        self.add(func)
+
+    def __sub__(self, func):
+        self.remove(func)
+
+
+    def add(self, func):
+        scheduled.append(func)
+
+
+    def remove(self, func):
+        if func in scheduled:
+            scheduled.remove(func)
+        else:
+            Log.critical(f"{func} is not scheduled, thus it can not be unscheduled")
+
+
+loops = Scheduled()
 Framework.clock.schedule_interval(update, 1 / 120)
-Framework.clock.schedule_interval(frame_rate, 1)

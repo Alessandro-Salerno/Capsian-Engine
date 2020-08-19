@@ -67,11 +67,10 @@ class KeyboardInputHandler:
     def __init__(self):
         """
         Creates a KeyListener object that registers all the keys you press
-
         """
 
         graphics.stack.append(self)
-        graphics.view.__setitem__("Input", self)
+        engine.main_key_listener = self
 
 
     def get_input(self, symbol, modifiers):

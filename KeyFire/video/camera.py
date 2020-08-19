@@ -71,24 +71,24 @@ class Camera:
         """
 
         # Environment
-        self.pos = list(pos)
-        self.rot = list(rot)
+        self.pos  = list(pos)
+        self.rot  = list(rot)
 
         # Direction vectors
-        self.dy = 0
-        self.dx = 0
-        self.dz = 0
+        self.dy   = 0
+        self.dx   = 0
+        self.dz   = 0
         self.rotY = 0
         self.rotX = 0
 
         # Other vars
         self.sens = 0.1
-        self.s = 0
+        self.s    = 0
         self.keys = None
 
         # Rendering
-        self.fov = fov
-        self.far = int(far)
+        self.fov  = fov
+        self.far  = int(far)
         self.near = float(near)
 
         self.keys = [
@@ -120,11 +120,11 @@ class Camera:
         :return: Nothing
         """
 
-        self.s = delta_time * 50
+        self.s    = delta_time * 50
         self.rotY = -self.rot[1] / 180 * math.pi
 
-        self.dx = self.s * math.sin(self.rotY)
-        self.dz = self.s * math.cos(self.rotY)
+        self.dx   = self.s * math.sin(self.rotY)
+        self.dz   = self.s * math.cos(self.rotY)
 
         self.keys = keys
 
@@ -160,15 +160,15 @@ class PerspectiveCamera(Camera):
 
 
     def init(self):
-        graphics.view.__setitem__("Camera", self)
+        engine.main_camera = self
 
         OpenGL.glEnable(OpenGL.GL_DEPTH_TEST)
         OpenGL.glEnable(OpenGL.GL_NORMALIZE)
         OpenGL.glEnable(OpenGL.GL_CULL_FACE)
         OpenGL.glCullFace(OpenGL.GL_BACK)
 
-        engine.get_main_window().set_lock(True)
-        engine.get_main_window().set_caption("KeyFire 2.1 Window - 3D Mode")
+        engine.main_window.set_lock(True)
+        engine.main_window.set_caption("KeyFire 2.1 Window - 3D Mode")
 
 
     def render(self, window):
@@ -238,7 +238,7 @@ class PerspectiveCamera(Camera):
         self.rot[0] += dy
         self.rot[1] -= dx
 
-        self.rot[0] = kmath.clamp(90, -90, self.rot[0])
+        self.rot[0]  = kmath.clamp(90, -90, self.rot[0])
 
 
     # Get input for movement
@@ -266,27 +266,27 @@ class PerspectiveCamera(Camera):
         :return:
         """
 
-        if direction == "forwards":
-            self.pos[0] += self.dx * self.sens * engine.get_main_window().alive
-            self.pos[2] -= self.dz * self.sens * engine.get_main_window().alive
+        if direction    == "forwards":
+            self.pos[0] += self.dx * self.sens * engine.main_window.alive
+            self.pos[2] -= self.dz * self.sens * engine.main_window.alive
 
-        if direction == "backwards":
-            self.pos[0] -= self.dx * self.sens * engine.get_main_window().alive
-            self.pos[2] += self.dz * self.sens * engine.get_main_window().alive
+        if direction    == "backwards":
+            self.pos[0] -= self.dx * self.sens * engine.main_window.alive
+            self.pos[2] += self.dz * self.sens * engine.main_window.alive
 
-        if direction == "right":
-            self.pos[0] += self.dz * self.sens * engine.get_main_window().alive
-            self.pos[2] += self.dx * self.sens * engine.get_main_window().alive
+        if direction    == "right":
+            self.pos[0] += self.dz * self.sens * engine.main_window.alive
+            self.pos[2] += self.dx * self.sens * engine.main_window.alive
 
-        if direction == "left":
-            self.pos[0] -= self.dz * self.sens * engine.get_main_window().alive
-            self.pos[2] -= self.dx * self.sens * engine.get_main_window().alive
+        if direction    == "left":
+            self.pos[0] -= self.dz * self.sens * engine.main_window.alive
+            self.pos[2] -= self.dx * self.sens * engine.main_window.alive
 
-        if direction == "down":
-            self.pos[1] -= self.s / 10 * engine.get_main_window().alive
+        if direction    == "down":
+            self.pos[1] -= self.s / 10 * engine.main_window.alive
 
-        if direction == "up":
-            self.pos[1] += self.s / 10 * engine.get_main_window().alive
+        if direction    == "up":
+            self.pos[1] += self.s / 10 * engine.main_window.alive
 
 
 ########################################################################################################################
@@ -298,7 +298,7 @@ class OrthographicCamera(Camera):
 
 
     def init(self):
-        graphics.view.__setitem__("Camera", self)
+        engine.main_camera = self
 
         OpenGL.glDisable(OpenGL.GL_DEPTH_TEST)
         engine.get_main_window().set_lock(False)

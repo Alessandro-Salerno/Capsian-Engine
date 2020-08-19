@@ -68,20 +68,20 @@ class Window(pyglet.window.Window):
         super().__init__(*args, **kwargs, screen=pyglet.canvas.Display.get_default_screen(pyglet.canvas.Display()))
 
         # Variable declaration
-        self.mouse_lock = False
-        self.fullscreen_key = fullscreen_key
+        self.mouse_lock         = False
+        self.fullscreen_key     = fullscreen_key
 
         # Others
-        self.view_port = camera
-        self.keys = key.KeyStateHandler()
-        self.push_handlers(self.keys)
-        self.key = None
-        self.render_static_hud = False
+        self.view_port          = camera
+        self.keys               = key.KeyStateHandler()
+        self.key                = None
+        self.render_static_hud  = False
         self.render_dynamic_hud = False
-        self.lighting = False
-        graphics.view.__setitem__("Window", self)
-        self.alive = 1
-        
+        self.lighting           = False
+        engine.main_window      = self
+        self.alive              = 1
+
+        self.push_handlers(self.keys)
 
         # Looks
         self.set_center()
@@ -176,8 +176,8 @@ class Window(pyglet.window.Window):
                 self.set_lock(False)
                 self.set_lock(lock)
 
-            if "Input" in graphics.view.keys():
-                graphics.view.get("Input").get_input(symbol, modifiers)
+            if engine.main_key_listener is not None:
+                engine.main_key_listener.get_input(symbol, modifiers)
         else:
             if symbol == key.ESCAPE or symbol == key.ENTER:
                 self.close()

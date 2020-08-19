@@ -76,15 +76,15 @@ class Cube(Object):
 
         Object.__init__(self, size=size, pos=pos, rot=rot, batch=scene)
 
-        self.next_pos = [[pos[0] + 1, pos[1], pos[2]],
-                         [pos[0] - 1, pos[1], pos[2]],
-                         [pos[0], pos[1], pos[2] + 1],
-                         [pos[0], pos[1], pos[2] - 1],
-                         [pos[0], pos[1] + 1, pos[2]],
-                         [pos[0], pos[1] - 1, pos[2]]]
+        self.next_pos = [[pos[0] + 1,  pos[1],      pos[2]],
+                         [pos[0] - 1,  pos[1],      pos[2]],
+                         [pos[0],      pos[1],      pos[2] + 1],
+                         [pos[0],      pos[1],      pos[2] - 1],
+                         [pos[0],      pos[1] + 1,  pos[2]],
+                         [pos[0],      pos[1] - 1,  pos[2]]]
 
         self.pos_list = lis
-        self.texture = material.texture
+        self.texture  = material.texture
 
         self.add_block(self.pos[0], self.pos[1], self.pos[2])
 
@@ -134,7 +134,7 @@ class Cube(Object):
         :return: Nothing
         """
 
-        X, Y, Z = x + self.size[0], y + self.size[1], z + self.size[2]
+        X, Y, Z    = x + self.size[0], y + self.size[1], z + self.size[2]
 
         tex_coords = ('t2f', (0, 0, 1, 0, 1, 1, 0, 1))
 

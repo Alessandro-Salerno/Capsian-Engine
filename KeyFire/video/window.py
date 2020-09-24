@@ -146,9 +146,9 @@ class Window(pyglet.window.Window):
         This method is called by another method.
         DO NOT CALL THIS!
 
-        :param dx:
-        :param dy:
-        :return:
+        :param dx: The horizontal direction in which the mouse is moving
+        :param dy: The vertical direction in which the mouse is moving
+        :return: Nothing
         """
 
         if self.mouse_lock:
@@ -159,9 +159,9 @@ class Window(pyglet.window.Window):
         """
         This method gets input from the keyboard
 
-        :param symbol:
-        :param modifiers:
-        :return:
+        :param symbol: The key that's been pressed
+        :param modifiers: THe modifiers used
+        :return: Nothing
         """
 
         if self.alive > 0:
@@ -217,8 +217,8 @@ class Window3D(Window):
     Creates a pyglet Window (Accepts all pyglet.window.Window parameters)
 
     :param camera: A KeyFire Camera (Camera())
-    :param args:
-    :param kwargs:
+    :param args: All pyglet window args
+    :param kwargs: All pyglet window kwargs
     """
 
     def __init__(self, camera, *args, **kwargs):
@@ -247,12 +247,6 @@ class Window3D(Window):
         None of the following parameters have to be specified since this method is not callable!
         to override it though, you must list all of them as parameters for your override method.
         This method is responsible for camera rotation in the 3D scene
-
-        :param x:
-        :param y:
-        :param dx:
-        :param dy:
-        :return:
         """
 
         self.rotate_camera(dx, dy)
@@ -264,12 +258,6 @@ class Window3D(Window):
         None of the following parameters have to be specified since this method is not callable!
         to override it though, you must list all of them as parameters for your override method.
         This method is responsible for camera rotation in the 3D scene
-
-        :param x:
-        :param y:
-        :param dx:
-        :param dy:
-        :return:
         """
 
         self.rotate_camera(dx, dy)
@@ -280,52 +268,9 @@ class Window3D(Window):
         """
         This method is empty by default, but it can be overridden. To override it, remember to use alla listed parameters
 
-        :param x:
-        :param y:
-        :param button:
-        :param modifiers:
-        :return:
         """
 
         pass
-
-
-    # Sets the render distance of the window
-    def set_render_distance(self, new_render_distance):
-        try:
-            if new_render_distance > 0:
-                self.view_port.far = new_render_distance
-                Log.successful(f"Successfully changed render distance to {self.view_port.far} ")
-                Log.warning("This method is deprecated and will be removed in beta 7!")
-            else:
-                Log.error(f"{new_render_distance} is not a valid render distance")
-        except:
-            Log.critical("Unable to change render distance")
-
-
-    # Sets the fog color to a given one
-    def set_fog_color(self, fog_color):
-        """
-        Sets the fog color to be the specified one
-
-        :param fog_color: The new color of the fog (Array, [GL_R, GL_G, GL_B, GL_A]) # IN GL colors, 1 = 255 in RGBcolors
-        :return:
-        """
-
-        self.fog_color = fog_color
-
-
-    # Sets the clear color to be a given one
-    def set_clear_color(self, clear_color):
-        """
-        Changes the OpenGL Clear color for the window (Default: black)
-
-        :param clear_color: The actual color (Array, [GL_R, GL_G, GL_B, GL_A]) - in GL colors, 1 = 255 in RGB
-        :return:  Nothing
-        """
-
-        if self.alive > 0:
-            glClearColor(clear_color[0], clear_color[1], clear_color[2], clear_color[3])
 
 
     def set_viewport(self, camera):

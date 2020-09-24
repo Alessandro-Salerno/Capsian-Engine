@@ -52,9 +52,9 @@
 
 
 # Imports
-from locals import *
-from os import system
-import tzylang as translate
+from locals     import *
+from os         import system
+import tzylang  as translate
 import sys
 import time
 import os
@@ -67,9 +67,8 @@ cmds = [
     "3. run - Translates and runs your TzyLang code",
     "4. clear - Resets the console to it's original state",
     "5. system('command') - Runs the specified command as you were running it in the command prompt",
-    "6. tzylang - Sets the console i n TzyLang mode",
-    "7. modules - shows all the modules that are pre-imported by the console",
-    "8. Most python commands (Such as import)"
+    "6. modules - shows all the modules that are pre-imported by the console",
+    "7. Most python commands (Such as import)"
 ]
 
 
@@ -84,10 +83,6 @@ imports = [
 
 
 def run(mode=KFE_NORMAL_MODE):
-    with open("scripts/script.kfel", 'r') as file:
-        lines = file.readlines()
-        exec(compile(source=mode, filename="", mode="exec", optimize=1))
-
     system("main.py") if os.name == "nt" else system("python3 main.py")
 
 
@@ -119,20 +114,6 @@ def clear():
         f"{TermColor.WARNING}Copyright 2019 - 2020 Alessandro Salerno (Tzyvoski)\nLICENSE: http://www.apache.org/licenses/LICENSE-2.0\nKeyFire Console 0.2 for KeyFire 2.1 beta 6 preview 1\n{TermColor.END_COLOR}")
 
 
-def tzylang():
-    while True:
-        out(f"{TermColor.OK_GREEN}TzyLang/KeyFire{TermColor.FAIL}${TermColor.END_COLOR} ", end=" ")
-        tzy_cmd = input()
-
-        try:
-            try:
-                exec(compile(source=translate.buid(tzy_cmd), filename="tzy_command", mode="exec", optimize=1))
-            except:
-                Log.error("The command you specified is not valid")
-        except:
-            pass
-
-
 # Lists all the available modules
 def modules():
     for module in imports:
@@ -151,7 +132,9 @@ while True:
     cmd = input()
 
     try:
-        new_code = cmd + "()"
+        if "print" not in cmd:
+            new_code = cmd + "()"
+        
         exec(compile(source=new_code, filename="command", mode="exec", optimize=1))
     except:
         try:

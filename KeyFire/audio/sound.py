@@ -107,3 +107,14 @@ class DirectionalSound:
         """
 
         pass
+
+
+    # Dunderscore method
+    def __call__(self):
+        """
+        When the object is called it plays a sound
+        This method handles the call
+
+        """
+
+        self.play()

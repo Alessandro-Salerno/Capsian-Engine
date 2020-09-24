@@ -51,7 +51,8 @@
 # ----------------------------------------------------------------------------
 
 
-from locals import OpenGL
+from   locals                 import OpenGL
+import KeyFire.video.graphics as     __graphics__
 
 
 KFE_DEFAULT_DELTA_TIME   = 1/120
@@ -90,3 +91,5 @@ lights = [
     OpenGL.GL_LIGHT6,
     OpenGL.GL_LIGHT7
 ]
+
+SkyColor = __graphics__.SkyColorClass()

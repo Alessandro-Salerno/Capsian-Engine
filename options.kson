@@ -12,5 +12,4 @@
     "use dynamic hud": True,
     "use static hud": True,
     "clear color": KFE_DEFAULT_CLEAR_COLOR,
-    "render distance": 5000,
 }

@@ -59,6 +59,8 @@ main_window       = None
 main_camera       = None
 main_key_listener = None
 scheduled         = []
+entry_points      = []
+exit_points       = []
 
 
 def update(dt):
@@ -72,7 +74,7 @@ def update(dt):
     Framework.clock.tick()
 
     for func in scheduled:
-        func()
+        func(dt)
 
 
 # Prepares the application
@@ -83,7 +85,28 @@ def run():
     :return: None
     """
 
+    from datetime import datetime
+
+    for fn in entry_points:
+        try:
+            fn(datetime.now())
+        except:
+            try:
+                fn()
+            except:
+                Log.critical(f"Unable to call {fn} as entry point")
+    
     Framework.app.run()
+    
+    for fn in exit_points:
+        try:
+            fn(datetime.now())
+        except:
+            try:
+                fn()
+            except:
+                Log.critical(f"There is something wrong with {fn}")
+
     Framework.app.exit()
 
 
@@ -94,23 +117,63 @@ class Scheduled:
     'engine.loops' is an instance of this class
     """
 
-    def __add__(self, func):
-        self.add(func)
+
+    def __add__(self, func=(None, 1/120)):
+        self.add(func[0], func[1])
 
     def __sub__(self, func):
         self.remove(func)
 
 
-    def add(self, func):
-        scheduled.append(func)
+    def add(self, func, dt=1/120):
+        if dt == 1/120:
+            scheduled.append(func)
+        else:
+            Framework.clock.schedule_interval(func, dt)
 
 
     def remove(self, func):
         if func in scheduled:
             scheduled.remove(func)
         else:
-            Log.critical(f"{func} is not scheduled, thus it can not be unscheduled")
+            try:
+                Framework.clock.unschedule(func)
+            except:
+                Log.critical(f"{func} is not scheduled, thus it can not be unscheduled")
 
 
-loops = Scheduled()
+class EntryPoints:
+    """
+    This class is used to add entry points
+    EPs are functions called when the program starts, in this case, they're user defined.
+    These functions run when engine.run() i s called in main.py
+    """
+
+
+    def __add__(self, other):
+        self.add(other)
+
+
+    def add(self, other):
+        entry_points.append(other)
+
+
+class ExitPoints:
+    """
+    This class is used to add exit points.
+    Exit points are functions called when the program ends, in this case they're user defined.
+    They are called before Framework.app.exit() in engine.run()(Here in engine.py)
+    """
+
+
+    def __add__(self, other):
+        self.add(other)
+
+    def add(self, other):
+        exit_points.append(other)
+
+
+loops   = Scheduled()
+entries = EntryPoints()
+exits   = ExitPoints()
 Framework.clock.schedule_interval(update, 1 / 120)

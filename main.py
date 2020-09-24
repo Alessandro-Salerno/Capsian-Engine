@@ -87,7 +87,7 @@ else:
 # Compiles all the code
 exec(compile(source=source, filename="", mode="exec", optimize=1))
 
-try: 
+try:
     # Enable KeyFire Transparency if required
     if options["use transparency"]:
         engine.main_window.enable(KFE_TRANSPARENCY)
@@ -97,13 +97,7 @@ try:
         engine.main_window.enable(KFE_LIGHTING)
 
     # Set OpenGL Clear Color
-    engine.main_window.set_clear_color(options["clear color"])
-
-    # Set the render distance
-    engine.main_window.set_render_distance(options["render distance"])
-
-    # Set Fog color
-    engine.main_window.set_fog_color(options["fog color"])
+    SkyColor << options["clear color"]
 
     # Enable Fog if required
     if options["enable fog"]   == "default":

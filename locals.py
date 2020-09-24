@@ -88,4 +88,6 @@ from KeyFire.GUI.sprite               import DynamicSprite3D
 from KeyFire.texturing.texture        import Texture2D
 from KeyFire.entities.square          import TexturedSquare
 from KeyFire.texturing.texture        import Image2D
+from KeyFire.video.fps_counter        import FPSCounter
+from KeyFire.video.fog                import Fog
 import KeyFire.maths.math             as     kmath

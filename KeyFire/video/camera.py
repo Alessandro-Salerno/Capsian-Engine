@@ -301,8 +301,8 @@ class OrthographicCamera(Camera):
         engine.main_camera = self
 
         OpenGL.glDisable(OpenGL.GL_DEPTH_TEST)
-        engine.get_main_window().set_lock(False)
-        engine.get_main_window().set_caption("KeyFire 2.1 Window - GUI Mode")
+        engine.main_window.set_lock(False)
+        engine.main_window.set_caption("KeyFire 2.1 Window - GUI Mode")
 
 
     def render(self, window):

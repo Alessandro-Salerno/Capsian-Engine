@@ -119,6 +119,7 @@ class Log:
             from os import system
             from locals import engine
             from locals import Scene
+            from KeyFire.values import SkyColor
             from locals import OrthographicCamera
 
             engine.main_window.set_fullscreen(False)
@@ -127,7 +128,7 @@ class Log:
             camera = OrthographicCamera()
 
             # Setup the Window
-            engine.main_window.set_clear_color([0.8, 0.0, 0.0, 1.0])
+            SkyColor << [0.8, 0.0, 0.0, 1.0]
             engine.main_window.set_viewport(camera)   
 
             engine.main_window.set_caption("KeyFire 2.1 - UNSTABLE STATE")

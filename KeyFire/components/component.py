@@ -8,7 +8,7 @@
 # modification, are permitted provided that the following conditions
 # are met:
 #
-#  * Redistributions of source code must retain the above copyright
+#  * Redistributioans of source code must retain the above copyright
 #    notice, this list of conditions and the following disclaimer.
 #  * Redistributions in binary form must reproduce the above copyright
 #    notice, this list of conditions and the following disclaimer in
@@ -51,89 +51,10 @@
 # ----------------------------------------------------------------------------
 
 
-class SkyColorClass:
+from locals import *
+
+
+class Component:
     def __init__(self):
-        self.color = [0, 0, 0, 0]
+        pass
 
-    def set(self, color):
-        try:
-            from locals import OpenGL
-            
-            OpenGL.glClearColor(color[0], color[1], color[2], color[3])
-            self.color = color
-        except:
-            Log.critical("Something went wrong while setting the sky color. Please check your code")
-
-
-    def __eq__(self, other):
-        self.set(other)
-
-
-    def __lshift__(self, other):
-        self.set(other)
-
-
-    def test(self):
-        print("hello world")
-
-
-scenes      = []
-gui_scenes  = []
-hud_scenes  = []
-dynamic_hud = []
-hud_stack   = {}
-objects2D   = []
-gui_pos     = {}
-lights      = []
-stack       = []
-
-
-def draw():
-    """
-    This function calls all draw methods (For objects, particles, lights ecc)
-
-    :return: Nothing
-    """
-
-    for scene in scenes:
-        scene.batch.draw()
-
-    for object2D in objects2D:
-        if object2D.is_visible():
-            object2D.quad()
-
-    for light in lights:
-        light.render()
-
-
-def draw_gui():
-    """
-    Calls all GUI draw methods (label ecc)
-
-    :return: Nothing
-    """
-
-    for gui_scene in gui_scenes:
-        gui_scene.batch.draw()
-
-
-def draw_hud():
-    """
-    Draws all the static HUD in the scene
-
-    :return: Nothing
-    """
-
-    for hud_scene in hud_scenes:
-        hud_scene.batch.draw()
-
-
-def draw_dynamic_hud():
-    """
-    Draws the dynamic HUD in a scene
-
-    :return: Nothing
-    """
-
-    for hud in dynamic_hud:
-        hud.draw()

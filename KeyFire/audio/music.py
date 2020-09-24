@@ -89,3 +89,14 @@ class Track:
         """
 
         self.audio.play()
+
+
+    # When the object is called
+    def __call__(self):
+        """
+
+        When the object si called it plays a sound
+        This method handles the sound playback
+        """
+
+        self.play()

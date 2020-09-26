@@ -49,3 +49,64 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ----------------------------------------------------------------------------
+
+
+from locals import *
+
+
+class Object:
+    """
+    A generic Capsian object
+
+    """
+
+    def __init__(self, size=[1, 1, 1], pos=[0, 0, 0], rot=[0, 0, 0], batch=None):
+        """
+        Creates an object in the world
+        This is usually used as super/parent class for other objects like Cubes
+
+        :param size: The size of the object (Array, [width, height, depth])
+        :param pos: The position of the world in 3 Space (Array, [x, y, z])
+        :param rot: The rotation of the object (Array, [x, y])
+        :param batch: The scene in which the object should be rendered
+        """
+
+        self.size  = size
+        self.pos   = pos
+        self.rot   = rot
+        self.batch = batch
+
+        graphics.stack.append(self)
+
+        self.flags = {
+            "visible": True,
+            "static": False,
+        }
+
+
+    # Rotate using glRotatef()
+    def rotate(self, X, Y, Z):
+        """
+        Doesn't work
+        USELESS
+
+        :param X:
+        :param Y:
+        :param Z:
+        :return:
+        """
+
+        OpenGL.glRotatef(self.rot, X, Y, Z)
+
+
+    # Update (Ovveride this)
+    def update(self, delta_time):
+        """
+        Updates the object.
+        This is never automatically called, you CAN call this yourself from your update function
+
+        :param delta_time: The delta time of the loop
+        :return: Nothing
+        """
+
+        pass

@@ -3,13 +3,13 @@
 
 
 {
-    "main file": "scripts/script.py",
+    "main file": None,
     "language": "python",
     "use transparency": True,
     "use basic lighting": False,
     "enable fog": False,
-    "fog color": KFE_DEFAULT_FOG_COLOR,
+    "fog color": CPSN_DEFAULT_FOG_COLOR,
     "use dynamic hud": True,
     "use static hud": True,
-    "clear color": KFE_DEFAULT_CLEAR_COLOR,
+    "clear color": CPSN_DEFAULT_CLEAR_COLOR,
 }

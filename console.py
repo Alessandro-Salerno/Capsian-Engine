@@ -34,7 +34,7 @@
 # ----------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------
-# KeyFire Engine
+# Capsian Engine
 # Copyright 2019 - 2020 Alessandro Salerno (Tzyvoski)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -73,7 +73,7 @@ cmds = [
 
 
 imports = [
-    "KeyFire (locals.py)",
+    "Capsian (locals.py)",
     "os.system (system)",
     "os",
     "translate (tzylang.py)",
@@ -82,7 +82,7 @@ imports = [
 ]
 
 
-def run(mode=KFE_NORMAL_MODE):
+def run(mode=CPSN_NORMAL_MODE):
     system("main.py") if os.name == "nt" else system("python3 main.py")
 
 
@@ -96,7 +96,7 @@ def commands():
 
 
 def parse():
-    with open("scripts/script.kfel", 'r') as file:
+    with open("scripts/script.CPSNl", 'r') as file:
         global source
         source = translate.build(file.read())
 
@@ -111,7 +111,7 @@ def clear():
     system("cls") if os.name == "nt" else system("clear")
 
     print(
-        f"{TermColor.WARNING}Copyright 2019 - 2020 Alessandro Salerno (Tzyvoski)\nLICENSE: http://www.apache.org/licenses/LICENSE-2.0\nKeyFire Console 0.2 for KeyFire 2.1 beta 6 preview 1\n{TermColor.END_COLOR}")
+        f"{TermColor.WARNING}Copyright 2019 - 2020 Alessandro Salerno (Tzyvoski)\nLICENSE: http://www.apache.org/licenses/LICENSE-2.0\nCapsian Console 0.2 for Capsian 2.1 beta 6 preview 1\n{TermColor.END_COLOR}")
 
 
 # Lists all the available modules
@@ -128,7 +128,7 @@ commands()
 
 # Main loop
 while True:
-    out(f"{TermColor.OK_GREEN}Python/KeyFire{TermColor.FAIL}${TermColor.END_COLOR} ", end=" ")
+    out(f"{TermColor.OK_GREEN}Python/Capsian{TermColor.FAIL}${TermColor.END_COLOR} ", end=" ")
     cmd = input()
 
     try:

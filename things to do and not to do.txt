@@ -1,8 +1,0 @@
-+ updated renderer
-+ introduces settings
-+ readded python scripting
-+ improved security
-
-* rewritten scene system
-
-- removed fog (Unintentionally)

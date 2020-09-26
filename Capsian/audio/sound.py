@@ -1,4 +1,4 @@
-# ----------------------------------------------------------------------------
+## ----------------------------------------------------------------------------
 # pyglet
 # Copyright (c) 2006-2008 Alex Holkner
 # Copyright (c) 2008-2020 pyglet contributors
@@ -49,3 +49,72 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ----------------------------------------------------------------------------
+
+
+from locals import *
+
+
+class DirectionalSound:
+    """
+    A Directional Sound object is an abstract object that can reproduce sound coming from a direction.
+    The direction is automatically calculated thanks to pyglet.media.Player().
+    CURRENTLY INCOMPLETE!
+
+    """
+
+    def __init__(self, source, pos, auto_play):
+        """
+        Creates a direction sound object in the world
+
+        :param source: The file from which the Directional Sound object should retrieve the audio (String)
+        :param pos: A position in 3D space (Array [x, y, z])
+        :param auto_play: Weather it should play as soon as it's created or not (Boolean)
+        """
+
+        self.player          = Framework.media.player.Player()
+        self.player.position = pos
+        self.source          = source
+
+        if auto_play: self.play()
+
+        # Add this object to the stack
+        graphics.stack.append(self)
+
+        # Start the loop
+        Framework.clock.schedule_interval(self.update, 1/120)
+
+
+    # Plays the audio
+    def play(self):
+        """
+        Plays a given directional sound
+
+        :return: Nothing
+        """
+
+        self.player.queue(Framework.media.load(self.source, streaming=False))
+        self.player.play()
+
+
+    def update(self, delta_time):
+        """
+        This method updates the sound.
+        It's empty by default and it's called 120 times a second automatically.
+        DO NOT CALL THIS YOURSELF!
+
+        :param delta_time:
+        :return: Nothing
+        """
+
+        pass
+
+
+    # Dunderscore method
+    def __call__(self):
+        """
+        When the object is called it plays a sound
+        This method handles the call
+
+        """
+
+        self.play()

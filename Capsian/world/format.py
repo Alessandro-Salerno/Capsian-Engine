@@ -49,3 +49,114 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ----------------------------------------------------------------------------
+
+
+def Position2D(x, y):
+    """
+    Converts the given values into a position array
+
+    :param x: The x position
+    :param y: The y position
+    :return: Array [x, y, 0]
+    """
+
+    return [x, y, 0]
+
+
+def Position3D(x, y, z):
+    """
+    Converts the given values into a position array
+
+    :param x: The x position
+    :param y: The y position
+    :param z: The z position
+    :return: Array [x, y, z]
+    """
+
+    return [x, y, z]
+
+
+def Size2D(width, height):
+    """
+    Converts the given values into a size array
+
+    :param width: The width
+    :param height: The height
+    :return: Array [width, height, 0]
+    """
+
+    return [width, height, 0]
+
+
+def Size3D(width, height, depth):
+    """
+    Converts the given values into a size array
+
+    :param width: The width
+    :param height: The height
+    :param depth: The depth
+    :return: Array [width, height, depth]
+    """
+
+    return [width, height, depth]
+
+
+class Color:
+    """
+    A color object is not always useful.
+    It's designed to help you to convert different color types (Such as RGB to Float)
+
+    """
+
+    def __init__(self, r=255, g=255, b=255, a=255):
+        self.rgba = [r, g, b, a]
+
+
+    @property
+    def rgb(self):
+        """
+        :return: Array [R, G, B, A]
+        """
+
+        return self.rgba
+
+
+    @property
+    def gl_float_color(self):
+        """
+        :return: Array [FloatR, FloatG, FloatB, FloatA]
+        """
+
+        return self.rgba
+
+
+    @property
+    def to_gl_float_color(self):
+        """
+        Converts RGB/RGBA to OpenGL float color
+
+        :return: Array [FloatR, FloatG, FloatB, FloatA]
+        """
+
+        gl_colors = [0, 0, 0, 0]
+
+        for i in range(0, len(self.rgba)):
+            gl_colors[i] = self.rgba[i] / 255
+
+        return gl_colors
+
+
+    @property
+    def to_byte_color(self):
+        """
+        Converts OpenGL float color into RGBA
+
+        :return: Array [R, G, B, A]
+        """
+
+        byte_colors = [0, 0, 0, 0]
+
+        for i in range(0, len(self.rgba)):
+            byte_colors[i] = self.rgba[i] * 255
+
+        return byte_colors

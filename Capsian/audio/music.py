@@ -49,3 +49,54 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ----------------------------------------------------------------------------
+
+
+from locals import *
+
+
+class Track:
+    """
+    A track object is an abstract object which reproduces music or sounds.
+    A track object has not position in 3D space and does not support directional sound.
+    It can be used to create background music or play non-directional sounds like a menu button being clicked.
+
+    """
+
+    def __init__(self, file, streaming, auto_play):
+        """
+        Creates a track object
+
+        :param file: The file from which the Track object should retrieve the audio (String)
+        :param streaming: Weather it should use streaming or not (Boolean)
+        :param auto_play: Weather it should play as soon as it's created or not (Boolean)
+        """
+
+        self.file      = file
+        self.streaming = streaming
+        self.audio     = Framework.resource.media(file, streaming=streaming)
+
+        graphics.stack.append(self)
+
+        if auto_play: self.play()
+
+
+    # Plays the track
+    def play(self):
+        """
+        Plays a given track
+
+        :return: Nothing
+        """
+
+        self.audio.play()
+
+
+    # When the object is called
+    def __call__(self):
+        """
+
+        When the object si called it plays a sound
+        This method handles the sound playback
+        """
+
+        self.play()

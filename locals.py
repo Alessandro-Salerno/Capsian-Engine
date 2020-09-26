@@ -34,7 +34,7 @@
 # ----------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------
-# KeyFire Engine
+# Capsian Engine
 # Copyright (c) 2019 - 2020 Alessandro Salerno (Tzyvoski)
 # All rights reserved.
 #
@@ -48,7 +48,7 @@
 #
 # **DISCLAIMER**
 #
-# KEYFIRE AND IT'S CREATOR ARE NOT RESPONSIBLE FOR THE USE DEVELOPERS MAE OF
+# Capsian AND IT'S CREATOR ARE NOT RESPONSIBLE FOR THE USE DEVELOPERS MAE OF
 # THE ENGINE.
 # ----------------------------------------------------------------------------
 
@@ -56,38 +56,38 @@
 import pyglet                         as     Framework
 import pyglet.gl                      as     OpenGL
 import pyglet.window.key              as     Key
-from KeyFire.values                   import *
+from Capsian.values                   import *
 
-from KeyFire.world.format             import *
-from KeyFire.log                      import Log
-import KeyFire.engine                 as     engine
-import KeyFire.video.graphics         as     graphics
-from KeyFire.entities.object          import Object
-from KeyFire.video.window             import Window3D
-from KeyFire.video.camera             import PerspectiveCamera
-from KeyFire.video.camera             import OrthographicCamera
-from KeyFire.video.scene              import Scene
-from KeyFire.entities.cube            import Cube
-from KeyFire.texturing.material       import Material
-from KeyFire.input.keyboard           import KeyboardInputHandler
-from KeyFire.entities.particle_system import Particles2D
-from KeyFire.entities.particle_system import Particle
-from KeyFire.entities.particle_system import ParticleBatch
-from KeyFire.entities.square          import Square
-from KeyFire.audio.music              import Track
-from KeyFire.audio.sound              import DirectionalSound
-from KeyFire.texturing.texture        import Texture3D
-from KeyFire.texturing.texture        import SmartTexture3D
-from KeyFire.GUI.label                import StaticLabel2D
-from KeyFire.GUI.label                import StaticLabel3D
-from KeyFire.GUI.label                import DynamicLabel3D
-from KeyFire.video.light              import Light3D
-from KeyFire.video.light              import AmbientLight
-from KeyFire.log                      import TermColor
-from KeyFire.GUI.sprite               import DynamicSprite3D
-from KeyFire.texturing.texture        import Texture2D
-from KeyFire.entities.square          import TexturedSquare
-from KeyFire.texturing.texture        import Image2D
-from KeyFire.video.fps_counter        import FPSCounter
-from KeyFire.video.fog                import Fog
-import KeyFire.maths.math             as     kmath
+from Capsian.world.format             import *
+from Capsian.log                      import Log
+import Capsian.engine                 as     engine
+import Capsian.video.graphics         as     graphics
+from Capsian.entities.object          import Object
+from Capsian.video.window             import Window3D
+from Capsian.video.camera             import PerspectiveCamera
+from Capsian.video.camera             import OrthographicCamera
+from Capsian.video.scene              import Scene
+from Capsian.entities.cube            import Cube
+from Capsian.texturing.material       import Material
+from Capsian.input.keyboard           import KeyboardInputHandler
+from Capsian.entities.particle_system import Particles2D
+from Capsian.entities.particle_system import Particle
+from Capsian.entities.particle_system import ParticleBatch
+from Capsian.entities.square          import Square
+from Capsian.audio.music              import Track
+from Capsian.audio.sound              import DirectionalSound
+from Capsian.texturing.texture        import Texture3D
+from Capsian.texturing.texture        import SmartTexture3D
+from Capsian.GUI.label                import StaticLabel2D
+from Capsian.GUI.label                import StaticLabel3D
+from Capsian.GUI.label                import DynamicLabel3D
+from Capsian.video.light              import Light3D
+from Capsian.video.light              import AmbientLight
+from Capsian.log                      import TermColor
+from Capsian.GUI.sprite               import DynamicSprite3D
+from Capsian.texturing.texture        import Texture2D
+from Capsian.entities.square          import TexturedSquare
+from Capsian.texturing.texture        import Image2D
+from Capsian.video.fps_counter        import FPSCounter
+from Capsian.video.fog                import Fog
+import Capsian.maths.math             as     kmath

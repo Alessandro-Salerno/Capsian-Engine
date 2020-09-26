@@ -52,72 +52,65 @@
 
 
 from locals import *
-from os import system
-import os
-import tzylang as translate
-
-system("cls") if os.name == "nt" else system("clear")
 
 
-# Eval the contens of the options file
-with open("options.kson", "r") as preferences:
-    global options
-    _options = preferences.read()
-    options  = eval(compile(source=_options, filename="options", mode="eval", optimize=1))
+class Light3D:
+    def __init__(self, light_type, pos, color):
+        """
+        Creates an OpenGL Light in a given position with a given intensity.
+        You can specify the type of light using this!
+
+        :param light_type: The type of light (such as GL_AMBIENT)
+        :param pos: The position in 3D space (Array, [x, y, z])
+        :param color: The color and intensity of the light (Array, [R, G, B]) - You can set any of value to whatever you want (Example: R = 3435)
+        """
+
+        self.type          = light_type
+        self.pos           = pos
+        self.intensity     = color
+
+        try:
+            if len(lights) > 0:
+                self.light = lights[0]
+                lights.pop(0)
+            else:
+                self.light = OpenGL.GL_LIGHT0
+                Log.critical(f"The Light3D object at world position [{pos[0]}, {pos[1]}, {pos[2]} could not be created as there is no OpenGL light available. You can have a maximum of 8 lights in your program for now. This will be fixed in a later version though!")
+        except:
+            Log.critical("Unable to create light. Something went extremely wrong!")
+
+        OpenGL.glEnable(self.light)
+
+        graphics.lights.append(self)
+        graphics.stack.append(self)
 
 
-# Read the code contained in the main file and run some checks
-if options["main file"] is not None:
-    with open(options["main file"], "r") as file:
-        global source
+    # Draw the light
+    def render(self):
+        """
+        Draws the light.
+        This method is called by graphics.draw() and MUST NOT be called by other cde
 
-        if options["language"] == "tzylang":
-            source = translate.build(file.read())
-            Log.successful("Parsed tzylang script")
-        elif options["language"] == "python":
-            source = file.read()
-            Log.successful("Loaded python script")
-        else:
-            Log.critical("The specified language is not supported!")
-else:
-    Log.critical("No main file specified!")
-    input()
+        :return: Nothing
+        """
+
+        OpenGL.glLightfv(self.light, OpenGL.GL_POSITION, (OpenGL.GLfloat * 4)(self.pos[0], self.pos[1], self.pos[2], 1))
+        OpenGL.glLightfv(self.light, self.type, (OpenGL.GLfloat * 3)(self.intensity[0], self.intensity[1], self.intensity[2]))
+        OpenGL.glLightfv(self.light, OpenGL.GL_QUADRATIC_ATTENUATION, (OpenGL.GLfloat * 1)(1))
 
 
-# Compiles all the code
-exec(compile(source=source, filename="", mode="exec", optimize=1))
-
-try:
-    # Enable Capsian Transparency if required
-    if options["use transparency"]:
-        engine.main_window.enable(CPSN_TRANSPARENCY)
-
-    # Enable Capsian Basic Lighting if required
-    if options["use basic lighting"]:
-        engine.main_window.enable(CPSN_LIGHTING)
-
-    # Set OpenGL Clear Color
-    SkyColor << options["clear color"]
-
-    # Enable Fog if required
-    if options["enable fog"]   == "default":
-        engine.main_window.enable(CPSN_FOG)
-    elif options["enable fog"] == "nice":
-        engine.main_window.enable(CPSN_NICE_FOG)
-
-    # Enable HUD if required
-    if options["use dynamic hud"]:
-        engine.main_window.enable(CPSN_DYNAMIC_HUD)
-    if options["use static hud"]:
-        engine.main_window.enable(CPSN_STATIC_HUD)
-except:
-    _errcam = OrthographicCamera()
-    _errwin = Window3D(camera=_errcam)
-    Log.critical("Something went wrong while setting up your game. This is usually caused by the absence of a default window and/or camera")
+########################################################################################################################
 
 
-# Runs all the code3
-engine.run()
+class AmbientLight(Light3D):
+    def __init__(self, pos, color):
+        """
+        Creates an OpenGL Ambient light.
+        You can't specify a light type in this!
 
-# Random print() to make the output look cleaner
-print()
+        :param light_type: The type of light (such as GL_AMBIENT)
+        :param pos: The position in 3D space (Array, [x, y, z])
+        :param color: The color and intensity of the light (Array, [R, G, B]) - You can set any of value to whatever you want (Example: R = 3435)
+        """
+
+        super().__init__(CPSN_AMBIENT_LIGHT, pos, color)

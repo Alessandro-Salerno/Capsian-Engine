@@ -49,3 +49,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ----------------------------------------------------------------------------
+
+
+from locals import *
+
+
+class FPSCounter:
+    def __init__(self):
+        self.label = DynamicLabel3D("Calibri", 36, Position2D(0, 0), CPSN_AUTO_SIZE, Framework.clock.get_fps, Color(255, 255, 255).rgba)
+
+
+    def get_fps(self):
+        return float(self.label.text)

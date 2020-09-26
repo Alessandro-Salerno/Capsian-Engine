@@ -49,3 +49,44 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ----------------------------------------------------------------------------
+
+
+from locals import*
+
+
+class Scene:
+    def __init__(self, mode=CPSN_3D_SCENE):
+        """
+        Creates a Capsian scene object.
+        It uses pyglet.graphics.Batch()
+
+        :param mode: The Scene mode (CPSN_3D_SCENE or CPSN_GUI_SCENE)
+        """
+
+        # Set mode
+        self.mode        = mode
+
+        # Check mode
+        if mode     == CPSN_3D_SCENE:
+            graphics.scenes.append(self)
+        else:
+            if mode == CPSN_GUI_SCENE:
+                graphics.gui_scenes.append(self)
+            else:
+                graphics.hud_scenes.append(self)
+
+        # Defines lists of objects
+        self.batch       = Framework.graphics.Batch()
+        self.objects2D   = []
+        self.gui_batches = []
+        self.hud_batches = []
+        self.dynamic_gui = []
+        self.dynamic_hud = []
+
+        # Add to Capsian stack
+        graphics.stack.append(self)
+
+
+    # Adds somethings to the batch
+    def add(self, *args, **kwargs):
+        self.batch.add(*args, **kwargs)

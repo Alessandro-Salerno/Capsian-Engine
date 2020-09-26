@@ -49,3 +49,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ----------------------------------------------------------------------------
+
+
+
+from locals import *
+
+
+class Material:
+    def __init__(self, texture, fallSound="", walkSound="", runSound=""):
+        """
+        Creates a material that can then be used with an object to define it's texture
+
+        :param texture: The Texture object from which the material should retrieve the texture (Texture3D()/SmartTexture3D())
+        :param fallSound: Nothing (String)
+        :param walkSound: Nothing (String)
+        :param runSound: Nothing (String)
+        """
+
+        self.fallSound = fallSound
+        self.walkSound = walkSound
+        self.runSound  = runSound
+        self.texture   = texture.get_texture()
+        
+        graphics.stack.append(self)

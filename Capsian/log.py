@@ -137,7 +137,7 @@ class Log:
             print(f"{TermColor.FAIL} [{time()} FATAL ERROR] {text} {TermColor.END_COLOR}")
 
             # Draw the message
-            error_scene = Scene(CPSN_GUI_SCENE)
+            error_scene = Scene(camera, CPSN_GUI_SCENE)
 
 
             error = Framework.text.Label(

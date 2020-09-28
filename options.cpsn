@@ -6,7 +6,7 @@
     "main file": "scripts/script.py",
     "language": "python",
     "use transparency": True,
-    "use basic lighting": False,
+    "use basic lighting": True,
     "enable fog": False,
     "fog color": CPSN_DEFAULT_FOG_COLOR,
     "use dynamic hud": True,

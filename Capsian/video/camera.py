@@ -71,27 +71,28 @@ class Camera:
         """
 
         # Environment
-        self.pos  = list(pos)
-        self.rot  = list(rot)
+        self.pos    = list(pos)
+        self.rot    = list(rot)
 
         # Direction vectors
-        self.dy   = 0
-        self.dx   = 0
-        self.dz   = 0
-        self.rotY = 0
-        self.rotX = 0
+        self.dy     = 0
+        self.dx     = 0
+        self.dz     = 0
+        self.rotY   = 0
+        self.rotX   = 0
 
         # Other vars
-        self.sens = 0.1
-        self.s    = 0
-        self.keys = None
+        self.sens   = 0.1
+        self.s      = 0
+        self.keys   = None
 
         # Rendering
-        self.fov  = fov
-        self.far  = int(far)
-        self.near = float(near)
+        self.fov    = fov
+        self.far    = int(far)
+        self.near   = float(near)
+        self.scenes = []
 
-        self.keys = [
+        self.keys   = [
             Framework.window.key.W,
             Framework.window.key.A,
             Framework.window.key.S,
@@ -100,7 +101,7 @@ class Camera:
             Framework.window.key.SPACE
         ]
 
-        self.args = {
+        self.args   = {
             self.keys[0]: "forwards",
             self.keys[1]: "left",
             self.keys[2]: "backwards",
@@ -158,6 +159,8 @@ class PerspectiveCamera(Camera):
     def __init__(self, pos=[0, 0, 0], rot=[0, 0], fov=90, far=5000, near=0.05):
         super().__init__(pos, rot, fov, far, near)
 
+        self.hud_scenes = []
+
 
     def init(self):
         engine.main_camera = self
@@ -172,7 +175,7 @@ class PerspectiveCamera(Camera):
 
 
     def render(self, window):
-        # Render the 3D objects in the
+        # Set all OpenGL parameters
         OpenGL.glClear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT)
 
         if window.lighting: OpenGL.glEnable(OpenGL.GL_LIGHTING)
@@ -193,7 +196,17 @@ class PerspectiveCamera(Camera):
         OpenGL.glRotatef(-self.rot[1], 0, 1, 0)
         OpenGL.glTranslatef(-self.pos[0], -self.pos[1], -self.pos[2])
 
-        graphics.draw()
+        
+        # Render 3D Scene
+        for scene in self.scenes:
+            scene.batch.draw()
+            
+            for light in scene.lights:
+                light.render()
+
+            for object2D in scene.objects2D:
+                object2D.draw()
+
         OpenGL.glPopMatrix()
 
         # Render the HUD in the scene
@@ -207,7 +220,10 @@ class PerspectiveCamera(Camera):
             OpenGL.glOrtho(0, max(1, width), 0, max(1, height), -1, 1)
             OpenGL.glMatrixMode(OpenGL.GL_MODELVIEW)
             OpenGL.glLoadIdentity()
-            graphics.draw_hud()
+            
+            # Render HUD 
+            for scene in self.hud_scenes:
+                scene.hud_batch.draw()
 
         if window.render_dynamic_hud:
             OpenGL.glDisable(OpenGL.GL_LIGHTING)
@@ -219,7 +235,10 @@ class PerspectiveCamera(Camera):
             OpenGL.glOrtho(0, max(1, width), 0, max(1, height), -1, 1)
             OpenGL.glMatrixMode(OpenGL.GL_MODELVIEW)
             OpenGL.glLoadIdentity()
-            graphics.draw_dynamic_hud()
+            
+            for scene in self.hud_scenes:
+                for hud in scene.dynamic_hud:
+                    hud.draw()
 
 
     # Handles mouse rotation
@@ -289,6 +308,11 @@ class PerspectiveCamera(Camera):
             self.pos[1] += self.s / 10 * engine.main_window.alive
 
 
+    # Repr dunderscore method
+    def __repr__(self):
+        return "PerspectiveCamera"
+
+
 ########################################################################################################################
 
 
@@ -306,7 +330,7 @@ class OrthographicCamera(Camera):
 
 
     def render(self, window):
-        # Render the 3D objects in the
+        # Render the 2D scene
         OpenGL.glDisable(OpenGL.GL_LIGHTING)
         width, height = window.get_size()
         viewport = window.get_viewport_size()
@@ -316,7 +340,12 @@ class OrthographicCamera(Camera):
         OpenGL.glOrtho(0, max(1, width), 0, max(1, height), -1, 1)
         OpenGL.glMatrixMode(OpenGL.GL_MODELVIEW)
         OpenGL.glLoadIdentity()
-        graphics.draw_gui()
+        
+        for scene in self.scenes:
+            scene.batch.draw()
+
+            for gui in scene.dynamic_gui:
+                gui.draw()
 
 
     def rotate(self, dx, dy):
@@ -325,3 +354,8 @@ class OrthographicCamera(Camera):
 
     def key_listener(self, handler):
         pass
+
+
+    # Repr dunderscore method
+    def __repr__(self):
+        return "OrthographicCamera"

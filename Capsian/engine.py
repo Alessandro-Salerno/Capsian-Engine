@@ -94,7 +94,7 @@ def run():
             try:
                 fn()
             except:
-                Log.critical(f"Unable to call {fn} as entry point")
+                Log.critical(f"Unable to call {fn} as entry point. You may want to check your entry point's code as there may be some critical mistakes you did there... If not, then check other parts of your code and consider contacting us")
     
     Framework.app.run()
     

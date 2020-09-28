@@ -106,7 +106,7 @@ class DynamicLabel3D(Framework.text.Label):
 
     """
 
-    def __init__(self, font, font_size, pos, size, text, color, *args, **kwargs):
+    def __init__(self, font, font_size, pos, size, text, color, scene, *args, **kwargs):
         """
         Creates a text field in a 3D scene (The text is rendered in 2D)
 
@@ -119,13 +119,12 @@ class DynamicLabel3D(Framework.text.Label):
         """
 
         self.text_pointer = text
+        self.scene        = scene
 
         super().__init__(text=str(text), font_name=str(font), font_size=float(font_size),
                          color=color, x=pos[0], y=pos[1], width=size[0], height=size[1], *args, **kwargs)
 
-        graphics.dynamic_hud.append(self)
-        graphics.hud_stack.__setitem__(self, self)
-        graphics.stack.append(self)
+        scene.dynamic_hud.append(self)
 
         Framework.clock.schedule_interval(self.update_text, 1/5)
 

@@ -55,7 +55,7 @@ from locals import *
 
 
 class Light3D:
-    def __init__(self, light_type, pos, color):
+    def __init__(self, light_type, pos, color, scene):
         """
         Creates an OpenGL Light in a given position with a given intensity.
         You can specify the type of light using this!
@@ -68,6 +68,7 @@ class Light3D:
         self.type          = light_type
         self.pos           = pos
         self.intensity     = color
+        self.scene         = scene
 
         try:
             if len(lights) > 0:
@@ -77,11 +78,11 @@ class Light3D:
                 self.light = OpenGL.GL_LIGHT0
                 Log.critical(f"The Light3D object at world position [{pos[0]}, {pos[1]}, {pos[2]} could not be created as there is no OpenGL light available. You can have a maximum of 8 lights in your program for now. This will be fixed in a later version though!")
         except:
-            Log.critical("Unable to create light. Something went extremely wrong!")
+            Log.critical("Unable to create light. You can only have 8 lights in a given scene (GL_LIGHT0 - GL_LIGHT7). Check if you tried to add more than that and if you are, remove some lights or try finding creative ways to render them separatelly")
 
         OpenGL.glEnable(self.light)
 
-        graphics.lights.append(self)
+        scene.lights.append(self)
         graphics.stack.append(self)
 
 
@@ -103,7 +104,7 @@ class Light3D:
 
 
 class AmbientLight(Light3D):
-    def __init__(self, pos, color):
+    def __init__(self, pos, color, scene):
         """
         Creates an OpenGL Ambient light.
         You can't specify a light type in this!
@@ -113,4 +114,4 @@ class AmbientLight(Light3D):
         :param color: The color and intensity of the light (Array, [R, G, B]) - You can set any of value to whatever you want (Example: R = 3435)
         """
 
-        super().__init__(CPSN_AMBIENT_LIGHT, pos, color)
+        super().__init__(CPSN_AMBIENT_LIGHT, pos, color, scene)

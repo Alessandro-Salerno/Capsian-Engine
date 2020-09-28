@@ -55,7 +55,7 @@ from locals import*
 
 
 class Scene:
-    def __init__(self, mode=CPSN_3D_SCENE):
+    def __init__(self, camera, mode=CPSN_3D_SCENE):
         """
         Creates a Capsian scene object.
         It uses pyglet.graphics.Batch()
@@ -65,28 +65,42 @@ class Scene:
 
         # Set mode
         self.mode        = mode
+        self.camera      = camera
 
         # Check mode
         if mode     == CPSN_3D_SCENE:
-            graphics.scenes.append(self)
+            if repr(camera) == CPSN_PERSPECTIVE_CAMERA:
+                camera.scenes.append(self)
+            else:
+                Log.critical("Cannot add 3D scene to non-perspective camera. Please pass a perspective camera, not a generic or orthographic one")
         else:
             if mode == CPSN_GUI_SCENE:
-                graphics.gui_scenes.append(self)
+                if repr(camera) == CPSN_ORTHOGRAPHIC_CAMERA:
+                    camera.scenes.append(self)
+                else:
+                    Log.critical("Cannot add GUI scene to non-orthographic camera. Please pass an orthographic camera, not a generic or perspective one")
             else:
-                graphics.hud_scenes.append(self)
+                if repr(camera) == CPSN_PERSPECTIVE_CAMERA:
+                    camera.hud_scenes.append(self)
 
         # Defines lists of objects
         self.batch       = Framework.graphics.Batch()
+        self.hud_batch   = Framework.graphics.Batch()
         self.objects2D   = []
-        self.gui_batches = []
-        self.hud_batches = []
         self.dynamic_gui = []
         self.dynamic_hud = []
-
-        # Add to Capsian stack
-        graphics.stack.append(self)
+        self.lights      = []
 
 
     # Adds somethings to the batch
     def add(self, *args, **kwargs):
         self.batch.add(*args, **kwargs)
+
+
+    def disable(self):
+        if self.mode == CPSN_3D_SCENE or self.mode == CPSN_GUI_SCENE:
+            self.camera.scenes.remove(self)
+        elif self.mode == CPSN_HUD_SCENE:
+            self.camera.hud_scenes.remove(self)
+        
+        Log.warning(f"Scene {self} removed from camera {self.camera}!")

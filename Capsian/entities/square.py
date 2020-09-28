@@ -100,7 +100,7 @@ class Square(Object):
 
 
     # Draw OpenGL quad (Old OpenGL)
-    def quad(self):
+    def draw(self):
         """
         Draws a given square
 

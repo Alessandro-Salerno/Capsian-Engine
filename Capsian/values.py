@@ -79,6 +79,8 @@ CPSN_STATIC_HUD           = "if mode == 'enable':\n\tself.render_static_hud = Tr
 CPSN_DYNAMIC_HUD          = "if mode == 'enable':\n\tself.render_dynamic_hud = True\nelse:\n\tself.render_dynamic_hud = False"
 CPSN_VERBOSE_MODE         = "for line in lines:\n\tprint(translate.build(line, mode='dont_compile'), end='')\n\ttime.sleep(0.03)"
 CPSN_NORMAL_MODE          = ""
+CPSN_PERSPECTIVE_CAMERA   =  "PerspectiveCamera"
+CPSN_ORTHOGRAPHIC_CAMERA  = "OrthographicCamera"
 
 
 lights = [

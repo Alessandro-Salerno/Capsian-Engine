@@ -2,75 +2,76 @@ from   os import system
 import time
 import os
 
+
 # DICT
 PYTHON_DICT_OPEN          = " = {"
 PYTHON_DICT_END           = "}"
-KFEL_DICT_OPEN            = ": dict"
-KFEL_DICT_END             = "</dict>"
+CPSN_DICT_OPEN            = ": dict"
+CPSN_DICT_END             = "</dict>"
 
 # FUNCTIONS
 PYTHON_FUNC_DECLARATION   = "def "
 PYTHON_FUNC_OPEN          = ":"
 PYTHON_FUNC_END           = ""
 PYTHON_FUNC_CALL          = "()"
-KFEL_FUNC_DECLARATION     = "func "
-KFEL_FUNC_OPEN            = " {"
-KFEL_FUNC_OPEN_2          = "{"
-KFEL_FUNC_OPEN_3          = "\n{"
-KFEL_FUNC_OPEN_4          = "\t{"
-KFEL_FUNC_OPEN_5          = "\n:"
-KFEL_FUNC_END             = "}"
-KFEL_FUNC_CALL            = ".call"
+CPSN_FUNC_DECLARATION     = "func "
+CPSN_FUNC_OPEN            = " {"
+CPSN_FUNC_OPEN_2          = "{"
+CPSN_FUNC_OPEN_3          = "\n{"
+CPSN_FUNC_OPEN_4          = "\t{"
+CPSN_FUNC_OPEN_5          = "\n:"
+CPSN_FUNC_END             = "}"
+CPSN_FUNC_CALL            = ".call"
 
 # BOOLEANS
 PYTHON_TRUE               = "True"
 PYTHON_FALSE              = "False"
-KFEL_TRUE                 = "true"
-KFEL_FALSE                = "false"
+CPSN_TRUE                 = "true"
+CPSN_FALSE                = "false"
 
 # EOS
 PYTHON_EOS                = ""
-KFEL_EOS                  = ""
+CPSN_EOS                  = ""
 
 # IO
 PYTHON_INPUT              = "= input()"
 PYTHON_OUTPUT_OPEN        = "print("
 PYTHON_OUTPUT_END         = ")"
-KFEL_INPUT                = "<< input"
-KFEL_OUTPUT_OPEN          = "<output>"
-KFEL_OUTPUT_END           = "</output>"
+CPSN_INPUT                = "<< input"
+CPSN_OUTPUT_OPEN          = "<output>"
+CPSN_OUTPUT_END           = "</output>"
 
 # COMMENTS
 PYTHON_COMMENT            = "#"
-KFEL_COMMENT              = "//"
+CPSN_COMMENT              = "//"
 
 # IMPORT
 PYTHON_IMPORT             = "import"
-KFEL_IMPORT               = "#using "
+CPSN_IMPORT               = "#using "
 
 # SCOPES
 PYTHON_SCOPE_OPEN         = ""
 PYTHON_SCOPE_END          = " "
-KFEL_SCOPE_OPEN           = "<region>"
-KFEL_SCOPE_END            = "</region>"
+CPSN_SCOPE_OPEN           = "<region>"
+CPSN_SCOPE_END            = "</region>"
 
 # CONDITIONS
 PYTHON_NOT                = "not "
 PYTHON_IS_NOT             = "is not"
-KFEL_NOT                  = "!"
-KFEL_IS_NOT               = "!="
+CPSN_NOT                  = "!"
+CPSN_IS_NOT               = "!="
 
 # TYPES
 PYTHON_GENERAL_ASSIGNMENT = " ="
 PYTHON_INT                = ' = 0'
 PYTHON_FLOAT              = ' = 0.0'
 PYTHON_STRING             = ' = ""'
-KFEL_INT                  = ": int"
-KFEL_INT_2                = ": int ="
-KFEL_FLOAT                = ": float"
-KFEL_FLOAT_2              = ": float ="
-KFEL_STRING               = ": string"
-KFEL_STRING_2             = ": string ="
+CPSN_INT                  = ": int"
+CPSN_INT_2                = ": int ="
+CPSN_FLOAT                = ": float"
+CPSN_FLOAT_2              = ": float ="
+CPSN_STRING               = ": string"
+CPSN_STRING_2             = ": string ="
 
 # CLASSES
 PYTHON_CLASS              = "class "
@@ -81,27 +82,27 @@ PYTHON_METHOD_END         = ""
 PYTHON_CLASS_END          = ""
 PYTHON_NEW_CLASS          = " = "
 PYTHON_SELF               = "self"
-KFEL_CLASS                = "<class> "
-KFEL_CONSTRUCTOR          = "<constructor>"
-KFEL_DECONSTRUCTOR        = "<deconstructor>"
-KFEL_METHOD_DECLARATION   = "<method> "
-KFEL_METHOD_OPEN          = "<>"
-KFEL_METHOD_END           = "</>"
-KFEL_CLASS_END            = "</class>"
-KFEL_NEW_CLASS            = ": new "
-KFEL_SELF                 = "this"
+CPSN_CLASS                = "<class> "
+CPSN_CONSTRUCTOR          = "<constructor>"
+CPSN_DECONSTRUCTOR        = "<deconstructor>"
+CPSN_METHOD_DECLARATION   = "<method> "
+CPSN_METHOD_OPEN          = "<>"
+CPSN_METHOD_END           = "</>"
+CPSN_CLASS_END            = "</class>"
+CPSN_NEW_CLASS            = ": new "
+CPSN_SELF                 = "this"
 
 # OPERATORS
 PYTHON_IN                 = "in"
 PYTHON_EQUALS             = "="
-KFEL_IN                   = "->"
-KFEL_EQUALS               = "<-"
+CPSN_IN                   = "->"
+CPSN_EQUALS               = "<-"
 
 # REPLACE
 PYTHON_FORMAT_OPEN        = "{"
 PYTHON_FORMAT_END         = "}"
-KFEL_FORMAT_OPEN          = "<<"
-KFEL_FORMAT_END           = ">>"
+CPSN_FORMAT_OPEN          = "<<"
+CPSN_FORMAT_END           = ">>"
 
 
 
@@ -110,10 +111,10 @@ KFEL_FORMAT_END           = ">>"
 def build(source, mode="compile"):
     lines = []
 
-    with open("temp.kfel", "w") as temp:
+    with open("temp.cpsn", "w") as temp:
         temp.write(source)
 
-    with open("temp.kfel", "r") as temp_read:
+    with open("temp.cpsn", "r") as temp_read:
         lines = temp_read.readlines()
 
     for line in lines:
@@ -121,89 +122,89 @@ def build(source, mode="compile"):
             linex      = line.strip("#using").strip("\n").strip(" ")
             _lines     = ""
 
-            with open(f"{linex}.kfel", "r") as line_file:
+            with open(f"{linex}.cpsn", "r") as line_file:
                 _lines = line_file.read()
 
             source = source.replace(line, _lines + "\n")
 
-    source = source.replace(KFEL_EQUALS,             PYTHON_EQUALS)
+    source = source.replace(CPSN_EQUALS,             PYTHON_EQUALS)
 
-    source = source.replace(KFEL_FUNC_OPEN_4,        PYTHON_FUNC_OPEN)
-    source = source.replace(KFEL_FUNC_OPEN_3,        PYTHON_FUNC_OPEN)
-    source = source.replace(KFEL_FUNC_OPEN_5,        PYTHON_FUNC_OPEN)
-    source = source.replace(KFEL_FUNC_DECLARATION,   PYTHON_FUNC_DECLARATION)
-    source = source.replace(KFEL_FUNC_OPEN,          PYTHON_FUNC_OPEN)
-    source = source.replace(KFEL_FUNC_END,           PYTHON_FUNC_END)
-    source = source.replace(KFEL_FUNC_OPEN_2,        PYTHON_FUNC_OPEN)
-    source = source.replace(KFEL_FUNC_CALL,          PYTHON_FUNC_CALL)
+    source = source.replace(CPSN_FUNC_OPEN_4,        PYTHON_FUNC_OPEN)
+    source = source.replace(CPSN_FUNC_OPEN_3,        PYTHON_FUNC_OPEN)
+    source = source.replace(CPSN_FUNC_OPEN_5,        PYTHON_FUNC_OPEN)
+    source = source.replace(CPSN_FUNC_DECLARATION,   PYTHON_FUNC_DECLARATION)
+    source = source.replace(CPSN_FUNC_OPEN,          PYTHON_FUNC_OPEN)
+    source = source.replace(CPSN_FUNC_END,           PYTHON_FUNC_END)
+    source = source.replace(CPSN_FUNC_OPEN_2,        PYTHON_FUNC_OPEN)
+    source = source.replace(CPSN_FUNC_CALL,          PYTHON_FUNC_CALL)
 
-    with open("temp.kfel", "w") as temp:
+    with open("temp.CPSN", "w") as temp:
         temp.write(source)
 
-    with open("temp.kfel", "r") as temp_read:
+    with open("temp.CPSN", "r") as temp_read:
         lines = temp_read.readlines()
 
     for line in lines:
         if "\t:" in line:
             linez  = "\n:\n"
             source = source.replace(line, linez)
-            source = source.replace(KFEL_FUNC_OPEN_5, PYTHON_FUNC_OPEN)
+            source = source.replace(CPSN_FUNC_OPEN_5, PYTHON_FUNC_OPEN)
 
     for line in lines:
         if "\t:" in line:
             linez  = "\n:\n"
             source = source.replace(line, linez)
-            source = source.replace(KFEL_FUNC_OPEN_5, PYTHON_FUNC_OPEN)
+            source = source.replace(CPSN_FUNC_OPEN_5, PYTHON_FUNC_OPEN)
 
-    source = source.replace(KFEL_EQUALS,              PYTHON_EQUALS)
+    source = source.replace(CPSN_EQUALS,              PYTHON_EQUALS)
 
-    source = source.replace(KFEL_FUNC_OPEN_4,         PYTHON_FUNC_OPEN)
-    source = source.replace(KFEL_FUNC_OPEN_3,         PYTHON_FUNC_OPEN)
-    source = source.replace(KFEL_FUNC_OPEN_5,         PYTHON_FUNC_OPEN)
-    source = source.replace(KFEL_FUNC_DECLARATION,    PYTHON_FUNC_DECLARATION)
-    source = source.replace(KFEL_FUNC_OPEN,           PYTHON_FUNC_OPEN)
-    source = source.replace(KFEL_FUNC_END,            PYTHON_FUNC_END)
-    source = source.replace(KFEL_FUNC_OPEN_2,         PYTHON_FUNC_OPEN)
-    source = source.replace(KFEL_FUNC_CALL,           PYTHON_FUNC_CALL)
+    source = source.replace(CPSN_FUNC_OPEN_4,         PYTHON_FUNC_OPEN)
+    source = source.replace(CPSN_FUNC_OPEN_3,         PYTHON_FUNC_OPEN)
+    source = source.replace(CPSN_FUNC_OPEN_5,         PYTHON_FUNC_OPEN)
+    source = source.replace(CPSN_FUNC_DECLARATION,    PYTHON_FUNC_DECLARATION)
+    source = source.replace(CPSN_FUNC_OPEN,           PYTHON_FUNC_OPEN)
+    source = source.replace(CPSN_FUNC_END,            PYTHON_FUNC_END)
+    source = source.replace(CPSN_FUNC_OPEN_2,         PYTHON_FUNC_OPEN)
+    source = source.replace(CPSN_FUNC_CALL,           PYTHON_FUNC_CALL)
 
-    source = source.replace(KFEL_INT_2,               PYTHON_GENERAL_ASSIGNMENT)
-    source = source.replace(KFEL_FLOAT_2,             PYTHON_GENERAL_ASSIGNMENT)
-    source = source.replace(KFEL_STRING_2,            PYTHON_GENERAL_ASSIGNMENT)
+    source = source.replace(CPSN_INT_2,               PYTHON_GENERAL_ASSIGNMENT)
+    source = source.replace(CPSN_FLOAT_2,             PYTHON_GENERAL_ASSIGNMENT)
+    source = source.replace(CPSN_STRING_2,            PYTHON_GENERAL_ASSIGNMENT)
 
-    source = source.replace(KFEL_INT,                 PYTHON_INT)
-    source = source.replace(KFEL_FLOAT,               PYTHON_FLOAT)
-    source = source.replace(KFEL_STRING,              PYTHON_STRING)
+    source = source.replace(CPSN_INT,                 PYTHON_INT)
+    source = source.replace(CPSN_FLOAT,               PYTHON_FLOAT)
+    source = source.replace(CPSN_STRING,              PYTHON_STRING)
 
-    source = source.replace(KFEL_IS_NOT,              PYTHON_IS_NOT)
+    source = source.replace(CPSN_IS_NOT,              PYTHON_IS_NOT)
 
-    source = source.replace(KFEL_SCOPE_OPEN,          PYTHON_SCOPE_OPEN)
-    source = source.replace(KFEL_SCOPE_END,           PYTHON_SCOPE_END)
-    source = source.replace(KFEL_FORMAT_OPEN,         PYTHON_FORMAT_OPEN)
-    source = source.replace(KFEL_FORMAT_END,          PYTHON_FORMAT_END)
+    source = source.replace(CPSN_SCOPE_OPEN,          PYTHON_SCOPE_OPEN)
+    source = source.replace(CPSN_SCOPE_END,           PYTHON_SCOPE_END)
+    source = source.replace(CPSN_FORMAT_OPEN,         PYTHON_FORMAT_OPEN)
+    source = source.replace(CPSN_FORMAT_END,          PYTHON_FORMAT_END)
 
-    source = source.replace(KFEL_DICT_OPEN,           PYTHON_DICT_OPEN)
-    source = source.replace(KFEL_DICT_END,            PYTHON_DICT_END)
+    source = source.replace(CPSN_DICT_OPEN,           PYTHON_DICT_OPEN)
+    source = source.replace(CPSN_DICT_END,            PYTHON_DICT_END)
 
-    source = source.replace(KFEL_TRUE,                PYTHON_TRUE)
-    source = source.replace(KFEL_FALSE,               PYTHON_FALSE)
+    source = source.replace(CPSN_TRUE,                PYTHON_TRUE)
+    source = source.replace(CPSN_FALSE,               PYTHON_FALSE)
 
-    source = source.replace(KFEL_EOS,                 PYTHON_EOS)
+    source = source.replace(CPSN_EOS,                 PYTHON_EOS)
 
-    source = source.replace(KFEL_OUTPUT_OPEN,         PYTHON_OUTPUT_OPEN)
-    source = source.replace(KFEL_OUTPUT_END,          PYTHON_OUTPUT_END)
+    source = source.replace(CPSN_OUTPUT_OPEN,         PYTHON_OUTPUT_OPEN)
+    source = source.replace(CPSN_OUTPUT_END,          PYTHON_OUTPUT_END)
 
-    source = source.replace(KFEL_COMMENT,             PYTHON_COMMENT)
+    source = source.replace(CPSN_COMMENT,             PYTHON_COMMENT)
 
-    source = source.replace(KFEL_CLASS,               PYTHON_CLASS)
-    source = source.replace(KFEL_CONSTRUCTOR,         PYTHON_CONSTRUCTOR)
-    source = source.replace(KFEL_DECONSTRUCTOR,       PYTHON_DECONSTRUCTOR)
-    source = source.replace(KFEL_METHOD_OPEN,         PYTHON_METHOD_OPEN)
-    source = source.replace(KFEL_METHOD_END,          PYTHON_METHOD_END)
-    source = source.replace(KFEL_CLASS_END,           PYTHON_CLASS_END)
-    source = source.replace(KFEL_METHOD_DECLARATION,  PYTHON_FUNC_DECLARATION)
-    source = source.replace(KFEL_NEW_CLASS,           PYTHON_NEW_CLASS)
-    source = source.replace(KFEL_SELF,                PYTHON_SELF)
+    source = source.replace(CPSN_CLASS,               PYTHON_CLASS)
+    source = source.replace(CPSN_CONSTRUCTOR,         PYTHON_CONSTRUCTOR)
+    source = source.replace(CPSN_DECONSTRUCTOR,       PYTHON_DECONSTRUCTOR)
+    source = source.replace(CPSN_METHOD_OPEN,         PYTHON_METHOD_OPEN)
+    source = source.replace(CPSN_METHOD_END,          PYTHON_METHOD_END)
+    source = source.replace(CPSN_CLASS_END,           PYTHON_CLASS_END)
+    source = source.replace(CPSN_METHOD_DECLARATION,  PYTHON_FUNC_DECLARATION)
+    source = source.replace(CPSN_NEW_CLASS,           PYTHON_NEW_CLASS)
+    source = source.replace(CPSN_SELF,                PYTHON_SELF)
 
-    source = source.replace(KFEL_IN,                  PYTHON_IN)
+    source = source.replace(CPSN_IN,                  PYTHON_IN)
 
     return source

@@ -35,7 +35,7 @@
 
 # ----------------------------------------------------------------------------
 # Capsian Engine
-# Copyright (c) 2019 - 2020 Alessandro Salerno (Tzyvoski)
+# Copyright (c) 2020 Alessandro Salerno (Tzyvoski)
 # All rights reserved.
 #
 # Redistribution of the engine (In source or binary form) is allowed provided

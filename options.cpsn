@@ -3,7 +3,7 @@
 
 
 {
-    "main file": None,
+    "main file": "scripts/script.py",
     "language": "python",
     "use transparency": True,
     "use basic lighting": False,

@@ -35,7 +35,7 @@
 
 # ----------------------------------------------------------------------------
 # Capsian Engine
-# Copyright 2019 - 2020 Alessandro Salerno (Tzyvoski)
+# Copyright 2020 Alessandro Salerno (Tzyvoski)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -111,7 +111,7 @@ def clear():
     system("cls") if os.name == "nt" else system("clear")
 
     print(
-        f"{TermColor.WARNING}Copyright 2019 - 2020 Alessandro Salerno (Tzyvoski)\nLICENSE: http://www.apache.org/licenses/LICENSE-2.0\nCapsian Console 0.2 for Capsian 2.1 beta 6 preview 1\n{TermColor.END_COLOR}")
+        f"{TermColor.WARNING}Copyright 2020 Alessandro Salerno (Tzyvoski)\nLICENSE: http://www.apache.org/licenses/LICENSE-2.0\nCapsian Console 0.1 for Capsian 1.0 beta 6 preview 1\n{TermColor.END_COLOR}")
 
 
 # Lists all the available modules

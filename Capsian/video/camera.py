@@ -35,7 +35,7 @@
 
 # ----------------------------------------------------------------------------
 # Capsian Engine
-# Copyright 2019 - 2020 Alessandro Salerno (Tzyvoski)
+# Copyright 2020 Alessandro Salerno (Tzyvoski)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -168,7 +168,7 @@ class PerspectiveCamera(Camera):
         OpenGL.glCullFace(OpenGL.GL_BACK)
 
         engine.main_window.set_lock(True)
-        engine.main_window.set_caption("Capsian 2.1 Window - 3D Mode")
+        engine.main_window.set_caption("Capsian 1.0 Window - 3D Mode")
 
 
     def render(self, window):
@@ -302,7 +302,7 @@ class OrthographicCamera(Camera):
 
         OpenGL.glDisable(OpenGL.GL_DEPTH_TEST)
         engine.main_window.set_lock(False)
-        engine.main_window.set_caption("Capsian 2.1 Window - GUI Mode")
+        engine.main_window.set_caption("Capsian 1.0 Window - GUI Mode")
 
 
     def render(self, window):

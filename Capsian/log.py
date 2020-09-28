@@ -35,7 +35,7 @@
 
 # ----------------------------------------------------------------------------
 # Capsian Engine
-# Copyright 2019 - 2020 Alessandro Salerno (Tzyvoski)
+# Copyright 2020 Alessandro Salerno (Tzyvoski)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -128,10 +128,10 @@ class Log:
             camera = OrthographicCamera()
 
             # Setup the Window
-            SkyColor << [0.8, 0.0, 0.0, 1.0]
+            SkyColor << [0.0, 0.0, 0.0, 1.0]
             engine.main_window.set_viewport(camera)   
 
-            engine.main_window.set_caption("Capsian 2.1 - UNSTABLE STATE")
+            engine.main_window.set_caption("Capsian 1.0 - UNSTABLE STATE")
 
             # Print the error to the console
             print(f"{TermColor.FAIL} [{time()} FATAL ERROR] {text} {TermColor.END_COLOR}")

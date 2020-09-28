@@ -2,7 +2,7 @@
 Capsian is a weird, incomplete and performant Python game engine.
 It was initially called "KeyFire Engine" but it was later renaemd to apsian due to trademark related issues.
 
-# Performacne
+# Performance
 Capsian's performance are pretty great. All though written in Python, the engine's performance ae good at worst and amazing at best.
 While testing, the highest framerate recorded was 169000 FPS, to make clear just how much this is, if you rendered exactly 60 frames per second, it would take you 46 minutes to ssee a simular amount of frames.
 There are ares of the engine, such as 2D, that could be improved both in feature and in performance, but overall you are not gonna have big performance problems. 

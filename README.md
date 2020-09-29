@@ -39,4 +39,4 @@ All though I am the solo developer of Capsian, some people helped me and still h
 - Carpal (From the Italian Discord Server "RobinScript Community")
 - Liam (From the Italian Discord Server "Tecnologia per Tutti")
 - Lorenzo Bergadano (From Real life 
-- Pyglet and the pyglet contributers for providing the amazing tollkit used to create Capsian
+- Pyglet and the pyglet contributors for providing the amazing tollkit used to create Capsian

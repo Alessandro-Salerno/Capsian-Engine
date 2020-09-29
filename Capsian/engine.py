@@ -51,8 +51,8 @@
 # ----------------------------------------------------------------------------
 
 
-from locals                   import *
-import Capsian.video.graphics as graphics
+from locals                    import *
+
 
 # Declare vars
 main_window       = None

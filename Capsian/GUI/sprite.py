@@ -61,7 +61,7 @@ class DynamicSprite3D(Framework.sprite.Sprite):
 
     """
 
-    def __init__(self, image, pos, scale):
+    def __init__(self, image, pos, scale, scene):
         """
         Creates a sprite object
 
@@ -71,10 +71,9 @@ class DynamicSprite3D(Framework.sprite.Sprite):
         """
 
         i = image.get_image()
+        self.scene = scene
 
         super().__init__(img=i, x=pos[0], y=pos[1])
         self.update(pos[0], pos[1], None, None, scale[0], scale[1])
 
-        graphics.dynamic_hud.append(self)
-        graphics.hud_stack.__setitem__(self, self)
-
+        scene.dynamic_hud.append(self)

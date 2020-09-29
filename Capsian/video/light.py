@@ -83,7 +83,6 @@ class Light3D:
         OpenGL.glEnable(self.light)
 
         scene.lights.append(self)
-        graphics.stack.append(self)
 
 
     # Draw the light

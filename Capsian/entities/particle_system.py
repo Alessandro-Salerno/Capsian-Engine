@@ -67,8 +67,6 @@ class Particle:
         self.size      = size
         self.direction = direction
 
-        graphics.stack.append(self)
-
 
     # Move the particle
     def move(self, dx, dy, dz):

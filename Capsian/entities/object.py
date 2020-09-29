@@ -76,8 +76,6 @@ class Object:
         self.rot   = rot
         self.batch = batch
 
-        graphics.stack.append(self)
-
         self.flags = {
             "visible": True,
             "static": False,

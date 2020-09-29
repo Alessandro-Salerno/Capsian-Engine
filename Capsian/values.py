@@ -51,15 +51,11 @@
 # ----------------------------------------------------------------------------
 
 
-from   locals                 import OpenGL
-import Capsian.video.graphics as     __graphics__
+from   locals                  import OpenGL
+import Capsian.video.sky_color as     __graphics__
 
 
 CPSN_DEFAULT_DELTA_TIME   = 1/120
-CPSN_WINDOW3D_GUI_MODE    = "gui"
-CPSN_WINDOW3D_GAME_MODE   = "game"
-CPSN_WINDOW2D_GUI_MODE    = "gui2D"
-CPSN_WINDOW2D_GAME_MODE   = "game2D"
 CPSN_DEFAULT_TEXTURE_MODE = [OpenGL.GL_TEXTURE_MIN_FILTER, OpenGL.GL_TEXTURE_MAG_FILTER, OpenGL.GL_NEAREST]
 CPSN_SMART_TEXTURE        = True
 CPSN_NORMAL_TEXTURE       = False
@@ -70,8 +66,6 @@ CPSN_AMBIENT_LIGHT        = OpenGL.GL_AMBIENT
 CPSN_LIGHTING             = "if mode == 'enable':\n\tglEnable(GL_LIGHTING)\n\tself.lighting = True\nelse:\n\tglDisable(GL_LIGHTING)\n\tself.lighting = False"
 CPSN_TRANSPARENCY         = "if mode == 'enable':\n\tglEnable(GL_BLEND)\n\tglBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)\nelse:\n\tglDisable(GL_BLEND)"
 CPSN_ENHANCED_PERSPECTIVE = "if mode == 'enable':\n\tglHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST)\nelse:\n\tglHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_DONT_CARE)"
-CPSN_FOG                  = "if mode == 'enable':\n\tglEnable(GL_FOG)\n\tglFogfv(GL_FOG_COLOR, (GLfloat * 4)(self.fog_color[0], self.fog_color[1], self.fog_color[2], self.fog_color[3]))\n\tglHint(GL_FOG_HINT, GL_DONT_CARE)\n\tglFogi(GL_FOG_MODE, GL_LINEAR)\n\tglFogf(GL_FOG_START, self.render_distance - 10)\n\tglFogf(GL_FOG_END, self.render_distance)\n\t\nelse:\n\tglDisable(GL_FOG)"
-CPSN_NICE_FOG             = "if mode == 'enable':\n\tglEnable(GL_FOG)\n\tglFogfv(GL_FOG_COLOR, (GLfloat * 4)(self.fog_color[0], self.fog_color[1], self.fog_color[2], self.fog_color[3]))\n\tglHint(GL_FOG_HINT, GL_NICEST)\n\tglFogf(GL_FOG_MODE, GL_LINEAR)\n\tglFogf(GL_FOG_START, self.render_distance - 10)\n\tglFogf(GL_FOG_END, self.render_distance)\n\t\nelse:\n\tglDisable(GL_FOG)"
 CPSN_HUD_SCENE            = "hud_batch"
 CPSN_DEFAULT_FOG_COLOR    = [0.5, 0.69, 1.0, 1]
 CPSN_DEFAULT_CLEAR_COLOR  = [0.5, 0.65, 1.0, 1.0]
@@ -79,8 +73,10 @@ CPSN_STATIC_HUD           = "if mode == 'enable':\n\tself.render_static_hud = Tr
 CPSN_DYNAMIC_HUD          = "if mode == 'enable':\n\tself.render_dynamic_hud = True\nelse:\n\tself.render_dynamic_hud = False"
 CPSN_VERBOSE_MODE         = "for line in lines:\n\tprint(translate.build(line, mode='dont_compile'), end='')\n\ttime.sleep(0.03)"
 CPSN_NORMAL_MODE          = ""
-CPSN_PERSPECTIVE_CAMERA   =  "PerspectiveCamera"
+CPSN_PERSPECTIVE_CAMERA   = "PerspectiveCamera"
 CPSN_ORTHOGRAPHIC_CAMERA  = "OrthographicCamera"
+CPSN_DEFAULT_FOG_START    = 40
+CPSN_DEFAULT_FOG_END      = 50
 
 
 lights = [

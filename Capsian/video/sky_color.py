@@ -75,6 +75,3 @@ class SkyColorClass:
 
     def test(self):
         print("hello world")
-
-
-stack = []

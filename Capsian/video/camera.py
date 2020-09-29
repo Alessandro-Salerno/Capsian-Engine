@@ -52,7 +52,6 @@
 
 
 from locals import Framework
-from locals import graphics
 from locals import OpenGL
 import Capsian.maths.math as kmath
 from locals import engine

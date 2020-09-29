@@ -52,10 +52,9 @@
 
 
 
-import pyglet
-from pyglet.gl import *
-from pyglet.window import key
-from Capsian.video import graphics
+from locals import Framework as pyglet
+from lib.pyglet.gl import *
+from lib.pyglet.window import key
 from Capsian.values import *
 from locals import Log
 from locals import engine
@@ -94,15 +93,6 @@ class Window(pyglet.window.Window):
             camera.init()
         except:
             Log.critical("The specified camera is not valid")
-
-
-    # Every frame
-    def on_draw(self):
-
-        # Window color
-        glClearColor(0.5, 0.7, 1.0, 1.0)
-        self.clear()
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
 
     # Fixed Update

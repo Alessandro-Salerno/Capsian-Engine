@@ -70,5 +70,3 @@ class Material:
         self.walkSound = walkSound
         self.runSound  = runSound
         self.texture   = texture.get_texture()
-        
-        graphics.stack.append(self)

@@ -75,8 +75,6 @@ class Track:
         self.streaming = streaming
         self.audio     = Framework.resource.media(file, streaming=streaming)
 
-        graphics.stack.append(self)
-
         if auto_play: self.play()
 
 

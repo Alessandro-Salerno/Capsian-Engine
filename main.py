@@ -99,11 +99,14 @@ try:
     # Set OpenGL Clear Color
     SkyColor << options["clear color"]
 
-    # Enable Fog if required
-    if options["enable fog"]   == "default":
-        engine.main_window.enable(CPSN_FOG)
-    elif options["enable fog"] == "nice":
-        engine.main_window.enable(CPSN_NICE_FOG)
+    # Set fog settings
+    if options["enable fog"]:
+        fog_color = options["fog color"]
+        fog_start = options["fog start"]
+        fog_end   = options["fog end"]
+
+        Fog(fog_color, fog_start, fog_end)
+
 
     # Enable HUD if required
     if options["use dynamic hud"]:

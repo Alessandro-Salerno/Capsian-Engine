@@ -77,9 +77,6 @@ class DirectionalSound:
 
         if auto_play: self.play()
 
-        # Add this object to the stack
-        graphics.stack.append(self)
-
         # Start the loop
         Framework.clock.schedule_interval(self.update, 1/120)
 

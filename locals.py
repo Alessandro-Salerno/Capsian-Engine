@@ -61,7 +61,7 @@ from Capsian.values                       import *
 from Capsian.world.format                 import *
 from Capsian.log                          import Log
 import Capsian.engine                     as     engine
-import Capsian.video.graphics             as     graphics
+import Capsian.video.sky_color            as     sky_color
 from Capsian.entities.object              import Object
 from Capsian.video.window                 import Window3D
 from Capsian.video.camera                 import PerspectiveCamera

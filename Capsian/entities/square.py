@@ -53,7 +53,6 @@
 
 
 from locals import *
-import numpy
 
 
 class Square(Object):

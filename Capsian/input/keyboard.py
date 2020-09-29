@@ -53,7 +53,7 @@
 
 
 from locals import *
-from pyglet.window import key
+from lib.pyglet.window import key
 
 
 class KeyboardInputHandler:
@@ -69,7 +69,6 @@ class KeyboardInputHandler:
         Creates a KeyListener object that registers all the keys you press
         """
 
-        graphics.stack.append(self)
         engine.main_key_listener = self
 
 

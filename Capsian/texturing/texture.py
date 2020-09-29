@@ -167,7 +167,6 @@ class Image2D:
     def __init__(self, file):
         self.path  = file
         self.image = self.get_image()
-        graphics.stack.append(self)
 
 
     def get_image(self):

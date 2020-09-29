@@ -54,7 +54,6 @@
 # Imports
 from locals     import *
 from os         import system
-import tzylang  as translate
 import sys
 import time
 import os
@@ -76,7 +75,6 @@ imports = [
     "Capsian (locals.py)",
     "os.system (system)",
     "os",
-    "translate (tzylang.py)",
     "sys",
     "time"
 ]

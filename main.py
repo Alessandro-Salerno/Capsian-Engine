@@ -54,7 +54,6 @@
 from locals import *
 from os import system
 import os
-import tzylang as translate
 
 system("cls") if os.name == "nt" else system("clear")
 
@@ -71,14 +70,8 @@ if options["main file"] is not None:
     with open(options["main file"], "r") as file:
         global source
 
-        if options["language"] == "tzylang":
-            source = translate.build(file.read())
-            Log.successful("Parsed tzylang script")
-        elif options["language"] == "python":
-            source = file.read()
-            Log.successful("Loaded python script")
-        else:
-            Log.critical("The specified language is not supported!")
+        source = file.read()
+        Log.successful("Loaded python script")
 else:
     Log.critical("No main file specified!")
     input()

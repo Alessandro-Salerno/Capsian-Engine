@@ -4,7 +4,6 @@
 
 {
     "main file": "scripts/script.py",
-    "language": "python",
     "use transparency": True,
     "use basic lighting": True,
     "enable fog": True,

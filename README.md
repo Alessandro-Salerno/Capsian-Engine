@@ -12,6 +12,19 @@ ALL TESTS WERE CONDUCTED ON A GTX 1080 AND INTEL CORE i7 8700K 3.70GHz
 # Languages
 Casian mostly uses Python, all though a custom language is available for scripting. You can enable it in the options.cpsn file. It's called tzylang and it probably will be removed in the following updates. It is not raccomended for this very reason: your code may not be runnable in later versions of the engine.
 
+# requirements
+Capsian doesn't have any specific requirements, in its binary form, in fact, you actualy don't need anything. You don't even need python installed on your machine.
+But there are a few things that may make your coding experience better
+- Python 3.7 or 3.8 (Raccomended: 3.7)
+- pyglet 1.5.6 or 1.5.7 (Raccomended: 1.5.7)
+- "from locals import *" at the start of all your scripts
+- Microsoft Visual Studio Code with all necessary python extensions
+
+Having python installed will allow you to run Capsian even on pre-releases (Since they are not compiled in binary form) and will enable intellisense;
+Having pyglet installed may fix a few crashes that you may experience due to "no module named ..." exceptions;
+Importing everything from locals.py will allow python to recognize parts of your code and help you along the way;
+VS Code is the IDE with which Capsian is built, with such large libraries a lite-weight editor is needed to insure stability while coding. 
+
 
 # Myself
 I am ALessandro Salerno, AKA tzyvoski. I was born in Italy and I still live there. And yes, I love Pizza 😂
@@ -26,3 +39,4 @@ All though I am the solo developer of Capsian, some people helped me and still h
 - Carpal (From the Italian Discord Server "RobinScript Community")
 - Liam (From the Italian Discord Server "Tecnologia per Tutti")
 - Lorenzo Bergadano (From Real life 
+- Pyglet and the pyglet contributers for providing the amazing tollkit used to create Capsian

@@ -55,7 +55,7 @@
 from locals import *
 
 
-class Cube(Object):
+class Cube(Entity):
     """
     A Cube object is 3D Cube.
     This object uses Batched rendering for high performance and Capsian materials for texturing.
@@ -74,7 +74,7 @@ class Cube(Object):
         :param material: The material the cube is made out of (Texture3D()/SmartTexture3D, Material())
         """
 
-        Object.__init__(self, size=size, pos=pos, rot=rot, batch=scene)
+        Entity.__init__(self, size=size, pos=pos, rot=rot, scene=scene)
 
         self.next_pos = [[pos[0] + 1,  pos[1],      pos[2]],
                          [pos[0] - 1,  pos[1],      pos[2]],

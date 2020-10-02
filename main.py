@@ -51,8 +51,8 @@
 # ----------------------------------------------------------------------------
 
 
-from locals import *
-from os import system
+from   locals  import *
+from   os      import system
 import os
 
 system("cls") if os.name == "nt" else system("clear")

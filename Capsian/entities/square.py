@@ -55,7 +55,7 @@
 from locals import *
 
 
-class Square(Object):
+class Square(Entity):
     """
     Squares are strictly correlated to particles.
     Particles, in fact, are just groups of squares that can move...
@@ -73,7 +73,7 @@ class Square(Object):
         :param rot: The rotation of the square (Array, [rx, ry, rz])
         """
 
-        super().__init__(size=size, pos=pos, rot=rot, batch=None)
+        super().__init__(size=size, pos=pos, rot=rot, scene=scene)
         x                = size[0] / 2
         y                = size[1] / 2
         z                = size[2] / 2

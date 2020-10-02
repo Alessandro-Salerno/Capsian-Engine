@@ -104,3 +104,7 @@ class Scene:
             self.camera.hud_scenes.remove(self)
         
         Log.warning(f"Scene {self} removed from camera {self.camera}!")
+
+
+    def __repr__(self):
+        return "Capsian Standard Scene"

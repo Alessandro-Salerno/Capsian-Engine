@@ -141,7 +141,7 @@ class Log:
 
 
             error = Framework.text.Label(
-                text=f"{text}\n\nThe program has been stopped, press ENTER or ESCAPE to terminate it.\n_",
+                text=f"{text}\n\nPress ENTER or ESCAPE to terminate the execution of the program.\n_",
                 font_name="consolas", font_size=24, bold=True,
                 width=engine.main_window.width - 25, italic=False,
                 x=10, y=engine.main_window.height,

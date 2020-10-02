@@ -92,8 +92,6 @@ class StaticLabel3D(Framework.text.Label):
         if scene.mode == CPSN_HUD_SCENE:
             super().__init__(text=text, font_name=font, font_size=font_size, bold=False, italic=False, x=pos[0],
                              y=pos[1], width=size[0], height=size[1], batch=scene.batch, color=color, *args, **kwargs)
-
-            graphics.stack.append(self)
         else:
             Log.critical(f"Invalid scene type {scene.mode} for Static HUD Label. This object can only be used in a GUI scene (CPSN_HUD_SCENE)")
 

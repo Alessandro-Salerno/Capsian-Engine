@@ -63,6 +63,8 @@ CPSN_AUTO_SIZE            = [None, None]
 CPSN_3D_SCENE             = "game_batch"
 CPSN_GUI_SCENE            = "gui_batch"
 CPSN_AMBIENT_LIGHT        = OpenGL.GL_AMBIENT
+CPSN_DIFFUSE_LIGHT        = OpenGL.GL_DIFFUSE
+CPSN_SPECULAR_LIGHT       = OpenGL.GL_SPECULAR
 CPSN_LIGHTING             = "if mode == 'enable':\n\tglEnable(GL_LIGHTING)\n\tself.lighting = True\nelse:\n\tglDisable(GL_LIGHTING)\n\tself.lighting = False"
 CPSN_TRANSPARENCY         = "if mode == 'enable':\n\tglEnable(GL_BLEND)\n\tglBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)\nelse:\n\tglDisable(GL_BLEND)"
 CPSN_ENHANCED_PERSPECTIVE = "if mode == 'enable':\n\tglHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST)\nelse:\n\tglHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_DONT_CARE)"
@@ -75,6 +77,8 @@ CPSN_VERBOSE_MODE         = "for line in lines:\n\tprint(translate.build(line, m
 CPSN_NORMAL_MODE          = ""
 CPSN_PERSPECTIVE_CAMERA   = "PerspectiveCamera"
 CPSN_ORTHOGRAPHIC_CAMERA  = "OrthographicCamera"
+CPSN_COMPONENT            = "Capsian EntityComponent"
+CPSN_STANDARD_SCENE       = "Capsian Standard Scene"
 CPSN_DEFAULT_FOG_START    = 40
 CPSN_DEFAULT_FOG_END      = 50
 

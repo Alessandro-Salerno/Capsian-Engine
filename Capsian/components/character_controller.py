@@ -52,7 +52,92 @@
 
 
 from locals import *
+import math
+import Capsian.maths.math as kmath
 
 
-class CharacterController:
-    pass
+class CharacterController(Component):
+    """
+    A Character Controller surves a very important function: moving and rotating the camera.
+    It does so via commands sent by your code nad by the engine itself.
+
+    It's a component, as such it must be added to a Camera entity in order to function.
+    IN the future, you'll be able to add a Character Controller to any entity but for now compatibility is scarse... 
+    """
+
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
+
+    def __init__(self):
+        self.multiplier = 50.00
+        self.dividend   = 10.00
+        self.sens       = 1.000
+        self.speed      = 0.100
+        self.s          = 0.000
+
+        super().__init__()
+
+
+    def __repr__(self):
+        return "Capsian CharacterController Component"
+
+
+    # -------------------------
+    #
+    #       EVENT HANDLERS
+    #
+    # -------------------------
+
+    def on_ready(self, time):
+        if not repr(self.parent) == CPSN_PERSPECTIVE_CAMERA:
+            Log.critical("You are trying to add a CharacterController Component to an object that is not CPSN_PERSPECTIVE_CAMERA compatible")
+
+
+    def on_update(self, dt, time):
+        self.s           = dt     * self.multiplier
+        self.parent.rotY = -self.parent.rot[1] / 180 * math.pi
+
+        self.parent.dx   = self.s * math.sin(self.parent.rotY)
+        self.parent.dz   = self.s * math.cos(self.parent.rotY)
+
+        self.parent.rot[0] += self.parent.mouse_dy * self.sens
+        self.parent.rot[1] -= self.parent.mouse_dx * self.sens
+
+        self.parent.rot[0]  = kmath.clamp(90, -90, self.parent.rot[0])
+
+        self.parent.mouse_dx = 0
+        self.parent.mouse_dy = 0
+
+
+    def move(self, direction):
+        """
+        This method actually moves the camera, it's called by your input handler
+
+        :param direction: The direction in which the camera should move (String)
+        :return: Nothing
+        """
+
+        if direction    == "forwards":
+            self.parent.pos[0] += self.parent.dx * self.speed * engine.main_window.alive
+            self.parent.pos[2] -= self.parent.dz * self.speed * engine.main_window.alive
+
+        if direction    == "backwards":
+            self.parent.pos[0] -= self.parent.dx * self.speed * engine.main_window.alive
+            self.parent.pos[2] += self.parent.dz * self.speed * engine.main_window.alive
+
+        if direction    == "right":
+            self.parent.pos[0] += self.parent.dz * self.speed * engine.main_window.alive
+            self.parent.pos[2] += self.parent.dx * self.speed * engine.main_window.alive
+
+        if direction    == "left":
+            self.parent.pos[0] -= self.parent.dz * self.speed * engine.main_window.alive
+            self.parent.pos[2] -= self.parent.dx * self.speed * engine.main_window.alive
+
+        if direction    == "down":
+            self.parent.pos[1] -= self.s / self.dividend * engine.main_window.alive
+
+        if direction    == "up":
+            self.parent.pos[1] += self.s / self.dividend * engine.main_window.alive

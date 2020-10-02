@@ -55,6 +55,209 @@ from locals import *
 
 
 class Component:
-    def __init__(self):
-        pass
+    """
+    A Capsian Entity Component is an object (In OOP sense) that can be added to an Entity (An in-game Object)
+    to extend the features of the Entity. 
+    """
 
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
+
+    def __init__(self):
+        from datetime import datetime
+
+        self.on_create(datetime.now())
+        engine.entries + self.on_start
+        engine.exits + self.on_close
+
+        self._enabled = False
+        self._parent  = None
+
+
+    def __repr__(self):
+        return "Capsian EntityComponent"
+
+
+    # -------------------------
+    #
+    #       EVENT HANDLERS
+    #
+    # -------------------------
+
+    def on_start(self, time):
+        """
+        This method is called when the game starts.
+        By default it only returns False, but it can (And should) be overriden to do something.
+        You can also just remove it from your component as it will still be present in the base class which means you're not gonna have any issues. 
+
+        :param time: The exact date and time of when the method was called
+        :return: False (By Default)
+        """
+
+        return False
+
+
+    def on_update(self, dt, time):
+        """
+        This method is called every time the parent object's update mathod is.
+        By default it only returns False, but it can (And should) be overriden to do something.
+        You can also just remove it from your component as it will still be present in the base class which means you're not gonna have any issues. 
+
+        :param dt: The deltatime provided by the pyglet clock
+        :param time: The exact date and time of when the method was called
+        :return: False (By Default)
+        """
+
+        return False
+
+
+    def on_fixed_update(self, dt, time):
+        """
+        This method is called every time the parent object's fixed update mathod is.
+        By default it only returns False, but it can (And should) be overriden to do something.
+        You can also just remove it from your component as it will still be present in the base class which means you're not gonna have any issues. 
+
+        :param dt: The deltatime provided by the pyglet clock
+        :param time: The exact date and time of when the method was called
+        :return: False (By Default)
+        """
+
+        return False
+
+
+    def on_close(self, time):
+        """
+        This method is called when the parent object's on close mathod is.
+        By default it only returns False, but it can (And should) be overriden to do something.
+        You can also just remove it from your component as it will still be present in the base class which means you're not gonna have any issues. 
+
+        :param time: The exact date and time of when the method was called
+        :return: False (By Default)
+        """
+
+        return False
+
+    
+    def on_create(self, time):
+        """
+        This method is called when the component's _init__ method is.
+        By default it only returns False, but it can (And should) be overriden to do something.
+        You can also just remove it from your component as it will still be present in the base class which means you're not gonna have any issues. 
+
+        :param time: The exact date and time of when the method was called
+        :return: False (By Default)
+        """
+
+        return False
+
+    
+    def on_destroy(self, time):
+        """
+        This method is called when the component's __del__ method is. 
+        By default it only returns False, but it can (And should) be overriden to do something.
+        You can also just remove it from your component as it will still be present in the base class which means you're not gonna have any issues. 
+
+        :param time: The exact date and time of when the method was called
+        :return: False (By Default)
+        """
+
+        return False
+
+
+    def on_ready(self, time):
+        """
+        This method is called when the component is added to an entity.
+        By default it only returns False, but it can (And should) be overriden to do something.
+        You can also just remove it from your component as it will still be present in the base class which means you're not gonna have any issues. 
+
+        :param time: The exact date and time of when the method was called
+        :return: False (By Default)
+        """
+
+        return False
+    
+
+    def on_enable(self, time):
+        """
+        This method is called when the component is enabled.
+        By default it only returns False, but it can (And should) be overriden to do something.
+        You can also just remove it from your component as it will still be present in the base class which means you're not gonna have any issues. 
+
+        :param time: The exact date and time of when the method was called
+        :return: False (By Default)
+        """
+        return False
+
+    
+    def on_disable(self, time):
+        """
+        This method is called when the component is disabled.
+        By default it only returns False, but it can (And should) be overriden to do something.
+        You can also just remove it from your component as it will still be present in the base class which means you're not gonna have any issues. 
+
+        :param time: The exact date and time of when the method was called
+        :return: False (By Default)
+        """
+
+        return False
+
+
+    # -------------------------
+    #
+    #       PROPERTIES
+    #
+    # -------------------------
+    
+    @property
+    def enabled(self):
+        return self._enabled
+
+
+    @property
+    def parent(self):
+        return self._parent
+
+
+    # -------------------------
+    #
+    #       PUBLIC METHODS
+    #
+    # -------------------------
+
+    def enable(self):
+        from datetime import datetime
+
+        if not self._enabled:
+            self._enabled = True
+            self.on_enable(datetime.now())
+        else:
+            Log.error("Component already enabled!")
+
+
+    def disable(self):
+        from datetime import datetime
+
+        if self._enabled:
+            self._enabled = False
+            self.on_disable(datetime.now())
+        else:
+            Log.error("Component already disabled!")
+
+
+    def update(self, dt):
+        from datetime import datetime
+        self.on_update(dt, datetime.now())
+
+
+    # -------------------------
+    #
+    #       PRIVATE METHODS
+    #
+    # -------------------------
+
+    def _init(self, parent):
+        self._parent = parent
+        self.enable()

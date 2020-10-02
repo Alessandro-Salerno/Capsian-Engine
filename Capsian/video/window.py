@@ -72,15 +72,11 @@ class Window(pyglet.window.Window):
 
         # Others
         self.view_port          = camera
-        self.keys               = key.KeyStateHandler()
-        self.key                = None
         self.render_static_hud  = False
         self.render_dynamic_hud = False
         self.lighting           = False
         engine.main_window      = self
         self.alive              = 1
-
-        self.push_handlers(self.keys)
 
         # Looks
         self.set_center()
@@ -97,8 +93,7 @@ class Window(pyglet.window.Window):
 
     # Fixed Update
     def fixed_update(self, fixed_delta_time):
-        self.view_port.update(delta_time=fixed_delta_time, keys=self.keys)
-        self.view_port.key_listener(self.keys)
+        pass
 
 
     # Center the window
@@ -167,16 +162,11 @@ class Window(pyglet.window.Window):
                 self.set_lock(lock)
 
             if engine.main_key_listener is not None:
-                engine.main_key_listener.get_input(symbol, modifiers)
+                engine.main_key_listener.single_key(symbol, modifiers)
         else:
             if symbol == key.ESCAPE or symbol == key.ENTER:
                 self.close()
                 pyglet.app.exit()
-
-
-    def on_key_release(self, symbol, modifiers):
-        if self.alive > 0:
-            self.key = None
 
 
     # Enables a feature
@@ -228,6 +218,7 @@ class Window3D(Window):
         """
 
         self.clear()
+        self.view_port.on_update(1 / pyglet.clock.get_fps(), 0)
         self.view_port.render(self)
 
 

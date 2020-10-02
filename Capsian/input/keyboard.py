@@ -56,23 +56,21 @@ from locals import *
 from lib.pyglet.window import key
 
 
-class KeyboardInputHandler:
+class KeyboardInputHandler(Component):
     """
     A Keyboard Input Handler is an abstract object that does not have a position in the world.
     Instead, it's a series of functions that allow you to register nd check keystrokes.
     It can be used for loads of things, but it's not the only option available in Capsian
-
     """
 
     def __init__(self):
-        """
-        Creates a KeyListener object that registers all the keys you press
-        """
+        self.pressed_key = Key.KeyStateHandler()
+        engine.main_window.push_handlers(self.pressed_key)
+        Framework.clock.schedule(self.on_update, 0)
 
-        engine.main_key_listener = self
-
-
-    def get_input(self, symbol, modifiers):
+        super().__init__()
+    
+    def single_key(self, symbol, modifiers):
         """
         This method does something when a key is pressed.
         It's empty by default, but can be overridden.
@@ -84,3 +82,11 @@ class KeyboardInputHandler:
         """
 
         pass
+
+
+    def multikey(self):
+        pass
+
+
+    def on_update(self, dt, time):
+        self.multikey()

@@ -77,11 +77,31 @@ class Entity:
         :param batch: The scene in which the entity should be rendered
         """
 
+        class Components:
+            stack = []
+
+            transform            = None
+            character_controller = None
+        
+            def __init__(self, spr):
+                self.spr = spr
+
+
+            def add(self, component):
+                from datetime import datetime
+
+                component._init(self.spr)
+                self.stack.append(component)
+                self.spr.on_component_added(datetime.now())
+                setattr(self, repr(component), component)
+                component.on_ready(datetime.now())
+
+
         self.size       = size
         self.pos        = pos
         self.rot        = rot
-        self.components = []
-        
+        self.components = Components(self)
+
         if repr(scene) == CPSN_STANDARD_SCENE or scene == None:
             from datetime import datetime
             
@@ -117,7 +137,7 @@ class Entity:
         What happens when the program updates
         """
 
-        for component in self.components:
+        for component in self.components.stack:
             component.update(dt)
 
 
@@ -213,11 +233,3 @@ class Entity:
         return copy.deepcopy(self)
         self.on_duplicate(datetime.now())
 
-
-    def add_component(self, component):
-        from datetime import datetime
-
-        component._init(self)
-        self.components.append(component)
-        self.on_component_added(datetime.now())
-        component.on_ready(datetime.now())

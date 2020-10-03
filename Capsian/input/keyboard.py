@@ -53,7 +53,7 @@
 
 
 from locals import *
-from lib.pyglet.window import key
+from pyglet.window import key
 
 
 class KeyboardInputHandler(Component):

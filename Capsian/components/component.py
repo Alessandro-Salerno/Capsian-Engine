@@ -177,8 +177,9 @@ class Component:
         :return: False (By Default)
         """
 
-        return False
-    
+        if self.on_update(0, 0) is not False:
+            self.enable()
+
 
     def on_enable(self, time):
         """
@@ -232,6 +233,7 @@ class Component:
 
         if not self._enabled:
             self._enabled = True
+            Framework.clock.schedule(self.update)
             self.on_enable(datetime.now())
         else:
             Log.error("Component already enabled!")
@@ -242,6 +244,7 @@ class Component:
 
         if self._enabled:
             self._enabled = False
+            Framework.clock.unschedule(self.update)
             self.on_disable(datetime.now())
         else:
             Log.error("Component already disabled!")
@@ -260,4 +263,3 @@ class Component:
 
     def _init(self, parent):
         self._parent = parent
-        self.enable()

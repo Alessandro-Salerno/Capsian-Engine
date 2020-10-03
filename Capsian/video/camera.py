@@ -160,13 +160,13 @@ class PerspectiveCamera(Camera):
         
         # Render 3D Scene
         for scene in self.scenes:
-            scene.batch.draw()
-            
             for light in scene.lights:
                 light.render()
 
             for object2D in scene.objects2D:
                 object2D.draw()
+
+            scene.batch.draw()
 
         OpenGL.glPopMatrix()
 

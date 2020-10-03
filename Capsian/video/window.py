@@ -53,8 +53,8 @@
 
 
 from locals import Framework as pyglet
-from lib.pyglet.gl import *
-from lib.pyglet.window import key
+from pyglet.gl import *
+from pyglet.window import key
 from Capsian.values import *
 from locals import Log
 from locals import engine
@@ -154,8 +154,13 @@ class Window(pyglet.window.Window):
                 self.close()
 
             if symbol == self.fullscreen_key:
-                screen = pyglet.canvas.Screen(display=self.display, x=0, y=0, width=self.screen.width, height=self.screen.height, handle=None)
-                self.set_fullscreen(not self.fullscreen, screen=screen)
+                import os
+
+                if os.name == "nt":
+                    screen = pyglet.canvas.Screen(display=self.display, x=0, y=0, width=self.screen.width, height=self.screen.height, handle=None)
+                    self.set_fullscreen(not self.fullscreen, screen=screen)
+                else:
+                    self.set_fullscreen(not self.fullscreen)
 
                 lock = self.mouse_lock
                 self.set_lock(False)
@@ -218,7 +223,6 @@ class Window3D(Window):
         """
 
         self.clear()
-        self.view_port.on_update(1 / pyglet.clock.get_fps(), 0)
         self.view_port.render(self)
 
 

@@ -87,6 +87,7 @@ class Track:
         """
 
         self.audio.play()
+        print("playing...")
 
 
     # When the object is called

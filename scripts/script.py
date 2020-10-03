@@ -1,22 +1,32 @@
 from locals import *
 
+_lights = lights
 
 camera  = PerspectiveCamera()
-window  = Window3D(camera=camera, vsync=False)
+window  = Window3D(camera=camera, vsync=False, width=1280, height=720)
 
 scene = Scene(camera)
 tex = Texture3D("assets/textures/glass.png")
 mat = Material(texture=tex)
-c = Cube(material=mat, scene=scene)
+c = Cube(material=mat, scene=scene, size=Size3D(10, 10, 10))
 
 hud_scene = Scene(camera, CPSN_HUD_SCENE)
 counter = FPSCounter(hud_scene)
 
-AmbientLight(Position3D(-2, 2, -2), Color(0, 0, 255).rgba, scene)
-Square(Color(255, 255, 255).rgba, Size3D(1, 1, 0), Position3D(1, 1, 1), [0, 0], scene)
+AmbientLight(Position3D(1, 1,10), Color(0, 0, 255).rgba, scene)
+AmbientLight(Position3D(9, 1, 0), Color(0, 0, 255).rgba, scene)
+AmbientLight(Position3D(9, 1, 9), Color(0, 0, 255).rgba, scene)
+AmbientLight(Position3D(0, 1, 9), Color(0, 0, 255).rgba, scene)
+AmbientLight(Position3D(0, 9, 1), Color(0, 0, 255).rgba, scene)
+AmbientLight(Position3D(9, 9, 1), Color(0, 0, 255).rgba, scene)
+AmbientLight(Position3D(9, 9, 9), Color(0, 0, 255).rgba, scene)
+AmbientLight(Position3D(0, 9, 9), Color(0, 0, 255).rgba, scene)
+
+square = Square(Color(255, 255, 255).rgba, Size3D(5, 5, 0), Position3D(2.5, 2.5, 5), [0, 0], scene)
+# square.flags.__setitem__("look_at_camera", True)
 
 controller = CharacterController()
-camera.add_component(controller)
+camera.components.add(controller)
 
 
 class Input(KeyboardInputHandler):
@@ -39,4 +49,6 @@ class Input(KeyboardInputHandler):
         if self.pressed_key[Key.LSHIFT]:
             controller.move("down")
 
+
 engine.main_key_listener = Input()
+OpenGL.glDisable(OpenGL.GL_CULL_FACE)

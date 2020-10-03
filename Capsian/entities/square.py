@@ -136,7 +136,7 @@ class Square(Entity):
         """
 
         OpenGL.glRotatef(
-            engine.get_main_camera().rot[1],
+            engine.main_camera.rot[1],
 
             0,
             1,
@@ -144,7 +144,7 @@ class Square(Entity):
         )
 
         OpenGL.glRotatef(
-            engine.get_main_camera().rot[0],
+            engine.main_camera.rot[0],
 
             1,
             0,

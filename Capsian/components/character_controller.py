@@ -82,7 +82,7 @@ class CharacterController(Component):
 
 
     def __repr__(self):
-        return "Capsian CharacterController Component"
+        return "character_controller"
 
 
     # -------------------------
@@ -94,6 +94,8 @@ class CharacterController(Component):
     def on_ready(self, time):
         if not repr(self.parent) == CPSN_PERSPECTIVE_CAMERA:
             Log.critical("You are trying to add a CharacterController Component to an object that is not CPSN_PERSPECTIVE_CAMERA compatible")
+        else:
+            super().on_ready(time)
 
 
     def on_update(self, dt, time):

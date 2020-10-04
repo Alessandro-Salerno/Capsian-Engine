@@ -28,14 +28,14 @@ Visual Studio Code is a great editor as it doesn't force you to use your machine
 
 # Setting up VS Code for Capsian
 In the bottom-left of the VS Code window, you should see a few buttons
-    1. Clcik on "Python ..."
-    2. Click on "Enter Interpreter Path"
-    3. Click on "Find"
-    4. Navigate to the Project's folder
-    5. Go to "venv"
-    6. Open the folder with your OS name (Windows or macOS)
-    7. Double-click on "Scripts"
-    8. Select python (Not pythonw)
+1. Clcik on "Python ..."
+2. Click on "Enter Interpreter Path"
+3. Click on "Find"
+4. Navigate to the Project's folder
+5. Go to "venv"
+6. Open the folder with your OS name (Windows or macOS)
+7. Double-click on "Scripts"
+8. Select python (Not pythonw)
 
 # Older versions
 Did you know Capsian hasn't always been the name of this project? It was initially called KeyFire; the name was later changed due to trademark related issues and it became Capsian. You can still access all old versions, posts, issues etc on my private website which you can find a link for in my profile info.

@@ -54,7 +54,6 @@
 
 
 import pyglet                              as     Framework
-import pyglet.gl                           as     OpenGL
 import pyglet.window.key                   as     Key
 from Capsian.values                            import *
 

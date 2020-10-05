@@ -99,8 +99,8 @@ class Texture3D(Texture):
 
         try:
             loaded_texture = Framework.image.load(file).get_texture()
-            OpenGL.glTexParameterf(OpenGL.GL_TEXTURE_2D, self.flags.get("texture_mode")[0], self.flags.get("texture_mode")[2])
-            OpenGL.glTexParameterf(OpenGL.GL_TEXTURE_2D, self.flags.get("texture_mode")[1], self.flags.get("texture_mode")[2])
+            Framework.gl.glTexParameterf(Framework.gl.GL_TEXTURE_2D, self.flags.get("texture_mode")[0], self.flags.get("texture_mode")[2])
+            Framework.gl.glTexParameterf(Framework.gl.GL_TEXTURE_2D, self.flags.get("texture_mode")[1], self.flags.get("texture_mode")[2])
             Log.successful(f"Successfully loaded texture from file '{file}'")
             return Framework.graphics.TextureGroup(loaded_texture)
         except:
@@ -118,9 +118,9 @@ class Texture2D(Texture):
 
         try:
             loaded_texture = Framework.image.load(file).get_texture()
-            OpenGL.glTexParameterf(OpenGL.GL_TEXTURE_2D, self.flags.get("texture_mode")[0],
+            Framework.gl.glTexParameterf(Framework.gl.GL_TEXTURE_2D, self.flags.get("texture_mode")[0],
                                    self.flags.get("texture_mode")[2])
-            OpenGL.glTexParameterf(OpenGL.GL_TEXTURE_2D, self.flags.get("texture_mode")[1],
+            Framework.gl.glTexParameterf(Framework.gl.GL_TEXTURE_2D, self.flags.get("texture_mode")[1],
                                    self.flags.get("texture_mode")[2])
             Log.successful(f"Successfully loaded texture from file '{file}'")
             return loaded_texture
@@ -152,8 +152,8 @@ class SmartTexture3D(Texture):
     def get_texture(self):
         try:
             loaded_texture = Framework.image.load(self.path).get_region(self.pos[0], self.pos[1], self.size[0], self.size[1]).get_texture()
-            OpenGL.glTexParameterf(OpenGL.GL_TEXTURE_2D, self.flags.get("texture_mode")[0], self.flags.get("texture_mode")[2])
-            OpenGL.glTexParameterf(OpenGL.GL_TEXTURE_2D, self.flags.get("texture_mode")[1], self.flags.get("texture_mode")[2])
+            Framework.gl.glTexParameterf(Framework.gl.GL_TEXTURE_2D, self.flags.get("texture_mode")[0], self.flags.get("texture_mode")[2])
+            Framework.gl.glTexParameterf(Framework.gl.GL_TEXTURE_2D, self.flags.get("texture_mode")[1], self.flags.get("texture_mode")[2])
             Log.successful(f"Successfully loaded texture from file '{self.path}'")
             return Framework.graphics.TextureGroup(loaded_texture)
         except:

@@ -99,7 +99,7 @@ class CharacterController(Component):
 
 
     def on_update(self, dt, time):
-        self.s           = dt     * self.multiplier
+        self.s           = dt     * self.multiplier * engine.main_window.alive
         self.parent.rotY = -self.parent.rot[1] / 180 * math.pi
 
         self.parent.dx   = self.s * math.sin(self.parent.rotY)

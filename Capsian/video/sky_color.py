@@ -57,9 +57,9 @@ class SkyColorClass:
 
     def set(self, color):
         try:
-            from locals import OpenGL
+            from locals import Framework
             
-            OpenGL.glClearColor(color[0], color[1], color[2], color[3])
+            Framework.gl.glClearColor(color[0], color[1], color[2], color[3])
             self.color = color
         except:
             Log.critical("Something went wrong while setting the sky color. Please check your code")

@@ -106,14 +106,14 @@ class Square(Entity):
         :return: Nothing
         """
 
-        OpenGL.glPushMatrix()
-        OpenGL.glTranslatef(self.pos[0], self.pos[1], self.pos[2])
+        Framework.gl.glPushMatrix()
+        Framework.gl.glTranslatef(self.pos[0], self.pos[1], self.pos[2])
 
         if self.check_flag("look_at_camera"):
             self.look_at_camera()
 
-        self.vertex_list.draw(OpenGL.GL_QUADS)
-        OpenGL.glPopMatrix()
+        self.vertex_list.draw(Framework.gl.GL_QUADS)
+        Framework.gl.glPopMatrix()
 
 
     # Stop rendering
@@ -135,7 +135,7 @@ class Square(Entity):
         :return: Nothing
         """
 
-        OpenGL.glRotatef(
+        Framework.gl.glRotatef(
             engine.main_camera.rot[1],
 
             0,
@@ -143,7 +143,7 @@ class Square(Entity):
             0
         )
 
-        OpenGL.glRotatef(
+        Framework.gl.glRotatef(
             engine.main_camera.rot[0],
 
             1,
@@ -240,16 +240,16 @@ class TexturedSquare(Square):
         :return: Nothing
         """
 
-        OpenGL.glPushMatrix()
+        Framework.gl.glPushMatrix()
 
-        OpenGL.glTranslatef(self.pos[0], self.pos[1], self.pos[2])
-        OpenGL.glEnable(OpenGL.GL_TEXTURE_2D)
-        OpenGL.glBindTexture(OpenGL.GL_TEXTURE_2D, self.texture.id)
+        Framework.gl.glTranslatef(self.pos[0], self.pos[1], self.pos[2])
+        Framework.gl.glEnable(Framework.gl.GL_TEXTURE_2D)
+        Framework.gl.glBindTexture(Framework.gl.GL_TEXTURE_2D, self.texture.id)
 
         if self.check_flag("look_at_camera"):
             self.look_at_camera()
 
-        self.vertex_list.draw(OpenGL.GL_QUADS)
-        OpenGL.glDisable(OpenGL.GL_TEXTURE_2D)
+        self.vertex_list.draw(Framework.gl.GL_QUADS)
+        Framework.gl.glDisable(Framework.gl.GL_TEXTURE_2D)
 
-        OpenGL.glPopMatrix()
+        Framework.gl.glPopMatrix()

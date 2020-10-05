@@ -75,12 +75,12 @@ class Light3D:
                 self.light = lights[0]
                 lights.pop(0)
             else:
-                self.light = OpenGL.GL_LIGHT0
+                self.light = Framework.gl.GL_LIGHT0
                 Log.critical(f"The Light3D object at world position [{pos[0]}, {pos[1]}, {pos[2]} could not be created as there is no OpenGL light available. You can have a maximum of 8 lights in your program for now. This will be fixed in a later version though!")
         except:
             Log.critical("Unable to create light. You can only have 8 lights in a given scene (GL_LIGHT0 - GL_LIGHT7). Check if you tried to add more than that and if you are, remove some lights or try finding creative ways to render them separatelly")
 
-        OpenGL.glEnable(self.light)
+        Framework.gl.glEnable(self.light)
 
         scene.lights.append(self)
 
@@ -94,9 +94,9 @@ class Light3D:
         :return: Nothing
         """
 
-        OpenGL.glLightfv(self.light, OpenGL.GL_POSITION, (OpenGL.GLfloat * 4)(self.pos[0], self.pos[1], self.pos[2], 1))
-        OpenGL.glLightfv(self.light, self.type, (OpenGL.GLfloat * 3)(self.intensity[0], self.intensity[1], self.intensity[2]))
-        OpenGL.glLightfv(self.light, OpenGL.GL_QUADRATIC_ATTENUATION, (OpenGL.GLfloat * 1)(1))
+        Framework.gl.glLightfv(self.light, Framework.gl.GL_POSITION, (Framework.gl.GLfloat * 4)(self.pos[0], self.pos[1], self.pos[2], 1))
+        Framework.gl.glLightfv(self.light, self.type, (Framework.gl.GLfloat * 3)(self.intensity[0], self.intensity[1], self.intensity[2]))
+        Framework.gl.glLightfv(self.light, Framework.gl.GL_QUADRATIC_ATTENUATION, (Framework.gl.GLfloat * 1)(1))
 
 
 ########################################################################################################################

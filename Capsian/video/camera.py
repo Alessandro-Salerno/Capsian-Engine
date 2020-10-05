@@ -52,7 +52,6 @@
 
 
 from locals import Framework
-from locals import OpenGL
 import Capsian.maths.math as kmath
 from locals import engine
 from Capsian.entities.entity import Entity
@@ -126,10 +125,12 @@ class PerspectiveCamera(Camera):
     def init(self):
         engine.main_camera = self
 
-        OpenGL.glEnable(OpenGL.GL_DEPTH_TEST)
-        OpenGL.glEnable(OpenGL.GL_NORMALIZE)
-        OpenGL.glEnable(OpenGL.GL_CULL_FACE)
-        OpenGL.glCullFace(OpenGL.GL_BACK)
+        Framework.gl.glEnable(Framework.gl.GL_DEPTH_TEST)
+        Framework.gl.glEnable(Framework.gl.GL_NORMALIZE)
+        Framework.gl.glEnable(Framework.gl.GL_CULL_FACE)
+        Framework.gl.glCullFace(Framework.gl.GL_BACK)
+        Framework.gl.glEnable(Framework.gl.GL_BLEND)
+        Framework.gl.glBlendFunc(Framework.gl.GL_SRC_ALPHA, Framework.gl.GL_ONE_MINUS_SRC_ALPHA)
 
         engine.main_window.set_lock(True)
         engine.main_window.set_caption("Capsian 1.0 Window - 3D Mode")
@@ -137,25 +138,25 @@ class PerspectiveCamera(Camera):
 
     def render(self, window):
         # Set all OpenGL parameters
-        OpenGL.glClear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT)
+        Framework.gl.glClear(Framework.gl.GL_COLOR_BUFFER_BIT | Framework.gl.GL_DEPTH_BUFFER_BIT)
 
-        if window.lighting: OpenGL.glEnable(OpenGL.GL_LIGHTING)
+        if window.lighting: Framework.gl.glEnable(Framework.gl.GL_LIGHTING)
 
-        OpenGL.glMatrixMode(OpenGL.GL_PROJECTION)
-        OpenGL.glLoadIdentity()
+        Framework.gl.glMatrixMode(Framework.gl.GL_PROJECTION)
+        Framework.gl.glLoadIdentity()
 
-        OpenGL.gluPerspective(self.fov,
+        Framework.gl.gluPerspective(self.fov,
                               window.width / window.height,
                               self.near,
                               self.far)
 
-        OpenGL.glMatrixMode(OpenGL.GL_MODELVIEW)
-        OpenGL.glLoadIdentity()
+        Framework.gl.glMatrixMode(Framework.gl.GL_MODELVIEW)
+        Framework.gl.glLoadIdentity()
 
-        OpenGL.glPushMatrix()
-        OpenGL.glRotatef(-self.rot[0], 1, 0, 0)
-        OpenGL.glRotatef(-self.rot[1], 0, 1, 0)
-        OpenGL.glTranslatef(-self.pos[0], -self.pos[1], -self.pos[2])
+        Framework.gl.glPushMatrix()
+        Framework.gl.glRotatef(-self.rot[0], 1, 0, 0)
+        Framework.gl.glRotatef(-self.rot[1], 0, 1, 0)
+        Framework.gl.glTranslatef(-self.pos[0], -self.pos[1], -self.pos[2])
 
         
         # Render 3D Scene
@@ -168,17 +169,17 @@ class PerspectiveCamera(Camera):
 
             scene.batch.draw()
 
-        OpenGL.glPopMatrix()
+        Framework.gl.glPopMatrix()
 
-        OpenGL.glDisable(OpenGL.GL_LIGHTING)
+        Framework.gl.glDisable(Framework.gl.GL_LIGHTING)
         width, height = window.get_size()
         viewport = window.get_viewport_size()
-        OpenGL.glViewport(0, 0, max(1, viewport[0]), max(1, viewport[1]))
-        OpenGL.glMatrixMode(OpenGL.GL_PROJECTION)
-        OpenGL.glLoadIdentity()
-        OpenGL.glOrtho(0, max(1, width), 0, max(1, height), -1, 1)
-        OpenGL.glMatrixMode(OpenGL.GL_MODELVIEW)
-        OpenGL.glLoadIdentity()
+        Framework.gl.glViewport(0, 0, max(1, viewport[0]), max(1, viewport[1]))
+        Framework.gl.glMatrixMode(Framework.gl.GL_PROJECTION)
+        Framework.gl.glLoadIdentity()
+        Framework.gl.glOrtho(0, max(1, width), 0, max(1, height), -1, 1)
+        Framework.gl.glMatrixMode(Framework.gl.GL_MODELVIEW)
+        Framework.gl.glLoadIdentity()
             
         # Render HUD 
         for scene in self.hud_scenes:
@@ -218,22 +219,22 @@ class OrthographicCamera(Camera):
     def init(self):
         engine.main_camera = self
 
-        OpenGL.glDisable(OpenGL.GL_DEPTH_TEST)
+        Framework.gl.glDisable(Framework.gl.GL_DEPTH_TEST)
         engine.main_window.set_lock(False)
         engine.main_window.set_caption("Capsian 1.0 Window - GUI Mode")
 
 
     def render(self, window):
         # Render the 2D scene
-        OpenGL.glDisable(OpenGL.GL_LIGHTING)
+        Framework.gl.glDisable(Framework.gl.GL_LIGHTING)
         width, height = window.get_size()
         viewport = window.get_viewport_size()
-        OpenGL.glViewport(0, 0, max(1, viewport[0]), max(1, viewport[1]))
-        OpenGL.glMatrixMode(OpenGL.GL_PROJECTION)
-        OpenGL.glLoadIdentity()
-        OpenGL.glOrtho(0, max(1, width), 0, max(1, height), -1, 1)
-        OpenGL.glMatrixMode(OpenGL.GL_MODELVIEW)
-        OpenGL.glLoadIdentity()
+        Framework.gl.glViewport(0, 0, max(1, viewport[0]), max(1, viewport[1]))
+        Framework.gl.glMatrixMode(Framework.gl.GL_PROJECTION)
+        Framework.gl.glLoadIdentity()
+        Framework.gl.glOrtho(0, max(1, width), 0, max(1, height), -1, 1)
+        Framework.gl.glMatrixMode(Framework.gl.GL_MODELVIEW)
+        Framework.gl.glLoadIdentity()
         
         for scene in self.scenes:
             scene.batch.draw()

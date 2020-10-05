@@ -176,4 +176,4 @@ class ExitPoints:
 loops   = Scheduled()
 entries = EntryPoints()
 exits   = ExitPoints()
-Framework.clock.schedule_interval(update, 1 / 120)
+# Framework.clock.schedule_interval(update, 1 / 120)

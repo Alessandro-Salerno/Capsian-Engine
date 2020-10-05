@@ -5,6 +5,7 @@ _lights = lights
 camera  = PerspectiveCamera()
 window  = Window3D(camera=camera, vsync=False, width=1280, height=720)
 
+
 scene = Scene(camera)
 tex = Texture3D("assets/textures/glass.png")
 mat = Material(texture=tex)
@@ -51,4 +52,4 @@ class Input(KeyboardInputHandler):
 
 
 engine.main_key_listener = Input()
-OpenGL.glDisable(OpenGL.GL_CULL_FACE)
+Framework.gl.glDisable(Framework.gl.GL_CULL_FACE)

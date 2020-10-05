@@ -51,7 +51,7 @@
 # ----------------------------------------------------------------------------
 
 
-from locals import OpenGL
+from locals import Framework
 
 
 fog_objs = []
@@ -73,14 +73,14 @@ class Fog:
 
     @staticmethod
     def enable(color, start, end):
-        OpenGL.glEnable(OpenGL.GL_FOG)
-        OpenGL.glFogfv(OpenGL.GL_FOG_COLOR, (OpenGL.GLfloat * 4)(color[0], color[1], color[2], color[3]))
-        OpenGL.glHint(OpenGL.GL_FOG_HINT, OpenGL.GL_NICEST)
-        OpenGL.glFogf(OpenGL.GL_FOG_MODE, OpenGL.GL_LINEAR)
-        OpenGL.glFogf(OpenGL.GL_FOG_START, float(start))
-        OpenGL.glFogf(OpenGL.GL_FOG_END, float(end))
+        Framework.gl.glEnable(Framework.gl.GL_FOG)
+        Framework.gl.glFogfv(Framework.gl.GL_FOG_COLOR, (Framework.gl.GLfloat * 4)(color[0], color[1], color[2], color[3]))
+        Framework.gl.glHint(Framework.gl.GL_FOG_HINT, Framework.gl.GL_NICEST)
+        Framework.gl.glFogf(Framework.gl.GL_FOG_MODE, Framework.gl.GL_LINEAR)
+        Framework.gl.glFogf(Framework.gl.GL_FOG_START, float(start))
+        Framework.gl.glFogf(Framework.gl.GL_FOG_END, float(end))
 
 
     @staticmethod
     def disable():
-        OpenGL.glDisable(GL_FOG)
+        Framework.gl.glDisable(GL_FOG)

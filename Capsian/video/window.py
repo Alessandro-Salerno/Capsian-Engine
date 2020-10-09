@@ -224,6 +224,7 @@ class Window3D(Window):
 
         self.clear()
         self.view_port.render(self)
+        pyglet.clock.tick()
 
 
     # When mouse is moved

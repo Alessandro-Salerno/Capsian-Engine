@@ -66,9 +66,9 @@ class KeyboardInputHandler(Component):
     def __init__(self):
         self.pressed_key = Key.KeyStateHandler()
         engine.main_window.push_handlers(self.pressed_key)
-        Framework.clock.schedule(self.on_update, 0)
 
         super().__init__()
+        self.enable()
     
     def single_key(self, symbol, modifiers):
         """

@@ -82,6 +82,7 @@ class Entity:
 
             transform            = None
             character_controller = None
+            key_listener         = None
         
             def __init__(self, spr):
                 self.spr = spr

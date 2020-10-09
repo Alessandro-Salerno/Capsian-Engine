@@ -112,26 +112,21 @@ class Color:
         self.rgba = [r, g, b, a]
 
 
-    @property
-    def rgb(self):
-        """
-        :return: Array [R, G, B, A]
-        """
+    def convert_to(self, to):
+        methods = {
+            "rgb": self._convert_to_byte_color,
+            "glf": self._convert_to_gl_float_color,
+        }
 
-        return self.rgba
-
-
-    @property
-    def gl_float_color(self):
-        """
-        :return: Array [FloatR, FloatG, FloatB, FloatA]
-        """
-
-        return self.rgba
+        if to in methods.keys():
+            methods[to]()
+        else:
+            from locals import Log
+            Log.error(f"'{to}' is not a valid color type")
 
 
     @property
-    def to_gl_float_color(self):
+    def _convert_to_gl_float_color(self):
         """
         Converts RGB/RGBA to OpenGL float color
 
@@ -147,7 +142,7 @@ class Color:
 
 
     @property
-    def to_byte_color(self):
+    def _convert_to_byte_color(self):
         """
         Converts OpenGL float color into RGBA
 

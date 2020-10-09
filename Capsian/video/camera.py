@@ -202,6 +202,9 @@ class PerspectiveCamera(Camera):
         self.mouse_dx = dx / 8
         self.mouse_dy = dy / 8
 
+        if self.components.character_controller is not None:
+            self.components.character_controller.rotate()
+
 
     # Repr dunderscore method
     def __repr__(self):

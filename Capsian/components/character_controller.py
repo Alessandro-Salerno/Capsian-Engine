@@ -99,19 +99,19 @@ class CharacterController(Component):
 
 
     def on_update(self, dt, time):
-        self.s           = dt     * self.multiplier * engine.main_window.alive
-        self.parent.rotY = -self.parent.rot[1] / 180 * math.pi
+        self.s              = dt     * self.multiplier * engine.main_window.alive
 
-        self.parent.dx   = self.s * math.sin(self.parent.rotY)
-        self.parent.dz   = self.s * math.cos(self.parent.rotY)
+        self.parent.rotY    = -self.parent.rot[1] / 180 * math.pi
 
-        self.parent.rot[0] += self.parent.mouse_dy * self.sens
-        self.parent.rot[1] -= self.parent.mouse_dx * self.sens
+        self.parent.dx      = self.s * math.sin(self.parent.rotY)
+        self.parent.dz      = self.s * math.cos(self.parent.rotY)
 
-        self.parent.rot[0]  = kmath.clamp(90, -90, self.parent.rot[0])
 
-        self.parent.mouse_dx = 0
-        self.parent.mouse_dy = 0
+    def rotate(self):
+        self.parent.rot[0]  += self.parent.mouse_dy * self.sens
+        self.parent.rot[1]  -= self.parent.mouse_dx * self.sens
+
+        self.parent.rot[0]   = kmath.clamp(90, -90, self.parent.rot[0])
 
 
     def move(self, direction):

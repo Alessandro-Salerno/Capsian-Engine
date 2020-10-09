@@ -81,6 +81,17 @@ CPSN_COMPONENT            = "Capsian EntityComponent"
 CPSN_STANDARD_SCENE       = "Capsian Standard Scene"
 CPSN_DEFAULT_FOG_START    = 40
 CPSN_DEFAULT_FOG_END      = 50
+CPSN_FLOAT_COLOR          = "glf"
+CPSN_BYTE_COLOR           = "rgb"
+
+
+class Direction:
+    UP        = "up"
+    DOWN      = "down"
+    FOWARDS   = "forwards"
+    BACKWARDS = "backwards"
+    LEFT      = "left"
+    RIGHT     = "right"
 
 
 lights = [
@@ -91,7 +102,7 @@ lights = [
     Framework.gl.GL_LIGHT4,
     Framework.gl.GL_LIGHT5,
     Framework.gl.GL_LIGHT6,
-    Framework.gl.GL_LIGHT7
+    Framework.gl.GL_LIGHT7,
 ]
 
 SkyColor = __graphics__.SkyColorClass()

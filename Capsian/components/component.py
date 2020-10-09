@@ -244,7 +244,7 @@ class Component:
 
         if self._enabled:
             self._enabled = False
-            Framework.clock.unschedule(self.on_update, 0)
+            Framework.clock.unschedule(self.on_update)
             self.on_disable(datetime.now())
         else:
             Log.error("Component already disabled!")

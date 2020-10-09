@@ -4,7 +4,7 @@
 
 {
     "main file": "scripts/script.py",
-    "use transparency": False,
+    "use transparency": True,
     "use basic lighting": True,
     "enable fog": True,
     "fog color": CPSN_DEFAULT_FOG_COLOR,

@@ -213,7 +213,7 @@ class Square(Entity):
         :return: Nothing
         """
 
-        graphics.objects2D.remove(self)
+        self.scene.objects2D.remove(self)
         self.__del__()
 
 

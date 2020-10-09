@@ -58,7 +58,7 @@ from   Capsian.entities.square import Square
 
 
 class Particle:
-    def __init__(self, pos=[0, 0, 0], quantity=1, direction=[0, -0.01, 0], size=[0.25, 0.25, 0.25], lifetime=240):
+    def __init__(self, pos=[0, 0, 0], quantity=1, direction=[0, -0.01, 0], size=[0.25, 0.25, 0.25], lifetime=240, scene=None):
         self.pos       = pos
         self.quantity  = quantity
         self.lifetime  = lifetime
@@ -66,6 +66,9 @@ class Particle:
         self.quads     = []
         self.size      = size
         self.direction = direction
+        self.scene     = scene
+
+        self.create(quantity=quantity, pos=[self.pos[0], self.pos[1], self.pos[2]])
 
 
     # Move the particle
@@ -86,22 +89,6 @@ class Particles2D(Particle):
     NOTE: They may have a big impact on your game's performance. This will be fixed in a later version
 
     """
-
-    def __init__(self, pos=[0, 0, 0], quantity=1, direction=[0, -0.01, 0], size=[0.25, 0.25, 0.25], lifetime=240):
-        """
-        Creates particles in the world
-
-        :param pos: Position in 3D space (Array, [x, y, z])
-        :param quantity: How many particles should spawn every time the create() function is called (Int)
-        :param direction: The direction in which the particles should move (Array, [dx, dy, dz])
-        :param size: The size of a single particle (Array, [length, height]
-        :param lifetime: How long a particles should last - Expressed in ticks (1Tick = 1/120 sec) - (Int)
-        """
-
-        super().__init__(pos, quantity, direction, size, lifetime)
-
-        self.create(quantity=quantity, pos=[self.pos[0], self.pos[1], self.pos[2]])
-
 
     # Kill function
     def kill(self):
@@ -154,7 +141,7 @@ class Particles2D(Particle):
             y = pos[1] + random.uniform(-self.size[0], self.size[2] / 2)
             z = pos[2] + random.uniform(self.size[0] * 2, self.size[2] * 2)
 
-            p = Square(color=None, size=self.size, pos=[x, y, z], rot=[0, 0])
+            p = Square(color=None, size=self.size, pos=[x, y, z], rot=[0, 0], scene=self.scene)
             p.set_flag("look_at_camera", True)
             self.quads.append(p)
 

@@ -1,0 +1,16 @@
+# This file is not protected by copyright and is designed to modified
+# You can add anything you want to this dictionary, but removing things is not racomended
+
+
+{
+    "main file": "scripts/script.py",
+    "use transparency": True,
+    "use basic lighting": True,
+    "enable fog": True,
+    "fog color": CPSN_DEFAULT_FOG_COLOR,
+    "fog start": CPSN_DEFAULT_FOG_START,
+    "fog end": CPSN_DEFAULT_FOG_END,
+    "use dynamic hud": True,
+    "use static hud": True,
+    "clear color": [0, 0, 0, 0],
+}

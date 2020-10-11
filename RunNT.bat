@@ -1,2 +1,1 @@
-cd "Capsian Engine"
-..\venv\Windows\Scripts\python.exe -u main.py
+start Python\Windows\pythonw.exe -u main.py

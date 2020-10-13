@@ -87,7 +87,6 @@ class KeyboardInputHandler(Component):
         engine.main_window.push_handlers(self.key_state_handler)
 
         super().__init__()
-        self.enable()
     
 
     def on_key_pressed(self, symbol, modifiers):

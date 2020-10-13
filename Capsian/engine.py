@@ -64,6 +64,10 @@ entry_points      = []
 exit_points       = []
 
 
+def version():
+    return "Capsian Engine v1.0 a1"
+
+
 # Prepares the application
 def run():
     """

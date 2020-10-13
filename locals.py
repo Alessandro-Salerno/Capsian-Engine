@@ -53,16 +53,17 @@
 # ----------------------------------------------------------------------------
 
 
-import pyglet                              as     Framework
-import OpenGL.GL                           as     GL
-import OpenGL.GLU                          as     GLU
-import OpenGL.GLUT                         as     GLUT
-import pyglet.window.key                   as     Key
+import pyglet                                  as     Framework
+import OpenGL.GL                               as     GL
+import OpenGL.GLU                              as     GLU
+import OpenGL.GLUT                             as     GLUT
+import pyglet.window.key                       as     Key
 from Capsian.values                            import *
 
 from Capsian.world.format                      import *
 from Capsian.world.clock                       import Clock
 from Capsian.log                               import Log
+import Capsian.types                           as     types
 import Capsian.engine                          as     engine
 import Capsian.video.sky_color                 as     sky_color
 from Capsian.components.component              import Component
@@ -74,6 +75,7 @@ from Capsian.video.scene                       import Scene
 from Capsian.entities.cube                     import Cube
 from Capsian.texturing.material                import Material
 from Capsian.input.keyboard                    import KeyboardInputHandler
+from Capsian.input.mouse                       import MouseInputHandler
 from Capsian.entities.particle_system          import Particles2D
 from Capsian.entities.particle_system          import Particle
 from Capsian.entities.particle_system          import ParticleBatch

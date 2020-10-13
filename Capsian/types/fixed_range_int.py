@@ -51,61 +51,19 @@
 # ----------------------------------------------------------------------------
 
 
-from   locals  import *
-from   os      import system
-import os
+from locals import Log
 
 
-system("cls") if os.name == "nt" else system("clear")
+class FixedRangeInt(int):
+    def __init__(self, value, min=0, max=0):
+        super().__init__(value)
 
+        self.min = min
+        self.max = max
+        
 
-# Eval the contens of the options file
-with open("options.cpsn", "r") as preferences:
-    global options
-    _options = preferences.read()
-    options  = eval(compile(source=_options, filename="options", mode="eval", optimize=1))
-
-
-# Read the code contained in the main file and run some checks
-if options["main file"] is not None:
-    with open(options["main file"], "r") as file:
-        global source
-
-        source = file.read()
-        Log.successful("Loaded python script")
-else:
-    Log.critical("No main file specified!")
-    input()
-
-
-# Compiles all the code
-exec(compile(source=source, filename="script", mode="exec", optimize=1))
-
-
-try:
-    # Enable Capsian Basic Lighting if required
-    if options["use basic lighting"]:
-        engine.main_window.enable(CPSN_LIGHTING)
-
-    # Set OpenGL Clear Color
-    SkyColor << options["clear color"]
-
-    # Set fog settings
-    if options["enable fog"]:
-        fog_color = options["fog color"]
-        fog_start = options["fog start"]
-        fog_end   = options["fog end"]
-
-        Fog(fog_color, fog_start, fog_end)
-except:
-    _errcam = OrthographicCamera()
-    _errwin = Window3D(camera=_errcam)
-    Log.critical("Something went wrong while setting up your game. This is usually caused by the absence of a default window and/or camera")
-
-
-# Runs all the code3
-engine.run()
-
-
-# Random print() to make the output look cleaner
-print()
+    def check(self):
+        if self > self.max:
+            self = self.max
+        elif self < self.min:
+            self = self.min

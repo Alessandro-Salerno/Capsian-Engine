@@ -59,6 +59,11 @@ class Clock:
     A Capsian Clock isn implementation of pyglet.clock.Clock (Framework.clock.Clock)
     """
 
+
+    def __init__(self):
+        self.Schedule.call_every_tick(self.tick)
+
+
     class _EntryPoints:
         """
         A class that holds data about all entry points
@@ -190,3 +195,11 @@ class Clock:
 
     entry_points = _EntryPoints([])
     exit_points  = _ExitPoints([])
+
+
+    def tick(self, dt):
+        from locals import engine
+
+        for scene in engine.main_camera.scenes:
+            for obj in scene.stack:
+                obj.update(dt)

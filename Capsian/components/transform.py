@@ -67,21 +67,42 @@ class Transform(Component):
     #
     # -------------------------
 
-    def __init__(self, x, y, z, width, height, depth, rotX, rotY, rotZ):
-        self.x        = x
-        self.y        = y
-        self.z        = z
+    def __init__(self, x=0, y=0, z=0, width=1, height=1, depth=1, rotX=0, rotY=0, rotZ=0):
+        self.x        =  float(x)
+        self.y        =  float(y)
+        self.z        =  float(z)
 
-        self.width    = width
-        self.height   = height
-        self.depth    = depth
+        self.width    =  float(width)
+        self.height   =  float(height)
+        self.depth    =  float(depth)
 
-        self.rotX     = rotX
-        self.rotY     = rotY
-        self.rotZ     = rotZ
+        self.rotX     =  float(rotX)
+        self.rotY     =  float(rotY)
+        self.rotZ     =  float(rotZ)
 
         super().__init__()
 
 
     def __repr__(self):
         return "transform"
+
+
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
+
+    @property
+    def position(self):
+        return [self.x, self.y, self.z]
+
+
+    @property
+    def rotation(self):
+        return [self.rotX, self.rotY, self.rotZ]
+
+
+    @property
+    def size(self):
+        return [self.width, self.height, self.depth]

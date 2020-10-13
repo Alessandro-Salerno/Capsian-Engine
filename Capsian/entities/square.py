@@ -63,7 +63,7 @@ class Square(Entity):
 
     """
 
-    def __init__(self, color, size, pos, rot, scene):
+    def __init__(self, color, size, pos, rot, scene, active=False):
         """
         Creates a square in the world
 
@@ -72,8 +72,10 @@ class Square(Entity):
         :param pos: The position of the square in 3D space (Array, [x, y, z])
         :param rot: The rotation of the square (Array, [rx, ry, rz])
         """
+        
+        from locals import Transform
 
-        super().__init__(size=size, pos=pos, rot=rot, scene=scene)
+        super().__init__(Transform(pos[0], pos[1], pos[2], size[0], size[1], size[2]), scene=scene, active=active)
         x                = size[0] / 2
         y                = size[1] / 2
         z                = size[2] / 2
@@ -82,7 +84,7 @@ class Square(Entity):
         self.currentY    = y
 
         self.vertex_list = Framework.graphics.vertex_list(4,
-                                                          ('v3f', [0, 0, 0, self.size[0], 0, 0, self.size[0], self.size[1], 0, 0, self.size[1], 0]),
+                                                          ('v3f', [0, 0, 0, size[0], 0, 0, size[0], size[1], 0, 0, size[1], 0]),
                                                           ('t3f', [0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0])
                                                           )
 
@@ -94,8 +96,7 @@ class Square(Entity):
             "look_at_camera": False,
         }
 
-        self.id          = len(scene.objects2D)
-        scene.objects2D.insert(self.id, self)
+        scene.objects2D.append(self)
 
 
     # Draw OpenGL quad (Old OpenGL)
@@ -107,7 +108,7 @@ class Square(Entity):
         """
 
         Framework.gl.glPushMatrix()
-        Framework.gl.glTranslatef(self.pos[0], self.pos[1], self.pos[2])
+        Framework.gl.glTranslatef(self.components.transform.x, self.components.transform.y, self.components.transform.z)
 
         if self.check_flag("look_at_camera"):
             self.look_at_camera()
@@ -136,18 +137,18 @@ class Square(Entity):
         """
 
         Framework.gl.glRotatef(
-            engine.main_camera.rot[1],
+            engine.main_camera.components.transform.rotX,
 
+            -1,
             0,
-            1,
             0
         )
 
         Framework.gl.glRotatef(
-            engine.main_camera.rot[0],
+            engine.main_camera.components.transform.rotY,
 
-            1,
             0,
+            1,
             0
         )
 
@@ -194,17 +195,6 @@ class Square(Entity):
         return self.visible
 
 
-    # Returns int pointer
-    def get_id(self):
-        """
-        This method tells you the id of a given square
-
-        :return: Int
-        """
-
-        return self.id
-
-
     # Delte self
     def delete(self):
         """
@@ -213,24 +203,18 @@ class Square(Entity):
         :return: None
         """
 
-        self.scene.objects2D.remove(self)
-        self.__del__()
-
-
-    def __del__(self):
+        if self in self.scene.objects2D:
+            self.scene.objects2D.remove(self)
+            
         del self
 
 
 class TexturedSquare(Square):
-    def __init__(self, texture, size, pos, rot):
-        super().__init__([255, 255, 255, 255], size, pos, rot)
+    def __init__(self, texture, size, pos, rot, scene):
+        super().__init__([255, 255, 255, 255], size, pos, rot, scene=scene)
 
         self.texture = texture.get_texture()
-        graphics.dynamic_hud.append(self)
-
-
-    def quad(self):
-        pass
+        scene.objects2D.append(self)
 
 
     def draw(self):

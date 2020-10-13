@@ -3,8 +3,8 @@
 
 
 {
-    "main file"          :  "scripts/script.py",
-    "use basic lighting" :  True,
+    "main file"          :  None,
+    "use basic lighting" :  False,
     "enable fog"         :  True,
     "fog color"          :  CPSN_DEFAULT_FOG_COLOR,
     "fog start"          :  CPSN_DEFAULT_FOG_START,

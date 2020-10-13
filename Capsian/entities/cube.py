@@ -51,8 +51,8 @@
 # ----------------------------------------------------------------------------
 
 
-
 from locals import *
+from Capsian.components.transform import Transform
 
 
 class Cube(Entity):
@@ -62,7 +62,7 @@ class Cube(Entity):
 
     """
 
-    def __init__(self, size=[1, 1, 1], pos=[0, 0, 0], rot=[0, 0, 0], scene=None, lis=[], material=None):
+    def __init__(self, transform=Transform(), scene=None, lis=[], material=None):
         """
         Creates a cube in the world
 
@@ -74,19 +74,21 @@ class Cube(Entity):
         :param material: The material the cube is made out of (Texture3D()/SmartTexture3D, Material())
         """
 
-        Entity.__init__(self, size=size, pos=pos, rot=rot, scene=scene)
+        Entity.__init__(self, transform=transform, scene=scene)
 
-        self.next_pos = [[pos[0] + 1,  pos[1],      pos[2]],
-                         [pos[0] - 1,  pos[1],      pos[2]],
-                         [pos[0],      pos[1],      pos[2] + 1],
-                         [pos[0],      pos[1],      pos[2] - 1],
-                         [pos[0],      pos[1] + 1,  pos[2]],
-                         [pos[0],      pos[1] - 1,  pos[2]]]
+        self.next_pos = [
+            [transform.x + 1,  transform.y,      transform.z    ],
+            [transform.x - 1,  transform.y,      transform.z    ],
+            [transform.x,      transform.y,      transform.z + 1],
+            [transform.x,      transform.y,      transform.z - 1],
+            [transform.x,      transform.y + 1,  transform.z    ],
+            [transform.x,      transform.y - 1,  transform.z    ],
+        ]
 
         self.pos_list = lis
         self.texture  = material.texture
 
-        self.add_block(self.pos[0], self.pos[1], self.pos[2])
+        self.add_block(transform.x, transform.y, transform.z)
 
 
     # Get coordinates of near by cubes
@@ -134,30 +136,29 @@ class Cube(Entity):
         :return: None
         """
 
-        X, Y, Z    = x + self.size[0], y + self.size[1], z + self.size[2]
-
+        X, Y, Z    = x + self.components.transform.width, y + self.components.transform.height, z + self.components.transform.depth
         tex_coords = ('t2f', (0, 0, 1, 0, 1, 1, 0, 1))
 
-        if not self.new_check("back"): self.batch.add(4, Framework.gl.GL_QUADS, self.texture,
+        self.batch.add(4, Framework.gl.GL_QUADS, self.texture,
                                                          ('v3f', (X, y, z, x, y, z, x, Y, z, X, Y, z)),
                                                          tex_coords)  # back
 
-        if not self.new_check("front"): self.batch.add(4, Framework.gl.GL_QUADS, self.texture,
+        self.batch.add(4, Framework.gl.GL_QUADS, self.texture,
                                                           ('v3f', (x, y, Z, X, y, Z, X, Y, Z, x, Y, Z)),
                                                           tex_coords)  # front
 
-        if not self.new_check("left"): self.batch.add(4, Framework.gl.GL_QUADS, self.texture,
+        self.batch.add(4, Framework.gl.GL_QUADS, self.texture,
                                                          ('v3f', (x, y, z, x, y, Z, x, Y, Z, x, Y, z)),
                                                          tex_coords)  # left
 
-        if not self.new_check("right"): self.batch.add(4, Framework.gl.GL_QUADS, self.texture,
+        self.batch.add(4, Framework.gl.GL_QUADS, self.texture,
                                                           ('v3f', (X, y, Z, X, y, z, X, Y, z, X, Y, Z)),
                                                           tex_coords)  # right
 
-        if not self.new_check("bottom"): self.batch.add(4, Framework.gl.GL_QUADS, self.texture,
+        self.batch.add(4, Framework.gl.GL_QUADS, self.texture,
                                                            ('v3f', (x, y, z, X, y, z, X, y, Z, x, y, Z)),
                                                            tex_coords)  # bottom
 
-        if not self.new_check("top"): self.batch.add(4, Framework.gl.GL_QUADS, self.texture,
+        self.batch.add(4, Framework.gl.GL_QUADS, self.texture,
                                                         ('v3f', (x, Y, Z, X, Y, Z, X, Y, z, x, Y, z)),
                                                         tex_coords)  # top

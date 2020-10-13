@@ -80,7 +80,6 @@ class MouseInputHandler(Component):
         engine.main_window.push_handlers(self.mouse_state_handler)
 
         super().__init__()
-        self.enable()
 
 
     def on_button_pressed(self, x, y, button, modifiers):
@@ -97,3 +96,7 @@ class MouseInputHandler(Component):
 
     def on_update(self, dt, time):
         self.on_button_held(self.pressed_button)
+
+
+    def __repr__(self):
+        return "mouse_listener"

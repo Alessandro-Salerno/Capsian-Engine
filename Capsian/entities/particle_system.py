@@ -72,11 +72,11 @@ class Particle:
 
 
     # Move the particle
-    def move(self, dx, dy, dz):
+    def move(self, dx, dy, dz, dt):
         for quad in self.quads:
-            quad.pos[0] += dx
-            quad.pos[1] -= dy
-            quad.pos[2] += dz
+            quad.components.transform.x += dx * dt
+            quad.components.transform.y -= dy * dt
+            quad.components.transform.z += dz * dt
 
 
 #####################################################################################################################################################################################################################################################################
@@ -101,6 +101,7 @@ class Particles2D(Particle):
 
         self.dead = 0
         Framework.clock.unschedule(self.check)
+        Framework.clock.unschedule(self.destroy)
 
         for quad in self.quads:
             quad.delete()
@@ -109,7 +110,7 @@ class Particles2D(Particle):
 
 
     # Check function
-    def check(self, delta_time):
+    def check(self, dt):
         """
         This method checks if the particle should be killed
         This is automatically called every tick
@@ -119,8 +120,7 @@ class Particles2D(Particle):
         """
 
         if self.dead < self.lifetime:
-            self.dead += 1
-            self.move(dx=self.direction[0], dy=self.direction[1], dz=self.direction[2])
+            self.move(dx=self.direction[0], dy=self.direction[1], dz=self.direction[2], dt=dt)
         else:
             self.kill()
 
@@ -145,7 +145,13 @@ class Particles2D(Particle):
             p.set_flag("look_at_camera", True)
             self.quads.append(p)
 
-        Framework.clock.schedule_interval(self.check, 1/120)
+        engine.default_clock.Schedule.call_every_tick(self.check)
+        engine.default_clock.Schedule.call_with_interval(self.destroy, 1)
+
+
+    def destroy(self, dt):
+        if self.dead < self.lifetime:
+            self.dead += 1
 
 
 #####################################################################################################################################################################################################################################################################

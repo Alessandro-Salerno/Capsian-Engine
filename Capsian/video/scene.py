@@ -62,7 +62,7 @@ class Scene:
 
         :param mode: The Scene mode (CPSN_3D_SCENE or CPSN_GUI_SCENE)
         """
-
+        
         # Set mode
         self.mode        = mode
         self.camera      = camera
@@ -86,10 +86,13 @@ class Scene:
         # Defines lists of objects
         self.batch       = Framework.graphics.Batch()
         self.hud_batch   = Framework.graphics.Batch()
-        self.objects2D   = []
-        self.dynamic_gui = []
-        self.dynamic_hud = []
-        self.lights      = []
+        self.objects2D   = types.LimitedLenghtObjectArray(750.000, True)
+        self.dynamic_gui = types.LimitedLenghtObjectArray(200.000, True)
+        self.dynamic_hud = types.LimitedLenghtObjectArray(30.0000, True)
+        self.lights      = types.LimitedLenghtObjectArray(8.00000, True)
+        self.stack       = types.LimitedLenghtObjectArray(1000.00, True)
+        
+        self.stack.append(camera)
 
 
     # Adds somethings to the batch
@@ -104,6 +107,15 @@ class Scene:
             self.camera.hud_scenes.remove(self)
         
         Log.warning(f"Scene {self} removed from camera {self.camera}!")
+
+
+    def enable(self):
+        if self.mode == CPSN_3D_SCENE or self.mode == CPSN_GUI_SCENE:
+            self.camera.scenes.append(self)
+        elif self.mode == CPSN_HUD_SCENE:
+            self.camera.hud_scenes.append(self)
+
+        Log.warning(f"Scene {self} added to camera {self.camera}!")
 
 
     def __repr__(self):

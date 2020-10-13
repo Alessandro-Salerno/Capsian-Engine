@@ -74,6 +74,16 @@ class TermColor:
     UNDERLINE = '\033[4m'
 
 
+    @staticmethod
+    def begin(color):
+        print(color, end="")
+
+
+    @staticmethod
+    def end():
+        print(TermColor.END_COLOR, end="")
+
+
 # Returns the time and date
 def time():
     now = datetime.now()

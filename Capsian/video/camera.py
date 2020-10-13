@@ -55,6 +55,7 @@ from locals import Framework
 import Capsian.maths.math as kmath
 from locals import engine
 from Capsian.entities.entity import Entity
+from Capsian.components.transform import Transform
 import math
 
 
@@ -70,7 +71,7 @@ class Camera(Entity):
         """
 
         # Environment
-        super().__init__(pos=pos, rot=rot)
+        super().__init__(Transform(x=pos[0], y=pos[1], z=pos[2]), active=True)
 
         # Direction vectors
         self.dx       = 0
@@ -154,9 +155,9 @@ class PerspectiveCamera(Camera):
         Framework.gl.glLoadIdentity()
 
         Framework.gl.glPushMatrix()
-        Framework.gl.glRotatef(-self.rot[0], 1, 0, 0)
-        Framework.gl.glRotatef(-self.rot[1], 0, 1, 0)
-        Framework.gl.glTranslatef(-self.pos[0], -self.pos[1], -self.pos[2])
+        Framework.gl.glRotatef(-self.components.transform.rotX, 1, 0, 0)
+        Framework.gl.glRotatef(-self.components.transform.rotY, 0, 1, 0)
+        Framework.gl.glTranslatef(-self.components.transform.x, -self.components.transform.y, -self.components.transform.z)
 
         
         # Render 3D Scene

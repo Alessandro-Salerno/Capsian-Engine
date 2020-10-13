@@ -52,6 +52,7 @@
 
 
 from locals import *
+from Capsian.components.transform import Transform
 
 
 class Entity:
@@ -66,7 +67,7 @@ class Entity:
     #
     # -------------------------
 
-    def __init__(self, size=[1, 1, 1], pos=[0, 0, 0], rot=[0, 0, 0], scene=None):
+    def __init__(self, transform=Transform(), scene=None, active=False):
         """
         Creates an entity in the world
         This is usually used as super/parent class for other entitys like Cubes
@@ -77,12 +78,12 @@ class Entity:
         :param batch: The scene in which the entity should be rendered
         """
 
-        class Components:
-            stack = []
-
+        class Components(list):
             transform            = None
             character_controller = None
             key_listener         = None
+            mouse_listener       = None
+
         
             def __init__(self, spr):
                 self.spr = spr
@@ -92,24 +93,25 @@ class Entity:
                 from datetime import datetime
 
                 component._init(self.spr)
-                self.stack.append(component)
+                self.append(component)
                 self.spr.on_component_added(datetime.now())
                 setattr(self, repr(component), component)
                 component.on_ready(datetime.now())
 
 
-        self.size       = size
-        self.pos        = pos
-        self.rot        = rot
         self.components = Components(self)
+        self.components.add(transform)
 
         if repr(scene) == CPSN_STANDARD_SCENE or scene == None:
             from datetime import datetime
-            
             self.scene = scene
             
             try:
-                self.batch = scene.batch
+                self.batch  = scene.batch
+                self.active = active
+
+                if active: 
+                    scene.stack.append(self)
             except:
                 pass
 
@@ -138,7 +140,7 @@ class Entity:
         What happens when the program updates
         """
 
-        for component in self.components.stack:
+        for component in self.components:
             component.update(dt)
 
 
@@ -186,6 +188,7 @@ class Entity:
         """
         What happens when the entity is enabled
         """
+
         return False
 
     
@@ -212,11 +215,6 @@ class Entity:
     # -------------------------
 
     @property
-    def position(self):
-        return self.pos
-
-
-    @property
     def entity_type(self):
         return repr(self)
 
@@ -234,3 +232,7 @@ class Entity:
         return copy.deepcopy(self)
         self.on_duplicate(datetime.now())
 
+
+    def update(self, dt):
+        from datetime import datetime
+        self.on_update(dt, datetime.now())

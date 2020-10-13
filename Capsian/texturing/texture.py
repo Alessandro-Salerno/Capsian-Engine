@@ -179,3 +179,7 @@ class Image2D:
         except:
             Log.critical(
                 f"Unable to load texture from file '{file}'. Check the file name and the material's flags!")
+
+    
+    def get_texture(self):
+        return self.image.get_texture()

@@ -177,8 +177,7 @@ class Component:
         :return: False (By Default)
         """
 
-        if self.on_update(0, 0) is not False:
-            self.enable()
+        return False
 
 
     def on_enable(self, time):

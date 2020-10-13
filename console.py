@@ -59,83 +59,24 @@ import time
 import os
 
 
-# List of all commands
-cmds = [
-    "1. commands - Shows this",
-    "2. parse - Translates your TzyLang code in Python and prints it",
-    "3. run - Translates and runs your TzyLang code",
-    "4. clear - Resets the console to it's original state",
-    "5. system('command') - Runs the specified command as you were running it in the command prompt",
-    "6. modules - shows all the modules that are pre-imported by the console",
-    "7. Most python commands (Such as import)"
-]
-
-
-imports = [
-    "Capsian (locals.py)",
-    "os.system (system)",
-    "os",
-    "sys",
-    "time"
-]
-
-
-def run(mode=CPSN_NORMAL_MODE):
-    system("main.py") if os.name == "nt" else system("python3 main.py")
-
-
-def commands():
-    out(f"{TermColor.OK_BLUE}{TermColor.BOLD} **List of all commands** {TermColor.OK_GREEN}")
-
-    for command in cmds:
-        out(command)
-
-    out(f"{TermColor.END_COLOR}")
-
-
-def parse():
-    with open("scripts/script.CPSNl", 'r') as file:
-        global source
-        source = translate.build(file.read())
-
-    print(source)
-
-
-def out(text, end="\n"):
-    print(text, end=end)
-
-
 def clear():
     system("cls") if os.name == "nt" else system("clear")
 
-    print(
-        f"{TermColor.WARNING}Copyright 2020 Alessandro Salerno (Tzyvoski)\nLICENSE: http://www.apache.org/licenses/LICENSE-2.0\nCapsian Console 0.1 for Capsian 1.0 beta 6 preview 1\n{TermColor.END_COLOR}")
 
-
-# Lists all the available modules
-def modules():
-    for module in imports:
-        out(module)
-
-
-# When the program starts
+# Init the program
 clear()
-print()
-commands()
+
+TermColor.begin(TermColor.OK_BLUE)
+print(f"Capsian Console for {engine.version()}")
+print("https://github.com/tzyvoski/Capsian-Engine", end="\n\n")
+TermColor.end()
 
 
 # Main loop
 while True:
-    out(f"{TermColor.OK_GREEN}Python/Capsian{TermColor.FAIL}${TermColor.END_COLOR} ", end=" ")
-    cmd = input()
+    cmd = input("> ")
 
     try:
-        if "print" not in cmd:
-            new_code = cmd + "()"
-        
-        exec(compile(source=new_code, filename="command", mode="exec", optimize=1))
-    except:
-        try:
-            exec(compile(source=cmd, filename="command", mode="exec", optimize=1))
-        except:
-            Log.error("The command you specified is not valid")
+        exec(compile(cmd, "command", "exec"))
+    except Exception as e:
+        print(f"{TermColor.FAIL}{e}{TermColor.END_COLOR}")

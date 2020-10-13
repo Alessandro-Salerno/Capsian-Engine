@@ -101,17 +101,17 @@ class CharacterController(Component):
     def on_update(self, dt, time):
         self.s              = dt     * self.multiplier * engine.main_window.alive
 
-        self.parent.rotY    = -self.parent.rot[1] / 180 * math.pi
+        self.parent.rotY    = -self.parent.components.transform.rotY / 180 * math.pi
 
         self.parent.dx      = self.s * math.sin(self.parent.rotY)
         self.parent.dz      = self.s * math.cos(self.parent.rotY)
 
 
     def rotate(self):
-        self.parent.rot[0]  += self.parent.mouse_dy * self.sens
-        self.parent.rot[1]  -= self.parent.mouse_dx * self.sens
+        self.parent.components.transform.rotX  += self.parent.mouse_dy * self.sens
+        self.parent.components.transform.rotY  -= self.parent.mouse_dx * self.sens
 
-        self.parent.rot[0]   = kmath.clamp(90, -90, self.parent.rot[0])
+        self.parent.components.transform.rotX   = kmath.clamp(90, -90, self.parent.components.transform.rotX)
 
 
     def move(self, direction):
@@ -123,23 +123,23 @@ class CharacterController(Component):
         """
 
         if direction    == "forwards":
-            self.parent.pos[0] += self.parent.dx * self.speed * engine.main_window.alive
-            self.parent.pos[2] -= self.parent.dz * self.speed * engine.main_window.alive
+            self.parent.components.transform.x += self.parent.dx * self.speed * engine.main_window.alive
+            self.parent.components.transform.z -= self.parent.dz * self.speed * engine.main_window.alive
 
         if direction    == "backwards":
-            self.parent.pos[0] -= self.parent.dx * self.speed * engine.main_window.alive
-            self.parent.pos[2] += self.parent.dz * self.speed * engine.main_window.alive
+            self.parent.components.transform.x -= self.parent.dx * self.speed * engine.main_window.alive
+            self.parent.components.transform.z += self.parent.dz * self.speed * engine.main_window.alive
 
         if direction    == "right":
-            self.parent.pos[0] += self.parent.dz * self.speed * engine.main_window.alive
-            self.parent.pos[2] += self.parent.dx * self.speed * engine.main_window.alive
+            self.parent.components.transform.x += self.parent.dz * self.speed * engine.main_window.alive
+            self.parent.components.transform.z += self.parent.dx * self.speed * engine.main_window.alive
 
         if direction    == "left":
-            self.parent.pos[0] -= self.parent.dz * self.speed * engine.main_window.alive
-            self.parent.pos[2] -= self.parent.dx * self.speed * engine.main_window.alive
+            self.parent.components.transform.x -= self.parent.dz * self.speed * engine.main_window.alive
+            self.parent.components.transform.z -= self.parent.dx * self.speed * engine.main_window.alive
 
         if direction    == "down":
-            self.parent.pos[1] -= self.s / self.dividend * engine.main_window.alive
+            self.parent.components.transform.y -= self.s / self.dividend * engine.main_window.alive
 
         if direction    == "up":
-            self.parent.pos[1] += self.s / self.dividend * engine.main_window.alive
+            self.parent.components.transform.y += self.s / self.dividend * engine.main_window.alive

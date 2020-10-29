@@ -92,7 +92,6 @@ from Capsian.video.light                       import AmbientLight
 from Capsian.log                               import TermColor
 from Capsian.GUI.sprite                        import DynamicSprite3D
 from Capsian.GUI.sprite                        import DynamicSprite3D
-from Capsian.texturing.texture                 import Texture2D
 from Capsian.entities.square                   import TexturedSquare
 from Capsian.texturing.texture                 import Image2D
 from Capsian.video.fps_counter                 import FPSCounter

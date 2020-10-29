@@ -86,32 +86,10 @@ class Camera(Entity):
         self.keys     = None
 
         # Rendering
-        self._fov     = fov
+        self.fov     = fov
         self.far      = int(far)
         self.near     = float(near)
         self.scenes   = []
-
-
-    @property
-    def fov(self):
-        """
-        The current field of view of the camera
-
-        :return: Float/Int Field of View (Default: 90)
-        """
-
-        return self._fov
-
-
-    def set_fov(self, fov):
-        """
-        Sets the field of view of the camera
-
-        :param fov: The new field of view
-        :return: None
-        """
-
-        self._fov = fov
 
 
 ########################################################################################################################

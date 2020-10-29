@@ -57,7 +57,7 @@ from locals import *
 class FPSCounter:
     def __init__(self, scene):
         self.scene = scene
-        self.label = DynamicLabel3D("Calibri", 48, Position2D(0, 0), CPSN_AUTO_SIZE, self.get_pyglet_fps, Color(255, 255, 255).rgba, scene=scene)
+        self.label = DynamicLabel3D("Calibri", 48, (0, 0), CPSN_AUTO_SIZE, self.get_pyglet_fps, Color(255, 255, 255).rgba, scene=scene)
 
 
     def get_fps(self):

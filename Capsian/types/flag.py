@@ -51,73 +51,18 @@
 # ----------------------------------------------------------------------------
 
 
-def TextureMode(filter1, filter2, algorithm):
-    """
-    Converts a series of values into a Texture Compatible OpenGL Texture Mode.
-    The default Texture Mode is specified by CPSN_DEFAULT_TEXTURE_MODE and is applied to all textures by default.
-    This mode is great for pixel art, but may be out of touch for more defined textures.
-
-    :param filter1: The first filter (Default: Framework.gl.GL_TEXTURE_MIN_FILTER)
-    :param filter2: The second filter (Default: Framework.gl.GL_TEXTURE_MAG_FILTER)
-    :param algorithm: The scaling algorithm used by OpenGL (Default: Framework.gl.GL_NEAREST)
-
-    :return: Array [filter1, filter2, algorithm]
-    """
-
-    return [filter1, filter2, algorithm]
+from locals import Log
 
 
-class Color:
-    """
-    A color object is not always useful.
-    It's designed to help you to convert different color types (Such as RGB to Float)
-
-    """
-
-    def __init__(self, r=255, g=255, b=255, a=255):
-        self.rgba = [r, g, b, a]
+class Flag:
+    def __init__(self, name, value):
+        self.value = value
+        self.name  = name
 
 
-    def convert_to(self, to):
-        methods = {
-            "rgb": self._convert_to_byte_color,
-            "glf": self._convert_to_gl_float_color,
-        }
-
-        if to in methods.keys():
-            methods[to]()
-        else:
-            from locals import Log
-            Log.error(f"'{to}' is not a valid color type")
+    def __repr__(self):
+        return "flag"
 
 
-    @property
-    def _convert_to_gl_float_color(self):
-        """
-        Converts RGB/RGBA to OpenGL float color
-
-        :return: Array [FloatR, FloatG, FloatB, FloatA]
-        """
-
-        gl_colors = [0, 0, 0, 0]
-
-        for i in range(0, len(self.rgba)):
-            gl_colors[i] = self.rgba[i] / 255
-
-        return gl_colors
-
-
-    @property
-    def _convert_to_byte_color(self):
-        """
-        Converts OpenGL float color into RGBA
-
-        :return: Array [R, G, B, A]
-        """
-
-        byte_colors = [0, 0, 0, 0]
-
-        for i in range(0, len(self.rgba)):
-            byte_colors[i] = self.rgba[i] * 255
-
-        return byte_colors
+    def set(self, value):
+        self.value = value

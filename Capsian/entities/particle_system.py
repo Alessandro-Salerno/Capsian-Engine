@@ -75,7 +75,7 @@ class Particle:
     def move(self, dx, dy, dz, dt):
         for quad in self.quads:
             quad.components.transform.x += dx * dt
-            quad.components.transform.y -= dy * dt
+            quad.components.transform.y += dy * dt
             quad.components.transform.z += dz * dt
 
 

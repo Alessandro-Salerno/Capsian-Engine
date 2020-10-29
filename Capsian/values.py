@@ -87,6 +87,14 @@ class Direction:
     LEFT                  = "left"
     RIGHT                 = "right"
 
+    class Vector:
+        UP                = [ 0.0,  0.1,  0.0 ]
+        DOWN              = [ 0.0, -0.1,  0.0 ]
+        LEFT              = [ 0.1,  0.0,  0.0 ]
+        RIGHT             = [-0.1,  0.0,  0.0 ]
+        FORWANRDS         = [ 0.0,  0.0,  0.1 ]
+        BACKWARDS         = [ 0.0,  0.0, -0.1 ]
+
 
 class MouseButton:
     LEFT                  = 1 << 0

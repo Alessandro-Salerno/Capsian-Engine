@@ -52,3 +52,5 @@
 
 
 from Capsian.types.object_array import LimitedLenghtObjectArray
+from Capsian.types.flag         import Flag
+from Capsian.types.flag_list    import FlagList

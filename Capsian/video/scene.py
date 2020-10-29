@@ -86,11 +86,11 @@ class Scene:
         # Defines lists of objects
         self.batch       = Framework.graphics.Batch()
         self.hud_batch   = Framework.graphics.Batch()
-        self.objects2D   = types.LimitedLenghtObjectArray(750.000, True)
-        self.dynamic_gui = types.LimitedLenghtObjectArray(200.000, True)
-        self.dynamic_hud = types.LimitedLenghtObjectArray(30.0000, True)
-        self.lights      = types.LimitedLenghtObjectArray(8.00000, True)
-        self.stack       = types.LimitedLenghtObjectArray(1000.00, True)
+        self.objects2D   = types.LimitedLenghtObjectArray(750.000, False)
+        self.dynamic_gui = types.LimitedLenghtObjectArray(200.000, False)
+        self.dynamic_hud = types.LimitedLenghtObjectArray(30.0000, False)
+        self.lights      = types.LimitedLenghtObjectArray(8.00000, False)
+        self.stack       = types.LimitedLenghtObjectArray(1000.00, False)
         
         self.stack.append(camera)
 

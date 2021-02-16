@@ -35,7 +35,7 @@
 
 # ----------------------------------------------------------------------------
 # Capsian Engine
-# Copyright 2020 Alessandro Salerno (Tzyvoski)
+# Copyright 2020 - 2021 Alessandro Salerno (Tzyvoski)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ class Track:
 
     """
 
-    def __init__(self, file, streaming, auto_play):
+    def __init__(self, file, streaming):
         """
         Creates a track object
 
@@ -75,8 +75,6 @@ class Track:
         self.streaming = streaming
         self.audio     = Framework.resource.media(file, streaming=streaming)
 
-        if auto_play: self.play()
-
 
     # Plays the track
     def play(self):
@@ -87,7 +85,6 @@ class Track:
         """
 
         self.audio.play()
-        print("playing...")
 
 
     # When the object is called

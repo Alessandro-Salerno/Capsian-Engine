@@ -11,13 +11,13 @@ scene = Scene(camera)
 tex = Texture3D("assets/textures/glass.png")
 img = Image2D("assets/textures/glass.png")
 mat = Material(texture=tex)
-c = Cube(material=mat, scene=scene, transform=Transform(0, 0, 0, 10, 10, 10))
+c = Cube(scene, Transform(), mat)
 
 hud_scene = Scene(camera, CPSN_HUD_SCENE)
 counter = FPSCounter(hud_scene)
 
-AmbientLight((1, 1,10), Color(0, 0, 255).rgba, scene)
-AmbientLight((9, 1, 0), Color(0, 0, 255).rgba, scene)
+AmbientLight(Transform(1, 1, 10), Color(0, 0, 255).rgba, scene)
+AmbientLight(Transform(9, 1, 0), Color(0, 0, 255).rgba, scene)
 
 
 square = Square(Color(255, 255, 255).rgba, (5, 5, 5), (2.5, 2.5, 5), [0, 0], scene)

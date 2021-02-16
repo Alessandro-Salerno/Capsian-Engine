@@ -35,7 +35,7 @@
 
 # ----------------------------------------------------------------------------
 # Capsian Engine
-# Copyright 2020 Alessandro Salerno (Tzyvoski)
+# Copyright 2020 - 2021 Alessandro Salerno (Tzyvoski)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -112,13 +112,11 @@ class Scheduled:
 
 
     def remove(self, func):
-        if func in scheduled:
-            scheduled.remove(func)
-        else:
-            try:
-                Framework.clock.unschedule(func)
-            except:
-                Log.critical(f"{func} is not scheduled, thus it can not be unscheduled")
+        if not func in scheduled:
+            Log.critical(f"Function {func} is not scheduled, thus it cannot be unscheduled")
+
+        
+        scheduled.remove(func)
 
 
 class EntryPoints:

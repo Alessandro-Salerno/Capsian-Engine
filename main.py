@@ -35,7 +35,7 @@
 
 # ----------------------------------------------------------------------------
 # Capsian Engine
-# Copyright 2020 Alessandro Salerno (Tzyvoski)
+# Copyright 2020 - 2021 Alessandro Salerno (Tzyvoski)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -66,20 +66,8 @@ with open("options.cpsn", "r") as preferences:
     options  = eval(compile(source=_options, filename="options", mode="eval", optimize=1))
 
 
-# Read the code contained in the main file and run some checks
-if options["main file"] is not None:
-    with open(options["main file"], "r") as file:
-        global source
-
-        source = file.read()
-        Log.successful("Loaded python script")
-else:
-    Log.critical("No main file specified!")
-    input()
-
-
-# Compiles all the code
-exec(compile(source=source, filename="script", mode="exec", optimize=1))
+# Compiles and runs scripts
+import scripts
 
 
 try:

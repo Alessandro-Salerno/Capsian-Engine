@@ -35,7 +35,7 @@
 
 # ----------------------------------------------------------------------------
 # Capsian Engine
-# Copyright 2020 Alessandro Salerno (Tzyvoski)
+# Copyright 2020 - 2021 Alessandro Salerno (Tzyvoski)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -94,8 +94,9 @@ class CharacterController(Component):
     def on_ready(self, time):
         if not repr(self.parent) == CPSN_PERSPECTIVE_CAMERA:
             Log.critical("You are trying to add a CharacterController Component to an object that is not CPSN_PERSPECTIVE_CAMERA compatible")
-        else:
-            super().on_ready(time)
+            return
+        
+        super().on_ready(time)
 
 
     def on_update(self, dt, time):

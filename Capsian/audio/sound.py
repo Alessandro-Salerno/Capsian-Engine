@@ -35,7 +35,7 @@
 
 # ----------------------------------------------------------------------------
 # Capsian Engine
-# Copyright 2020 Alessandro Salerno (Tzyvoski)
+# Copyright 2020 - 2021 Alessandro Salerno (Tzyvoski)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ class DirectionalSound:
 
     """
 
-    def __init__(self, source, pos, auto_play):
+    def __init__(self, source, pos):
         """
         Creates a direction sound object in the world
 
@@ -74,8 +74,6 @@ class DirectionalSound:
         self.player          = Framework.media.player.Player()
         self.player.position = pos
         self.source          = source
-
-        if auto_play: self.play()
 
         # Start the loop
         Framework.clock.schedule_interval(self.update, 1/120)

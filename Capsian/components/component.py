@@ -35,7 +35,7 @@
 
 # ----------------------------------------------------------------------------
 # Capsian Engine
-# Copyright 2020 Alessandro Salerno (Tzyvoski)
+# Copyright 2020 - 2021 Alessandro Salerno (Tzyvoski)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -230,23 +230,24 @@ class Component:
     def enable(self):
         from datetime import datetime
 
-        if not self._enabled:
-            self._enabled = True
-            Framework.clock.schedule(self.update)
-            self.on_enable(datetime.now())
-        else:
+        if self._enabled:
             Log.error("Component already enabled!")
+            return
+
+        self._enabled = True
+        Framework.clock.schedule(self.update)
+        self.on_enable(datetime.now())
 
 
     def disable(self):
         from datetime import datetime
 
-        if self._enabled:
-            self._enabled = False
-            Framework.clock.unschedule(self.on_update)
-            self.on_disable(datetime.now())
-        else:
+        if not self._enabled:
             Log.error("Component already disabled!")
+
+        self._enabled = False
+        Framework.clock.unschedule(self.on_update)
+        self.on_disable(datetime.now())
 
 
     def update(self, dt):

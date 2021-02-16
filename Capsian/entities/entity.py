@@ -35,7 +35,7 @@
 
 # ----------------------------------------------------------------------------
 # Capsian Engine
-# Copyright 2020 Alessandro Salerno (Tzyvoski)
+# Copyright 2020 - 2021 Alessandro Salerno (Tzyvoski)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -78,6 +78,8 @@ class Entity:
         :param batch: The scene in which the entity should be rendered
         """
 
+        from datetime import datetime
+
         class Components(list):
             transform            = None
             character_controller = None
@@ -102,23 +104,23 @@ class Entity:
         self.components = Components(self)
         self.components.add(transform)
 
-        if repr(scene) == CPSN_STANDARD_SCENE or scene == None:
-            from datetime import datetime
-            self.scene = scene
-            
-            try:
-                self.batch  = scene.batch
-                self.active = active
-
-                if active: 
-                    scene.stack.append(self)
-            except:
-                pass
-
-            self.on_create(datetime.now())
-        else:
+        if not repr(scene) == CPSN_STANDARD_SCENE:
             self.scene = None
             Log.critical(f"The specified scene for entity {self} is not valid!")
+            return
+
+        if scene == None:
+            self.scene = None
+            Log.critical(f"The specified scene for entity {self} is not valid!")
+            return
+
+        self.scene  = scene
+        self.batch  = scene.batch
+        self.active = active
+
+        if active: scene.stack.append(self)
+
+        self.on_create(datetime.now())
 
 
     # -------------------------

@@ -35,7 +35,7 @@
 
 # ----------------------------------------------------------------------------
 # Capsian Engine
-# Copyright 2020 Alessandro Salerno (Tzyvoski)
+# Copyright 2020 - 2021 Alessandro Salerno (Tzyvoski)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -107,12 +107,12 @@ class Clock:
 
 
         def __init__(self, clock, func):
-                self.clock = clock
-                self.func  = func
+            self.clock = clock
+            self.func  = func
 
 
         def __repr__(self):
-                return "EntryPoint Object"
+            return "EntryPoint Object"
 
 
     
@@ -160,12 +160,12 @@ class Clock:
 
 
         def __init__(self, clock, func):
-                self.clock = clock
-                self.func  = func
+            self.clock = clock
+            self.func  = func
 
 
         def __repr__(self):
-                return "EntryPoint Object"
+            return "EntryPoint Object"
 
 
 

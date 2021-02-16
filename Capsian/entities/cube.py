@@ -35,7 +35,7 @@
 
 # ----------------------------------------------------------------------------
 # Capsian Engine
-# Copyright 2020 Alessandro Salerno (Tzyvoski)
+# Copyright 2020 - 2021 Alessandro Salerno (Tzyvoski)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ class Cube(Entity):
 
     """
 
-    def __init__(self, transform=Transform(), scene=None, lis=[], material=None):
+    def __init__(self, scene, transform=Transform(), material=None):
         """
         Creates a cube in the world
 
@@ -74,7 +74,7 @@ class Cube(Entity):
         :param material: The material the cube is made out of (Texture3D()/SmartTexture3D, Material())
         """
 
-        Entity.__init__(self, transform=transform, scene=scene)
+        super().__init__(scene=scene, transform=transform)
 
         self.next_pos = [
             [transform.x + 1,  transform.y,      transform.z    ],
@@ -85,44 +85,8 @@ class Cube(Entity):
             [transform.x,      transform.y - 1,  transform.z    ],
         ]
 
-        self.pos_list = lis
         self.texture  = material.texture
-
         self.add_block(transform.x, transform.y, transform.z)
-
-
-    # Get coordinates of near by cubes
-    def get_coords(self, face):
-        """
-        :param face: String
-        :return: Array [x, y, z]
-        """
-
-        coords = {
-            "left": self.next_pos[1],
-            "right": self.next_pos[0],
-            "back": self.next_pos[3],
-            "front": self.next_pos[2],
-            "top": self.next_pos[4],
-            "bottom": self.next_pos[5]
-        }
-
-        return coords[face]
-
-
-    # Check if there is any cube near by
-    def new_check(self, face):
-        """
-        Calls Cube.get_coords()
-
-        :param face: String
-        :return: Boolean
-        """
-
-        if self.get_coords(face) in self.pos_list:
-            return True
-        else:
-            return False
 
 
     # Add faces to batch
@@ -136,29 +100,56 @@ class Cube(Entity):
         :return: None
         """
 
-        X, Y, Z    = x + self.components.transform.width, y + self.components.transform.height, z + self.components.transform.depth
+        X, Y, Z    = x + self.components.transform.width, \
+                     y + self.components.transform.height, \
+                     z + self.components.transform.depth
+
         tex_coords = ('t2f', (0, 0, 1, 0, 1, 1, 0, 1))
 
-        self.batch.add(4, Framework.gl.GL_QUADS, self.texture,
-                                                         ('v3f', (X, y, z, x, y, z, x, Y, z, X, Y, z)),
-                                                         tex_coords)  # back
+        # Back
+        self.batch.add(
+                        4, 
+                        Framework.gl.GL_QUADS, self.texture,
+                        ('v3f', (X, y, z, x, y, z, x, Y, z, X, Y, z)),
+                        tex_coords
+        )
 
-        self.batch.add(4, Framework.gl.GL_QUADS, self.texture,
-                                                          ('v3f', (x, y, Z, X, y, Z, X, Y, Z, x, Y, Z)),
-                                                          tex_coords)  # front
+        # Front
+        self.batch.add(
+                        4,
+                        Framework.gl.GL_QUADS, self.texture,
+                        ('v3f', (x, y, Z, X, y, Z, X, Y, Z, x, Y, Z)),
+                        tex_coords
+        )
 
-        self.batch.add(4, Framework.gl.GL_QUADS, self.texture,
-                                                         ('v3f', (x, y, z, x, y, Z, x, Y, Z, x, Y, z)),
-                                                         tex_coords)  # left
+        # Left
+        self.batch.add(
+                        4,
+                        Framework.gl.GL_QUADS, self.texture,
+                        ('v3f', (x, y, z, x, y, Z, x, Y, Z, x, Y, z)),
+                        tex_coords
+        )
 
-        self.batch.add(4, Framework.gl.GL_QUADS, self.texture,
-                                                          ('v3f', (X, y, Z, X, y, z, X, Y, z, X, Y, Z)),
-                                                          tex_coords)  # right
+        # Right
+        self.batch.add(
+                        4,
+                        Framework.gl.GL_QUADS, self.texture,
+                        ('v3f', (X, y, Z, X, y, z, X, Y, z, X, Y, Z)),
+                        tex_coords
+        )
 
-        self.batch.add(4, Framework.gl.GL_QUADS, self.texture,
-                                                           ('v3f', (x, y, z, X, y, z, X, y, Z, x, y, Z)),
-                                                           tex_coords)  # bottom
+        # Bottom
+        self.batch.add(
+                        4,
+                        Framework.gl.GL_QUADS, self.texture,
+                        ('v3f', (x, y, z, X, y, z, X, y, Z, x, y, Z)),
+                        tex_coords
+        )
 
-        self.batch.add(4, Framework.gl.GL_QUADS, self.texture,
-                                                        ('v3f', (x, Y, Z, X, Y, Z, X, Y, z, x, Y, z)),
-                                                        tex_coords)  # top
+        # Top
+        self.batch.add(
+                        4,
+                        Framework.gl.GL_QUADS, self.texture,
+                        ('v3f', (x, Y, Z, X, Y, Z, X, Y, z, x, Y, z)),
+                        tex_coords
+        )

@@ -43,7 +43,7 @@ If you think your contributions could help a lot, then write to my email address
 
 # Credits
 All though I am the solo developer of Capsian, some people helped me and still help me, here are some of them
-- Carpal (From the Italian Discord Server "RobinScript Community")
+- Carpal (From the Italian Discord Server "Tecnologia Per Tutt") [CapsianLine https://github.com/Carpall/capsianline]
 - Liam (From the Italian Discord Server "Tecnologia per Tutti")
 - Lorenzo Bergadano (From Real life 😂)
 - Pyglet and the pyglet contributors for providing the amazing toolkit used to make Capsian

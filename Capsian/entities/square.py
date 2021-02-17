@@ -211,9 +211,17 @@ class Square(Entity):
 
 class TexturedSquare(Square):
     def __init__(self, texture, size, pos, rot, scene):
-        super().__init__([255, 255, 255, 255], size, pos, rot, scene=scene)
-
         self.texture = texture.get_texture()
+
+        super().__init__(
+            [255, 255, 255],
+            size,
+            pos,
+            rot,
+            scene,
+            False
+        )
+        
         scene.objects2D.append(self)
 
 
@@ -226,12 +234,9 @@ class TexturedSquare(Square):
 
         Framework.gl.glPushMatrix()
 
-        Framework.gl.glTranslatef(self.pos[0], self.pos[1], self.pos[2])
+        Framework.gl.glTranslatef(self.components.transform.x, self.components.transform.y, self.components.transform.z)
         Framework.gl.glEnable(Framework.gl.GL_TEXTURE_2D)
         Framework.gl.glBindTexture(Framework.gl.GL_TEXTURE_2D, self.texture.id)
-
-        if self.check_flag("look_at_camera"):
-            self.look_at_camera()
 
         self.vertex_list.draw(Framework.gl.GL_QUADS)
         Framework.gl.glDisable(Framework.gl.GL_TEXTURE_2D)

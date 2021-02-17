@@ -55,15 +55,20 @@ from locals import *
 from Capsian.entities.square import TexturedSquare
 
 
-class DynamicSprite3D(TexturedSquare):
+class DynamicSprite3D():
     """
     A sprite is a 2D image that can be displayed as HUD.
     """
 
 
     def __init__(self, texture, size, pos, rot, scene):
-        super().__init__(texture, size, pos, rot, scene)
+        t = TexturedSquare(
+            texture,
+            size,
+            pos,
+            rot,
+            scene
+        )
 
         self.texture = texture.get_texture()
-        scene.objects2D.remove(self)
-        scene.dynamic_hud.append(self)
+        scene.dynamic_hud.append(t)

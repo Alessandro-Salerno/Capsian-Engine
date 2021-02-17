@@ -77,6 +77,7 @@ def run():
     """
 
     from datetime import datetime
+    # import Capsian.services
 
     for fn in entry_points:
         fn(datetime.now())
@@ -153,4 +154,3 @@ class ExitPoints:
 loops   = Scheduled()
 entries = EntryPoints()
 exits   = ExitPoints()
-# Framework.clock.schedule(update)

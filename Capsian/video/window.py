@@ -52,12 +52,12 @@
 
 
 
-from locals import Framework as pyglet
-from pyglet.gl import *
-from pyglet.window import key
-from Capsian.values import *
-from locals import Log
-from locals import engine
+from locals            import Framework as pyglet
+from pyglet.gl      import *
+from pyglet.window  import key
+from Capsian.values    import *
+from locals            import Log
+from locals            import engine
 
 
 class Window(pyglet.window.Window):
@@ -104,7 +104,10 @@ class Window(pyglet.window.Window):
         :return: None
         """
 
-        self.set_location(round(self.screen.width / 2 - self.width / 2), round(self.screen.height / 2 - self.height / 2))
+        self.set_location(
+            round(self.screen.width / 2 - self.width / 2),
+            round(self.screen.height / 2 - self.height / 2)
+        )
 
 
     # Set mouse lock
@@ -112,7 +115,7 @@ class Window(pyglet.window.Window):
         """
         Switches on and off the mouse lock
 
-        :param state:
+        :param state: State in which the mouse lock field should be set to (Boolean)
         :return: None
         """
 
@@ -136,8 +139,10 @@ class Window(pyglet.window.Window):
         :return: None
         """
 
-        if self.mouse_lock:
-            self.view_port.rotate(dx, dy)
+        if not self.mouse_lock:
+            return
+
+        self.view_port.rotate(dx, dy)
 
 
     def on_key_press(self, symbol, modifiers):

@@ -55,7 +55,7 @@ from locals import*
 
 
 class Scene:
-    def __init__(self, camera, mode=CPSN_3D_SCENE):
+    def __init__(self, camera, mode):
         """
         Creates a Capsian scene object.
         It uses pyglet.graphics.Batch()
@@ -66,31 +66,14 @@ class Scene:
         # Set mode
         self.mode        = mode
         self.camera      = camera
-
-        # Check mode
-        if mode     == CPSN_3D_SCENE:
-            if repr(camera) == CPSN_PERSPECTIVE_CAMERA:
-                camera.scenes.append(self)
-            else:
-                Log.critical("Cannot add 3D scene to non-perspective camera. Please pass a perspective camera, not a generic or orthographic one")
-        else:
-            if mode == CPSN_GUI_SCENE:
-                if repr(camera) == CPSN_ORTHOGRAPHIC_CAMERA:
-                    camera.scenes.append(self)
-                else:
-                    Log.critical("Cannot add GUI scene to non-orthographic camera. Please pass an orthographic camera, not a generic or perspective one")
-            else:
-                if repr(camera) == CPSN_PERSPECTIVE_CAMERA:
-                    camera.hud_scenes.append(self)
+        self.enabled     = False
 
         # Defines lists of objects
         self.batch       = Framework.graphics.Batch()
-        self.hud_batch   = Framework.graphics.Batch()
         self.objects2D   = types.LimitedLenghtObjectArray(750.000, False)
-        self.dynamic_gui = types.LimitedLenghtObjectArray(200.000, False)
-        self.dynamic_hud = types.LimitedLenghtObjectArray(30.0000, False)
         self.lights      = types.LimitedLenghtObjectArray(8.00000, False)
         self.stack       = types.LimitedLenghtObjectArray(1000.00, False)
+        self.drawable    = types.LimitedLenghtObjectArray(700.000, False)
         
         self.stack.append(camera)
 
@@ -100,23 +83,122 @@ class Scene:
         self.batch.add(*args, **kwargs)
 
 
-    def disable(self):
-        if self.mode == CPSN_3D_SCENE or self.mode == CPSN_GUI_SCENE:
-            self.camera.scenes.remove(self)
-        elif self.mode == CPSN_HUD_SCENE:
-            self.camera.hud_scenes.remove(self)
-        
-        Log.warning(f"Scene {self} removed from camera {self.camera}!")
-
-
-    def enable(self):
-        if self.mode == CPSN_3D_SCENE or self.mode == CPSN_GUI_SCENE:
-            self.camera.scenes.append(self)
-        elif self.mode == CPSN_HUD_SCENE:
-            self.camera.hud_scenes.append(self)
-
-        Log.warning(f"Scene {self} added to camera {self.camera}!")
-
-
     def __repr__(self):
-        return "Capsian Standard Scene"
+        return CPSN_STANDARD_SCENE
+
+
+class Scene3D(Scene):
+    def __init__(self, camera):
+        super().__init__(
+            camera=camera,
+            mode=CPSN_3D_SCENE
+        )
+
+        if not repr(camera) == CPSN_PERSPECTIVE_CAMERA:
+            Log.critical(f"{repr(camera)} is not a valid camera for Scene3D!")
+            return
+        
+        if not self.enable():
+            Log.error(f"Could not enable scene {self}")
+
+
+    def disable(self):
+        if not self.enabled:
+            Log.error(f"Scene {self} already disabled")
+            return False
+
+        self.camera.scenes.remove(self)
+        Log.warning(f"Scene {self} removed from camera {self.camera}!")
+        return True
+
+    
+    def enable(self):
+        if self.enabled:
+            Log.error(f"Scene {self} already enabled")
+            return False
+
+        self.camera.scenes.append(self)
+        Log.warning(f"Scene {self} added to camera {self.camera}!")
+        return True
+
+
+class Scene2D(Scene):
+    def __init__(self, camera):
+        super().__init__(
+            camera=camera,
+            mode=CPSN_GUI_SCENE
+        )
+
+        if not repr(camera) == CPSN_ORTHOGRAPHIC_CAMERA:
+            Log.critical(f"{repr(camera)} is not a valid camera for Scene3D!")
+            return
+        
+        if not self.enable():
+            Log.error(f"Could not enable scene {self}")
+
+
+    def disable(self):
+        if not self.enabled:
+            Log.error(f"Scene {self} already disabled")
+            return False
+
+        self.camera.scenes.remove(self)
+        Log.warning(f"Scene {self} removed from camera {self.camera}!")
+        return True
+
+    
+    def enable(self):
+        if self.enabled:
+            Log.error(f"Scene {self} already enabled")
+            return False
+
+        self.camera.scenes.append(self)
+        Log.warning(f"Scene {self} added to camera {self.camera}!")
+        return True
+
+
+class OverlayScene(Scene):
+    def __init__(self, camera):
+        super().__init__(
+            camera=camera,
+            mode=CPSN_HUD_SCENE
+        )
+
+        self.hud_batch   = Framework.graphics.Batch()
+        self.dynamic_gui = types.LimitedLenghtObjectArray(200.000, False)
+        self.dynamic_hud = types.LimitedLenghtObjectArray(30.0000, False)
+
+        if not repr(camera) == CPSN_PERSPECTIVE_CAMERA:
+            Log.critical(f"{repr(camera)} is not a valid camera for OverlayScene!")
+            return
+        
+        if not self.enable():
+            Log.error(f"Could not enable scene {self}")
+
+
+    def disable(self):
+        if not self.enabled:
+            Log.error(f"Scene {self} already disabled")
+            return False
+
+        self.camera.hud_scenes.remove(self)
+        Log.warning(f"Scene {self} removed from camera {self.camera}!")
+        return True
+
+    
+    def enable(self):
+        if self.enabled:
+            Log.error(f"Scene {self} already enabled")
+            return False
+
+        self.camera.hud_scenes.append(self)
+        Log.warning(f"Scene {self} added to camera {self.camera}!")
+        return True
+
+
+class PlaceholderScene(Scene):
+    def __init__(self):
+        super().__init__(
+            None,
+            CPSN_STANDARD_SCENE
+        )

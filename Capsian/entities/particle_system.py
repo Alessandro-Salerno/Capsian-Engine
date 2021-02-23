@@ -54,21 +54,36 @@
 
 from   locals                  import *
 import random
-from   Capsian.entities.square import Square
+from   Capsian.entities.square import RotatingSquare
 
 
-class Particle:
-    def __init__(self, pos=[0, 0, 0], quantity=1, direction=[0, -0.01, 0], size=[0.25, 0.25, 0.25], lifetime=240, scene=None):
-        self.pos       = pos
-        self.quantity  = quantity
-        self.lifetime  = lifetime
+class Particle(Entity):
+    def __init__(self, transform=None, amount=4, duration=240, scene=None):
+        """
+        Creates a Particle derivative (Such as Particles2D)
+
+        :param transform: A Transform object
+        :param amount: Amount of particles to be generated (Int)
+        :param duration: The duration of the particle
+        :param scene: A Scene object
+        """
+
+        super().__init__(
+            transform,
+            scene,
+            True
+        )
+
         self.dead      = 0
-        self.quads     = []
-        self.size      = size
-        self.direction = direction
-        self.scene     = scene
+        self.quads     = list()
+        self.amount    = int(amount)
+        self.duration  = float(duration)
 
-        self.create(quantity=quantity, pos=[self.pos[0], self.pos[1], self.pos[2]])
+        self.create(
+            amount,
+            self.components.transform.position,
+            self.components.transform.size
+        )
 
 
     # Move the particle
@@ -87,7 +102,6 @@ class Particles2D(Particle):
     Particles are 2D objects rendered in a 3D scene.
     They can move in a specific direction and disappear once their lifetime expires.
     NOTE: They may have a big impact on your game's performance. This will be fixed in a later version
-
     """
 
     # Kill function
@@ -119,14 +133,19 @@ class Particles2D(Particle):
         :return: None
         """
 
-        if self.dead < self.lifetime:
-            self.move(dx=self.direction[0], dy=self.direction[1], dz=self.direction[2], dt=dt)
-        else:
+        if not self.dead < self.duration:
             self.kill()
+
+        self.move(
+            dx=self.components.transform.dx,
+            dy=self.components.transform.dy,
+            dz=self.components.transform.dz,
+            dt=dt
+        )
 
 
     # Create particles
-    def create(self, quantity, pos):
+    def create(self, quantity, pos, size):
         """
         This method creates the particles.
         You can call this, but there's not reason to as it's automatically called by the constructor
@@ -136,13 +155,22 @@ class Particles2D(Particle):
         :return: None
         """
 
-        for _ in range(0, quantity):
-            x = pos[0] + random.uniform(-self.size[0] * 2, self.size[2] * 2)
-            y = pos[1] + random.uniform(-self.size[0], self.size[2] / 2)
-            z = pos[2] + random.uniform(self.size[0] * 2, self.size[2] * 2)
+        from locals import Transform
 
-            p = Square(color=None, size=self.size, pos=[x, y, z], rot=[0, 0], scene=self.scene)
-            p.set_flag("look_at_camera", True)
+        for _ in range(quantity):
+            x = pos[0] + random.uniform(-size[0] * 2,  size[2] * 2)
+            y = pos[1] + random.uniform(-size[0]    ,  size[2] / 2)
+            z = pos[2] + random.uniform( size[0] * 2,  size[2] * 2)
+
+            p = RotatingSquare(
+                Transform(
+                    x, y, z,
+                    size[0], size[1], size[2]
+                ),
+                self.scene,
+                False
+            )
+
             self.quads.append(p)
 
         engine.default_clock.Schedule.call_every_tick(self.check)
@@ -150,7 +178,7 @@ class Particles2D(Particle):
 
 
     def destroy(self, dt):
-        if self.dead < self.lifetime:
+        if self.dead < self.duration:
             self.dead += 1
 
 
@@ -158,20 +186,24 @@ class Particles2D(Particle):
 
 
 class ParticleBatch(Particle):
-    def __init__(self, quantity=1, pos=[[0, 0, 0]], size=[[0.25, 0.25, 0.25]], direction=[0, -0.01, 0], lifetime=240):
+    def __init__(self, transform=None, amount=1, duration=240, scene=None):
         """
         Creates a particle batch in the world.
         This is like normal particles, except it may limit you in some way.
-        This may also improve performance compared to normal particles.
+        NOTE: This may have better performance 
 
-        :param quantity: How many particles should be part of the batch (Int)
-        :param pos: The position of each particle in the world (Array of arrays [[x, y, z], [x, y z]]...)
-        :param size: The size of a particle (Array [length, height])
-        :param direction: The direction in which all the particles in a batch will move (Array [dx, dy, dz])
-        :param lifetime: The lifetime of all the particles in a batch
+        :param transform: A Transform object
+        :param amount: Amount of particles to be generated (Int)
+        :param duration: The duration of the particle
+        :param scene: A Scene object
         """
 
-        super().__init__(pos=pos, quantity=quantity, direction=direction, size=size, lifetime=lifetime)
+        super().__init__(
+            transform=transform,
+            amount=amount,
+            duration=duration,
+            scene=scene
+        )
 
         for _ in range(0, len(pos)):
             self.create(quantity=quantity, pos=pos[_], size=size[_])
@@ -196,7 +228,7 @@ class ParticleBatch(Particle):
 
 
     # Check function
-    def check(self, delta_time):
+    def check(self, dt):
         """
         This method checks if the particle should be killed
         This is automatically called every tick
@@ -206,10 +238,16 @@ class ParticleBatch(Particle):
         """
 
         if self.dead < self.lifetime:
-            self.dead += 1
-            self.move(dx=self.direction[0], dy=self.direction[1], dz=self.direction[2])
-        else:
             self.kill()
+
+        self.dead += 1
+
+        self.move(
+            dx=self.components.transform.dx,
+            dy=self.components.transform.dy,
+            dz=self.components.transform.dz,
+            dt=dt
+        )
 
 
     # Create particles
@@ -223,13 +261,22 @@ class ParticleBatch(Particle):
         :return: None
         """
 
-        for _ in range(0, quantity):
-            x = pos[0] + random.uniform(-size[0] * 2, size[2] * 2)
-            y = pos[1] + random.uniform(-size[0], size[2] / 2)
-            z = pos[2] + random.uniform(size[0] * 2, size[2] * 2)
+        from locals import Transform
 
-            p = Square(color=None, size=size, pos=[x, y, z], rot=[0, 0])
-            p.set_flag("look_at_camera", True)
+        for _ in range(quantity):
+            x = pos[0] + random.uniform(-size[0] * 2, size[2] * 2)
+            y = pos[1] + random.uniform(-size[0]    , size[2] / 2)
+            z = pos[2] + random.uniform(size[0] *  2, size[2] * 2)
+
+            p = RotatingSquare(
+                Transform(
+                    x, y, z,
+                    size[0], size[1], size[2]
+                ),
+                self.scene,
+                False
+            )
+
             self.quads.append(p)
 
-        Framework.clock.schedule_interval(self.check, 1/120)
+        engine.default_clock.Schedule.call_with_interval(self.check, 1/120)

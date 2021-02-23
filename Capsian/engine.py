@@ -77,7 +77,7 @@ def run():
     """
 
     from datetime import datetime
-    # import Capsian.services
+    import Capsian.services
 
     for fn in entry_points:
         fn(datetime.now())

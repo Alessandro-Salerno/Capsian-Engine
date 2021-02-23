@@ -7,20 +7,20 @@ camera  = PerspectiveCamera()
 window  = Window3D(camera=camera, vsync=False, width=1280, height=720, resizable=True)
 
 
-scene = Scene(camera)
+scene = Scene3D(camera)
 tex = Texture3D("assets/textures/glass.png")
 img = Image2D("assets/textures/glass.png")
 mat = Material(texture=tex)
 c = Cube(scene, Transform(), mat)
 
-hud_scene = Scene(camera, CPSN_HUD_SCENE)
+hud_scene = OverlayScene(camera)
 counter = FPSCounter(hud_scene)
 
 AmbientLight(Transform(1, 1, 10), Color(0, 0, 255).rgba, scene)
 AmbientLight(Transform(9, 1, 0), Color(0, 0, 255).rgba, scene)
 
 
-square = Square(Color(255, 255, 255).rgba, (5, 5, 5), (2.5, 2.5, 5), [0, 0], scene)
+square = Square(Transform(5, 5, 5, 5, 5, 0, 0, 0, 0), scene)
 # square.flags.__setitem__("look_at_camera", True)
 
 controller = CharacterController()
@@ -59,7 +59,21 @@ camera.components.add(Keyboard())
 class Mouse(MouseInputHandler):
     def on_button_held(self, buttons):
         if buttons[MouseButton.LEFT]:
-            Particles2D(pos=camera.components.transform.position, quantity=2, direction=Direction.Vector.UP, scene=scene, lifetime=1/3)
+            Particles2D(
+                transform=Transform(
+                    camera.components.transform.x,
+                    camera.components.transform.y,
+                    camera.components.transform.z,
+                    0.25,
+                    0.25,
+                    0,
+                    dy=-1
+                ),
+
+                amount=1,
+                duration=1/3,
+                scene=scene
+            )
 
 
     def on_button_pressed(self, x, y, button, modifiers):

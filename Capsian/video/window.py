@@ -72,8 +72,6 @@ class Window(pyglet.window.Window):
 
         # Others
         self.view_port          = camera
-        self.render_static_hud  = False
-        self.render_dynamic_hud = False
         self.lighting           = False
         engine.main_window      = self
         self.alive              = 1
@@ -145,43 +143,13 @@ class Window(pyglet.window.Window):
         self.view_port.rotate(dx, dy)
 
 
-    def on_key_press(self, symbol, modifiers):
-        """
-        This method gets input from the keyboard
-
-        :param symbol: The key that's been pressed
-        :param modifiers: THe modifiers used
-        :return: None
-        """
-
-        if self.alive > 0:
-            if symbol == key.ESCAPE:
-                self.close()
-
-            if symbol == self.fullscreen_key:
-                import os
-
-                if os.name == "nt":
-                    screen = pyglet.canvas.Screen(display=self.display, x=0, y=0, width=self.screen.width, height=self.screen.height, handle=None)
-                    self.set_fullscreen(not self.fullscreen, screen=screen)
-                else:
-                    self.set_fullscreen(not self.fullscreen)
-
-                lock = self.mouse_lock
-                self.set_lock(False)
-                self.set_lock(lock)
-        else:
-            if symbol == key.ESCAPE or symbol == key.ENTER:
-                self.close()
-                pyglet.app.exit()
-
-
     # Enables a feature
     def enable(self, feature):
         mode = "enable"
 
         try:
             exec(compile(source=feature, filename="feature", mode="exec", optimize=1))
+            Log.warning("Window.enable() is deprecated and will soon be removed")
         except:
             Log.critical(f"'{feature}' is not valid Python code. Thus, the Window is not able to run it")
 
@@ -192,6 +160,7 @@ class Window(pyglet.window.Window):
 
         try:
             exec(compile(source=feature, filename="feature", mode="exec", optimize=1))
+            Log.warning("Window.disable() is deprecated and will soon be removed")
         except:
             Log.critical(f"'{feature}' is not valid Python code. Thus, the Window is not able to run it")
 
@@ -217,9 +186,8 @@ class Window3D(Window):
         :return: None
         """
 
-        self.clear()
         self.view_port.render(self)
-        pyglet.clock.tick()
+        # pyglet.clock.tick()
 
 
     # When mouse is moved
@@ -242,16 +210,6 @@ class Window3D(Window):
         """
 
         self.rotate_camera(dx, dy)
-
-
-    # When the mouse is pressed
-    def on_mouse_press(self, x, y, button, modifiers):
-        """
-        This method is empty by default, but it can be overridden. To override it, remember to use alla listed parameters
-
-        """
-
-        pass
 
 
     def set_viewport(self, camera):

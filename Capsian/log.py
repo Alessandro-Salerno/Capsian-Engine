@@ -128,7 +128,7 @@ class Log:
             # Load all necessary libs
             from os import system
             from locals import engine
-            from locals import Scene
+            from locals import Scene2D
             from Capsian.values import SkyColor
             from locals import OrthographicCamera
 
@@ -147,7 +147,7 @@ class Log:
             print(f"{TermColor.FAIL} [{time()} FATAL ERROR] {text} {TermColor.END_COLOR}")
 
             # Draw the message
-            error_scene = Scene(camera, CPSN_GUI_SCENE)
+            error_scene = Scen2D(camera)
 
 
             error = Framework.text.Label(

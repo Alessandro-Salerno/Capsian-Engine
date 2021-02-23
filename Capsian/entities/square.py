@@ -63,40 +63,54 @@ class Square(Entity):
 
     """
 
-    def __init__(self, color, size, pos, rot, scene, active=False):
+    def __init__(self, transform=None, scene=None, active=False):
         """
         Creates a square in the world
 
-        :param color: Nothing
-        :param size: Size of the square (Array, [length, height])
-        :param pos: The position of the square in 3D space (Array, [x, y, z])
-        :param rot: The rotation of the square (Array, [rx, ry, rz])
+        :param transform: Tramsform object that holds positioning data (Transform())
+        :param scene: Capsian Scene object (Scene3D()/Scene2D()/PlaceholderScene)
         """
         
         from locals import Transform
 
-        super().__init__(Transform(pos[0], pos[1], pos[2], size[0], size[1], size[2]), scene=scene, active=active)
-        x                = size[0] / 2
-        y                = size[1] / 2
-        z                = size[2] / 2
+        super().__init__(
+            transform=transform,
+            scene=scene,
+            active=active
+        )
+
+        x                = transform.size[0] / 2
+        y                = transform.size[1] / 2
+        z                = transform.size[2] / 2
 
         self.currentX    = x
         self.currentY    = y
 
-        self.vertex_list = Framework.graphics.vertex_list(4,
-                                                          ('v3f', [0, 0, 0, size[0], 0, 0, size[0], size[1], 0, 0, size[1], 0]),
-                                                          ('t3f', [0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0])
-                                                          )
+        self.vertex_list = Framework.graphics.vertex_list(
+            4,
+            (
+                'v3f',
+                [
+                    0, 0, 0,
+                    transform.size[0], 0, 0,
+                    transform.size[0], transform.size[1], 0,
+                    0, transform.size[1], 0
+                ]
+            ),
 
-        self.color       = color
-        self.visible     = True
-        self.scene       = scene
-
-        self.flags       = {
-            "look_at_camera": False,
-        }
+            (
+                't3f',
+                [
+                    0, 0, 0,
+                    1, 0, 0,
+                    1, 1, 0,
+                    0, 1, 0
+                ]
+            )
+        )
 
         scene.objects2D.append(self)
+        scene.drawable.append(self)
 
 
     # Draw OpenGL quad (Old OpenGL)
@@ -108,33 +122,76 @@ class Square(Entity):
         """
 
         Framework.gl.glPushMatrix()
-        Framework.gl.glTranslatef(self.components.transform.x, self.components.transform.y, self.components.transform.z)
 
-        if self.check_flag("look_at_camera"):
-            self.look_at_camera()
+        Framework.gl.glTranslatef(
+            self.components.transform.x,
+            self.components.transform.y,
+            self.components.transform.z
+        )
 
         self.vertex_list.draw(Framework.gl.GL_QUADS)
         Framework.gl.glPopMatrix()
 
 
-    # Stop rendering
-    def stop_rendering(self):
+    # Delte self
+    def delete(self):
         """
-        This method will tell the engine to stop rendering a given square
+        This method removes a square from the stack graphics.objects2D
 
         :return: None
         """
 
-        self.visible = False
+        if self in self.scene.objects2D:
+            self.scene.objects2D.remove(self)
+            self.scene.drawable.remove(self)
+            
+        del self
 
 
-    # Look at the player
-    def look_at_camera(self):
+class TexturedSquare(Square):
+    def __init__(self, texture, transform, scene):
+        self.texture = texture.get_texture()
+
+        super().__init__(
+            transform,
+            scene,
+            False
+        )
+
+
+    def draw(self):
         """
-        This method rotates a square towards the camera
+        Draws a given square
 
         :return: None
         """
+
+        Framework.gl.glPushMatrix()
+
+        Framework.gl.glTranslatef(
+            self.components.transform.x,
+            self.components.transform.y,
+            self.components.transform.z
+        )
+
+        Framework.gl.glEnable(Framework.gl.GL_TEXTURE_2D)
+        Framework.gl.glBindTexture(Framework.gl.GL_TEXTURE_2D, self.texture.id)
+
+        self.vertex_list.draw(Framework.gl.GL_QUADS)
+        Framework.gl.glDisable(Framework.gl.GL_TEXTURE_2D)
+
+        Framework.gl.glPopMatrix()
+
+
+class RotatingSquare(Square):
+    def draw(self):
+        Framework.gl.glPushMatrix()
+
+        Framework.gl.glTranslatef(
+            self.components.transform.x,
+            self.components.transform.y,
+            self.components.transform.z
+        )
 
         Framework.gl.glRotatef(
             engine.main_camera.components.transform.rotX,
@@ -152,93 +209,5 @@ class Square(Entity):
             0
         )
 
-
-    # Check flags
-    def check_flag(self, flag):
-        """
-        This method checks a given flag to see if it's on or off
-
-        :param flag: The flag that should be checked (String)
-        :return: Value of the flag (Boolean, String, Int... Depends on the flag)
-        """
-
-        if flag in self.flags:
-            return self.flags[flag]
-        else:
-            Log.critical(f"No flag named '{flag}' was found. Check the documentation or add the flag in the dictionary yourself")
-
-
-    # Set flags
-    def set_flag(self, flag, state):
-        """
-        This method sets the given flag on or off
-
-        :param flag: The flag you want to change (String)
-        :param state: The state you want to set it at (Boolean)
-        :return: None
-        """
-
-        if flag in self.flags:
-            self.flags.__setitem__(flag, state)
-        else:
-            Log.critical(f"No flag named '{flag}' was found. Check the documentation or add the flag in the dictionary yourself")
-
-
-    # Returns boolean
-    def is_visible(self):
-        """
-        This method tells you if a given square is visible or not
-
-        :return: Boolean
-        """
-
-        return self.visible
-
-
-    # Delte self
-    def delete(self):
-        """
-        This method removes a square from the stack graphics.objects2D
-
-        :return: None
-        """
-
-        if self in self.scene.objects2D:
-            self.scene.objects2D.remove(self)
-            
-        del self
-
-
-class TexturedSquare(Square):
-    def __init__(self, texture, size, pos, rot, scene):
-        self.texture = texture.get_texture()
-
-        super().__init__(
-            [255, 255, 255],
-            size,
-            pos,
-            rot,
-            scene,
-            False
-        )
-        
-        scene.objects2D.append(self)
-
-
-    def draw(self):
-        """
-        Draws a given square
-
-        :return: None
-        """
-
-        Framework.gl.glPushMatrix()
-
-        Framework.gl.glTranslatef(self.components.transform.x, self.components.transform.y, self.components.transform.z)
-        Framework.gl.glEnable(Framework.gl.GL_TEXTURE_2D)
-        Framework.gl.glBindTexture(Framework.gl.GL_TEXTURE_2D, self.texture.id)
-
         self.vertex_list.draw(Framework.gl.GL_QUADS)
-        Framework.gl.glDisable(Framework.gl.GL_TEXTURE_2D)
-
         Framework.gl.glPopMatrix()

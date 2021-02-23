@@ -10,7 +10,7 @@ class CapsianKeyboardHandler(KeyboardInputHandler):
 
             return
 
-        if symbol == engine.main-Window3D.fullscreen_key:
+        if symbol == engine.main_window.fullscreen_key:
             import os
 
             if os.name == "nt":
@@ -36,3 +36,6 @@ class CapsianKeyboardHandler(KeyboardInputHandler):
             lock = engine.main_window.mouse_lock
             engine.main_window.set_lock(False)
             engine.main_window.set_lock(lock)
+
+
+ComponentsHandler(CapsianKeyboardHandler())

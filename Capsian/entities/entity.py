@@ -86,7 +86,7 @@ class Entity:
             key_listener         = None
             mouse_listener       = None
 
-        
+
             def __init__(self, spr):
                 self.spr = spr
 
@@ -102,24 +102,21 @@ class Entity:
 
 
         self.components = Components(self)
+        self.active     = active
         self.components.add(transform)
 
         if not repr(scene) == CPSN_STANDARD_SCENE:
             self.scene = None
-            Log.critical(f"The specified scene for entity {self} is not valid!")
             return
 
         if scene == None:
-            self.scene = None
-            Log.critical(f"The specified scene for entity {self} is not valid!")
+            from Capsian.video.scene import PlaceholderScene
+            self.scene = PlaceholderScene()
             return
 
         self.scene  = scene
-        self.batch  = scene.batch
-        self.active = active
 
         if active: scene.stack.append(self)
-
         self.on_create(datetime.now())
 
 
@@ -231,8 +228,8 @@ class Entity:
         import copy
         from datetime import datetime
 
-        return copy.deepcopy(self)
         self.on_duplicate(datetime.now())
+        return copy.deepcopy(self)
 
 
     def update(self, dt):

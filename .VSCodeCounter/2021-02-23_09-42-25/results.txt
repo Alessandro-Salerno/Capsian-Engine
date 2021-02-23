@@ -1,12 +1,12 @@
-Date : 2020-10-11 12:01:52
+Date : 2021-02-23 09:42:25
 Directory : c:\Users\OxyGe\Desktop\new\Capsian-Engine
-Total : 5298 files,  778924 codes, 215404 comments, 147939 blanks, all 1142267 lines
+Total : 5319 files,  779433 codes, 215935 comments, 148208 blanks, all 1143576 lines
 
 Languages
 +--------------+------------+------------+------------+------------+------------+
 | language     | files      | code       | comment    | blank      | total      |
 +--------------+------------+------------+------------+------------+------------+
-| Python       |      5,146 |    766,033 |    209,930 |    144,584 |  1,120,547 |
+| Python       |      5,166 |    766,547 |    210,461 |    144,852 |  1,121,860 |
 | C++          |        111 |      9,985 |      5,133 |      2,863 |     17,981 |
 | HTML         |          3 |      1,612 |         11 |         71 |      1,694 |
 | C            |          1 |        514 |        184 |        118 |        816 |
@@ -15,29 +15,33 @@ Languages
 | XML          |          5 |         86 |          3 |         61 |        150 |
 | Properties   |          2 |         81 |          4 |         11 |         96 |
 | Shell Script |          3 |         76 |        107 |         57 |        240 |
-| Batch        |          5 |         56 |          0 |         21 |         77 |
-| Markdown     |          1 |         45 |          0 |         12 |         57 |
+| Batch        |          6 |         57 |          0 |         22 |         79 |
+| Markdown     |          1 |         39 |          0 |         12 |         51 |
 | PowerShell   |          1 |         36 |          6 |         10 |         52 |
 | Makefile     |          2 |         21 |         19 |         15 |         55 |
-| Visual Basic |          1 |          0 |          1 |          0 |          1 |
 | CSS          |          1 |          0 |          6 |          1 |          7 |
+| Visual Basic |          1 |          0 |          1 |          0 |          1 |
 +--------------+------------+------------+------------+------------+------------+
 
 Directories
 +-----------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
 | path                                                                                                                                          | files      | code       | comment    | blank      | total      |
 +-----------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
-| .                                                                                                                                             |      5,298 |    778,924 |    215,404 |    147,939 |  1,142,267 |
-| Capsian                                                                                                                                       |         38 |      1,149 |      2,668 |        911 |      4,728 |
-| Capsian\GUI                                                                                                                                   |          3 |         43 |        206 |         41 |        290 |
-| Capsian\audio                                                                                                                                 |          3 |         27 |        203 |         42 |        272 |
-| Capsian\components                                                                                                                            |          4 |        116 |        328 |        106 |        550 |
-| Capsian\entities                                                                                                                              |          5 |        259 |        477 |        203 |        939 |
-| Capsian\input                                                                                                                                 |          3 |         58 |        167 |         59 |        284 |
+| .                                                                                                                                             |      5,319 |    779,433 |    215,935 |    148,208 |  1,143,576 |
+| Capsian                                                                                                                                       |         47 |      1,469 |      2,918 |      1,028 |      5,415 |
+| CapsianLine                                                                                                                                   |          9 |        227 |        336 |        171 |        734 |
+| CapsianLine\commands                                                                                                                          |          4 |         54 |        192 |         51 |        297 |
+| Capsian\GUI                                                                                                                                   |          3 |         45 |        198 |         40 |        283 |
+| Capsian\audio                                                                                                                                 |          3 |         24 |        203 |         40 |        267 |
+| Capsian\components                                                                                                                            |          4 |        126 |        333 |        119 |        578 |
+| Capsian\entities                                                                                                                              |          6 |        380 |        480 |        201 |      1,061 |
+| Capsian\input                                                                                                                                 |          3 |         58 |        167 |         61 |        286 |
 | Capsian\maths                                                                                                                                 |          2 |          8 |        105 |         14 |        127 |
-| Capsian\texturing                                                                                                                             |          3 |         82 |        172 |         52 |        306 |
-| Capsian\video                                                                                                                                 |          8 |        298 |        534 |        205 |      1,037 |
-| Capsian\world                                                                                                                                 |          3 |         97 |        207 |         99 |        403 |
+| Capsian\texturing                                                                                                                             |          3 |         70 |        172 |         52 |        294 |
+| Capsian\types                                                                                                                                 |          5 |         61 |        192 |         53 |        306 |
+| Capsian\video                                                                                                                                 |         10 |        397 |        612 |        240 |      1,249 |
+| Capsian\video\bluefire                                                                                                                        |          2 |          0 |        103 |         10 |        113 |
+| Capsian\world                                                                                                                                 |          3 |         98 |        188 |         96 |        382 |
 | Python                                                                                                                                        |      5,254 |    777,557 |    212,571 |    146,930 |  1,137,058 |
 | Python\Windows                                                                                                                                |      5,254 |    777,557 |    212,571 |    146,930 |  1,137,058 |
 | Python\Windows\Lib                                                                                                                            |      5,025 |    755,291 |    204,275 |    141,755 |  1,101,321 |
@@ -494,51 +498,69 @@ Directories
 | Python\Windows\tcl\nmake                                                                                                                      |          1 |        514 |        184 |        118 |        816 |
 | Python\Windows\tcl\tix8.4.3                                                                                                                   |         19 |        447 |         58 |        141 |        646 |
 | Python\Windows\tcl\tix8.4.3\pref                                                                                                              |         18 |        443 |         58 |        139 |        640 |
-| scripts                                                                                                                                       |          1 |         33 |          2 |         23 |         58 |
+| scripts                                                                                                                                       |          3 |         64 |          5 |         35 |        104 |
 +-----------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
 
 Files
 +-----------------------------------------------------------------------------------------------------------------------------------------------+--------------+------------+------------+------------+------------+
 | filename                                                                                                                                      | language     | code       | comment    | blank      | total      |
 +-----------------------------------------------------------------------------------------------------------------------------------------------+--------------+------------+------------+------------+------------+
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\CapsianLine\capsianline.py                                                                          | Python       |         20 |         27 |         17 |         64 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\CapsianLine\ccerror.py                                                                              | Python       |          4 |         14 |          6 |         24 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\CapsianLine\cclexer.py                                                                              | Python       |        102 |         68 |         72 |        242 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\CapsianLine\ccparser.py                                                                             | Python       |         37 |         34 |         21 |         92 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\CapsianLine\commands\__init__.py                                                                    | Python       |          7 |         48 |          8 |         63 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\CapsianLine\commands\command.py                                                                     | Python       |          8 |         48 |          9 |         65 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\CapsianLine\commands\line.py                                                                        | Python       |         24 |         48 |         18 |         90 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\CapsianLine\commands\system.py                                                                      | Python       |         15 |         48 |         16 |         79 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\CapsianLine\design.py                                                                               | Python       |         10 |          1 |          4 |         15 |
 | c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\GUI\__init__.py                                                                             | Python       |          0 |         48 |          4 |         52 |
 | c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\GUI\label.py                                                                                | Python       |         34 |         99 |         25 |        158 |
-| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\GUI\sprite.py                                                                               | Python       |          9 |         59 |         12 |         80 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\GUI\sprite.py                                                                               | Python       |         11 |         51 |         11 |         73 |
 | c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\__init__.py                                                                                 | Python       |          0 |         48 |          4 |         52 |
 | c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\audio\__init__.py                                                                           | Python       |          0 |         48 |          4 |         52 |
-| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\audio\music.py                                                                              | Python       |         12 |         73 |         17 |        102 |
-| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\audio\sound.py                                                                              | Python       |         15 |         82 |         21 |        118 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\audio\music.py                                                                              | Python       |         10 |         73 |         16 |         99 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\audio\sound.py                                                                              | Python       |         14 |         82 |         20 |        116 |
 | c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\components\__init__.py                                                                      | Python       |          0 |         48 |          4 |         52 |
-| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\components\character_controller.py                                                          | Python       |         44 |         71 |         31 |        146 |
-| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\components\component.py                                                                     | Python       |         57 |        151 |         57 |        265 |
-| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\components\transform.py                                                                     | Python       |         15 |         58 |         14 |         87 |
-| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\engine.py                                                                                   | Python       |         47 |         71 |         37 |        155 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\components\character_controller.py                                                          | Python       |         44 |         71 |         32 |        147 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\components\component.py                                                                     | Python       |         55 |        151 |         60 |        266 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\components\transform.py                                                                     | Python       |         27 |         63 |         23 |        113 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\engine.py                                                                                   | Python       |         46 |         70 |         41 |        157 |
 | c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\entities\__init__.py                                                                        | Python       |          0 |         48 |          4 |         52 |
-| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\entities\cube.py                                                                            | Python       |         49 |         84 |         31 |        164 |
-| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\entities\entity.py                                                                          | Python       |         64 |        111 |         62 |        237 |
-| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\entities\particle_system.py                                                                 | Python       |         67 |        116 |         47 |        230 |
-| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\entities\square.py                                                                          | Python       |         79 |        118 |         59 |        256 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\entities\components_handler.py                                                              | Python       |          9 |         48 |         10 |         67 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\entities\cube.py                                                                            | Python       |        110 |         74 |         22 |        206 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\entities\entity.py                                                                          | Python       |         65 |        111 |         63 |        239 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\entities\particle_system.py                                                                 | Python       |        103 |        122 |         58 |        283 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\entities\square.py                                                                          | Python       |         93 |         77 |         44 |        214 |
 | c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\input\__init__.py                                                                           | Python       |          0 |         48 |          4 |         52 |
-| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\input\keyboard.py                                                                           | Python       |         30 |         71 |         31 |        132 |
-| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\input\mouse.py                                                                              | Python       |         28 |         48 |         24 |        100 |
-| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\log.py                                                                                      | Python       |         66 |        102 |         36 |        204 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\input\keyboard.py                                                                           | Python       |         29 |         71 |         31 |        131 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\input\mouse.py                                                                              | Python       |         29 |         48 |         26 |        103 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\log.py                                                                                      | Python       |         72 |        102 |         40 |        214 |
 | c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\maths\__init__.py                                                                           | Python       |          0 |         48 |          4 |         52 |
 | c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\maths\math.py                                                                               | Python       |          8 |         57 |         10 |         75 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\services.py                                                                                 | Python       |         31 |          0 |         11 |         42 |
 | c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\texturing\__init__.py                                                                       | Python       |          0 |         48 |          4 |         52 |
 | c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\texturing\material.py                                                                       | Python       |          7 |         56 |         10 |         73 |
-| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\texturing\texture.py                                                                        | Python       |         75 |         68 |         38 |        181 |
-| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\values.py                                                                                   | Python       |         48 |         48 |         13 |        109 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\texturing\texture.py                                                                        | Python       |         63 |         68 |         38 |        169 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\types\__init__.py                                                                           | Python       |          3 |         48 |          6 |         57 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\types\fixed_range_int.py                                                                    | Python       |         11 |         48 |         11 |         70 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\types\flag.py                                                                               | Python       |          9 |         48 |         12 |         69 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\types\flag_list.py                                                                          | Python       |         25 |         48 |         19 |         92 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\types\object_array.py                                                                       | Python       |         13 |          0 |          5 |         18 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\values.py                                                                                   | Python       |         53 |         48 |         16 |        117 |
 | c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\video\__init__.py                                                                           | Python       |          0 |         48 |          4 |         52 |
-| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\video\camera.py                                                                             | Python       |        109 |         87 |         64 |        260 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\video\bluefire\__init__.py                                                                  | Python       |          0 |         48 |          4 |         52 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\video\bluefire\basic.py                                                                     | Python       |          0 |         55 |          6 |         61 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\video\camera.py                                                                             | Python       |        160 |         74 |         66 |        300 |
 | c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\video\fog.py                                                                                | Python       |         23 |         48 |         16 |         87 |
 | c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\video\fps_counter.py                                                                        | Python       |          9 |         48 |         12 |         69 |
-| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\video\light.py                                                                              | Python       |         25 |         72 |         20 |        117 |
-| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\video\scene.py                                                                              | Python       |         35 |         58 |         17 |        110 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\video\light.py                                                                              | Python       |         26 |         72 |         20 |        118 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\video\scene.py                                                                              | Python       |        100 |         57 |         48 |        205 |
 | c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\video\sky_color.py                                                                          | Python       |         16 |         48 |         14 |         78 |
-| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\video\window.py                                                                             | Python       |         81 |        125 |         58 |        264 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\video\window.py                                                                             | Python       |         63 |        114 |         50 |        227 |
 | c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\world\__init__.py                                                                           | Python       |          0 |         48 |          4 |         52 |
-| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\world\clock.py                                                                              | Python       |         64 |         66 |         63 |        193 |
-| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\world\format.py                                                                             | Python       |         33 |         93 |         32 |        158 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\world\clock.py                                                                              | Python       |         71 |         66 |         69 |        206 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\Capsian\world\format.py                                                                             | Python       |         27 |         74 |         23 |        124 |
 | c:\Users\OxyGe\Desktop\new\Capsian-Engine\Python\Windows\Lib\__future__.py                                                                    | Python       |         66 |         61 |         20 |        147 |
 | c:\Users\OxyGe\Desktop\new\Capsian-Engine\Python\Windows\Lib\__phello__.foo.py                                                                | Python       |          0 |          1 |          1 |          2 |
 | c:\Users\OxyGe\Desktop\new\Capsian-Engine\Python\Windows\Lib\_bootlocale.py                                                                   | Python       |         29 |         15 |          3 |         47 |
@@ -5793,11 +5815,14 @@ Files
 | c:\Users\OxyGe\Desktop\new\Capsian-Engine\Python\Windows\tcl\tix8.4.3\pref\WmDefault.cs                                                       | C#           |         32 |          0 |         14 |         46 |
 | c:\Users\OxyGe\Desktop\new\Capsian-Engine\Python\Windows\tcl\tix8.4.3\pref\WmDefault.fs                                                       | F#           |         19 |          0 |          5 |         24 |
 | c:\Users\OxyGe\Desktop\new\Capsian-Engine\Python\Windows\tcl\tix8.4.3\pref\WmDefault.py                                                       | Python       |         47 |         39 |         11 |         97 |
-| c:\Users\OxyGe\Desktop\new\Capsian-Engine\README.md                                                                                           | Markdown     |         45 |          0 |         12 |         57 |
-| c:\Users\OxyGe\Desktop\new\Capsian-Engine\RunNT.bat                                                                                           | Batch        |          1 |          0 |          1 |          2 |
-| c:\Users\OxyGe\Desktop\new\Capsian-Engine\console.py                                                                                          | Python       |         57 |         53 |         32 |        142 |
-| c:\Users\OxyGe\Desktop\new\Capsian-Engine\locals.py                                                                                           | Python       |         44 |         52 |          5 |        101 |
-| c:\Users\OxyGe\Desktop\new\Capsian-Engine\main.py                                                                                             | Python       |         38 |         58 |         25 |        121 |
-| c:\Users\OxyGe\Desktop\new\Capsian-Engine\scripts\script.py                                                                                   | Python       |         33 |          2 |         23 |         58 |
-| Total                                                                                                                                         |              |    778,924 |    215,404 |    147,939 |  1,142,267 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\README.md                                                                                           | Markdown     |         39 |          0 |         12 |         51 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\WinConsole.bat                                                                                      | Batch        |          1 |          0 |          1 |          2 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\WinRuntime.bat                                                                                      | Batch        |          1 |          0 |          1 |          2 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\console.py                                                                                          | Python       |          1 |          2 |          2 |          5 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\locals.py                                                                                           | Python       |         50 |         48 |          7 |        105 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\main.py                                                                                             | Python       |         24 |         55 |         21 |        100 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\scripts\__init__.py                                                                                 | Python       |          1 |          4 |          2 |          7 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\scripts\carpal.py                                                                                   | Python       |          7 |          0 |          4 |         11 |
+| c:\Users\OxyGe\Desktop\new\Capsian-Engine\scripts\script.py                                                                                   | Python       |         56 |          1 |         29 |         86 |
+| Total                                                                                                                                         |              |    779,433 |    215,935 |    148,208 |  1,143,576 |
 +-----------------------------------------------------------------------------------------------------------------------------------------------+--------------+------------+------------+------------+------------+

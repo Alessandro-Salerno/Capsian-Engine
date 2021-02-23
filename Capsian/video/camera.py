@@ -51,16 +51,16 @@
 # ----------------------------------------------------------------------------
 
 
-from locals import Framework
-import Capsian.maths.math as kmath
-from locals import engine
-from Capsian.entities.entity import Entity
-from Capsian.components.transform import Transform
+from   Capsian.components.transform import Transform
+from   Capsian.entities.entity      import Entity
+import Capsian.maths.math           as     kmath
+from   locals                       import Framework
+from   locals                       import engine
 import math
 
 
 class Camera(Entity):
-    def __init__(self, pos=[0, 0, 0], rot=[0, 0], fov=90, far=5000, near=0.05):
+    def __init__(self, transform=Transform(), fov=90, far=5000, near=0.05):
         """
         Creates a Capsian camera object in the world.
         You can create more than one, but they won't be automatically placed.
@@ -70,37 +70,29 @@ class Camera(Entity):
         :param rot: The initial rotation (Array, [x, y])
         """
 
-        # Environment
-        super().__init__(Transform(x=pos[0], y=pos[1], z=pos[2]), active=True)
+        super().__init__(transform, active=True)
 
         # Direction vectors
-        self.dx       = 0
-        self.dy       = 0
-        self.dz       = 0
-        self.rotY     = 0
-        self.rotX     = 0
-        self.mouse_dx = 0
-        self.mouse_dy = 0
-
-        # Other vars
-        self.keys     = None
+        self.dx         = 0
+        self.dy         = 0
+        self.dz         = 0
+        self.rotY       = 0
+        self.rotX       = 0
+        self.mouse_dx   = 0
+        self.mouse_dy   = 0
 
         # Rendering
-        self.fov     = fov
-        self.far      = int(far)
-        self.near     = float(near)
-        self.scenes   = []
+        self.fov        = fov
+        self.far        = int(far)
+        self.near       = float(near)
+        self.scenes     = []
+        self.hud_scenes = []
 
 
 ########################################################################################################################
 
 
 class PerspectiveCamera(Camera):
-    def __init__(self, pos=[0, 0, 0], rot=[0, 0], fov=90, far=5000, near=0.05):
-        super().__init__(pos, rot, fov, far, near)
-        self.hud_scenes = []
-
-
     def init(self):
         engine.main_camera = self
 
@@ -124,42 +116,85 @@ class PerspectiveCamera(Camera):
         Framework.gl.glMatrixMode(Framework.gl.GL_PROJECTION)
         Framework.gl.glLoadIdentity()
 
-        Framework.gl.gluPerspective(self.fov,
-                              window.width / window.height,
-                              self.near,
-                              self.far)
+        if window.width < 1 or window.height < 1:
+            return
+
+        Framework.gl.gluPerspective(
+            self.fov,
+            window.width / window.height,
+            self.near,
+            self.far
+        )
 
         Framework.gl.glMatrixMode(Framework.gl.GL_MODELVIEW)
         Framework.gl.glLoadIdentity()
 
         Framework.gl.glPushMatrix()
-        Framework.gl.glRotatef(-self.components.transform.rotX, 1, 0, 0)
-        Framework.gl.glRotatef(-self.components.transform.rotY, 0, 1, 0)
-        Framework.gl.glTranslatef(-self.components.transform.x, -self.components.transform.y, -self.components.transform.z)
+
+        Framework.gl.glRotatef(
+            -self.components.transform.rotX,
+            1, 0, 0
+        )
+
+        Framework.gl.glRotatef(
+            -self.components.transform.rotY,
+            0, 1, 0
+        )
+
+        Framework.gl.glTranslatef(
+            -self.components.transform.x,
+            -self.components.transform.y,
+            -self.components.transform.z
+        )
 
         
         # Render 3D Scene
         for scene in self.scenes:
-            for light in scene.lights:
-                light.render()
-
-            for object2D in scene.objects2D:
-                object2D.draw()
+            for element in scene.drawable:
+                element.draw()
 
             scene.batch.draw()
 
         Framework.gl.glPopMatrix()
-
         Framework.gl.glDisable(Framework.gl.GL_LIGHTING)
+        
         width, height = window.get_size()
-        viewport = window.get_viewport_size()
-        Framework.gl.glViewport(0, 0, max(1, viewport[0]), max(1, viewport[1]))
+        viewport     = window.get_viewport_size()
+
+        Framework.gl.glViewport(
+            0,
+            0,
+            max(
+                1,
+                viewport[0]
+            ),
+            max(
+                1,
+                viewport[1]
+            )
+        )
+
         Framework.gl.glMatrixMode(Framework.gl.GL_PROJECTION)
         Framework.gl.glLoadIdentity()
-        Framework.gl.glOrtho(0, max(1, width), 0, max(1, height), -1, 1)
+
+        Framework.gl.glOrtho(
+            0,
+            max(
+                1,
+                width
+            ),
+            0,
+            max(
+                1,
+                height
+            ),
+            -1,
+            1
+        )
+
         Framework.gl.glMatrixMode(Framework.gl.GL_MODELVIEW)
         Framework.gl.glLoadIdentity()
-            
+        
         # Render HUD 
         for scene in self.hud_scenes:
             scene.hud_batch.draw()
@@ -194,10 +229,6 @@ class PerspectiveCamera(Camera):
 
 
 class OrthographicCamera(Camera):
-    def __init__(self, pos=[0, 0, 0], rot=[0, 0], fov=90):
-        super().__init__(pos=pos, rot=rot, fov=fov)
-
-
     def init(self):
         engine.main_camera = self
 
@@ -209,12 +240,47 @@ class OrthographicCamera(Camera):
     def render(self, window):
         # Render the 2D scene
         Framework.gl.glDisable(Framework.gl.GL_LIGHTING)
+        
         width, height = window.get_size()
-        viewport = window.get_viewport_size()
-        Framework.gl.glViewport(0, 0, max(1, viewport[0]), max(1, viewport[1]))
+        viewport     = window.get_viewport_size()
+
+        Framework.gl.glViewport(
+            0,
+            0,
+
+            max(
+                1,
+                viewport[0]
+            ),
+            
+            max(
+                1,
+                viewport[1]
+            )
+        )
+
         Framework.gl.glMatrixMode(Framework.gl.GL_PROJECTION)
         Framework.gl.glLoadIdentity()
-        Framework.gl.glOrtho(0, max(1, width), 0, max(1, height), -1, 1)
+
+        Framework.gl.glOrtho(
+            0,
+
+            max(
+                1,
+                width
+            ),
+
+            0,
+
+            max(
+                1,
+                height
+            ),
+
+            -1,
+            1
+        )
+
         Framework.gl.glMatrixMode(Framework.gl.GL_MODELVIEW)
         Framework.gl.glLoadIdentity()
         

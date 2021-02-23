@@ -55,61 +55,71 @@ from locals import *
 
 
 class StaticLabel2D(Framework.text.Label):
-    def __init__(self, font, font_size, pos, size, text, scene, color, *args, **kwargs):
+    def __init__(self, font, font_size, transform, text, scene, color, *args, **kwargs):
         """
         Creates a text field in a 2D scene
 
         :param font: The font of the text
         :param font_size: The size of the font
-        :param pos: The position in 2D space (Array, [x, y])
-        :param size: The size (Array, [length, height]) - Set it to CPSN_AUTO_SIZE for auto-size support
+        :param transform: A Transform Component
         :param text: The text of the label (String)
         :param scene: The Scene in which the label should be rendered (Scene())
         :param color: THe color of the text (Array, [R, G, B, A])
         """
 
-        if scene.mode == CPSN_GUI_SCENE:
-            super().__init__(text=text, font_name=font, font_size=font_size, bold=False, italic=False, x=pos[0],
-                             y=pos[1], width=size[0], height=size[1], batch=scene.batch, color=color, *args, **kwargs)
-        else:
+        if not scene.mode == CPSN_GUI_SCENE:
             Log.critical(f"Invalid scene type {scene.mode} for Static GUI Label. This object can only be used in a GUI scene (CPSN_GUI_SCENE)")
+            return
+
+        super().__init__(text=text, font_name=font, font_size=font_size, bold=False, italic=False, x=transform.x,
+                             y=transform.y, width=transform.width, height=transform.height, batch=scene.batch, color=color, *args, **kwargs)
 
 
 class StaticLabel3D(Framework.text.Label):
-    def __init__(self, font, font_size, pos, size, text, scene, color, *args, **kwargs):
+    def __init__(self, font, font_size, transform, text, scene, color, *args, **kwargs):
         """
         Creates a text field in a 3D scene (The text is rendered in 2D)
 
         :param font: The font of the text
         :param font_size: The size of the font
-        :param pos: The position in 2D space (Array, [x, y])
-        :param size: The size (Array, [length, height]) - Set it to CPSN_AUTO_SIZE for auto-size support
+        :param transform: A Transform Component
         :param text: The text of the label (String)
         :param scene: The Scene in which the label should be rendered (Scene())
         :param color: THe color of the text (Array, [R, G, B, A])
         """
 
-        if scene.mode == CPSN_HUD_SCENE:
-            super().__init__(text=text, font_name=font, font_size=font_size, bold=False, italic=False, x=pos[0],
-                             y=pos[1], width=size[0], height=size[1], batch=scene.batch, color=color, *args, **kwargs)
-        else:
+        if not scene.mode == CPSN_HUD_SCENE:
             Log.critical(f"Invalid scene type {scene.mode} for Static HUD Label. This object can only be used in a GUI scene (CPSN_HUD_SCENE)")
+            return
+
+        super().__init__(
+            text=text,
+            font_name=font,
+            font_size=font_size,
+            bold=False,
+            italic=False,
+            x=transform.x,
+            y=transform.y,
+            width=transform.width,
+            height=transform.height,
+            batch=scene.batch,
+            color=color,
+            *args, **kwargs
+        )
 
 
 class DynamicLabel3D(Framework.text.Label):
     """
     A dynamic label object is much more flexible than a normal one, but it comes with a performance cost
-
     """
 
-    def __init__(self, font, font_size, pos, size, text, color, scene, *args, **kwargs):
+    def __init__(self, font, font_size, transform, text, color, scene, *args, **kwargs):
         """
         Creates a text field in a 3D scene (The text is rendered in 2D)
 
         :param font: The font of the text
         :param font_size: The size of the font
-        :param pos: The position in 2D space (Array, [x, y])
-        :param size: The size (Array, [length, height]) - Set it to CPSN_AUTO_SIZE for auto-size support
+        :param transfom: A Transform Component
         :param text: The text of the label (String)
         :param color: THe color of the text (Array, [R, G, B, A])
         """
@@ -117,8 +127,17 @@ class DynamicLabel3D(Framework.text.Label):
         self.text_pointer = text
         self.scene        = scene
 
-        super().__init__(text=str(text), font_name=str(font), font_size=float(font_size),
-                         color=color, x=pos[0], y=pos[1], width=size[0], height=size[1], *args, **kwargs)
+        super().__init__(
+            text=str(text),
+            font_name=str(font),
+            font_size=float(font_size),
+            color=color,
+            x=transform.x,
+            y=transform.y,
+            width=transform.width,
+            height=transform.height,
+            *args, **kwargs
+        )
 
         scene.dynamic_hud.append(self)
 

@@ -61,12 +61,10 @@ class DynamicSprite3D():
     """
 
 
-    def __init__(self, texture, size, pos, rot, scene):
+    def __init__(self, texture, transform, scene):
         t = TexturedSquare(
             texture,
-            size,
-            pos,
-            rot,
+            transform,
             scene
         )
 

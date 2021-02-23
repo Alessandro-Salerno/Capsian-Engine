@@ -3,4 +3,5 @@
 # EXAMPLE: from scripts.scriptname import *
 
 # from scripts.script import *
-from scripts.carpal import *
+# from scripts.carpal import *
+from scripts.vaporwave import *

@@ -49,29 +49,3 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ----------------------------------------------------------------------------
-
-
-from locals import *
-
-
-class FPSCounter:
-    def __init__(self, scene):
-        from locals import Transform
-
-        self.scene = scene
-        self.label = DynamicLabel3D(
-            "Calibri",
-            48,
-            Transform(0, 0, 0, CPSN_AUTO_SIZE, CPSN_AUTO_SIZE),
-            self.get_pyglet_fps,
-            Color(255, 255, 255).rgba,
-            scene=scene
-        )
-
-
-    def get_fps(self):
-        return float(self.label.text)
-
-
-    def get_pyglet_fps(self):
-        return round(float(Framework.clock.get_fps()))

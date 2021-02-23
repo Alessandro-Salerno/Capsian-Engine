@@ -35,21 +35,19 @@
 
 # ----------------------------------------------------------------------------
 # Capsian Engine
-# Copyright (c) 2020 Alessandro Salerno (Tzyvoski)
-# All rights reserved.
+# Copyright 2020 - 2021 Alessandro Salerno (Tzyvoski)
 #
-# Redistribution of the engine (In source or binary form) is allowed provided
-# that the following requirements are met:
-#
-#  * Redistributions of source code must retain the above copyright
-#    notice, this list of conditions and the following disclaimer.
-#  * Redistribution in binary form must contain all scripts (Such as script.kfel)
-#
-#
-# **DISCLAIMER**
-#
-# Capsian AND IT'S CREATOR ARE NOT RESPONSIBLE FOR THE USE DEVELOPERS MAE OF
-# THE ENGINE.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#     http://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 # ----------------------------------------------------------------------------
 
 
@@ -68,10 +66,14 @@ import Capsian.engine                          as     engine
 import Capsian.video.sky_color                 as     sky_color
 from Capsian.components.component              import Component
 from Capsian.entities.entity                   import Entity
+from Capsian.entities.components_handler       import ComponentsHandler
 from Capsian.video.window                      import Window3D
 from Capsian.video.camera                      import PerspectiveCamera
 from Capsian.video.camera                      import OrthographicCamera
-from Capsian.video.scene                       import Scene
+from Capsian.video.scene                       import Scene3D
+from Capsian.video.scene                       import Scene2D
+from Capsian.video.scene                       import OverlayScene
+from Capsian.video.scene                       import PlaceholderScene
 from Capsian.entities.cube                     import Cube
 from Capsian.texturing.material                import Material
 from Capsian.input.keyboard                    import KeyboardInputHandler
@@ -80,6 +82,7 @@ from Capsian.entities.particle_system          import Particles2D
 from Capsian.entities.particle_system          import Particle
 from Capsian.entities.particle_system          import ParticleBatch
 from Capsian.entities.square                   import Square
+from Capsian.entities.square                   import RotatingSquare
 from Capsian.audio.music                       import Track
 from Capsian.audio.sound                       import DirectionalSound
 from Capsian.texturing.texture                 import Texture3D

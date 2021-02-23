@@ -83,10 +83,11 @@ class Light3D:
 
         Framework.gl.glEnable(self.light)
         scene.lights.append(self)
+        scene.drawable.append(self)
 
 
     # Draw the light
-    def render(self):
+    def draw(self):
         """
         Draws the light.
         This method is called by graphics.draw() and MUST NOT be called by other cde

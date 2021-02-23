@@ -192,7 +192,6 @@ class Clock:
 
 
 
-
     entry_points = _EntryPoints([])
     exit_points  = _ExitPoints([])
 

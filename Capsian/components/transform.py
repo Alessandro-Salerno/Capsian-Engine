@@ -67,18 +67,22 @@ class Transform(Component):
     #
     # -------------------------
 
-    def __init__(self, x=0, y=0, z=0, width=1, height=1, depth=1, rotX=0, rotY=0, rotZ=0):
+    def __init__(self, x=0, y=0, z=0, width=1, height=1, depth=1, rotX=0, rotY=0, rotZ=0, dx=0, dy=0, dz=0):
         self.x        =  float(x)
         self.y        =  float(y)
         self.z        =  float(z)
 
-        self.width    =  float(width)
-        self.height   =  float(height)
-        self.depth    =  float(depth)
+        self.width    =  width
+        self.height   =  height
+        self.depth    =  depth
 
         self.rotX     =  float(rotX)
         self.rotY     =  float(rotY)
         self.rotZ     =  float(rotZ)
+
+        self.dx       = int(dx)
+        self.dy       = int(dy)
+        self.dz       = int(dz)
 
         super().__init__()
 

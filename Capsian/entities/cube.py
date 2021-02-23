@@ -59,18 +59,14 @@ class Cube(Entity):
     """
     A Cube object is 3D Cube.
     This object uses Batched rendering for high performance and Capsian materials for texturing.
-
     """
 
     def __init__(self, scene, transform=Transform(), material=None):
         """
         Creates a cube in the world
 
-        :param size: The size of the cube (Array [x, y, z])
-        :param pos: The position of the cube in 3D space (Array [x, y, z])
-        :param rot: Nothing
-        :param scene: The scene in which the cube needs to be rendered (Scene(), CPSN_3D_SCENE)
-        :param lis: Can be used for greedy meshes (Not supported in this version)
+        :param transform: Transform object that holds positioning data (Transform())
+        :param scene: The scene in which the cube needs to be rendered (Scene3D())
         :param material: The material the cube is made out of (Texture3D()/SmartTexture3D, Material())
         """
 
@@ -107,49 +103,103 @@ class Cube(Entity):
         tex_coords = ('t2f', (0, 0, 1, 0, 1, 1, 0, 1))
 
         # Back
-        self.batch.add(
-                        4, 
-                        Framework.gl.GL_QUADS, self.texture,
-                        ('v3f', (X, y, z, x, y, z, x, Y, z, X, Y, z)),
-                        tex_coords
+        self.scene.batch.add(
+            4,
+            Framework.gl.GL_QUADS,
+            self.texture,
+            (
+                'v3f',
+                (
+                    X, y, z,
+                    x, y, z,
+                    x, Y, z,
+                    X, Y, z
+                )
+            ),
+            tex_coords
         )
 
         # Front
-        self.batch.add(
-                        4,
-                        Framework.gl.GL_QUADS, self.texture,
-                        ('v3f', (x, y, Z, X, y, Z, X, Y, Z, x, Y, Z)),
-                        tex_coords
+        self.scene.batch.add(
+            4,
+            Framework.gl.GL_QUADS,
+            self.texture,
+            (
+                'v3f',
+                (
+                    x, y, Z,
+                    X, y, Z,
+                    X, Y, Z,
+                    x, Y, Z
+                )
+            ),
+            tex_coords
         )
 
         # Left
-        self.batch.add(
-                        4,
-                        Framework.gl.GL_QUADS, self.texture,
-                        ('v3f', (x, y, z, x, y, Z, x, Y, Z, x, Y, z)),
-                        tex_coords
+        self.scene.batch.add(
+            4,
+            Framework.gl.GL_QUADS,
+            self.texture,
+            (
+                'v3f',
+                (
+                    x, y, z,
+                    x, y, Z,
+                    x, Y, Z,
+                    x, Y, z
+                )
+            ),
+            tex_coords
         )
 
         # Right
-        self.batch.add(
-                        4,
-                        Framework.gl.GL_QUADS, self.texture,
-                        ('v3f', (X, y, Z, X, y, z, X, Y, z, X, Y, Z)),
-                        tex_coords
+        self.scene.batch.add(
+            4,
+            Framework.gl.GL_QUADS,
+            self.texture,
+            (
+                'v3f',
+                (
+                    X, y, Z,
+                    X, y, z,
+                    X, Y, z,
+                    X, Y, Z
+                )
+            ),
+            tex_coords
         )
 
         # Bottom
-        self.batch.add(
-                        4,
-                        Framework.gl.GL_QUADS, self.texture,
-                        ('v3f', (x, y, z, X, y, z, X, y, Z, x, y, Z)),
-                        tex_coords
+        self.scene.batch.add(
+            4,
+            Framework.gl.GL_QUADS,
+            self.texture,
+            (
+                'v3f',
+                (
+                    x, y, z,
+                    X, y, z,
+                    X, y, Z,
+                    x, y, Z
+                )
+            ),
+            tex_coords
         )
 
         # Top
-        self.batch.add(
-                        4,
-                        Framework.gl.GL_QUADS, self.texture,
-                        ('v3f', (x, Y, Z, X, Y, Z, X, Y, z, x, Y, z)),
-                        tex_coords
+        self.scene.batch.add(
+            4,
+            Framework.gl.GL_QUADS,
+            self.texture,
+            (
+                'v3f',
+                (
+                    x, Y, Z,
+                    X, Y, Z,
+                    X, Y, z,
+                    x, Y, z
+                )
+            ),
+            tex_coords
         )

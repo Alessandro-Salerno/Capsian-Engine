@@ -49,3 +49,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ----------------------------------------------------------------------------
+
+
+from Capsian.texturing.texture  import Texture3D, SmartTexture3D, Image2D
+from Capsian.texturing.material import Material

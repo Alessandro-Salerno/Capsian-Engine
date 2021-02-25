@@ -51,10 +51,12 @@
 # ----------------------------------------------------------------------------
 
 
-from locals import *
+from Capsian.log    import Log
+from Capsian.values import CPSN_HUD_SCENE
+import pyglet
 
 
-class StaticLabel2D(Framework.text.Label):
+class StaticLabel2D(pyglet.text.Label):
     def __init__(self, font, font_size, transform, text, scene, color, *args, **kwargs):
         """
         Creates a text field in a 2D scene
@@ -75,7 +77,7 @@ class StaticLabel2D(Framework.text.Label):
                              y=transform.y, width=transform.width, height=transform.height, batch=scene.batch, color=color, *args, **kwargs)
 
 
-class StaticLabel3D(Framework.text.Label):
+class StaticLabel3D(pyglet.text.Label):
     def __init__(self, font, font_size, transform, text, scene, color, *args, **kwargs):
         """
         Creates a text field in a 3D scene (The text is rendered in 2D)
@@ -108,7 +110,7 @@ class StaticLabel3D(Framework.text.Label):
         )
 
 
-class DynamicLabel3D(Framework.text.Label):
+class DynamicLabel3D(pyglet.text.Label):
     """
     A dynamic label object is much more flexible than a normal one, but it comes with a performance cost
     """
@@ -141,14 +143,14 @@ class DynamicLabel3D(Framework.text.Label):
 
         scene.dynamic_hud.append(self)
 
-        Framework.clock.schedule_interval(self.update_text, 1/5)
+        pyglet.clock.schedule_interval(self.update_text, 1/5)
 
 
     def update_text(self, delta_time):
         """
         Updates the label's text. This is used for multiple reasons:
         1. Setting the text when the label is created
-        2. Updating the text if a pointer (Such as Framework.clock.get_fps) is specified in the text propriety
+        2. Updating the text if a pointer (Such as pyglet.clock.get_fps) is specified in the text propriety
 
         :param delta_time:
         :return: None

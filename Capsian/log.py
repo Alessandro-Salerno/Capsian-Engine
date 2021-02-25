@@ -53,8 +53,8 @@
 
 
 from datetime import datetime
-from locals import *
-from os import system
+from Capsian  import *
+from os       import system
 import sys
 
 
@@ -126,11 +126,12 @@ class Log:
 
         try:
             # Load all necessary libs
-            from os import system
-            from locals import engine
-            from locals import Scene2D
-            from Capsian.values import SkyColor
-            from locals import OrthographicCamera
+            from os               import system
+            import Capsian.engine as engine
+            from Capsian          import Scene2D
+            from Capsian.values   import SkyColor
+            from Capsian          import OrthographicCamera
+            import pyglet
 
             engine.main_window.set_fullscreen(False)
 
@@ -147,21 +148,22 @@ class Log:
             print(f"{TermColor.FAIL} [{time()} FATAL ERROR] {text} {TermColor.END_COLOR}")
 
             # Draw the message
-            error_scene = Scen2D(camera)
+            error_scene = Scene2D(camera)
 
-
-            error = Framework.text.Label(
+            error = pyglet.text.Label(
                 text=f"{text}\n\nPress ENTER or ESCAPE to terminate the execution of the program.\n_",
-                font_name="consolas", font_size=24, bold=True,
+                font_name="MS Gothic", font_size=24, bold=True,
                 width=engine.main_window.width - 25, italic=False,
                 x=10, y=engine.main_window.height,
                 anchor_x="left", anchor_y="top",
-                batch=error_scene.batch, multiline=True)
+                batch=error_scene.batch, multiline=True,
+                color=(0, 255, 0, 255)
+            )
         except:
             print(f"{TermColor.FAIL} [{time()} FATAL ERROR] {text} {TermColor.END_COLOR}")
 
         try:
-            from locals import engine
+            from Capsian import engine
             engine.main_window.alive = 0
         except:
             pass

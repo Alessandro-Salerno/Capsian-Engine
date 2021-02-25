@@ -1,4 +1,4 @@
-from locals import *
+from Capsian import *
 from CapsianLine.commands import system
 
 # Init the program

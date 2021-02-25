@@ -1,1 +1,1 @@
-start Python\Windows\python.exe -u main.py
+start Python\Windows\pythonw.exe -u main.py

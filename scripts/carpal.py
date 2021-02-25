@@ -1,4 +1,4 @@
-from locals import *
+from Capsian import *
 
 
 camera  = PerspectiveCamera()

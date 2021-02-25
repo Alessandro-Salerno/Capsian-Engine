@@ -51,7 +51,7 @@
 # ----------------------------------------------------------------------------
 
 
-from locals import *
+from Capsian.components.component import Component
 
 
 class Transform(Component):

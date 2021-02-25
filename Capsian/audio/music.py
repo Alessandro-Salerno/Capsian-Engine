@@ -51,7 +51,7 @@
 # ----------------------------------------------------------------------------
 
 
-from locals import *
+import pyglet
 
 
 class Track:
@@ -59,7 +59,6 @@ class Track:
     A track object is an abstract object which reproduces music or sounds.
     A track object has not position in 3D space and does not support directional sound.
     It can be used to create background music or play non-directional sounds like a menu button being clicked.
-
     """
 
     def __init__(self, file, streaming):
@@ -71,9 +70,11 @@ class Track:
         :param auto_play: Weather it should play as soon as it's created or not (Boolean)
         """
 
+        import pyglet
+
         self.file      = file
         self.streaming = streaming
-        self.audio     = Framework.resource.media(file, streaming=streaming)
+        self.audio     = pyglet.resource.media(file, streaming=streaming)
 
 
     # Plays the track

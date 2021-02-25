@@ -49,3 +49,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ----------------------------------------------------------------------------
+
+
+from Capsian.input.keyboard import KeyboardInputHandler
+from Capsian.input.mouse    import MouseInputHandler

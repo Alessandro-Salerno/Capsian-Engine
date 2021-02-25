@@ -51,8 +51,8 @@
 # ----------------------------------------------------------------------------
 
 
-from locals                       import *
 from CapsianLine.commands.command import Command
+import Capsian
 
 
 class Line(Command):
@@ -64,10 +64,10 @@ class Line(Command):
         from CapsianLine.commands import commands
 
         for command in commands:
-            TermColor.begin(TermColor.BOLD)
-            TermColor.begin(TermColor.OK_GREEN)
+            Capsian.TermColor.begin(TermColor.BOLD)
+            Capsian.TermColor.begin(TermColor.OK_GREEN)
             print(f"\n{command.upper()}")
-            TermColor.end()
+            Capsian.TermColor.end()
 
             Command.help(commands[command])
 

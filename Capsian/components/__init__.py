@@ -49,3 +49,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ----------------------------------------------------------------------------
+
+
+from Capsian.components.component            import Component
+from Capsian.components.character_controller import CharacterController
+from Capsian.components.transform            import Transform

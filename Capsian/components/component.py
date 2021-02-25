@@ -51,7 +51,8 @@
 # ----------------------------------------------------------------------------
 
 
-from locals import *
+import Capsian.engine as engine
+from Capsian.log      import Log
 
 
 class Component:
@@ -70,10 +71,10 @@ class Component:
         from datetime import datetime
 
         self.on_create(datetime.now())
-        engine.entries + self.on_start
-        engine.exits + self.on_close
 
-        self._enabled = False
+        engine.default_clock.entry_points.add(self.on_start)
+        engine.default_clock.exit_points.add(self.on_close)
+
         self._parent  = None
 
 
@@ -226,29 +227,6 @@ class Component:
     #       PUBLIC METHODS
     #
     # -------------------------
-
-    def enable(self):
-        from datetime import datetime
-
-        if self._enabled:
-            Log.error("Component already enabled!")
-            return
-
-        self._enabled = True
-        Framework.clock.schedule(self.update)
-        self.on_enable(datetime.now())
-
-
-    def disable(self):
-        from datetime import datetime
-
-        if not self._enabled:
-            Log.error("Component already disabled!")
-
-        self._enabled = False
-        Framework.clock.unschedule(self.on_update)
-        self.on_disable(datetime.now())
-
 
     def update(self, dt):
         from datetime import datetime

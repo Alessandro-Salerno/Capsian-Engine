@@ -51,7 +51,7 @@
 # ----------------------------------------------------------------------------
 
 
-from locals import Log
+from Capsian.log import Log
 
 
 class FixedRangeInt(int):

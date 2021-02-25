@@ -51,18 +51,17 @@
 # ----------------------------------------------------------------------------
 
 
-from locals import *
-
-
 class FPSCounter:
     def __init__(self, scene):
-        from locals import Transform
+        from Capsian.components.transform import Transform
+        from Capsian.GUI.label            import DynamicLabel3D
+        from Capsian.world.format         import Color
 
         self.scene = scene
         self.label = DynamicLabel3D(
             "Calibri",
             48,
-            Transform(0, 0, 0, CPSN_AUTO_SIZE, CPSN_AUTO_SIZE),
+            Transform(0, 0, 0, None, None),
             self.get_pyglet_fps,
             Color(255, 255, 255).rgba,
             scene=scene
@@ -74,4 +73,5 @@ class FPSCounter:
 
 
     def get_pyglet_fps(self):
-        return round(float(Framework.clock.get_fps()))
+        import pyglet
+        return round(float(pyglet.clock.get_fps()))

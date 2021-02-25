@@ -51,8 +51,9 @@
 # ----------------------------------------------------------------------------
 
 
-from locals import *
+from Capsian.entities.entity      import Entity
 from Capsian.components.transform import Transform
+import pyglet
 
 
 class Cube(Entity):
@@ -60,6 +61,12 @@ class Cube(Entity):
     A Cube object is 3D Cube.
     This object uses Batched rendering for high performance and Capsian materials for texturing.
     """
+
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
 
     def __init__(self, scene, transform=Transform(), material=None):
         """
@@ -82,11 +89,17 @@ class Cube(Entity):
         ]
 
         self.texture  = material.texture
-        self.add_block(transform.x, transform.y, transform.z)
+        self._add_block(transform.x, transform.y, transform.z)
 
+
+    # -------------------------
+    #
+    #       PRIVATE METHODS
+    #
+    # -------------------------
 
     # Add faces to batch
-    def add_block(self, x, y, z):
+    def _add_block(self, x, y, z):
         """
         Adds the cube to the specified scene
 
@@ -105,7 +118,7 @@ class Cube(Entity):
         # Back
         self.scene.batch.add(
             4,
-            Framework.gl.GL_QUADS,
+            pyglet.gl.GL_QUADS,
             self.texture,
             (
                 'v3f',
@@ -122,7 +135,7 @@ class Cube(Entity):
         # Front
         self.scene.batch.add(
             4,
-            Framework.gl.GL_QUADS,
+            pyglet.gl.GL_QUADS,
             self.texture,
             (
                 'v3f',
@@ -139,7 +152,7 @@ class Cube(Entity):
         # Left
         self.scene.batch.add(
             4,
-            Framework.gl.GL_QUADS,
+            pyglet.gl.GL_QUADS,
             self.texture,
             (
                 'v3f',
@@ -156,7 +169,7 @@ class Cube(Entity):
         # Right
         self.scene.batch.add(
             4,
-            Framework.gl.GL_QUADS,
+            pyglet.gl.GL_QUADS,
             self.texture,
             (
                 'v3f',
@@ -173,7 +186,7 @@ class Cube(Entity):
         # Bottom
         self.scene.batch.add(
             4,
-            Framework.gl.GL_QUADS,
+            pyglet.gl.GL_QUADS,
             self.texture,
             (
                 'v3f',
@@ -190,7 +203,7 @@ class Cube(Entity):
         # Top
         self.scene.batch.add(
             4,
-            Framework.gl.GL_QUADS,
+            pyglet.gl.GL_QUADS,
             self.texture,
             (
                 'v3f',

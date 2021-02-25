@@ -49,3 +49,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ----------------------------------------------------------------------------
+
+
+from Capsian.video.camera      import PerspectiveCamera, OrthographicCamera
+from Capsian.video.fog         import Fog
+from Capsian.video.fps_counter import FPSCounter
+from Capsian.video.light       import AmbientLight
+from Capsian.video.scene       import Scene2D, Scene3D, PlaceholderScene, OverlayScene
+from Capsian.video.sky_color   import SkyColorClass
+from Capsian.video.window      import Window3D

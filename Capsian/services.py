@@ -1,12 +1,15 @@
-from locals import *
+from Capsian.input.keyboard              import KeyboardInputHandler
+from Capsian.entities.components_handler import ComponentsHandler
+from pyglet.window                       import key as Key
+import Capsian.engine                               as engine
+import pyglet
 
 
 class CapsianKeyboardHandler(KeyboardInputHandler):
     def on_key_pressed(self, symbol, modifiers):
         if not engine.main_window.alive > 0:
             if symbol == Key.ESCAPE or symbol == Key.ENTER:
-                engine.main-Window3D.clsoe()
-                Framework.app.exit()
+                engine.main_window.close()
 
             return
 
@@ -14,7 +17,7 @@ class CapsianKeyboardHandler(KeyboardInputHandler):
             import os
 
             if os.name == "nt":
-                screen = Framework.canvas.Screen(
+                screen = pyglet.canvas.Screen(
                     display=engine.main_window.display,
                     width=engine.main_window.screen.width,
                     height=engine.main_window.screen.height,
@@ -29,7 +32,7 @@ class CapsianKeyboardHandler(KeyboardInputHandler):
                 )
 
             elif os.name is not "nt":
-                engine.main-Window3D.set_fullscreen(
+                engine.main_window.set_fullscreen(
                     not engine.main_window.fullscreen
                 )
             

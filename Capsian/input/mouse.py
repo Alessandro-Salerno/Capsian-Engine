@@ -51,7 +51,8 @@
 # ----------------------------------------------------------------------------
 
 
-from locals import *
+from Capsian.components.component import Component
+import Capsian.engine             as engine
 
 
 class MouseInputHandler(Component):

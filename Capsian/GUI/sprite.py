@@ -51,7 +51,6 @@
 # ----------------------------------------------------------------------------
 
 
-from locals import *
 from Capsian.entities.square import TexturedSquare
 
 

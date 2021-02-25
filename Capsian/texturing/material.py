@@ -51,10 +51,6 @@
 # ----------------------------------------------------------------------------
 
 
-
-from locals import *
-
-
 class Material:
     def __init__(self, texture, fallSound="", walkSound="", runSound=""):
         """

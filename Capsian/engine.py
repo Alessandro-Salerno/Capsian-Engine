@@ -51,106 +51,27 @@
 # ----------------------------------------------------------------------------
 
 
-from locals                    import *
+from Capsian.world import Clock
+import pyglet
 
 
 # Declare vars
 main_window       = None
 main_camera       = None
-main_key_listener = None
 default_clock     = Clock()
-scheduled         = []
-entry_points      = []
-exit_points       = []
 
 
+# Returns a version sting
 def version():
     return "Capsian Engine v1.0 a1"
 
 
 # Prepares the application
 def run():
-    """
-    Starts the engine and (Ironically) also stops it
-
-    :return: None
-    """
-
     from datetime import datetime
     import Capsian.services
 
-    for fn in entry_points:
-        fn(datetime.now())
-
-    Framework.app.run()
-    
-    for fn in exit_points:
-        fn(datetime.now())
-
-    Framework.app.exit()
-
-
-class Scheduled:
-    """
-    This is a lower level class not directly exposed to the scripting library.
-    It's used to add and remove looping functions from a stack.
-    'engine.loops' is an instance of this class
-    """
-
-
-    def __add__(self, func=(None, 1/120)):
-        self.add(func[0], func[1])
-
-    def __sub__(self, func):
-        self.remove(func)
-
-
-    def add(self, func, dt=1/120):
-        if dt == 1/120:
-            scheduled.append(func)
-        else:
-            Framework.clock.schedule_interval(func, dt)
-
-
-    def remove(self, func):
-        if not func in scheduled:
-            Log.critical(f"Function {func} is not scheduled, thus it cannot be unscheduled")
-
-        
-        scheduled.remove(func)
-
-
-class EntryPoints:
-    """
-    This class is used to add entry points
-    EPs are functions called when the program starts, in this case, they're user defined.
-    These functions run when engine.run() i s called in main.py
-    """
-
-
-    def __add__(self, other):
-        self.add(other)
-
-
-    def add(self, other):
-        entry_points.append(other)
-
-
-class ExitPoints:
-    """
-    This class is used to add exit points.
-    Exit points are functions called when the program ends, in this case they're user defined.
-    They are called before Framework.app.exit() in engine.run()(Here in engine.py)
-    """
-
-
-    def __add__(self, other):
-        self.add(other)
-
-    def add(self, other):
-        exit_points.append(other)
-
-
-loops   = Scheduled()
-entries = EntryPoints()
-exits   = ExitPoints()
+    default_clock.entry_points.call(datetime.now())
+    pyglet.app.run()
+    default_clock.exit_points.call(datetime.now())
+    pyglet.app.exit()

@@ -52,7 +52,10 @@
 
 
 
-from locals import *
+from Capsian.entities.entity      import Entity
+from Capsian.components.transform import Transform
+import Capsian.engine             as engine
+import pyglet
 
 
 class Square(Entity):
@@ -60,8 +63,14 @@ class Square(Entity):
     Squares are strictly correlated to particles.
     Particles, in fact, are just groups of squares that can move...
     A Capsian Square is a 2D quad in 3D space
-
     """
+
+
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
 
     def __init__(self, transform=None, scene=None, active=False):
         """
@@ -70,8 +79,6 @@ class Square(Entity):
         :param transform: Tramsform object that holds positioning data (Transform())
         :param scene: Capsian Scene object (Scene3D()/Scene2D()/PlaceholderScene)
         """
-        
-        from locals import Transform
 
         super().__init__(
             transform=transform,
@@ -86,7 +93,7 @@ class Square(Entity):
         self.currentX    = x
         self.currentY    = y
 
-        self.vertex_list = Framework.graphics.vertex_list(
+        self.vertex_list = pyglet.graphics.vertex_list(
             4,
             (
                 'v3f',
@@ -113,34 +120,28 @@ class Square(Entity):
         scene.drawable.append(self)
 
 
+    # -------------------------
+    #
+    #       PUBLIC METHODS
+    #
+    # -------------------------
+
     # Draw OpenGL quad (Old OpenGL)
     def draw(self):
-        """
-        Draws a given square
+        pyglet.gl.glPushMatrix()
 
-        :return: None
-        """
-
-        Framework.gl.glPushMatrix()
-
-        Framework.gl.glTranslatef(
+        pyglet.gl.glTranslatef(
             self.components.transform.x,
             self.components.transform.y,
             self.components.transform.z
         )
 
-        self.vertex_list.draw(Framework.gl.GL_QUADS)
-        Framework.gl.glPopMatrix()
+        self.vertex_list.draw(pyglet.gl.GL_QUADS)
+        pyglet.gl.glPopMatrix()
 
 
     # Delte self
     def delete(self):
-        """
-        This method removes a square from the stack graphics.objects2D
-
-        :return: None
-        """
-
         if self in self.scene.objects2D:
             self.scene.objects2D.remove(self)
             self.scene.drawable.remove(self)
@@ -149,6 +150,12 @@ class Square(Entity):
 
 
 class TexturedSquare(Square):
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
+
     def __init__(self, texture, transform, scene):
         self.texture = texture.get_texture()
 
@@ -159,41 +166,49 @@ class TexturedSquare(Square):
         )
 
 
+    # -------------------------
+    #
+    #       PUBLIC METHODS
+    #
+    # -------------------------
+
+    # Draw OpenGL quad (Old OpenGL)
     def draw(self):
-        """
-        Draws a given square
+        pyglet.gl.glPushMatrix()
 
-        :return: None
-        """
-
-        Framework.gl.glPushMatrix()
-
-        Framework.gl.glTranslatef(
+        pyglet.gl.glTranslatef(
             self.components.transform.x,
             self.components.transform.y,
             self.components.transform.z
         )
 
-        Framework.gl.glEnable(Framework.gl.GL_TEXTURE_2D)
-        Framework.gl.glBindTexture(Framework.gl.GL_TEXTURE_2D, self.texture.id)
+        pyglet.gl.glEnable(pyglet.gl.GL_TEXTURE_2D)
+        pyglet.gl.glBindTexture(pyglet.gl.GL_TEXTURE_2D, self.texture.id)
 
-        self.vertex_list.draw(Framework.gl.GL_QUADS)
-        Framework.gl.glDisable(Framework.gl.GL_TEXTURE_2D)
+        self.vertex_list.draw(pyglet.gl.GL_QUADS)
+        pyglet.gl.glDisable(pyglet.gl.GL_TEXTURE_2D)
 
-        Framework.gl.glPopMatrix()
+        pyglet.gl.glPopMatrix()
 
 
 class RotatingSquare(Square):
-    def draw(self):
-        Framework.gl.glPushMatrix()
+    # -------------------------
+    #
+    #       PUBLIC METHODS
+    #
+    # -------------------------
 
-        Framework.gl.glTranslatef(
+    # Draw OpenGL quad (Old OpenGL)
+    def draw(self):
+        pyglet.gl.glPushMatrix()
+
+        pyglet.gl.glTranslatef(
             self.components.transform.x,
             self.components.transform.y,
             self.components.transform.z
         )
 
-        Framework.gl.glRotatef(
+        pyglet.gl.glRotatef(
             engine.main_camera.components.transform.rotX,
 
             -1,
@@ -201,7 +216,7 @@ class RotatingSquare(Square):
             0
         )
 
-        Framework.gl.glRotatef(
+        pyglet.gl.glRotatef(
             engine.main_camera.components.transform.rotY,
 
             0,
@@ -209,5 +224,5 @@ class RotatingSquare(Square):
             0
         )
 
-        self.vertex_list.draw(Framework.gl.GL_QUADS)
-        Framework.gl.glPopMatrix()
+        self.vertex_list.draw(pyglet.gl.GL_QUADS)
+        pyglet.gl.glPopMatrix()

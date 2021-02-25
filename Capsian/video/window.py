@@ -52,12 +52,11 @@
 
 
 
-from locals            import Framework as pyglet
-from pyglet.gl      import *
-from pyglet.window  import key
-from Capsian.values    import *
-from locals            import Log
-from locals            import engine
+from pyglet.gl         import *
+from pyglet.window     import key
+from Capsian.log       import Log
+import Capsian.engine  as engine
+import pyglet
 
 
 class Window(pyglet.window.Window):

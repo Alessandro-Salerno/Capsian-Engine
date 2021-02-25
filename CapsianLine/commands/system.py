@@ -51,7 +51,6 @@
 # ----------------------------------------------------------------------------
 
 
-from locals                       import *
 from CapsianLine.commands.command import Command
 
 

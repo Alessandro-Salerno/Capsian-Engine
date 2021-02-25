@@ -51,7 +51,7 @@
 # ----------------------------------------------------------------------------
 
 
-from   locals  import *
+from   Capsian  import *
 from   os      import system
 import os
 
@@ -87,7 +87,7 @@ try:
         Fog(fog_color, fog_start, fog_end)
 except:
     _errcam = OrthographicCamera()
-    _errwin = Window3D(camera=_errcam)
+    _errwin = Window3D(camera=_errcam, width=1024, height=500)
     Log.critical("Something went wrong while setting up your game. This is usually caused by the absence of a default window and/or camera")
 
 

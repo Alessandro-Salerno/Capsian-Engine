@@ -51,12 +51,12 @@
 # ----------------------------------------------------------------------------
 
 
-from locals import *
+import pyglet
 
 
 class Clock:
     """
-    A Capsian Clock isn implementation of pyglet.clock.Clock (Framework.clock.Clock)
+    A Capsian Clock isn implementation of pyglet.clock.Clock (pyglet.clock.Clock)
     """
 
 
@@ -64,108 +64,36 @@ class Clock:
         self.Schedule.call_every_tick(self.tick)
 
 
-    class _EntryPoints:
+    class _Points:
         """
         A class that holds data about all entry points
         """
 
 
-        def __init__(self, objs):
-            self.objs = []
-
-            for obj in list(objs):
-                try:
-                    if self.validate(obj):
-                        self.objs.append(obj)
-                except:
-                    continue
+        def __init__(self):
+            self.functions = []
 
 
-        def __add__(self, obj):
-            self.add(obj)
+        def __add__(self, func):
+            self.add(func)
 
 
-        def add(self, obj):
-            if self.validate(obj):
-                self.objs.append(obj)
+        def add(self, func):
+            if not self.validate(func):
+                print("Not a callable object")
+                return
+
+            self.functions.append(func)
 
 
-        def validate(self, obj):
-            return repr(obj) == "EntryPoint Object"
+        def validate(self, func):
+            import types
+            return isinstance(func, (types.FunctionType, types.MethodType))
 
 
-        def call(self):
-            for obj in self.objs:
-                obj.func()
-
-
-
-    class EntryPoint:
-        """
-        A class that holds data about one entry point
-        """
-
-
-        def __init__(self, clock, func):
-            self.clock = clock
-            self.func  = func
-
-
-        def __repr__(self):
-            return "EntryPoint Object"
-
-
-    
-
-    class _ExitPoints:
-        """
-        A class that holds data about all exit points
-        """
-
-
-        def __init__(self, objs):
-            self.objs = []
-
-            for obj in list(objs):
-                try:
-                    if self.validate(obj):
-                        self.objs.append(obj)
-                except:
-                    continue
-
-
-        def __add__(self, obj):
-            self.add(obj)
-
-
-        def add(self, obj):
-            if self.validate(obj):
-                self.objs.append(obj)
-
-
-        def validate(self, obj):
-            return repr(obj) == "ExitPoint Object"
-
-
-        def call(self):
-            for obj in self.objs:
-                obj.func()
-
-
-
-    class ExitPoint:
-        """
-        A class that holds data about an exit point
-        """
-
-
-        def __init__(self, clock, func):
-            self.clock = clock
-            self.func  = func
-
-
-        def __repr__(self):
-            return "EntryPoint Object"
+        def call(self, *args, **kwargs):
+            for func in self.functions:
+                func(*args, **kwargs)
 
 
 
@@ -178,26 +106,31 @@ class Clock:
 
         @staticmethod
         def call_every_tick(func, *args, **kwargs):
-            Framework.clock.schedule(func, *args, **kwargs)
+            pyglet.clock.schedule(func, *args, **kwargs)
 
 
         @staticmethod
         def call_with_interval(func, interval, *args, **kwargs):
-            Framework.clock.schedule_interval(func, interval, *args, **kwargs)
+            pyglet.clock.schedule_interval(func, interval, *args, **kwargs)
+
+
+        @staticmethod
+        def unschedule(func):
+            pyglet.clock.unschedule(func)
 
 
         @staticmethod
         def wait(milliseconds):
-            Framework.clock.Clock.sleep(milliseconds * 1000)
+            pyglet.clock.Clock.sleep(milliseconds * 1000)
 
 
 
-    entry_points = _EntryPoints([])
-    exit_points  = _ExitPoints([])
+    entry_points = _Points()
+    exit_points  = _Points()
 
 
     def tick(self, dt):
-        from locals import engine
+        from Capsian import engine
 
         for scene in engine.main_camera.scenes:
             for obj in scene.stack:

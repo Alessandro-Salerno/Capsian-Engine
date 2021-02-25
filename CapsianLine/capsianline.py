@@ -17,10 +17,10 @@
 
 
 # Imports
-from   locals               import *
 from   CapsianLine.commands import *
 from   CapsianLine.ccparser import *
 import CapsianLine.design
+import Capsian
 
 
 # Draw the design for the header
@@ -57,7 +57,8 @@ while True:
    except KeyboardInterrupt:
       # catch ctrl + c
       print("system close")
+      break
 
    except Exception as e:
       # some errors in the process? let's report it
-      Log.error(e)
+      Capsian.Log.error(e)

@@ -1,7 +1,5 @@
-from locals import *
+from Capsian import *
 
-
-_lights = lights
 
 camera  = PerspectiveCamera()
 window  = Window3D(camera=camera, vsync=False, width=1280, height=720, resizable=True)
@@ -82,4 +80,4 @@ class Mouse(MouseInputHandler):
 
 
 camera.components.add(Mouse())
-Framework.gl.glDisable(Framework.gl.GL_CULL_FACE)
+pyglet.gl.glDisable(pyglet.gl.GL_CULL_FACE)

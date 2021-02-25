@@ -51,7 +51,10 @@
 # ----------------------------------------------------------------------------
 
 
-from locals import *
+from Capsian.log     import Log
+from Capsian.values  import CPSN_DEFAULT_TEXTURE_MODE
+import Capsian.types as types
+import pyglet
 
 
 class Texture:
@@ -81,20 +84,20 @@ class Texture3D(Texture):
         file = self.path
 
         try:
-            loaded_texture = Framework.image.load(file).get_texture()
+            loaded_texture = pyglet.image.load(file).get_texture()
 
-            Framework.gl.glTexParameterf(
-                Framework.gl.GL_TEXTURE_2D,
+            pyglet.gl.glTexParameterf(
+                pyglet.gl.GL_TEXTURE_2D,
                 self.flags["texture mode"][0], self.flags["texture mode"][2]
             )
 
-            Framework.gl.glTexParameterf(
-                Framework.gl.GL_TEXTURE_2D,
+            pyglet.gl.glTexParameterf(
+                pyglet.gl.GL_TEXTURE_2D,
                 self.flags["texture mode"][1], self.flags["texture mode"][2]
             )
 
             Log.successful(f"Successfully loaded texture from file '{file}'")
-            return Framework.graphics.TextureGroup(loaded_texture)
+            return pyglet.graphics.TextureGroup(loaded_texture)
         except Exception as exception:
             Log.critical(f"Unable to load texture from file '{file}'. Check the file name and the material's flags!\n\n{exception}")
 
@@ -121,25 +124,25 @@ class SmartTexture3D(Texture):
 
     def get_texture(self):
         try:
-            loaded_texture = Framework.image.load(self.path).get_region(
+            loaded_texture = pyglet.image.load(self.path).get_region(
                 self.pos[0],
                 self.pos[1],
                 self.size[0],
                 self.size[1]
             ).get_texture()
             
-            Framework.gl.glTexParameterf(
-                Framework.gl.GL_TEXTURE_2D,
+            pyglet.gl.glTexParameterf(
+                pyglet.gl.GL_TEXTURE_2D,
                 self.flags["texture mode"][0], self.flags["texture mode"][2]
             )
 
-            Framework.gl.glTexParameterf(
-                Framework.gl.GL_TEXTURE_2D,
+            pyglet.gl.glTexParameterf(
+                pyglet.gl.GL_TEXTURE_2D,
                 self.flags["texture mode"][1], self.flags["texture mode"][2]
             )
 
             Log.successful(f"Successfully loaded texture from file '{self.path}'")
-            return Framework.graphics.TextureGroup(loaded_texture)
+            return pyglet.graphics.TextureGroup(loaded_texture)
         except:
             Log.critical(f"Unable to load texture from file '{self.path}'. Check the file name and the material's flags!")
 
@@ -157,7 +160,7 @@ class Image2D:
         file = self.path
 
         try:
-            loaded_texture = Framework.image.load(file)
+            loaded_texture = pyglet.image.load(file)
             Log.successful(f"Successfully loaded texture from file '{file}'")
             return loaded_texture
         except:

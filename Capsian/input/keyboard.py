@@ -52,8 +52,9 @@
 
 
 
-from locals import *
-from pyglet.window import key
+from Capsian.components.component import Component
+from pyglet.window                import key as Key
+import Capsian.engine                        as engine
 
 
 class KeyboardInputHandler(Component):

@@ -51,7 +51,7 @@
 # ----------------------------------------------------------------------------
 
 
-from locals import *
+import pyglet
 
 
 class DirectionalSound:
@@ -71,12 +71,14 @@ class DirectionalSound:
         :param auto_play: Weather it should play as soon as it's created or not (Boolean)
         """
 
-        self.player          = Framework.media.player.Player()
+        import pyglet
+
+        self.player          = pyglet.media.player.Player()
         self.player.position = pos
         self.source          = source
 
         # Start the loop
-        Framework.clock.schedule_interval(self.update, 1/120)
+        pyglet.clock.schedule_interval(self.update, 1/120)
 
 
     # Plays the audio
@@ -87,7 +89,7 @@ class DirectionalSound:
         :return: None
         """
 
-        self.player.queue(Framework.media.load(self.source, streaming=False))
+        self.player.queue(pygletmedia.load(self.source, streaming=False))
         self.player.play()
 
 

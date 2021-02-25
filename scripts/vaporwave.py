@@ -1,11 +1,10 @@
-from locals import *
+from Capsian import *
 
 
 def gen_square(startX, startZ, y, side):
     for x in range(startX, startX + side):
         for z in range(startZ, startZ + side):
             c = Cube(scene, Transform(x, y, z), mat)
-
 
 
 camera  = PerspectiveCamera(Transform(0, 5, 5, 0, 0, 0, 30, -90))

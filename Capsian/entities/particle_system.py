@@ -51,13 +51,20 @@
 # ----------------------------------------------------------------------------
 
 
-
-from   locals                  import *
-import random
+from   Capsian.entities.entity   import Entity
 from   Capsian.entities.square import RotatingSquare
+import Capsian.engine          as engine
+import pyglet
+import random
 
 
 class Particle(Entity):
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
+
     def __init__(self, transform=None, amount=4, duration=240, scene=None):
         """
         Creates a Particle derivative (Such as Particles2D)
@@ -114,8 +121,8 @@ class Particles2D(Particle):
         """
 
         self.dead = 0
-        Framework.clock.unschedule(self.check)
-        Framework.clock.unschedule(self.destroy)
+        pyglet.clock.unschedule(self.check)
+        pyglet.clock.unschedule(self.destroy)
 
         for quad in self.quads:
             quad.delete()
@@ -155,7 +162,7 @@ class Particles2D(Particle):
         :return: None
         """
 
-        from locals import Transform
+        from Capsian import Transform
 
         for _ in range(quantity):
             x = pos[0] + random.uniform(-size[0] * 2,  size[2] * 2)
@@ -186,6 +193,12 @@ class Particles2D(Particle):
 
 
 class ParticleBatch(Particle):
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
+    
     def __init__(self, transform=None, amount=1, duration=240, scene=None):
         """
         Creates a particle batch in the world.
@@ -219,7 +232,7 @@ class ParticleBatch(Particle):
         """
 
         self.dead = 0
-        Framework.clock.unschedule(self.check)
+        pyglet.clock.unschedule(self.check)
 
         for quad in self.quads:
             quad.delete()
@@ -261,7 +274,7 @@ class ParticleBatch(Particle):
         :return: None
         """
 
-        from locals import Transform
+        from Capsian import Transform
 
         for _ in range(quantity):
             x = pos[0] + random.uniform(-size[0] * 2, size[2] * 2)

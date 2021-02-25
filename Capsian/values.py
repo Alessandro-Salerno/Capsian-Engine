@@ -51,28 +51,33 @@
 # ----------------------------------------------------------------------------
 
 
-from   locals                  import Framework
-import Capsian.video.sky_color as     __graphics__
+import pyglet
+from Capsian.video.sky_color      import SkyColorClass
+from Capsian.video.scene          import Scene, Scene3D, Scene2D, OverlayScene, PlaceholderScene
+from Capsian.video.camera         import PerspectiveCamera, OrthographicCamera, Camera
+from Capsian.components.component import Component
 
 
 CPSN_DEFAULT_DELTA_TIME   = 1/120
-CPSN_DEFAULT_TEXTURE_MODE = [Framework.gl.GL_TEXTURE_MIN_FILTER, Framework.gl.GL_TEXTURE_MAG_FILTER, Framework.gl.GL_NEAREST]
+CPSN_DEFAULT_TEXTURE_MODE = [pyglet.gl.GL_TEXTURE_MIN_FILTER, pyglet.gl.GL_TEXTURE_MAG_FILTER, pyglet.gl.GL_NEAREST]
 CPSN_SMART_TEXTURE        = True
 CPSN_NORMAL_TEXTURE       = False
 CPSN_AUTO_SIZE            = None
-CPSN_3D_SCENE             = "game_batch"
-CPSN_GUI_SCENE            = "gui_batch"
-CPSN_AMBIENT_LIGHT        = Framework.gl.GL_AMBIENT
-CPSN_DIFFUSE_LIGHT        = Framework.gl.GL_DIFFUSE
-CPSN_SPECULAR_LIGHT       = Framework.gl.GL_SPECULAR
+CPSN_STANDARD_SCENE       = Scene
+CPSN_3D_SCENE             = Scene3D
+CPSN_GUI_SCENE            = Scene2D
+CPSN_HUD_SCENE            = OverlayScene
+CPSN_USELESS_SCENE        = PlaceholderScene
+CPSN_AMBIENT_LIGHT        = pyglet.gl.GL_AMBIENT
+CPSN_DIFFUSE_LIGHT        = pyglet.gl.GL_DIFFUSE
+CPSN_SPECULAR_LIGHT       = pyglet.gl.GL_SPECULAR
 CPSN_LIGHTING             = "if mode == 'enable':\n\tglEnable(GL_LIGHTING)\n\tself.lighting = True\nelse:\n\tglDisable(GL_LIGHTING)\n\tself.lighting = False"
-CPSN_HUD_SCENE            = "hud_batch"
 CPSN_DEFAULT_FOG_COLOR    = [0.5, 0.69, 1.0, 1]
 CPSN_DEFAULT_CLEAR_COLOR  = [0.5, 0.65, 1.0, 1.0]
-CPSN_PERSPECTIVE_CAMERA   = "PerspectiveCamera"
-CPSN_ORTHOGRAPHIC_CAMERA  = "OrthographicCamera"
-CPSN_COMPONENT            = "Capsian EntityComponent"
-CPSN_STANDARD_SCENE       = "Capsian Standard Scene"
+CPSN_STANDARD_CAMERA      = Camera
+CPSN_PERSPECTIVE_CAMERA   = PerspectiveCamera
+CPSN_ORTHOGRAPHIC_CAMERA  = OrthographicCamera
+CPSN_COMPONENT            = Component
 CPSN_DEFAULT_FOG_START    = 40
 CPSN_DEFAULT_FOG_END      = 50
 CPSN_FLOAT_COLOR          = "glf"
@@ -103,14 +108,14 @@ class MouseButton:
 
 
 lights                    = [
-    Framework.gl.GL_LIGHT0,
-    Framework.gl.GL_LIGHT1,
-    Framework.gl.GL_LIGHT2,
-    Framework.gl.GL_LIGHT3,
-    Framework.gl.GL_LIGHT4,
-    Framework.gl.GL_LIGHT5,
-    Framework.gl.GL_LIGHT6,
-    Framework.gl.GL_LIGHT7,
+    pyglet.gl.GL_LIGHT0,
+    pyglet.gl.GL_LIGHT1,
+    pyglet.gl.GL_LIGHT2,
+    pyglet.gl.GL_LIGHT3,
+    pyglet.gl.GL_LIGHT4,
+    pyglet.gl.GL_LIGHT5,
+    pyglet.gl.GL_LIGHT6,
+    pyglet.gl.GL_LIGHT7,
 ]
 
-SkyColor = __graphics__.SkyColorClass()
+SkyColor = SkyColorClass()

@@ -57,9 +57,9 @@ def TextureMode(filter1, filter2, algorithm):
     The default Texture Mode is specified by CPSN_DEFAULT_TEXTURE_MODE and is applied to all textures by default.
     This mode is great for pixel art, but may be out of touch for more defined textures.
 
-    :param filter1: The first filter (Default: Framework.gl.GL_TEXTURE_MIN_FILTER)
-    :param filter2: The second filter (Default: Framework.gl.GL_TEXTURE_MAG_FILTER)
-    :param algorithm: The scaling algorithm used by OpenGL (Default: Framework.gl.GL_NEAREST)
+    :param filter1: The first filter (Default: pyglet.gl.GL_TEXTURE_MIN_FILTER)
+    :param filter2: The second filter (Default: pyglet.gl.GL_TEXTURE_MAG_FILTER)
+    :param algorithm: The scaling algorithm used by OpenGL (Default: pyglet.gl.GL_NEAREST)
 
     :return: Array [filter1, filter2, algorithm]
     """
@@ -87,7 +87,7 @@ class Color:
         if to in methods.keys():
             methods[to]()
         else:
-            from locals import Log
+            from Capsian import Log
             Log.error(f"'{to}' is not a valid color type")
 
 

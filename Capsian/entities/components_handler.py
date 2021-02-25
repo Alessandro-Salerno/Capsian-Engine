@@ -51,12 +51,18 @@
 # ----------------------------------------------------------------------------
 
 
-from locals import *
+from Capsian.entities.entity import Entity
 
 
 class ComponentsHandler(Entity):
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
+    
     def __init__(self, component):
-        from locals import PlaceholderScene
+        from Capsian import PlaceholderScene
 
         super().__init__(
             scene=PlaceholderScene(),

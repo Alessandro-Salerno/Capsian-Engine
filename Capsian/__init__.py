@@ -49,3 +49,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ----------------------------------------------------------------------------
+
+
+from Capsian.audio       import * 
+from Capsian.components  import *
+from Capsian.entities    import *
+from Capsian.GUI         import *
+from Capsian.input       import *
+from Capsian.texturing   import *
+from Capsian.types       import *
+from Capsian.values      import *
+from Capsian.log         import Log, TermColor
+from Capsian.video       import *
+from Capsian.world       import *
+
+import Capsian.engine    as engine
+from pyglet.window import key as Key

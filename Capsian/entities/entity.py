@@ -51,7 +51,6 @@
 # ----------------------------------------------------------------------------
 
 
-from locals import *
 from Capsian.components.transform import Transform
 
 
@@ -60,6 +59,7 @@ class Entity:
     A Capsian Entity.
     An Entity is generally used as a parent class for entities. 
     """
+
 
     # -------------------------
     #
@@ -72,13 +72,13 @@ class Entity:
         Creates an entity in the world
         This is usually used as super/parent class for other entitys like Cubes
 
-        :param size: The size of the entity (Array, [width, height, depth])
-        :param pos: The position of the world in 3 Space (Array, [x, y, z])
-        :param rot: The rotation of the entity (Array, [x, y])
-        :param batch: The scene in which the entity should be rendered
+        :Param transform: A Transform Component
+        :param scene: A Scene object
+        :param active: Weather the entity is acive or not (Boolean)
         """
 
-        from datetime import datetime
+        from datetime       import datetime
+        from Capsian.values import CPSN_STANDARD_SCENE
 
         class Components(list):
             transform            = None
@@ -105,7 +105,7 @@ class Entity:
         self.active     = active
         self.components.add(transform)
 
-        if not repr(scene) == CPSN_STANDARD_SCENE:
+        if not isinstance(scene, CPSN_STANDARD_SCENE):
             self.scene = None
             return
 
@@ -126,13 +126,6 @@ class Entity:
     #
     # -------------------------
 
-    def on_start(self, time):
-        """
-        What happens when the program starts
-        """
-
-        return False
-
 
     def on_update(self, dt, time):
         """
@@ -146,14 +139,6 @@ class Entity:
     def on_fixed_update(self, dt, time):
         """
         What happens when the fixed_update function passes through this entity
-        """
-
-        return False
-
-
-    def on_close(self, time):
-        """
-        What happens when the program closes
         """
 
         return False

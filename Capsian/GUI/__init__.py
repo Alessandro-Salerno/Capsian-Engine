@@ -49,3 +49,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ----------------------------------------------------------------------------
+
+
+from Capsian.GUI.label  import StaticLabel2D, StaticLabel3D, DynamicLabel3D
+from Capsian.GUI.sprite import DynamicSprite3D

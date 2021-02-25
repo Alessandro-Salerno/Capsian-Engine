@@ -51,7 +51,7 @@
 # ----------------------------------------------------------------------------
 
 
-from locals import Framework
+import pyglet
 
 
 fog_objs = []
@@ -73,14 +73,14 @@ class Fog:
 
     @staticmethod
     def enable(color, start, end):
-        Framework.gl.glEnable(Framework.gl.GL_FOG)
-        Framework.gl.glFogfv(Framework.gl.GL_FOG_COLOR, (Framework.gl.GLfloat * 4)(color[0], color[1], color[2], color[3]))
-        Framework.gl.glHint(Framework.gl.GL_FOG_HINT, Framework.gl.GL_NICEST)
-        Framework.gl.glFogf(Framework.gl.GL_FOG_MODE, Framework.gl.GL_LINEAR)
-        Framework.gl.glFogf(Framework.gl.GL_FOG_START, float(start))
-        Framework.gl.glFogf(Framework.gl.GL_FOG_END, float(end))
+        pyglet.gl.glEnable(pyglet.gl.GL_FOG)
+        pyglet.gl.glFogfv(pyglet.gl.GL_FOG_COLOR, (pyglet.gl.GLfloat * 4)(color[0], color[1], color[2], color[3]))
+        pyglet.gl.glHint(pyglet.gl.GL_FOG_HINT  , pyglet.gl.GL_NICEST)
+        pyglet.gl.glFogf(pyglet.gl.GL_FOG_MODE  , pyglet.gl.GL_LINEAR)
+        pyglet.gl.glFogf(pyglet.gl.GL_FOG_START , float(start))
+        pyglet.gl.glFogf(pyglet.gl.GL_FOG_END   , float(end))
 
 
     @staticmethod
     def disable():
-        Framework.gl.glDisable(GL_FOG)
+        pyglet.gl.glDisable(GL_FOG)

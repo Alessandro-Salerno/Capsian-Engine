@@ -54,9 +54,9 @@
 from   Capsian.components.transform import Transform
 from   Capsian.entities.entity      import Entity
 import Capsian.maths.math           as     kmath
-from   locals                       import Framework
-from   locals                       import engine
+import Capsian.engine               as engine
 import math
+import pyglet
 
 
 class Camera(Entity):
@@ -96,12 +96,12 @@ class PerspectiveCamera(Camera):
     def init(self):
         engine.main_camera = self
 
-        Framework.gl.glEnable(Framework.gl.GL_DEPTH_TEST)
-        Framework.gl.glEnable(Framework.gl.GL_NORMALIZE)
-        Framework.gl.glEnable(Framework.gl.GL_CULL_FACE)
-        Framework.gl.glCullFace(Framework.gl.GL_BACK)
-        Framework.gl.glEnable(Framework.gl.GL_BLEND)
-        Framework.gl.glBlendFunc(Framework.gl.GL_SRC_ALPHA, Framework.gl.GL_ONE_MINUS_SRC_ALPHA)
+        pyglet.gl.glEnable(pyglet.gl.GL_DEPTH_TEST)
+        pyglet.gl.glEnable(pyglet.gl.GL_NORMALIZE)
+        pyglet.gl.glEnable(pyglet.gl.GL_CULL_FACE)
+        pyglet.gl.glCullFace(pyglet.gl.GL_BACK)
+        pyglet.gl.glEnable(pyglet.gl.GL_BLEND)
+        pyglet.gl.glBlendFunc(pyglet.gl.GL_SRC_ALPHA, pyglet.gl.GL_ONE_MINUS_SRC_ALPHA)
 
         engine.main_window.set_lock(True)
         engine.main_window.set_caption("Capsian 1.0 Window - 3D Mode")
@@ -109,39 +109,39 @@ class PerspectiveCamera(Camera):
 
     def render(self, window):
         # Set all OpenGL parameters
-        Framework.gl.glClear(Framework.gl.GL_COLOR_BUFFER_BIT | Framework.gl.GL_DEPTH_BUFFER_BIT)
+        pyglet.gl.glClear(pyglet.gl.GL_COLOR_BUFFER_BIT | pyglet.gl.GL_DEPTH_BUFFER_BIT)
 
-        if window.lighting: Framework.gl.glEnable(Framework.gl.GL_LIGHTING)
+        if window.lighting: pyglet.gl.glEnable(pyglet.gl.GL_LIGHTING)
 
-        Framework.gl.glMatrixMode(Framework.gl.GL_PROJECTION)
-        Framework.gl.glLoadIdentity()
+        pyglet.gl.glMatrixMode(pyglet.gl.GL_PROJECTION)
+        pyglet.gl.glLoadIdentity()
 
         if window.width < 1 or window.height < 1:
             return
 
-        Framework.gl.gluPerspective(
+        pyglet.gl.gluPerspective(
             self.fov,
             window.width / window.height,
             self.near,
             self.far
         )
 
-        Framework.gl.glMatrixMode(Framework.gl.GL_MODELVIEW)
-        Framework.gl.glLoadIdentity()
+        pyglet.gl.glMatrixMode(pyglet.gl.GL_MODELVIEW)
+        pyglet.gl.glLoadIdentity()
 
-        Framework.gl.glPushMatrix()
+        pyglet.gl.glPushMatrix()
 
-        Framework.gl.glRotatef(
+        pyglet.gl.glRotatef(
             -self.components.transform.rotX,
             1, 0, 0
         )
 
-        Framework.gl.glRotatef(
+        pyglet.gl.glRotatef(
             -self.components.transform.rotY,
             0, 1, 0
         )
 
-        Framework.gl.glTranslatef(
+        pyglet.gl.glTranslatef(
             -self.components.transform.x,
             -self.components.transform.y,
             -self.components.transform.z
@@ -155,13 +155,13 @@ class PerspectiveCamera(Camera):
 
             scene.batch.draw()
 
-        Framework.gl.glPopMatrix()
-        Framework.gl.glDisable(Framework.gl.GL_LIGHTING)
+        pyglet.gl.glPopMatrix()
+        pyglet.gl.glDisable(pyglet.gl.GL_LIGHTING)
         
         width, height = window.get_size()
         viewport     = window.get_viewport_size()
 
-        Framework.gl.glViewport(
+        pyglet.gl.glViewport(
             0,
             0,
             max(
@@ -174,10 +174,10 @@ class PerspectiveCamera(Camera):
             )
         )
 
-        Framework.gl.glMatrixMode(Framework.gl.GL_PROJECTION)
-        Framework.gl.glLoadIdentity()
+        pyglet.gl.glMatrixMode(pyglet.gl.GL_PROJECTION)
+        pyglet.gl.glLoadIdentity()
 
-        Framework.gl.glOrtho(
+        pyglet.gl.glOrtho(
             0,
             max(
                 1,
@@ -192,8 +192,8 @@ class PerspectiveCamera(Camera):
             1
         )
 
-        Framework.gl.glMatrixMode(Framework.gl.GL_MODELVIEW)
-        Framework.gl.glLoadIdentity()
+        pyglet.gl.glMatrixMode(pyglet.gl.GL_MODELVIEW)
+        pyglet.gl.glLoadIdentity()
         
         # Render HUD 
         for scene in self.hud_scenes:
@@ -232,19 +232,19 @@ class OrthographicCamera(Camera):
     def init(self):
         engine.main_camera = self
 
-        Framework.gl.glDisable(Framework.gl.GL_DEPTH_TEST)
+        pyglet.gl.glDisable(pyglet.gl.GL_DEPTH_TEST)
         engine.main_window.set_lock(False)
         engine.main_window.set_caption("Capsian 1.0 Window - GUI Mode")
 
 
     def render(self, window):
         # Render the 2D scene
-        Framework.gl.glDisable(Framework.gl.GL_LIGHTING)
+        pyglet.gl.glDisable(pyglet.gl.GL_LIGHTING)
         
         width, height = window.get_size()
         viewport     = window.get_viewport_size()
 
-        Framework.gl.glViewport(
+        pyglet.gl.glViewport(
             0,
             0,
 
@@ -259,10 +259,10 @@ class OrthographicCamera(Camera):
             )
         )
 
-        Framework.gl.glMatrixMode(Framework.gl.GL_PROJECTION)
-        Framework.gl.glLoadIdentity()
+        pyglet.gl.glMatrixMode(pyglet.gl.GL_PROJECTION)
+        pyglet.gl.glLoadIdentity()
 
-        Framework.gl.glOrtho(
+        pyglet.gl.glOrtho(
             0,
 
             max(
@@ -281,8 +281,8 @@ class OrthographicCamera(Camera):
             1
         )
 
-        Framework.gl.glMatrixMode(Framework.gl.GL_MODELVIEW)
-        Framework.gl.glLoadIdentity()
+        pyglet.gl.glMatrixMode(pyglet.gl.GL_MODELVIEW)
+        pyglet.gl.glLoadIdentity()
         
         for scene in self.scenes:
             scene.batch.draw()

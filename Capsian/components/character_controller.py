@@ -51,9 +51,12 @@
 # ----------------------------------------------------------------------------
 
 
-from locals import *
 import math
-import Capsian.maths.math as kmath
+import Capsian.maths.math         as kmath
+from Capsian.components.component import Component
+from Capsian.log                  import Log
+from Capsian.values               import CPSN_PERSPECTIVE_CAMERA
+import Capsian.engine             as engine
 
 
 class CharacterController(Component):
@@ -92,7 +95,7 @@ class CharacterController(Component):
     # -------------------------
 
     def on_ready(self, time):
-        if not repr(self.parent) == CPSN_PERSPECTIVE_CAMERA:
+        if not isinstance(self.parent, CPSN_PERSPECTIVE_CAMERA):
             Log.critical("You are trying to add a CharacterController Component to an object that is not CPSN_PERSPECTIVE_CAMERA compatible")
             return
         

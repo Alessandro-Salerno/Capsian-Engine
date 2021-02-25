@@ -51,11 +51,13 @@
 # ----------------------------------------------------------------------------
 
 
-from locals import*
+from Capsian.log     import Log
+import Capsian.types as types
+import pyglet
 
 
 class Scene:
-    def __init__(self, camera, mode):
+    def __init__(self, camera):
         """
         Creates a Capsian scene object.
         It uses pyglet.graphics.Batch()
@@ -64,12 +66,11 @@ class Scene:
         """
         
         # Set mode
-        self.mode        = mode
         self.camera      = camera
         self.enabled     = False
 
         # Defines lists of objects
-        self.batch       = Framework.graphics.Batch()
+        self.batch       = pyglet.graphics.Batch()
         self.objects2D   = types.LimitedLenghtObjectArray(750.000, False)
         self.lights      = types.LimitedLenghtObjectArray(8.00000, False)
         self.stack       = types.LimitedLenghtObjectArray(1000.00, False)
@@ -83,18 +84,13 @@ class Scene:
         self.batch.add(*args, **kwargs)
 
 
-    def __repr__(self):
-        return CPSN_STANDARD_SCENE
-
-
 class Scene3D(Scene):
     def __init__(self, camera):
-        super().__init__(
-            camera=camera,
-            mode=CPSN_3D_SCENE
-        )
+        from Capsian.values import CPSN_PERSPECTIVE_CAMERA
 
-        if not repr(camera) == CPSN_PERSPECTIVE_CAMERA:
+        super().__init__(camera)
+
+        if not isinstance(camera, CPSN_PERSPECTIVE_CAMERA):
             Log.critical(f"{repr(camera)} is not a valid camera for Scene3D!")
             return
         
@@ -124,13 +120,14 @@ class Scene3D(Scene):
 
 class Scene2D(Scene):
     def __init__(self, camera):
-        super().__init__(
-            camera=camera,
-            mode=CPSN_GUI_SCENE
-        )
+        from Capsian.values import CPSN_ORTHOGRAPHIC_CAMERA
+        
+        super().__init__(camera)
 
-        if not repr(camera) == CPSN_ORTHOGRAPHIC_CAMERA:
-            Log.critical(f"{repr(camera)} is not a valid camera for Scene3D!")
+        self.dynamic_gui = types.LimitedLenghtObjectArray(200.000, False)
+
+        if not isinstance(camera, CPSN_ORTHOGRAPHIC_CAMERA):
+            Log.critical(f"{repr(camera)} is not a valid camera for Scene2D!")
             return
         
         if not self.enable():
@@ -159,16 +156,14 @@ class Scene2D(Scene):
 
 class OverlayScene(Scene):
     def __init__(self, camera):
-        super().__init__(
-            camera=camera,
-            mode=CPSN_HUD_SCENE
-        )
+        from Capsian.values import CPSN_HUD_SCENE, CPSN_PERSPECTIVE_CAMERA
 
-        self.hud_batch   = Framework.graphics.Batch()
-        self.dynamic_gui = types.LimitedLenghtObjectArray(200.000, False)
+        super().__init__(camera)
+
+        self.hud_batch   = pyglet.graphics.Batch()
         self.dynamic_hud = types.LimitedLenghtObjectArray(30.0000, False)
 
-        if not repr(camera) == CPSN_PERSPECTIVE_CAMERA:
+        if not isinstance(camera, CPSN_PERSPECTIVE_CAMERA):
             Log.critical(f"{repr(camera)} is not a valid camera for OverlayScene!")
             return
         
@@ -198,7 +193,5 @@ class OverlayScene(Scene):
 
 class PlaceholderScene(Scene):
     def __init__(self):
-        super().__init__(
-            None,
-            CPSN_STANDARD_SCENE
-        )
+        from Capsian.values import CPSN_STANDARD_SCENE
+        super().__init__(None)

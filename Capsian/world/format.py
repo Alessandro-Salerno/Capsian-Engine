@@ -53,15 +53,11 @@
 
 def TextureMode(filter1, filter2, algorithm):
     """
-    Converts a series of values into a Texture Compatible OpenGL Texture Mode.
-    The default Texture Mode is specified by CPSN_DEFAULT_TEXTURE_MODE and is applied to all textures by default.
-    This mode is great for pixel art, but may be out of touch for more defined textures.
-
-    :param filter1: The first filter (Default: pyglet.gl.GL_TEXTURE_MIN_FILTER)
-    :param filter2: The second filter (Default: pyglet.gl.GL_TEXTURE_MAG_FILTER)
-    :param algorithm: The scaling algorithm used by OpenGL (Default: pyglet.gl.GL_NEAREST)
-
-    :return: Array [filter1, filter2, algorithm]
+    Parameters
+    ----------
+        filter1   | The first filter
+        filter2   | The second filter
+        algorithm | The OpnGL algorithm used
     """
 
     return [filter1, filter2, algorithm]
@@ -69,36 +65,45 @@ def TextureMode(filter1, filter2, algorithm):
 
 class Color:
     """
-    A color object is not always useful.
-    It's designed to help you to convert different color types (Such as RGB to Float)
+    Fields
+    ------
+        rgba | The color | list [R, G, B, A]
 
+    Methods
+    -------
+        _convert_to_gl_float_color | Converts a given RGBA color from bytes to float
+        _convert_to_byte_color     | Converts a given RGBA color from float to bytes
     """
 
     def __init__(self, r=255, g=255, b=255, a=255):
+        """
+        Parameters
+        ----------
+            r | Red channel   | int > 0 < 256
+            g | Green channel | int > 0 < 256
+            b | Blue channel  | int > 0 < 256
+            a | Alpha channel | int > 0 < 256
+        """
+
         self.rgba = [r, g, b, a]
 
 
-    def convert_to(self, to):
+    def convert_to(self, to: str):
         methods = {
             "rgb": self._convert_to_byte_color,
             "glf": self._convert_to_gl_float_color,
         }
 
-        if to in methods.keys():
-            methods[to]()
-        else:
+        if not to in methods.keys():
             from Capsian import Log
             Log.error(f"'{to}' is not a valid color type")
+            return 
+            
+        self.rgba = methods[to]()
 
 
     @property
     def _convert_to_gl_float_color(self):
-        """
-        Converts RGB/RGBA to OpenGL float color
-
-        :return: Array [FloatR, FloatG, FloatB, FloatA]
-        """
-
         gl_colors = [0, 0, 0, 0]
 
         for i in range(0, len(self.rgba)):
@@ -109,12 +114,6 @@ class Color:
 
     @property
     def _convert_to_byte_color(self):
-        """
-        Converts OpenGL float color into RGBA
-
-        :return: Array [R, G, B, A]
-        """
-
         byte_colors = [0, 0, 0, 0]
 
         for i in range(0, len(self.rgba)):

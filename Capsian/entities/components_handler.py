@@ -55,6 +55,11 @@ from Capsian.entities.entity import Entity
 
 
 class ComponentsHandler(Entity):
+    """
+    A ComponentsHandler object allows you to add components to an empty entity more easily.
+    Where you would normallly have to create an Entity, assign it a transform etc etc... You can just create one of these and go
+    """
+
     # -------------------------
     #
     #       DUNDERSCORE
@@ -62,11 +67,6 @@ class ComponentsHandler(Entity):
     # -------------------------
     
     def __init__(self, component):
-        from Capsian import PlaceholderScene
-
-        super().__init__(
-            scene=PlaceholderScene(),
-            active=False
-        )
+        super().__init__()
 
         self.components.add(component)

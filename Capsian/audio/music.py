@@ -61,39 +61,36 @@ class Track:
     It can be used to create background music or play non-directional sounds like a menu button being clicked.
     """
 
-    def __init__(self, file, streaming):
-        """
-        Creates a track object
 
-        :param file: The file from which the Track object should retrieve the audio (String)
-        :param streaming: Weather it should use streaming or not (Boolean)
-        :param auto_play: Weather it should play as soon as it's created or not (Boolean)
-        """
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
 
-        import pyglet
+    def __init__(self, file: str, streaming: bool):
+        """
+        Parameters
+        ----------
+            file | The file path of the track | str
+        """
 
         self.file      = file
         self.streaming = streaming
         self.audio     = pyglet.resource.media(file, streaming=streaming)
 
 
-    # Plays the track
-    def play(self):
-        """
-        Plays a given track
-
-        :return: None
-        """
-
-        self.audio.play()
-
-
     # When the object is called
-    def __call__(self):
-        """
+    def __call__(self) -> None:
+        return self.play()
 
-        When the object si called it plays a sound
-        This method handles the sound playback
-        """
 
-        self.play()
+    # -------------------------
+    #
+    #       PUBLIC METHODS
+    #
+    # -------------------------
+
+    # Plays the track
+    def play(self) -> None:
+        self.audio.play()

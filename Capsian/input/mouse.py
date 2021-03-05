@@ -51,17 +51,37 @@
 # ----------------------------------------------------------------------------
 
 
-from Capsian.components.component import Component
+from   Capsian.components.component import Component
 import Capsian.engine             as engine
 
 
 class MouseInputHandler(Component):
+    """
+    Fields
+    ------
+        pressed_button      | The currently pressed button (button held) | Pyglet Mouse State Handler
+        mouse_state_handler | The Mouse State Handler for the object     | CapsianMouseStateHandlerObject
+
+    Methods
+    -------
+        on_button_pressed  | What happens when a button is pressed
+        on_button_released | What happens when a button is released
+        on_button_held     | What happens when a button is held down
+    """
+
+
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
+
     def __init__(self):
         from pyglet.window.mouse import MouseStateHandler
 
         class CapsianMouseStateHandlerObject(MouseStateHandler):
             def __init__(self, parent):
-                self.parent      = parent
+                self.parent = parent
                 super().__init__()
 
             def on_mouse_press(self, x, y, button, modifiers):
@@ -83,21 +103,57 @@ class MouseInputHandler(Component):
         super().__init__()
 
 
-    def on_button_pressed(self, x, y, button, modifiers):
+    def __repr__(self):
+        return "mouse_listener"
+
+
+    # -------------------------
+    #
+    #       PUBLIC METHODS
+    #
+    # -------------------------
+
+    def on_button_pressed(self, x: int, y: int, button, modifiers):
+        """
+        Parameters
+        ----------
+            x         | The cursor's X position          | int
+            y         | The cursor's Y position          | int
+            button    | The button that is being pressed
+            modifiers | The modifiers applied to the stroke
+        """
+
         pass
 
 
-    def on_button_released(self, x, y, button, modifiers):
+    def on_button_released(self, x: int, y: int, button, modifiers):
+        """
+        Parameters
+        ----------
+            x         | The cursor's X position          | int
+            y         | The cursor's Y position          | int
+            button    | The button that is being pressed
+            modifiers | The modifiers applied to the stroke
+        """
+
         pass
 
 
     def on_button_held(self, buttons):
+        """
+        Parameters
+        ----------
+            buttons | All the buttons | dict
+        """
+
         pass
 
 
-    def on_update(self, dt, time):
+    # -------------------------
+    #
+    #       EVENT HANDLERS
+    #
+    # -------------------------
+
+    def on_update(self, dt: float, time):
         self.on_button_held(self.pressed_button)
-
-
-    def __repr__(self):
-        return "mouse_listener"

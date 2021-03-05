@@ -52,21 +52,48 @@
 
 
 class FPSCounter:
+    """
+    A self-updating label on the screen that displays the currnt framerate
+
+    Fields
+    ------
+        scene | The scene of which the object is part of | OverlayScene
+        label | The actual label                         | Label3D
+    """
+
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
+
     def __init__(self, scene):
+        """
+        Parameters
+        ----------
+            scene | The scene of which the object is part of | OverlayScene
+        """
+
         from Capsian.components.transform import Transform
-        from Capsian.GUI.label            import DynamicLabel3D
+        from Capsian.GUI.label            import Label3D
         from Capsian.world.format         import Color
 
         self.scene = scene
-        self.label = DynamicLabel3D(
-            "Calibri",
-            48,
-            Transform(0, 0, 0, None, None),
-            self.get_pyglet_fps,
-            Color(255, 255, 255).rgba,
+        self.label = Label3D(
+            font="Calibri",
+            font_size=48,
+            transform=Transform(0, 0, 0, None, None),
+            text=self.get_pyglet_fps,
+            color=Color(255, 255, 255).rgba,
             scene=scene
         )
 
+
+    # -------------------------
+    #
+    #       PUBLIC METHODS
+    #
+    # -------------------------
 
     def get_fps(self):
         return float(self.label.text)

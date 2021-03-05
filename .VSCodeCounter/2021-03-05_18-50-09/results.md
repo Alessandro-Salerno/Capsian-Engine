@@ -1,17 +1,17 @@
 # Summary
 
-Date : 2021-02-16 14:51:11
+Date : 2021-03-05 18:50:09
 
 Directory c:\Users\OxyGe\Desktop\new\Capsian-Engine
 
-Total : 5312 files,  779113 codes, 215784 comments, 148114 blanks, all 1143011 lines
+Total : 5317 files,  779459 codes, 216275 comments, 148191 blanks, all 1143925 lines
 
 [details](details.md)
 
 ## Languages
 | language | files | code | comment | blank | total |
 | :--- | ---: | ---: | ---: | ---: | ---: |
-| Python | 5,159 | 766,227 | 210,310 | 144,758 | 1,121,295 |
+| Python | 5,164 | 766,573 | 210,801 | 144,835 | 1,122,209 |
 | C++ | 111 | 9,985 | 5,133 | 2,863 | 17,981 |
 | HTML | 3 | 1,612 | 11 | 71 | 1,694 |
 | C | 1 | 514 | 184 | 118 | 816 |
@@ -24,26 +24,27 @@ Total : 5312 files,  779113 codes, 215784 comments, 148114 blanks, all 1143011 l
 | Markdown | 1 | 39 | 0 | 12 | 51 |
 | PowerShell | 1 | 36 | 6 | 10 | 52 |
 | Makefile | 2 | 21 | 19 | 15 | 55 |
-| CSS | 1 | 0 | 6 | 1 | 7 |
 | Visual Basic | 1 | 0 | 1 | 0 | 1 |
+| CSS | 1 | 0 | 6 | 1 | 7 |
 
 ## Directories
 | path | files | code | comment | blank | total |
 | :--- | ---: | ---: | ---: | ---: | ---: |
-| . | 5,312 | 779,113 | 215,784 | 148,114 | 1,143,011 |
-| Capsian | 43 | 1,204 | 2,815 | 962 | 4,981 |
-| CapsianLine | 7 | 197 | 287 | 150 | 634 |
-| CapsianLine\commands | 3 | 28 | 144 | 33 | 205 |
-| Capsian\GUI | 3 | 42 | 198 | 39 | 279 |
-| Capsian\audio | 3 | 24 | 203 | 40 | 267 |
-| Capsian\components | 4 | 123 | 333 | 118 | 574 |
-| Capsian\entities | 5 | 267 | 465 | 193 | 925 |
-| Capsian\input | 3 | 58 | 167 | 61 | 286 |
-| Capsian\maths | 2 | 8 | 105 | 14 | 127 |
-| Capsian\texturing | 3 | 53 | 172 | 46 | 271 |
-| Capsian\types | 5 | 61 | 192 | 53 | 306 |
-| Capsian\video | 8 | 300 | 523 | 202 | 1,025 |
-| Capsian\world | 3 | 98 | 188 | 95 | 381 |
+| . | 5,317 | 779,459 | 216,275 | 148,191 | 1,143,925 |
+| Capsian | 46 | 1,445 | 3,307 | 1,011 | 5,763 |
+| CapsianLine | 9 | 225 | 331 | 169 | 725 |
+| CapsianLine\commands | 4 | 53 | 192 | 51 | 296 |
+| Capsian\GUI | 3 | 74 | 230 | 49 | 353 |
+| Capsian\audio | 3 | 25 | 192 | 41 | 258 |
+| Capsian\components | 5 | 178 | 480 | 147 | 805 |
+| Capsian\entities | 6 | 343 | 548 | 184 | 1,075 |
+| Capsian\input | 3 | 62 | 236 | 75 | 373 |
+| Capsian\maths | 2 | 8 | 106 | 15 | 129 |
+| Capsian\texturing | 3 | 61 | 203 | 55 | 319 |
+| Capsian\types | 4 | 49 | 222 | 55 | 326 |
+| Capsian\video | 9 | 377 | 643 | 237 | 1,257 |
+| Capsian\video\bluefire | 2 | 0 | 103 | 10 | 113 |
+| Capsian\world | 3 | 69 | 178 | 67 | 314 |
 | Python | 5,254 | 777,557 | 212,571 | 146,930 | 1,137,058 |
 | Python\Windows | 5,254 | 777,557 | 212,571 | 146,930 | 1,137,058 |
 | Python\Windows\Lib | 5,025 | 755,291 | 204,275 | 141,755 | 1,101,321 |
@@ -500,6 +501,7 @@ Total : 5312 files,  779113 codes, 215784 comments, 148114 blanks, all 1143011 l
 | Python\Windows\tcl\nmake | 1 | 514 | 184 | 118 | 816 |
 | Python\Windows\tcl\tix8.4.3 | 19 | 447 | 58 | 141 | 646 |
 | Python\Windows\tcl\tix8.4.3\pref | 18 | 443 | 58 | 139 | 640 |
-| scripts | 2 | 44 | 4 | 31 | 79 |
+| addons | 1 | 0 | 1 | 1 | 2 |
+| scripts | 2 | 166 | 8 | 43 | 217 |
 
 [details](details.md)

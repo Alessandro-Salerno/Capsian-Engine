@@ -51,15 +51,31 @@
 # ----------------------------------------------------------------------------
 
 
-import Capsian.engine as engine
-from Capsian.log      import Log
+from Capsian.log             import Log
+import Capsian.engine        as     engine
 
 
 class Component:
     """
     A Capsian Entity Component is an object (In OOP sense) that can be added to an Entity (An in-game Object)
     to extend the features of the Entity. 
+
+    Properties
+    ----------
+        enable | Weather the component is enabled or not | bool
+        parent | The compnent's parent object            | Entity
+
+    Methods
+    -------
+        on_start        | What happens the program start
+        on_update       | What happens when the component recieves an update from an Entity
+        on_fixed_update | What happens when the recieves a fixed update from the clock
+        on_close        | What happens the progam ends
+        on_create       | What happens when the component is initiated
+        on_destroy      | What happens when the component is deleted
+        on_ready        | What happens when the component is added to an entity
     """
+
 
     # -------------------------
     #
@@ -88,119 +104,101 @@ class Component:
     #
     # -------------------------
 
-    def on_start(self, time):
+    def on_start(self, time) -> bool:
         """
         This method is called when the game starts.
         By default it only returns False, but it can (And should) be overriden to do something.
         You can also just remove it from your component as it will still be present in the base class which means you're not gonna have any issues. 
 
-        :param time: The exact date and time of when the method was called
-        :return: False (By Default)
+        Parameters
+        ----------
+            time | The current date and time
         """
 
         return False
 
 
-    def on_update(self, dt, time):
+    def on_update(self, dt: float, time) -> bool:
         """
         This method is called every time the parent object's update mathod is.
         By default it only returns False, but it can (And should) be overriden to do something.
         You can also just remove it from your component as it will still be present in the base class which means you're not gonna have any issues. 
 
-        :param dt: The deltatime provided by the pyglet clock
-        :param time: The exact date and time of when the method was called
-        :return: False (By Default)
+        Parameters
+        ----------
+            dt   | The deltatime passed by the engine | float < 1.0
+            time | The current date and time
         """
 
         return False
 
 
-    def on_fixed_update(self, dt, time):
+    def on_fixed_update(self, dt: float, time):
         """
         This method is called every time the parent object's fixed update mathod is.
         By default it only returns False, but it can (And should) be overriden to do something.
         You can also just remove it from your component as it will still be present in the base class which means you're not gonna have any issues. 
 
-        :param dt: The deltatime provided by the pyglet clock
-        :param time: The exact date and time of when the method was called
-        :return: False (By Default)
+        Parameters
+        ----------
+            dt   | The deltatime passed by the engine | float < 1.0
+            time | The current date and time
         """
 
         return False
 
 
-    def on_close(self, time):
+    def on_close(self, time) -> bool:
         """
         This method is called when the parent object's on close mathod is.
         By default it only returns False, but it can (And should) be overriden to do something.
         You can also just remove it from your component as it will still be present in the base class which means you're not gonna have any issues. 
 
-        :param time: The exact date and time of when the method was called
-        :return: False (By Default)
+        Parameters
+        ----------
+            time | The current date and time
         """
 
         return False
 
     
-    def on_create(self, time):
+    def on_create(self, time) -> bool:
         """
         This method is called when the component's _init__ method is.
         By default it only returns False, but it can (And should) be overriden to do something.
         You can also just remove it from your component as it will still be present in the base class which means you're not gonna have any issues. 
 
-        :param time: The exact date and time of when the method was called
-        :return: False (By Default)
+        Parameters
+        ----------
+            time | The current date and time
         """
 
         return False
 
     
-    def on_destroy(self, time):
+    def on_destroy(self, time) -> bool:
         """
         This method is called when the component's __del__ method is. 
         By default it only returns False, but it can (And should) be overriden to do something.
         You can also just remove it from your component as it will still be present in the base class which means you're not gonna have any issues. 
 
-        :param time: The exact date and time of when the method was called
-        :return: False (By Default)
+        Parameters
+        ----------
+            time | The current date and time
         """
 
         return False
 
 
-    def on_ready(self, time):
+    def on_ready(self, time) -> bool:
         """
         This method is called when the component is added to an entity.
         By default it only returns False, but it can (And should) be overriden to do something.
         You can also just remove it from your component as it will still be present in the base class which means you're not gonna have any issues. 
 
-        :param time: The exact date and time of when the method was called
-        :return: False (By Default)
-        """
-
-        return False
-
-
-    def on_enable(self, time):
-        """
-        This method is called when the component is enabled.
-        By default it only returns False, but it can (And should) be overriden to do something.
-        You can also just remove it from your component as it will still be present in the base class which means you're not gonna have any issues. 
-
-        :param time: The exact date and time of when the method was called
-        :return: False (By Default)
-        """
-        return False
-
-    
-    def on_disable(self, time):
-        """
-        This method is called when the component is disabled.
-        By default it only returns False, but it can (And should) be overriden to do something.
-        You can also just remove it from your component as it will still be present in the base class which means you're not gonna have any issues. 
-
-        :param time: The exact date and time of when the method was called
-        :return: False (By Default)
+        Parameters
+        ----------
+            time | The current date and time
         """
 
         return False
@@ -213,11 +211,6 @@ class Component:
     # -------------------------
     
     @property
-    def enabled(self):
-        return self._enabled
-
-
-    @property
     def parent(self):
         return self._parent
 
@@ -228,7 +221,7 @@ class Component:
     #
     # -------------------------
 
-    def update(self, dt):
+    def update(self, dt: float) -> None:
         from datetime import datetime
         self.on_update(dt, datetime.now())
 
@@ -239,5 +232,5 @@ class Component:
     #
     # -------------------------
 
-    def _init(self, parent):
+    def _init(self, parent) -> None:
         self._parent = parent

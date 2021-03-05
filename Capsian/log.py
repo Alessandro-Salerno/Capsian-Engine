@@ -95,17 +95,26 @@ class Log:
     Logs the engine's activity.
     You can also use this in your Capsian applications if you need to
 
+    Methods
+    -------
+        error      | Throws an error in the console
+        critical   | Throws an error screen
+        warning    | Throws a warning in the ocnsole
+        info       | Prints information to the console
+        successful | Prints information to the console, but in green!
     """
 
     # Print error
     @staticmethod
     def error(text):
         """
-        Displays an error.
-        This comes in the form of console output
+        Description
+        -----------
+            Throws an error in the console
 
-        :param text: The error's text
-        :return: None
+        Parameters
+        ----------
+            text | The text you want to display | str
         """
 
         print(
@@ -116,21 +125,24 @@ class Log:
     @staticmethod
     def critical(text):
         """
-        Shows an error message.
-        This message may come in different forms: It may be a graphical one, or a console based one depending on your
-        application's specs.
+        Description
+        -----------
+            This method allows you to throw an error onto the screen.
+            It is specifically designed to look like an error screen, but not a OS one.
+            Once called, the method will automatically disable full-screen and resize the window, so not to worry anyone.
 
-        :param text: The text that is displayed
-        :return: None
+        Parameters
+        ----------
+            text | The text you want to display | str
         """
 
         try:
             # Load all necessary libs
-            from os               import system
-            import Capsian.engine as engine
-            from Capsian          import Scene2D
-            from Capsian.values   import SkyColor
-            from Capsian          import OrthographicCamera
+            from   os               import system
+            from   Capsian          import Scene2D
+            from   Capsian.values   import SkyColor
+            from   Capsian          import OrthographicCamera
+            import Capsian.engine   as engine
             import pyglet
 
             engine.main_window.set_fullscreen(False)
@@ -152,11 +164,16 @@ class Log:
 
             error = pyglet.text.Label(
                 text=f"{text}\n\nPress ENTER or ESCAPE to terminate the execution of the program.\n_",
-                font_name="MS Gothic", font_size=24, bold=True,
-                width=engine.main_window.width - 25, italic=False,
+                font_name="MS Gothic",
+                font_size=24,
+                bold=True,
+                italic=False,
+                width=engine.main_window.width - 25, 
                 x=10, y=engine.main_window.height,
-                anchor_x="left", anchor_y="top",
-                batch=error_scene.batch, multiline=True,
+                anchor_x="left",
+                anchor_y="top",
+                batch=error_scene.batch,
+                multiline=True,
                 color=(0, 255, 0, 255)
             )
         except:
@@ -173,10 +190,13 @@ class Log:
     @staticmethod
     def warning(text):
         """
-        Displays a warning in the console
+        Description
+        -----------
+            Displays a waning in the console
 
-        :param text: The warning's text
-        :return: None
+        Parameters
+        ----------
+            text | The text you want to display | str
         """
 
         print(
@@ -188,10 +208,13 @@ class Log:
     @staticmethod
     def info(text):
         """
-        Displays information in the console
+        Description
+        -----------
+            Prints information to the console
 
-        :param text: The text that should be displayed
-        :return: None
+        Parameters
+        ----------
+            text | The text you want to display | str
         """
 
         print(
@@ -203,11 +226,13 @@ class Log:
     @staticmethod
     def successful(text):
         """
-        Displays a successful message.
-        This is used to tell the user if something worked.
+        Description
+        -----------
+            Prints information to the console
 
-        :param text: The text that should be printed to the console
-        :return: None
+        Parameters
+        ----------
+            text | The text you want to display | str
         """
 
         print(

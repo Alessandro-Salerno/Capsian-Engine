@@ -74,11 +74,11 @@ class Clock:
             self.functions = []
 
 
-        def __add__(self, func):
+        def __add__(self, func) -> None:
             self.add(func)
 
 
-        def add(self, func):
+        def add(self, func) -> None:
             if not self.validate(func):
                 print("Not a callable object")
                 return
@@ -86,16 +86,14 @@ class Clock:
             self.functions.append(func)
 
 
-        def validate(self, func):
+        def validate(self, func) -> bool:
             import types
             return isinstance(func, (types.FunctionType, types.MethodType))
 
 
-        def call(self, *args, **kwargs):
+        def call(self, *args, **kwargs) -> None:
             for func in self.functions:
                 func(*args, **kwargs)
-
-
 
 
     class Schedule:
@@ -105,31 +103,30 @@ class Clock:
 
 
         @staticmethod
-        def call_every_tick(func, *args, **kwargs):
+        def call_every_tick(func, *args, **kwargs) -> None:
             pyglet.clock.schedule(func, *args, **kwargs)
 
 
         @staticmethod
-        def call_with_interval(func, interval, *args, **kwargs):
+        def call_with_interval(func, interval, *args, **kwargs) -> None:
             pyglet.clock.schedule_interval(func, interval, *args, **kwargs)
 
 
         @staticmethod
-        def unschedule(func):
+        def unschedule(func) -> None:
             pyglet.clock.unschedule(func)
 
 
         @staticmethod
-        def wait(milliseconds):
-            pyglet.clock.Clock.sleep(milliseconds * 1000)
-
+        def wait(milliseconds) -> None:
+            pyglet.clock.time.sleep(milliseconds / 1000)
 
 
     entry_points = _Points()
     exit_points  = _Points()
 
 
-    def tick(self, dt):
+    def tick(self, dt: float) -> None:
         from Capsian import engine
 
         for scene in engine.main_camera.scenes:

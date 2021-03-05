@@ -51,34 +51,48 @@
 # ----------------------------------------------------------------------------
 
 
-from   Capsian.entities.entity   import Entity
-from   Capsian.entities.square import RotatingSquare
-import Capsian.engine          as engine
+from   Capsian.entities.entity      import Entity
+from   Capsian.components.transform import Transform
+from   Capsian.entities.square      import RotatingSquare
+import Capsian.engine               as     engine
 import pyglet
 import random
 
 
 class Particle(Entity):
+    """
+    Fields
+    ------
+        dead     | The timer for the destruction                                       | int
+        quads    | The lsit of quads that are currently being rendered in the Particle | list [Square]
+        amount   | The amount of quads in the Particle                                 | int
+        duration | The duration of the effect                                          | float
+
+    Methods
+    -------
+        move | Moves the particles in the designated direction
+    """
+
     # -------------------------
     #
     #       DUNDERSCORE
     #
     # -------------------------
 
-    def __init__(self, transform=None, amount=4, duration=240, scene=None):
+    def __init__(self, transform=Transform(), amount=4, duration=240, scene=None):
         """
-        Creates a Particle derivative (Such as Particles2D)
-
-        :param transform: A Transform object
-        :param amount: Amount of particles to be generated (Int)
-        :param duration: The duration of the particle
-        :param scene: A Scene object
+        Parameters
+        ----------
+            transform | A Capsian Transform Object                           | Transform
+            amount    | The amount of particles to be generated              | int
+            duration  | The duration of the effect                           | int
+            scene     | The Capsian Scene of which the particles are part of | Scene3D
         """
 
         super().__init__(
             transform,
             scene,
-            True
+            False
         )
 
         self.dead      = 0
@@ -94,7 +108,7 @@ class Particle(Entity):
 
 
     # Move the particle
-    def move(self, dx, dy, dz, dt):
+    def move(self, dx: float, dy: float, dz: float, dt: float) -> None:
         for quad in self.quads:
             quad.components.transform.x += dx * dt
             quad.components.transform.y += dy * dt
@@ -104,22 +118,25 @@ class Particle(Entity):
 #####################################################################################################################################################################################################################################################################
 
 
-class Particles2D(Particle):
+class Particles3D(Particle):
     """
-    Particles are 2D objects rendered in a 3D scene.
-    They can move in a specific direction and disappear once their lifetime expires.
-    NOTE: They may have a big impact on your game's performance. This will be fixed in a later version
+    Methods
+    -------
+        kill    | kills all the quds in the particle
+        check   | Checks the state of all a quad in the particle
+        create  | Creates the particles
+        destroy | Destroyes the object
     """
+
+
+    # -------------------------
+    #
+    #       PUBLIC METHODS
+    #
+    # -------------------------
 
     # Kill function
-    def kill(self):
-        """
-        Kills a given particle.
-        This is automatically called after the lifetime expires
-
-        :return: None
-        """
-
+    def kill(self) -> None:
         self.dead = 0
         pyglet.clock.unschedule(self.check)
         pyglet.clock.unschedule(self.destroy)
@@ -131,15 +148,7 @@ class Particles2D(Particle):
 
 
     # Check function
-    def check(self, dt):
-        """
-        This method checks if the particle should be killed
-        This is automatically called every tick
-
-        :param delta_time: Float (1/120)
-        :return: None
-        """
-
+    def check(self, dt: float) -> None:
         if not self.dead < self.duration:
             self.kill()
 
@@ -152,16 +161,7 @@ class Particles2D(Particle):
 
 
     # Create particles
-    def create(self, quantity, pos, size):
-        """
-        This method creates the particles.
-        You can call this, but there's not reason to as it's automatically called by the constructor
-
-        :param quantity: Int
-        :param pos: Array [x, y, z]
-        :return: None
-        """
-
+    def create(self, quantity: int, pos: list, size: list) -> None:
         from Capsian import Transform
 
         for _ in range(quantity):
@@ -184,112 +184,6 @@ class Particles2D(Particle):
         engine.default_clock.Schedule.call_with_interval(self.destroy, 1)
 
 
-    def destroy(self, dt):
+    def destroy(self, dt: float) -> None:
         if self.dead < self.duration:
             self.dead += 1
-
-
-#####################################################################################################################################################################################################################################################################
-
-
-class ParticleBatch(Particle):
-    # -------------------------
-    #
-    #       DUNDERSCORE
-    #
-    # -------------------------
-    
-    def __init__(self, transform=None, amount=1, duration=240, scene=None):
-        """
-        Creates a particle batch in the world.
-        This is like normal particles, except it may limit you in some way.
-        NOTE: This may have better performance 
-
-        :param transform: A Transform object
-        :param amount: Amount of particles to be generated (Int)
-        :param duration: The duration of the particle
-        :param scene: A Scene object
-        """
-
-        super().__init__(
-            transform=transform,
-            amount=amount,
-            duration=duration,
-            scene=scene
-        )
-
-        for _ in range(0, len(pos)):
-            self.create(quantity=quantity, pos=pos[_], size=size[_])
-
-
-    # Kill function
-    def kill(self):
-        """
-        Kills a given particle.
-        This is automatically called after the lifetime expires
-
-        :return: None
-        """
-
-        self.dead = 0
-        pyglet.clock.unschedule(self.check)
-
-        for quad in self.quads:
-            quad.delete()
-
-        del self
-
-
-    # Check function
-    def check(self, dt):
-        """
-        This method checks if the particle should be killed
-        This is automatically called every tick
-
-        :param delta_time: 1 tick (1/120 sec)
-        :return: None
-        """
-
-        if self.dead < self.lifetime:
-            self.kill()
-
-        self.dead += 1
-
-        self.move(
-            dx=self.components.transform.dx,
-            dy=self.components.transform.dy,
-            dz=self.components.transform.dz,
-            dt=dt
-        )
-
-
-    # Create particles
-    def create(self, quantity, pos, size):
-        """
-        This method creates the particles.
-        You can call this, but there's not reason to as it's automatically called by the constructor
-
-        :param quantity: Ho many particles should be in each particle subset
-        :param pos: The position of a single particle
-        :return: None
-        """
-
-        from Capsian import Transform
-
-        for _ in range(quantity):
-            x = pos[0] + random.uniform(-size[0] * 2, size[2] * 2)
-            y = pos[1] + random.uniform(-size[0]    , size[2] / 2)
-            z = pos[2] + random.uniform(size[0] *  2, size[2] * 2)
-
-            p = RotatingSquare(
-                Transform(
-                    x, y, z,
-                    size[0], size[1], size[2]
-                ),
-                self.scene,
-                False
-            )
-
-            self.quads.append(p)
-
-        engine.default_clock.Schedule.call_with_interval(self.check, 1/120)

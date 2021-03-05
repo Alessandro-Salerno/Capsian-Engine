@@ -56,9 +56,9 @@ import pyglet
 
 
 # Declare vars
-main_window       = None
-main_camera       = None
-default_clock     = Clock()
+main_window   = None
+main_camera   = None
+default_clock = Clock()
 
 
 # Returns a version sting

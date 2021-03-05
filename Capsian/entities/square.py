@@ -52,17 +52,24 @@
 
 
 
-from Capsian.entities.entity      import Entity
-from Capsian.components.transform import Transform
-import Capsian.engine             as engine
+from   Capsian.entities.entity      import Entity
+from   Capsian.components.transform import Transform
+import Capsian.engine               as     engine
 import pyglet
 
 
 class Square(Entity):
     """
-    Squares are strictly correlated to particles.
-    Particles, in fact, are just groups of squares that can move...
-    A Capsian Square is a 2D quad in 3D space
+    Fields
+    ------
+        components | The components object that holds data about the entity's components | Components
+        active     | Weather the entity is active or not                                 | bool
+        scene      | The Scene of which the entity is a part of                          | Scene2D/Scene3D/OverlayScene
+
+    Methods
+    -------
+        draw   | Renders the object to the scene
+        delete | Deletes the object from memory
     """
 
 
@@ -72,12 +79,13 @@ class Square(Entity):
     #
     # -------------------------
 
-    def __init__(self, transform=None, scene=None, active=False):
+    def __init__(self, transform=Transform(), scene=None, active=False):
         """
-        Creates a square in the world
-
-        :param transform: Tramsform object that holds positioning data (Transform())
-        :param scene: Capsian Scene object (Scene3D()/Scene2D()/PlaceholderScene)
+        Parameters
+        ----------
+            transform | A Capsian Transform Component       | Transform
+            scene     | A Capsian Scene Object              | Scene2D/Scene3D/OverlayScene
+            active    | Weather the entity is active or not | bool
         """
 
         super().__init__(
@@ -127,13 +135,13 @@ class Square(Entity):
     # -------------------------
 
     # Draw OpenGL quad (Old OpenGL)
-    def draw(self):
+    def draw(self) -> None:
         pyglet.gl.glPushMatrix()
 
         pyglet.gl.glTranslatef(
-            self.components.transform.x,
-            self.components.transform.y,
-            self.components.transform.z
+            self.components.transform.x - self.components.transform.width / 2,
+            self.components.transform.y - self.components.transform.height / 2,
+            self.components.transform.z - self.components.transform.depth / 2
         )
 
         self.vertex_list.draw(pyglet.gl.GL_QUADS)
@@ -141,22 +149,38 @@ class Square(Entity):
 
 
     # Delte self
-    def delete(self):
-        if self in self.scene.objects2D:
-            self.scene.objects2D.remove(self)
-            self.scene.drawable.remove(self)
-            
+    def delete(self) -> None:
+        self.scene.drawable.remove(self)
+        self.scene.objects2D.remove(self)
+
+        if self in self.scene.stack:
+            self.scene.stack.remove(self)
+
         del self
 
 
 class TexturedSquare(Square):
+    """
+    Fields
+    ------
+        components | The components object that holds data about the entity's components | Components
+        active     | Weather the entity is active or not                                 | bool
+        scene      | The Scene of which the entity is a part of                          | Scene2D/Scene3D/OverlayScene
+
+    Methods
+    -------
+        draw   | Renders the object to the scene
+        delete | Deletes the object from memory
+    """
+
+
     # -------------------------
     #
     #       DUNDERSCORE
     #
     # -------------------------
 
-    def __init__(self, texture, transform, scene):
+    def __init__(self, transform=Transform(), scene=None, texture=None):
         self.texture = texture.get_texture()
 
         super().__init__(
@@ -173,7 +197,7 @@ class TexturedSquare(Square):
     # -------------------------
 
     # Draw OpenGL quad (Old OpenGL)
-    def draw(self):
+    def draw(self) -> None:
         pyglet.gl.glPushMatrix()
 
         pyglet.gl.glTranslatef(
@@ -183,7 +207,11 @@ class TexturedSquare(Square):
         )
 
         pyglet.gl.glEnable(pyglet.gl.GL_TEXTURE_2D)
-        pyglet.gl.glBindTexture(pyglet.gl.GL_TEXTURE_2D, self.texture.id)
+
+        pyglet.gl.glBindTexture(
+            pyglet.gl.GL_TEXTURE_2D,
+            self.texture.id
+        )
 
         self.vertex_list.draw(pyglet.gl.GL_QUADS)
         pyglet.gl.glDisable(pyglet.gl.GL_TEXTURE_2D)
@@ -192,6 +220,20 @@ class TexturedSquare(Square):
 
 
 class RotatingSquare(Square):
+    """
+    Fields
+    ------
+        components | The components object that holds data about the entity's components | Components
+        active     | Weather the entity is active or not                                 | bool
+        scene      | The Scene of which the entity is a part of                          | Scene2D/Scene3D/OverlayScene
+
+    Methods
+    -------
+        draw   | Renders the object to the scene
+        delete | Deletes the object from memory
+    """
+
+    
     # -------------------------
     #
     #       PUBLIC METHODS
@@ -199,7 +241,7 @@ class RotatingSquare(Square):
     # -------------------------
 
     # Draw OpenGL quad (Old OpenGL)
-    def draw(self):
+    def draw(self) -> None:
         pyglet.gl.glPushMatrix()
 
         pyglet.gl.glTranslatef(
@@ -209,18 +251,18 @@ class RotatingSquare(Square):
         )
 
         pyglet.gl.glRotatef(
-            engine.main_camera.components.transform.rotX,
-
-            -1,
-            0,
-            0
-        )
-
-        pyglet.gl.glRotatef(
             engine.main_camera.components.transform.rotY,
 
             0,
             1,
+            0
+        )
+
+        pyglet.gl.glRotatef(
+            engine.main_camera.components.transform.rotX,
+
+            1,
+            0,
             0
         )
 

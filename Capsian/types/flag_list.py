@@ -55,6 +55,12 @@ from Capsian.log import Log
 
 
 class FlagList(dict):
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
+
     def __init__(self, iterable):
         self.names  = []
         self.values = []
@@ -80,6 +86,12 @@ class FlagList(dict):
             self.names.append(key)
             self.values.append(value)
 
+
+    # -------------------------
+    #
+    #       PUBLIC METHODS
+    #
+    # -------------------------
 
     def pop(self, key):
         if key in self.names:

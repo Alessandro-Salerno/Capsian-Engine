@@ -1,57 +1,71 @@
 # Details
 
-Date : 2020-10-14 14:25:17
+Date : 2021-03-05 18:50:09
 
 Directory c:\Users\OxyGe\Desktop\new\Capsian-Engine
 
-Total : 5302 files,  778944 codes, 215486 comments, 147970 blanks, all 1142400 lines
+Total : 5317 files,  779459 codes, 216275 comments, 148191 blanks, all 1143925 lines
 
 [summary](results.md)
 
 ## Files
 | filename | language | code | comment | blank | total |
 | :--- | :--- | ---: | ---: | ---: | ---: |
-| [Capsian/GUI/__init__.py](/Capsian/GUI/__init__.py) | Python | 0 | 48 | 4 | 52 |
-| [Capsian/GUI/label.py](/Capsian/GUI/label.py) | Python | 34 | 99 | 25 | 158 |
-| [Capsian/GUI/sprite.py](/Capsian/GUI/sprite.py) | Python | 8 | 51 | 10 | 69 |
-| [Capsian/__init__.py](/Capsian/__init__.py) | Python | 0 | 48 | 4 | 52 |
-| [Capsian/audio/__init__.py](/Capsian/audio/__init__.py) | Python | 0 | 48 | 4 | 52 |
-| [Capsian/audio/music.py](/Capsian/audio/music.py) | Python | 12 | 73 | 17 | 102 |
-| [Capsian/audio/sound.py](/Capsian/audio/sound.py) | Python | 15 | 82 | 21 | 118 |
-| [Capsian/components/__init__.py](/Capsian/components/__init__.py) | Python | 0 | 48 | 4 | 52 |
-| [Capsian/components/character_controller.py](/Capsian/components/character_controller.py) | Python | 44 | 71 | 31 | 146 |
-| [Capsian/components/component.py](/Capsian/components/component.py) | Python | 56 | 151 | 57 | 264 |
-| [Capsian/components/transform.py](/Capsian/components/transform.py) | Python | 24 | 63 | 22 | 109 |
-| [Capsian/engine.py](/Capsian/engine.py) | Python | 49 | 71 | 39 | 159 |
-| [Capsian/entities/__init__.py](/Capsian/entities/__init__.py) | Python | 0 | 48 | 4 | 52 |
-| [Capsian/entities/cube.py](/Capsian/entities/cube.py) | Python | 52 | 84 | 29 | 165 |
-| [Capsian/entities/entity.py](/Capsian/entities/entity.py) | Python | 66 | 111 | 62 | 239 |
-| [Capsian/entities/particle_system.py](/Capsian/entities/particle_system.py) | Python | 71 | 116 | 49 | 236 |
-| [Capsian/entities/square.py](/Capsian/entities/square.py) | Python | 74 | 112 | 54 | 240 |
-| [Capsian/input/__init__.py](/Capsian/input/__init__.py) | Python | 0 | 48 | 4 | 52 |
-| [Capsian/input/keyboard.py](/Capsian/input/keyboard.py) | Python | 29 | 71 | 31 | 131 |
-| [Capsian/input/mouse.py](/Capsian/input/mouse.py) | Python | 29 | 48 | 26 | 103 |
-| [Capsian/log.py](/Capsian/log.py) | Python | 72 | 102 | 40 | 214 |
+| [CapsianLine/capsianline.py](/CapsianLine/capsianline.py) | Python | 19 | 22 | 15 | 56 |
+| [CapsianLine/ccerror.py](/CapsianLine/ccerror.py) | Python | 4 | 14 | 6 | 24 |
+| [CapsianLine/cclexer.py](/CapsianLine/cclexer.py) | Python | 102 | 68 | 72 | 242 |
+| [CapsianLine/ccparser.py](/CapsianLine/ccparser.py) | Python | 37 | 34 | 21 | 92 |
+| [CapsianLine/commands/__init__.py](/CapsianLine/commands/__init__.py) | Python | 7 | 48 | 8 | 63 |
+| [CapsianLine/commands/command.py](/CapsianLine/commands/command.py) | Python | 8 | 48 | 9 | 65 |
+| [CapsianLine/commands/line.py](/CapsianLine/commands/line.py) | Python | 24 | 48 | 18 | 90 |
+| [CapsianLine/commands/system.py](/CapsianLine/commands/system.py) | Python | 14 | 48 | 16 | 78 |
+| [CapsianLine/design.py](/CapsianLine/design.py) | Python | 10 | 1 | 4 | 15 |
+| [Capsian/GUI/__init__.py](/Capsian/GUI/__init__.py) | Python | 2 | 48 | 6 | 56 |
+| [Capsian/GUI/label.py](/Capsian/GUI/label.py) | Python | 61 | 117 | 30 | 208 |
+| [Capsian/GUI/sprite.py](/Capsian/GUI/sprite.py) | Python | 11 | 65 | 13 | 89 |
+| [Capsian/__init__.py](/Capsian/__init__.py) | Python | 13 | 48 | 7 | 68 |
+| [Capsian/audio/__init__.py](/Capsian/audio/__init__.py) | Python | 2 | 48 | 6 | 56 |
+| [Capsian/audio/music.py](/Capsian/audio/music.py) | Python | 10 | 70 | 17 | 97 |
+| [Capsian/audio/sound.py](/Capsian/audio/sound.py) | Python | 13 | 74 | 18 | 105 |
+| [Capsian/components/__init__.py](/Capsian/components/__init__.py) | Python | 4 | 48 | 6 | 58 |
+| [Capsian/components/character_controller.py](/Capsian/components/character_controller.py) | Python | 46 | 80 | 31 | 157 |
+| [Capsian/components/component.py](/Capsian/components/component.py) | Python | 33 | 157 | 47 | 237 |
+| [Capsian/components/light.py](/Capsian/components/light.py) | Python | 65 | 110 | 38 | 213 |
+| [Capsian/components/transform.py](/Capsian/components/transform.py) | Python | 30 | 85 | 25 | 140 |
+| [Capsian/engine.py](/Capsian/engine.py) | Python | 14 | 51 | 13 | 78 |
+| [Capsian/entities/__init__.py](/Capsian/entities/__init__.py) | Python | 5 | 48 | 5 | 58 |
+| [Capsian/entities/components_handler.py](/Capsian/entities/components_handler.py) | Python | 5 | 57 | 11 | 73 |
+| [Capsian/entities/cube.py](/Capsian/entities/cube.py) | Python | 103 | 96 | 24 | 223 |
+| [Capsian/entities/entity.py](/Capsian/entities/entity.py) | Python | 67 | 136 | 57 | 260 |
+| [Capsian/entities/particle_system.py](/Capsian/entities/particle_system.py) | Python | 64 | 91 | 35 | 190 |
+| [Capsian/entities/square.py](/Capsian/entities/square.py) | Python | 99 | 120 | 52 | 271 |
+| [Capsian/input/__init__.py](/Capsian/input/__init__.py) | Python | 2 | 48 | 6 | 56 |
+| [Capsian/input/keyboard.py](/Capsian/input/keyboard.py) | Python | 30 | 92 | 35 | 157 |
+| [Capsian/input/mouse.py](/Capsian/input/mouse.py) | Python | 30 | 96 | 34 | 160 |
+| [Capsian/log.py](/Capsian/log.py) | Python | 80 | 122 | 39 | 241 |
 | [Capsian/maths/__init__.py](/Capsian/maths/__init__.py) | Python | 0 | 48 | 4 | 52 |
-| [Capsian/maths/math.py](/Capsian/maths/math.py) | Python | 8 | 57 | 10 | 75 |
-| [Capsian/texturing/__init__.py](/Capsian/texturing/__init__.py) | Python | 0 | 48 | 4 | 52 |
-| [Capsian/texturing/material.py](/Capsian/texturing/material.py) | Python | 7 | 56 | 10 | 73 |
-| [Capsian/texturing/texture.py](/Capsian/texturing/texture.py) | Python | 77 | 68 | 40 | 185 |
-| [Capsian/types/__init__.py](/Capsian/types/__init__.py) | Python | 1 | 48 | 6 | 55 |
-| [Capsian/types/fixed_range_int.py](/Capsian/types/fixed_range_int.py) | Python | 11 | 48 | 11 | 70 |
-| [Capsian/types/object_array.py](/Capsian/types/object_array.py) | Python | 13 | 0 | 5 | 18 |
-| [Capsian/values.py](/Capsian/values.py) | Python | 46 | 48 | 15 | 109 |
-| [Capsian/video/__init__.py](/Capsian/video/__init__.py) | Python | 0 | 48 | 4 | 52 |
-| [Capsian/video/camera.py](/Capsian/video/camera.py) | Python | 108 | 87 | 62 | 257 |
-| [Capsian/video/fog.py](/Capsian/video/fog.py) | Python | 23 | 48 | 16 | 87 |
-| [Capsian/video/fps_counter.py](/Capsian/video/fps_counter.py) | Python | 9 | 48 | 12 | 69 |
-| [Capsian/video/light.py](/Capsian/video/light.py) | Python | 25 | 72 | 20 | 117 |
-| [Capsian/video/scene.py](/Capsian/video/scene.py) | Python | 43 | 58 | 22 | 123 |
-| [Capsian/video/sky_color.py](/Capsian/video/sky_color.py) | Python | 16 | 48 | 14 | 78 |
-| [Capsian/video/window.py](/Capsian/video/window.py) | Python | 81 | 125 | 58 | 264 |
-| [Capsian/world/__init__.py](/Capsian/world/__init__.py) | Python | 0 | 48 | 4 | 52 |
-| [Capsian/world/clock.py](/Capsian/world/clock.py) | Python | 71 | 66 | 69 | 206 |
-| [Capsian/world/format.py](/Capsian/world/format.py) | Python | 33 | 93 | 32 | 158 |
+| [Capsian/maths/math.py](/Capsian/maths/math.py) | Python | 8 | 58 | 11 | 77 |
+| [Capsian/services.py](/Capsian/services.py) | Python | 34 | 0 | 11 | 45 |
+| [Capsian/texturing/__init__.py](/Capsian/texturing/__init__.py) | Python | 2 | 48 | 6 | 56 |
+| [Capsian/texturing/material.py](/Capsian/texturing/material.py) | Python | 4 | 58 | 10 | 72 |
+| [Capsian/texturing/texture.py](/Capsian/texturing/texture.py) | Python | 55 | 97 | 39 | 191 |
+| [Capsian/types/__init__.py](/Capsian/types/__init__.py) | Python | 3 | 48 | 6 | 57 |
+| [Capsian/types/flag.py](/Capsian/types/flag.py) | Python | 9 | 58 | 14 | 81 |
+| [Capsian/types/flag_list.py](/Capsian/types/flag_list.py) | Python | 25 | 58 | 21 | 104 |
+| [Capsian/types/object_array.py](/Capsian/types/object_array.py) | Python | 12 | 58 | 14 | 84 |
+| [Capsian/values.py](/Capsian/values.py) | Python | 58 | 48 | 16 | 122 |
+| [Capsian/video/__init__.py](/Capsian/video/__init__.py) | Python | 6 | 48 | 6 | 60 |
+| [Capsian/video/bluefire/__init__.py](/Capsian/video/bluefire/__init__.py) | Python | 0 | 48 | 4 | 52 |
+| [Capsian/video/bluefire/basic.py](/Capsian/video/bluefire/basic.py) | Python | 0 | 55 | 6 | 61 |
+| [Capsian/video/camera.py](/Capsian/video/camera.py) | Python | 158 | 86 | 66 | 310 |
+| [Capsian/video/fog.py](/Capsian/video/fog.py) | Python | 38 | 58 | 20 | 116 |
+| [Capsian/video/fps_counter.py](/Capsian/video/fps_counter.py) | Python | 19 | 71 | 15 | 105 |
+| [Capsian/video/scene.py](/Capsian/video/scene.py) | Python | 83 | 94 | 56 | 233 |
+| [Capsian/video/sky_color.py](/Capsian/video/sky_color.py) | Python | 11 | 58 | 15 | 84 |
+| [Capsian/video/window.py](/Capsian/video/window.py) | Python | 62 | 125 | 49 | 236 |
+| [Capsian/world/__init__.py](/Capsian/world/__init__.py) | Python | 2 | 48 | 6 | 56 |
+| [Capsian/world/clock.py](/Capsian/world/clock.py) | Python | 40 | 57 | 38 | 135 |
+| [Capsian/world/format.py](/Capsian/world/format.py) | Python | 27 | 73 | 23 | 123 |
 | [Python/Windows/Lib/__future__.py](/Python/Windows/Lib/__future__.py) | Python | 66 | 61 | 20 | 147 |
 | [Python/Windows/Lib/__phello__.foo.py](/Python/Windows/Lib/__phello__.foo.py) | Python | 0 | 1 | 1 | 2 |
 | [Python/Windows/Lib/_bootlocale.py](/Python/Windows/Lib/_bootlocale.py) | Python | 29 | 15 | 3 | 47 |
@@ -5309,9 +5323,10 @@ Total : 5302 files,  778944 codes, 215486 comments, 147970 blanks, all 1142400 l
 | [README.md](/README.md) | Markdown | 39 | 0 | 12 | 51 |
 | [WinConsole.bat](/WinConsole.bat) | Batch | 1 | 0 | 1 | 2 |
 | [WinRuntime.bat](/WinRuntime.bat) | Batch | 1 | 0 | 1 | 2 |
-| [console.py](/console.py) | Python | 18 | 51 | 14 | 83 |
-| [locals.py](/locals.py) | Python | 46 | 52 | 5 | 103 |
-| [main.py](/main.py) | Python | 32 | 56 | 24 | 112 |
-| [scripts/script.py](/scripts/script.py) | Python | 43 | 1 | 28 | 72 |
+| [addons/__init__.py](/addons/__init__.py) | Python | 0 | 1 | 1 | 2 |
+| [console.py](/console.py) | Python | 1 | 2 | 2 | 5 |
+| [main.py](/main.py) | Python | 24 | 55 | 21 | 100 |
+| [scripts/__init__.py](/scripts/__init__.py) | Python | 1 | 3 | 3 | 7 |
+| [scripts/altar.py](/scripts/altar.py) | Python | 165 | 5 | 40 | 210 |
 
 [summary](results.md)

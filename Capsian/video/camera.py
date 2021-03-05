@@ -53,24 +53,34 @@
 
 from   Capsian.components.transform import Transform
 from   Capsian.entities.entity      import Entity
+from   Capsian.video.window         import Window3D
 import Capsian.maths.math           as     kmath
-import Capsian.engine               as engine
+import Capsian.engine               as     engine
 import math
 import pyglet
 
 
 class Camera(Entity):
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
+
     def __init__(self, transform=Transform(), fov=90, far=5000, near=0.05):
         """
-        Creates a Capsian camera object in the world.
-        You can create more than one, but they won't be automatically placed.
-        You must create a Window3D and reference this
-
-        :param pos: The initial position in 3D space (Array, [x, y, z])
-        :param rot: The initial rotation (Array, [x, y])
+        Parameters
+        ----------
+            transform | A Capsian transform component | Transform
+            fov       | The field of view             | int < 180
+            far       | The furthest point in view    | float
+            near      | The nearest point in view     | float
         """
 
-        super().__init__(transform, active=True)
+        super().__init__(
+            transform,
+            active=True
+        )
 
         # Direction vectors
         self.dx         = 0
@@ -93,6 +103,12 @@ class Camera(Entity):
 
 
 class PerspectiveCamera(Camera):
+    # -------------------------
+    #
+    #       PUBLIC METHODS
+    #
+    # -------------------------
+
     def init(self):
         engine.main_camera = self
 
@@ -103,11 +119,11 @@ class PerspectiveCamera(Camera):
         pyglet.gl.glEnable(pyglet.gl.GL_BLEND)
         pyglet.gl.glBlendFunc(pyglet.gl.GL_SRC_ALPHA, pyglet.gl.GL_ONE_MINUS_SRC_ALPHA)
 
-        engine.main_window.set_lock(True)
+        engine.main_window.set_mouse_lock(True)
         engine.main_window.set_caption("Capsian 1.0 Window - 3D Mode")
 
 
-    def render(self, window):
+    def render(self, window: Window3D) -> None:
         # Set all OpenGL parameters
         pyglet.gl.glClear(pyglet.gl.GL_COLOR_BUFFER_BIT | pyglet.gl.GL_DEPTH_BUFFER_BIT)
 
@@ -204,7 +220,7 @@ class PerspectiveCamera(Camera):
 
 
     # Handles mouse rotation
-    def rotate(self, dx, dy):
+    def rotate(self, dx: float, dy: float):
         """
         This method rotates the camera. IT's called by Window3D.rotate_camera()
 
@@ -220,24 +236,22 @@ class PerspectiveCamera(Camera):
             self.components.character_controller.rotate()
 
 
-    # Repr dunderscore method
-    def __repr__(self):
-        return "PerspectiveCamera"
-
-
-########################################################################################################################
-
-
 class OrthographicCamera(Camera):
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
+
     def init(self):
         engine.main_camera = self
 
         pyglet.gl.glDisable(pyglet.gl.GL_DEPTH_TEST)
-        engine.main_window.set_lock(False)
+        engine.main_window.set_mouse_lock(False)
         engine.main_window.set_caption("Capsian 1.0 Window - GUI Mode")
 
 
-    def render(self, window):
+    def render(self, window: Window3D) -> None:
         # Render the 2D scene
         pyglet.gl.glDisable(pyglet.gl.GL_LIGHTING)
         
@@ -291,10 +305,5 @@ class OrthographicCamera(Camera):
                 gui.draw()
 
 
-    def rotate(self, dx, dy):
+    def rotate(self, dx: float, dy: float) -> None:
         pass
-
-
-    # Repr dunderscore method
-    def __repr__(self):
-        return "OrthographicCamera"

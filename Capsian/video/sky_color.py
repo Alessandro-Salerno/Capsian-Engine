@@ -52,26 +52,32 @@
 
 
 class SkyColorClass:
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
+
     def __init__(self):
         self.color = [0, 0, 0, 0]
 
-    def set(self, color):
-        try:
-            import pyglet
-            
-            pyglet.gl.glClearColor(color[0], color[1], color[2], color[3])
-            self.color = color
-        except:
-            Log.critical("Something went wrong while setting the sky color. Please check your code")
-
-
-    def __eq__(self, other):
+    
+    def __eq__(self, other) -> None:
         self.set(other)
 
 
-    def __lshift__(self, other):
+    def __lshift__(self, other) -> None:
         self.set(other)
 
 
-    def test(self):
-        print("hello world")
+    # -------------------------
+    #
+    #       PUBLIC METHODS
+    #
+    # -------------------------
+
+    def set(self, color: list) -> None:
+        import pyglet
+        
+        pyglet.gl.glClearColor(color[0], color[1], color[2], color[3])
+        self.color = color

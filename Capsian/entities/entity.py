@@ -52,12 +52,32 @@
 
 
 from Capsian.components.transform import Transform
+from Capsian.components.component import Component
 
 
 class Entity:
     """
     A Capsian Entity.
     An Entity is generally used as a parent class for entities. 
+
+    Fields
+    ------
+        components | The components object that holds data about the entity's components | Components
+        active     | Weather the entity is active or not                                 | bool
+        scene      | The Scene of which the entity is a part of                          | Scene2D/Scene3D/OverlayScene
+
+    Methods
+    -------
+        on_update          | What happens when the entity is updated by the clock
+        on_fixed_update    | What happens when the entity is updated by a fixed updater
+        on_create          | What happens when the entity is created
+        on_destroy         | What happens when the entity is deleted
+        on_duplicate       | What happens when the entity is duplicated
+        on_enable          | What happens when the entity is enabled
+        on_disable         | What happens when the entity is disabled
+        on_component_added | What happens when a component is added to the entity
+        duplicate          | Duplicates the entity
+        update             | Sends an update signal to the entity
     """
 
 
@@ -69,12 +89,11 @@ class Entity:
 
     def __init__(self, transform=Transform(), scene=None, active=False):
         """
-        Creates an entity in the world
-        This is usually used as super/parent class for other entitys like Cubes
-
-        :Param transform: A Transform Component
-        :param scene: A Scene object
-        :param active: Weather the entity is acive or not (Boolean)
+        Parameters
+        ----------
+            transform | A Capsian Transform Component       | Transform
+            scene     | A Capsian Scene Object              | Scene2D/Scene3D/OverlayScene
+            active    | Weather the entity is active or not | bool
         """
 
         from datetime       import datetime
@@ -87,16 +106,16 @@ class Entity:
             mouse_listener       = None
 
 
-            def __init__(self, spr):
+            def __init__(self, spr: Entity):
                 self.spr = spr
 
 
-            def add(self, component):
+            def add(self, component: Component) -> None:
                 from datetime import datetime
 
                 component._init(self.spr)
                 self.append(component)
-                self.spr.on_component_added(datetime.now())
+                self.spr.on_component_added(component, datetime.now())
                 setattr(self, repr(component), component)
                 component.on_ready(datetime.now())
 
@@ -104,6 +123,15 @@ class Entity:
         self.components = Components(self)
         self.active     = active
         self.components.add(transform)
+
+        self.next_pos = [
+            [transform.x + 1,  transform.y,      transform.z    ],
+            [transform.x - 1,  transform.y,      transform.z    ],
+            [transform.x,      transform.y,      transform.z + 1],
+            [transform.x,      transform.y,      transform.z - 1],
+            [transform.x,      transform.y + 1,  transform.z    ],
+            [transform.x,      transform.y - 1,  transform.z    ],
+        ]
 
         if not isinstance(scene, CPSN_STANDARD_SCENE):
             self.scene = None
@@ -116,7 +144,9 @@ class Entity:
 
         self.scene  = scene
 
-        if active: scene.stack.append(self)
+        if active:
+            scene.stack.append(self)
+        
         self.on_create(datetime.now())
 
 
@@ -126,81 +156,88 @@ class Entity:
     #
     # -------------------------
 
-
-    def on_update(self, dt, time):
+    def on_update(self, dt: float, time) -> None:
         """
-        What happens when the program updates
+        Parameters
+        ----------
+            dt   | The delta time sent from the clock | float
+            time | The current date and time
         """
 
         for component in self.components:
             component.update(dt)
 
 
-    def on_fixed_update(self, dt, time):
+    def on_fixed_update(self, dt: float, time) -> bool:
         """
-        What happens when the fixed_update function passes through this entity
-        """
-
-        return False
-
-    
-    def on_create(self, time):
-        """
-        what happens when the entity is created
+        Parameters
+        ----------
+            dt   | The delta time sent from the clock | float
+            time | The current date and time
         """
 
         return False
 
     
-    def on_destroy(self, time):
+    def on_create(self, time) -> bool:
         """
-        what happens when the entity is destroied
-        """
-
-        return False
-
-
-    def on_duplicate(self, time):
-        """
-        What happens when the entity is duplicated.
-        """
-
-        return False
-
-
-    def on_enable(self, time):
-        """
-        What happens when the entity is enabled
+        Parameters
+        ----------
+            time | The current date and time
         """
 
         return False
 
     
-    def on_disable(self, time):
+    def on_destroy(self, time) -> bool:
         """
-        What happens when the entity is disabled 
-        """
-
-        return False
-
-
-    def on_component_added(self, time):
-        """
-        What happens when a component is added to this entity
+        Parameters
+        ----------
+            time | The current date and time
         """
 
         return False
 
 
-    # -------------------------
-    #
-    #       PROPERTIES
-    #
-    # -------------------------
+    def on_duplicate(self, time) -> bool:
+        """
+        Parameters
+        ----------
+            time | The current date and time
+        """
 
-    @property
-    def entity_type(self):
-        return repr(self)
+        return False
+
+
+    def on_enable(self, time) -> bool:
+        """
+        Parameters
+        ----------
+            time | The current date and time
+        """
+
+        return False
+
+    
+    def on_disable(self, time) -> bool:
+        """
+        Parameters
+        ----------
+            time | The current date and time
+        """
+
+        return False
+
+
+    def on_component_added(self, component: Component, time) -> bool:
+        """
+        Parameters
+        ----------
+            component | A pointer to the component that has been added | Component
+            time      | The current date and time
+        """
+
+        return False
 
 
     # -------------------------
@@ -209,7 +246,7 @@ class Entity:
     #
     # -------------------------
 
-    def duplicate(self):
+    def duplicate(self) -> None:
         import copy
         from datetime import datetime
 
@@ -217,6 +254,6 @@ class Entity:
         return copy.deepcopy(self)
 
 
-    def update(self, dt):
+    def update(self, dt: float) -> None:
         from datetime import datetime
         self.on_update(dt, datetime.now())

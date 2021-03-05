@@ -51,18 +51,21 @@
 # ----------------------------------------------------------------------------
 
 
+from Capsian.texturing.texture import Texture
+
+
 class Material:
-    def __init__(self, texture, fallSound="", walkSound="", runSound=""):
-        """
-        Creates a material that can then be used with an object to define it's texture
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
 
-        :param texture: The Texture object from which the material should retrieve the texture (Texture3D()/SmartTexture3D())
-        :param fallSound: Nothing (String)
-        :param walkSound: Nothing (String)
-        :param runSound: Nothing (String)
+    def __init__(self, texture: Texture):
+        """
+        Parameters
+        ----------
+            texture | A Capsian texture object | Texture3D
         """
 
-        self.fallSound = fallSound
-        self.walkSound = walkSound
-        self.runSound  = runSound
         self.texture   = texture.get_texture()

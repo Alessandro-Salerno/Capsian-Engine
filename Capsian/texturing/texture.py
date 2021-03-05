@@ -51,22 +51,20 @@
 # ----------------------------------------------------------------------------
 
 
-from Capsian.log     import Log
-from Capsian.values  import CPSN_DEFAULT_TEXTURE_MODE
-import Capsian.types as types
+from   Capsian.log     import Log
+from   Capsian.values  import CPSN_DEFAULT_TEXTURE_MODE
+import Capsian.types   as types
 import pyglet
 
 
 class Texture:
-    def __init__(self, file, texture_type, flags=types.FlagList([types.Flag("texture mode", CPSN_DEFAULT_TEXTURE_MODE)])):
-        """
-        Defines a texture object that can then be used with a material.
-        It loads all pixels in a given image file
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
 
-        :param file: The file path from which the system should load the texture (String)
-        :param flags: Flags for loading th texture (Dict, {"texture_mode": CPSN_DEFAULT_TEXTURE_MODE or Array [GL_FILTER1, GL_FILTER2, GL_TEXTURE_TARGET})
-        """
-        
+    def __init__(self, file, texture_type, flags=types.FlagList([types.Flag("texture mode", CPSN_DEFAULT_TEXTURE_MODE)])):
         self.path  = file
         self.flags = flags
 
@@ -75,46 +73,60 @@ class Texture:
 
 
 class Texture3D(Texture):
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
+
     def __init__(self, file, flags=types.FlagList([types.Flag("texture mode", CPSN_DEFAULT_TEXTURE_MODE)])):
+        """
+        Parameters
+        ----------
+            file  | The path to the texture file | str
+            flags | The texture flags            | FlagList
+        """
+
         super().__init__(file, "texture3D", flags)
 
 
+    # -------------------------
+    #
+    #       PUBLIC METHODS
+    #
+    # -------------------------
+
     # Get the texture group
     def get_texture(self):
-        file = self.path
+        loaded_texture = pyglet.image.load(self.path).get_texture()
 
-        try:
-            loaded_texture = pyglet.image.load(file).get_texture()
+        pyglet.gl.glTexParameterf(
+            pyglet.gl.GL_TEXTURE_2D,
+            self.flags["texture mode"][0], self.flags["texture mode"][2]
+        )
 
-            pyglet.gl.glTexParameterf(
-                pyglet.gl.GL_TEXTURE_2D,
-                self.flags["texture mode"][0], self.flags["texture mode"][2]
-            )
+        pyglet.gl.glTexParameterf(
+            pyglet.gl.GL_TEXTURE_2D,
+            self.flags["texture mode"][1], self.flags["texture mode"][2]
+        )
 
-            pyglet.gl.glTexParameterf(
-                pyglet.gl.GL_TEXTURE_2D,
-                self.flags["texture mode"][1], self.flags["texture mode"][2]
-            )
-
-            Log.successful(f"Successfully loaded texture from file '{file}'")
-            return pyglet.graphics.TextureGroup(loaded_texture)
-        except Exception as exception:
-            Log.critical(f"Unable to load texture from file '{file}'. Check the file name and the material's flags!\n\n{exception}")
-
-
-########################################################################################################################
+        Log.successful(f"Successfully loaded texture from file '{self.path}'")
+        return pyglet.graphics.TextureGroup(loaded_texture)
 
 
 class SmartTexture3D(Texture):
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
+
     def __init__(self, file, transform, flags=types.FlagList([types.Flag("texture mode", CPSN_DEFAULT_TEXTURE_MODE)])):
         """
-        Creates a texture object that can by used with a matrial
-        This won't load all pixels in a given image file, but will load all pixels in a specific area of an image file
-
-        :param file:
-        :param coords: The coordinates from which the texture starts in the file (Array, [x, y])
-        :param size: The size of the region from which the system should load the texture file (Array, [length, height])
-        :param flags: Flags for loading th texture (Dict, {"texture_mode": CPSN_DEFAULT_TEXTURE_MODE or Array [GL_FILTER1, GL_FILTER2, GL_TEXTURE_TARGET})
+        Parameters
+        ----------
+            file  | The path to the texture file | str
+            flags | The texture flags            | FlagList
         """
 
         super().__init__(file=file, texture_type="smartTexture3D", flags=flags)
@@ -122,49 +134,56 @@ class SmartTexture3D(Texture):
         self.size = transform.size
 
 
+    # -------------------------
+    #
+    #       PUBLIC METHODS
+    #
+    # -------------------------
+
     def get_texture(self):
-        try:
-            loaded_texture = pyglet.image.load(self.path).get_region(
-                self.pos[0],
-                self.pos[1],
-                self.size[0],
-                self.size[1]
-            ).get_texture()
-            
-            pyglet.gl.glTexParameterf(
-                pyglet.gl.GL_TEXTURE_2D,
-                self.flags["texture mode"][0], self.flags["texture mode"][2]
-            )
+        loaded_texture = pyglet.image.load(self.path).get_region(
+            self.pos[0],
+            self.pos[1],
+            self.size[0],
+            self.size[1]
+        ).get_texture()
+        
+        pyglet.gl.glTexParameterf(
+            pyglet.gl.GL_TEXTURE_2D,
+            self.flags["texture mode"][0], self.flags["texture mode"][2]
+        )
 
-            pyglet.gl.glTexParameterf(
-                pyglet.gl.GL_TEXTURE_2D,
-                self.flags["texture mode"][1], self.flags["texture mode"][2]
-            )
+        pyglet.gl.glTexParameterf(
+            pyglet.gl.GL_TEXTURE_2D,
+            self.flags["texture mode"][1], self.flags["texture mode"][2]
+        )
 
-            Log.successful(f"Successfully loaded texture from file '{self.path}'")
-            return pyglet.graphics.TextureGroup(loaded_texture)
-        except:
-            Log.critical(f"Unable to load texture from file '{self.path}'. Check the file name and the material's flags!")
-
-
-########################################################################################################################
+        Log.successful(f"Successfully loaded texture from file '{self.path}'")
+        return pyglet.graphics.TextureGroup(loaded_texture)
 
 
 class Image2D:
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
+
     def __init__(self, file):
         self.path  = file
         self.image = self.get_image()
 
 
-    def get_image(self):
-        file = self.path
+    # -------------------------
+    #
+    #       PUBLIC METHODS
+    #
+    # -------------------------
 
-        try:
-            loaded_texture = pyglet.image.load(file)
-            Log.successful(f"Successfully loaded texture from file '{file}'")
-            return loaded_texture
-        except:
-            Log.critical("Unable to load texture from file '{file}'. Check the file name and the material's flags!")
+    def get_image(self):
+        loaded_image = pyglet.image.load(self.path)
+        Log.successful(f"Successfully loaded image from file '{path}'")
+        return loaded_image
 
     
     def get_texture(self):

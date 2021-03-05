@@ -55,6 +55,12 @@ from Capsian.log import Log
 
 
 class Flag:
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
+
     def __init__(self, name, value):
         self.value = value
         self.name  = name
@@ -63,6 +69,12 @@ class Flag:
     def __repr__(self):
         return "flag"
 
+
+    # -------------------------
+    #
+    #       PUBLIC METHODS
+    #
+    # -------------------------
 
     def set(self, value):
         self.value = value

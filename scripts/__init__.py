@@ -2,6 +2,5 @@
 # This is a substitute to the old option in the options.cpsn file
 # EXAMPLE: from scripts.scriptname import *
 
-# from scripts.script import *
-# from scripts.carpal import *
-from scripts.vaporwave import *
+
+from scripts.altar import *

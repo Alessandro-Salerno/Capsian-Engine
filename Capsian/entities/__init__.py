@@ -53,5 +53,5 @@
 from Capsian.entities.entity             import Entity
 from Capsian.entities.components_handler import ComponentsHandler
 from Capsian.entities.cube               import Cube
-from Capsian.entities.particle_system    import Particles2D, ParticleBatch
+from Capsian.entities.particle_system    import Particles3D
 from Capsian.entities.square             import Square, TexturedSquare, RotatingSquare

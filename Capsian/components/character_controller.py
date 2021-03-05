@@ -51,12 +51,12 @@
 # ----------------------------------------------------------------------------
 
 
+from   Capsian.components.component import Component
+from   Capsian.log                  import Log
+from   Capsian.values               import CPSN_PERSPECTIVE_CAMERA
+import Capsian.engine               as     engine
+import Capsian.maths.math           as     kmath
 import math
-import Capsian.maths.math         as kmath
-from Capsian.components.component import Component
-from Capsian.log                  import Log
-from Capsian.values               import CPSN_PERSPECTIVE_CAMERA
-import Capsian.engine             as engine
 
 
 class CharacterController(Component):
@@ -64,8 +64,17 @@ class CharacterController(Component):
     A Character Controller surves a very important function: moving and rotating the camera.
     It does so via commands sent by your code nad by the engine itself.
 
-    It's a component, as such it must be added to a Camera entity in order to function.
-    IN the future, you'll be able to add a Character Controller to any entity but for now compatibility is scarse... 
+    Fields
+    ------
+        multiplier | The sensibility multiplier factor | float
+        dividend   | The movement dividend factor      | float
+        sens       | The mouse sensibility             | float
+        speed      | The movement speed                | float
+
+    Methods
+    -------
+        rotate | Rotates the parent object
+        move   | moves the parent object in the specified direction
     """
 
     # -------------------------
@@ -94,15 +103,13 @@ class CharacterController(Component):
     #
     # -------------------------
 
-    def on_ready(self, time):
+    def on_ready(self, time) -> None:
         if not isinstance(self.parent, CPSN_PERSPECTIVE_CAMERA):
             Log.critical("You are trying to add a CharacterController Component to an object that is not CPSN_PERSPECTIVE_CAMERA compatible")
             return
-        
-        super().on_ready(time)
 
 
-    def on_update(self, dt, time):
+    def on_update(self, dt: float, time) -> None:
         self.s              = dt     * self.multiplier * engine.main_window.alive
 
         self.parent.rotY    = -self.parent.components.transform.rotY / 180 * math.pi
@@ -111,14 +118,14 @@ class CharacterController(Component):
         self.parent.dz      = self.s * math.cos(self.parent.rotY)
 
 
-    def rotate(self):
+    def rotate(self) -> None:
         self.parent.components.transform.rotX  += self.parent.mouse_dy * self.sens
         self.parent.components.transform.rotY  -= self.parent.mouse_dx * self.sens
 
         self.parent.components.transform.rotX   = kmath.clamp(90, -90, self.parent.components.transform.rotX)
 
 
-    def move(self, direction):
+    def move(self, direction: str) -> None:
         """
         This method actually moves the camera, it's called by your input handler
 

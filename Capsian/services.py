@@ -37,8 +37,8 @@ class CapsianKeyboardHandler(KeyboardInputHandler):
                 )
             
             lock = engine.main_window.mouse_lock
-            engine.main_window.set_lock(False)
-            engine.main_window.set_lock(lock)
+            engine.main_window.set_mouse_lock(False)
+            engine.main_window.set_mouse_lock(lock)
 
 
 ComponentsHandler(CapsianKeyboardHandler())

@@ -51,67 +51,54 @@
 # ----------------------------------------------------------------------------
 
 
+from   Capsian.components.component import Component
+import Capsian.engine as engine
 import pyglet
 
 
-class DirectionalSound:
+class DirectionalSound(Component):
     """
     A Directional Sound object is an abstract object that can reproduce sound coming from a direction.
     The direction is automatically calculated thanks to pyglet.media.Player().
     CURRENTLY INCOMPLETE!
-
     """
 
-    def __init__(self, source, pos):
+    
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
+
+    def __init__(self, file: str):
         """
-        Creates a direction sound object in the world
-
-        :param source: The file from which the Directional Sound object should retrieve the audio (String)
-        :param pos: A position in 3D space (Array [x, y, z])
-        :param auto_play: Weather it should play as soon as it's created or not (Boolean)
+        Parameters
+        ----------
+            file | The file path to the sound file | str
         """
-
-        import pyglet
-
+        
         self.player          = pyglet.media.player.Player()
-        self.player.position = pos
-        self.source          = source
-
-        # Start the loop
-        pyglet.clock.schedule_interval(self.update, 1/120)
-
-
-    # Plays the audio
-    def play(self):
-        """
-        Plays a given directional sound
-
-        :return: None
-        """
-
-        self.player.queue(pygletmedia.load(self.source, streaming=False))
-        self.player.play()
-
-
-    def update(self, delta_time):
-        """
-        This method updates the sound.
-        It's empty by default and it's called 120 times a second automatically.
-        DO NOT CALL THIS YOURSELF!
-
-        :param delta_time:
-        :return: None
-        """
-
-        pass
+        self.player.position = self.parent.transform.position
+        self.file            = file
 
 
     # Dunderscore method
-    def __call__(self):
+    def __call__(self) -> None:
         """
         When the object is called it plays a sound
         This method handles the call
-
         """
 
-        self.play()
+        return self.play()
+
+
+    # -------------------------
+    #
+    #       PUBLIC METHODS
+    #
+    # -------------------------
+
+    # Plays the audio
+    def play(self) -> None:
+        self.player.queue(pygletmedia.load(self.file, streaming=False))
+        self.player.play()

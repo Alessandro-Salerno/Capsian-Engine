@@ -51,24 +51,26 @@
 # ----------------------------------------------------------------------------
 
 
-
 import math
 
 
 def clamp(maximum, minimum, var):
     """
-    This function clamps a given variable.
-    But it doesn't work for now :(
+    Description
+    -----------
+        This function clamps the value of a given variable
 
-    :param maximum: The maximum value the variable can reach (Float/int)
-    :param minimum: The minimum value the variable can reach (Float/int)
-    :param var: The variable (Pointer)
-    :return: Number (Float or Int)
+    Parameters
+    ----------
+        maximum | The maximum value the variable can get to           | float
+        minimum | The minimum value that variable cannot fall through | float
     """
 
     if var > maximum:
         return maximum
+
     elif var < minimum:
         return minimum
+
     else:
         return var

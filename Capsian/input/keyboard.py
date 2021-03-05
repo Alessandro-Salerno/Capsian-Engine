@@ -52,20 +52,33 @@
 
 
 
-from Capsian.components.component import Component
-from pyglet.window                import key as Key
-import Capsian.engine                        as engine
+from   Capsian.components.component import Component
+from   pyglet.window                import key       as Key
+import Capsian.engine                                as engine
 
 
 class KeyboardInputHandler(Component):
     """
-    A Keyboard Input Handler is an abstract object that does not have a position in the world.
-    Instead, it's a series of functions that allow you to register nd check keystrokes.
-    It can be used for loads of things, but it's not the only option available in Capsian
+    Fields
+    ------
+        pressed_key       | The currently pressed key (key held) | Pyglet Key State Handler
+        key_state_handler | The Key State Handler for the object | CapsianKeyStateHandlerObject
+
+    Methods
+    -------
+        on_key_pressed  | What happens when a key is pressed
+        on_key_released | What happens when a key is released
+        on_key_held     | What happens when a key is held down
     """
 
-    def __init__(self):
 
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
+
+    def __init__(self):
         class CapsianKeyStateHandlerObject(Key.KeyStateHandler):
             def __init__(self, parent):
                 self.parent = parent
@@ -90,12 +103,22 @@ class KeyboardInputHandler(Component):
         super().__init__()
     
 
+    def __repr__(self):
+        return "key_listener"
+
+
+    # -------------------------
+    #
+    #       PUBLIC METHODS
+    #
+    # -------------------------
+
     def on_key_pressed(self, symbol, modifiers):
         """
-        What happens when a single key is pressed
-        This method is called by a sub-class of KeyboardInputHandler() that acts as a pyglet KeyStateHandler()
-
-        :return: None
+        Parameters
+        ----------
+            symbol    | The key that has been pressed
+            modifiers | The modifiers that are applied
         """
 
         pass
@@ -103,10 +126,10 @@ class KeyboardInputHandler(Component):
 
     def on_key_released(self, symbol, modifiers):
         """
-        What happens when a single key is released
-        This method is called by a sub-class of KeyboardInputHandler() that acts as a pyglet KeyStateHandler()
-
-        :return: None
+        Parameters
+        ----------
+            symbol    | The key that has been pressed
+            modifiers | The modifiers that are applied
         """
 
         pass
@@ -114,18 +137,20 @@ class KeyboardInputHandler(Component):
 
     def on_key_held(self, keys):
         """
-        What happens when a key is held down.
-        This method is called by the KeyboardInputHandler Component's parent class trhough the component's on_update mathod
-
-        :return: None
+        Parameters
+        ----------
+            keys | The keys that have been pressed | dict
         """
 
         pass
 
 
+    # -------------------------
+    #
+    #       EVENT HANDLERS
+    #
+    # -------------------------
+
     def on_update(self, dt, time):
         self.on_key_held(self.pressed_key)
 
-
-    def __repr__(self):
-        return "key_listener"

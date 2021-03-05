@@ -51,8 +51,8 @@
 # ----------------------------------------------------------------------------
 
 
-from Capsian.entities.entity      import Entity
-from Capsian.components.transform import Transform
+from   Capsian.entities.entity      import Entity
+from   Capsian.components.transform import Transform
 import pyglet
 
 
@@ -60,7 +60,17 @@ class Cube(Entity):
     """
     A Cube object is 3D Cube.
     This object uses Batched rendering for high performance and Capsian materials for texturing.
+
+    Fields
+    ------
+        next_pos | A list of adjacent positions | list
+        texture  | The cube's texture           | texture
+
+    Methods
+    -------
+        _add_block | Adds the cube to the scene
     """
+
 
     # -------------------------
     #
@@ -68,25 +78,16 @@ class Cube(Entity):
     #
     # -------------------------
 
-    def __init__(self, scene, transform=Transform(), material=None):
+    def __init__(self, transform=Transform(), scene=None, material=None):
         """
-        Creates a cube in the world
-
-        :param transform: Transform object that holds positioning data (Transform())
-        :param scene: The scene in which the cube needs to be rendered (Scene3D())
-        :param material: The material the cube is made out of (Texture3D()/SmartTexture3D, Material())
+        Parameters
+        ----------
+            transform | A Capsian Transform Component | Transform
+            scene     | A Capsian Scene Object        | Scene3D
+            material  | A Capsian Material Object     | Material
         """
 
         super().__init__(scene=scene, transform=transform)
-
-        self.next_pos = [
-            [transform.x + 1,  transform.y,      transform.z    ],
-            [transform.x - 1,  transform.y,      transform.z    ],
-            [transform.x,      transform.y,      transform.z + 1],
-            [transform.x,      transform.y,      transform.z - 1],
-            [transform.x,      transform.y + 1,  transform.z    ],
-            [transform.x,      transform.y - 1,  transform.z    ],
-        ]
 
         self.texture  = material.texture
         self._add_block(transform.x, transform.y, transform.z)
@@ -99,14 +100,17 @@ class Cube(Entity):
     # -------------------------
 
     # Add faces to batch
-    def _add_block(self, x, y, z):
+    def _add_block(self, x: float, y: float, z: float) -> None:
         """
-        Adds the cube to the specified scene
+        Definition
+        ----------
+            Adds the cube to the scene's world
 
-        :param x: X position in 3D Space (Float/int)
-        :param y: Y position in 3D space (Float/int)
-        :param z: Z position in 3D space (Float/int)
-        :return: None
+        Parameters
+        ----------
+            x | The cube's X position | float
+            y | The cube's Y position | float
+            z | The cube's Z position | float
         """
 
         X, Y, Z    = x + self.components.transform.width, \

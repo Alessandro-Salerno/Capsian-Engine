@@ -16,7 +16,6 @@
 # ----------------------------------------------------------------------------
 
 
-# Imports
 from   CapsianLine.commands import *
 from   CapsianLine.ccparser import *
 import CapsianLine.design
@@ -40,23 +39,15 @@ while True:
       sub_command = tree[1] # .. the method
       args        = tree[2] # .. the function args
 
-      # there isn't a key eq to command in the commands dictionary ?
-      if not command in commands.keys():
-         error(f"a class named {command} does not exist")
-
       # load the class from the dictionary
       entry      = commands[command]
 
-      # there isn't a key eq to sub_command in entry ?
-      # if not sub_command in entry.keys():
-         # error(f"no declaration for a method named {sub_command} in the class {command}")
-      
       # load the method from the class
       ptr = getattr(entry, sub_command)(*args)
 
    except KeyboardInterrupt:
       # catch ctrl + c
-      print("system close")
+      print("\n\nTerminating program....")
       break
 
    except Exception as e:

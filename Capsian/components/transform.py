@@ -59,6 +59,28 @@ class Transform(Component):
     A Transform is a component that holds date about the position, rotation and size of an object.
     It is a standalone component in order to allow for the existance of EmptyObjects with no location, useful
     for things like KeyboardInputHandler components that don't need any position, but just an entity to update them. 
+
+    Fields
+    ------
+        x      | The transform's X position  | float
+        y      | The transforms's Y position | float
+        z      | The transform's Z position  | float
+        width  | The transform's width       | float
+        height | The transform's height      | float
+        depth  | The transform's depth       | float
+        rotX   | The transofrm's X rotation  | float
+        rotY   | The transform's Y rotation  | float
+        rotZ   | The transform's Z rotation  | float
+        dx     | The transform's X direction | float
+        dy     | The transform's Y direction | float
+        dz     | The transform's Z rotation  | float
+
+    Properties
+    ----------
+        position  | The transform's position  | list [x, y, z]
+        size      | The transform's size      | list [width, height, depth]
+        rotation  | The transform's rotation  | list [rotX, rotY, rotZ]
+        direction | The transform's direction | list [dx, dy, dz]
     """
 
     # -------------------------
@@ -80,9 +102,9 @@ class Transform(Component):
         self.rotY     =  float(rotY)
         self.rotZ     =  float(rotZ)
 
-        self.dx       = int(dx)
-        self.dy       = int(dy)
-        self.dz       = int(dz)
+        self.dx       = float(dx)
+        self.dy       = float(dy)
+        self.dz       = float(dz)
 
         super().__init__()
 
@@ -98,15 +120,20 @@ class Transform(Component):
     # -------------------------
 
     @property
-    def position(self):
+    def position(self) -> list:
         return [self.x, self.y, self.z]
 
 
     @property
-    def rotation(self):
+    def size(self) -> list:
+        return [self.width, self.height, self.depth]
+
+    
+    @property
+    def rotation(self) -> list:
         return [self.rotX, self.rotY, self.rotZ]
 
 
     @property
-    def size(self):
-        return [self.width, self.height, self.depth]
+    def direction(self) -> list:
+        return [self.dx, self.dy, self.dz]

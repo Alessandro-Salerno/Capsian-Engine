@@ -51,20 +51,37 @@
 # ----------------------------------------------------------------------------
 
 
-from Capsian.entities.square import TexturedSquare
+from Capsian.entities.square      import TexturedSquare
+from Capsian.components.transform import Transform
 
 
-class DynamicSprite3D():
+class Sprite3D:
     """
-    A sprite is a 2D image that can be displayed as HUD.
+    Fields
+    ------
+        texture | The texture fo the Sprite | texture
     """
 
 
-    def __init__(self, texture, transform, scene):
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
+
+    def __init__(self, transform=Transform(), scene=None, texture=None):
+        """
+        Parameters
+        ----------
+            transform | A Capsian Tansfom Component                    | Transfom
+            scene     | A Capsian Scene of which the sprite is part of | Scene3D
+            texture   | A texture                                      | texture
+        """
+
         t = TexturedSquare(
-            texture,
             transform,
-            scene
+            scene,
+            texture
         )
 
         self.texture = texture.get_texture()

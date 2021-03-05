@@ -51,40 +51,45 @@
 # ----------------------------------------------------------------------------
 
 
-from Capsian.log     import Log
-import Capsian.types as types
+from   Capsian.log     import Log
+import Capsian.types   as types
 import pyglet
 
 
 class Scene:
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
+
     def __init__(self, camera):
         """
-        Creates a Capsian scene object.
-        It uses pyglet.graphics.Batch()
-
-        :param mode: The Scene mode (CPSN_3D_SCENE or CPSN_GUI_SCENE)
+        Parameters
+        ----------
+            camera | A Camera Object | Camera\OrthographicCamera\PerspectiveCamera
         """
         
-        # Set mode
         self.camera      = camera
         self.enabled     = False
 
         # Defines lists of objects
         self.batch       = pyglet.graphics.Batch()
-        self.objects2D   = types.LimitedLenghtObjectArray(750.000, False)
         self.lights      = types.LimitedLenghtObjectArray(8.00000, False)
         self.stack       = types.LimitedLenghtObjectArray(1000.00, False)
-        self.drawable    = types.LimitedLenghtObjectArray(700.000, False)
+        self.objects2D   = list()
+        self.drawable    = list()
         
         self.stack.append(camera)
 
 
-    # Adds somethings to the batch
-    def add(self, *args, **kwargs):
-        self.batch.add(*args, **kwargs)
-
-
 class Scene3D(Scene):
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
+
     def __init__(self, camera):
         from Capsian.values import CPSN_PERSPECTIVE_CAMERA
 
@@ -98,27 +103,37 @@ class Scene3D(Scene):
             Log.error(f"Could not enable scene {self}")
 
 
-    def disable(self):
+    # -------------------------
+    #
+    #       PUBLIC METHODS
+    #
+    # -------------------------
+
+    def disable(self) -> bool:
         if not self.enabled:
             Log.error(f"Scene {self} already disabled")
             return False
 
         self.camera.scenes.remove(self)
-        Log.warning(f"Scene {self} removed from camera {self.camera}!")
         return True
 
     
-    def enable(self):
+    def enable(self) -> bool:
         if self.enabled:
             Log.error(f"Scene {self} already enabled")
             return False
 
         self.camera.scenes.append(self)
-        Log.warning(f"Scene {self} added to camera {self.camera}!")
         return True
 
 
 class Scene2D(Scene):
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
+
     def __init__(self, camera):
         from Capsian.values import CPSN_ORTHOGRAPHIC_CAMERA
         
@@ -134,27 +149,37 @@ class Scene2D(Scene):
             Log.error(f"Could not enable scene {self}")
 
 
-    def disable(self):
+    # -------------------------
+    #
+    #       PUBLIC METHODS
+    #
+    # -------------------------
+
+    def disable(self) -> bool:
         if not self.enabled:
             Log.error(f"Scene {self} already disabled")
             return False
 
         self.camera.scenes.remove(self)
-        Log.warning(f"Scene {self} removed from camera {self.camera}!")
         return True
 
     
-    def enable(self):
+    def enable(self) -> bool:
         if self.enabled:
             Log.error(f"Scene {self} already enabled")
             return False
 
         self.camera.scenes.append(self)
-        Log.warning(f"Scene {self} added to camera {self.camera}!")
         return True
 
 
 class OverlayScene(Scene):
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
+
     def __init__(self, camera):
         from Capsian.values import CPSN_HUD_SCENE, CPSN_PERSPECTIVE_CAMERA
 
@@ -171,27 +196,37 @@ class OverlayScene(Scene):
             Log.error(f"Could not enable scene {self}")
 
 
-    def disable(self):
+    # -------------------------
+    #
+    #       PUBLIC METHODS
+    #
+    # -------------------------
+
+    def disable(self) -> bool:
         if not self.enabled:
             Log.error(f"Scene {self} already disabled")
             return False
 
         self.camera.hud_scenes.remove(self)
-        Log.warning(f"Scene {self} removed from camera {self.camera}!")
         return True
 
     
-    def enable(self):
+    def enable(self) -> bool:
         if self.enabled:
             Log.error(f"Scene {self} already enabled")
             return False
 
         self.camera.hud_scenes.append(self)
-        Log.warning(f"Scene {self} added to camera {self.camera}!")
         return True
 
 
 class PlaceholderScene(Scene):
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
+
     def __init__(self):
         from Capsian.values import CPSN_STANDARD_SCENE
         super().__init__(None)

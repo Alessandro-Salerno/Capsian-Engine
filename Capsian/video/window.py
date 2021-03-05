@@ -51,69 +51,114 @@
 # ----------------------------------------------------------------------------
 
 
-
-from pyglet.gl         import *
-from pyglet.window     import key
-from Capsian.log       import Log
-import Capsian.engine  as engine
+from   pyglet.gl            import *
+from   pyglet.window        import key
+from   Capsian.log          import Log
+import Capsian.engine       as engine
 import pyglet
 
 
 class Window(pyglet.window.Window):
+    """
+    Fields
+    ------
+        mouse_lock     | The current mouse lock state                   | bool
+        lighting       | Weather OpenGL lighting is on or not           | bool (Deprecated
+        alive          | Weather the window is alive or not             | int
+        view_port      | The viewport from which the world is drawn     | PerspectiveCamera\OrthographicCamera
+        fullscreen_key | The key chosen to toggle fullscreen on and off
+
+    Methods
+    -------
+        move_to_center | Moves the window to the center of the scren
+        set_mouse_lock | Sets the mouse lock state to the specified value
+        rotate_camera  | Rotates the viewport
+        enable         | Enables a specified feature (Deprecated)
+        disable        | Disables a specified feature (Deprecated)
+    """
+
+
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
+
     def __init__(self, camera, fullscreen_key=key.F11, *args, **kwargs):
+        """
+        Parameters
+        ----------
+            camera         | A Capsian Camera Object                         | PerspectiveCamera\OrthographicCamera
+            fullscreen_key | The key that will trigger fullscreen on and off
+
+        Additional Parameters (From Pyglet)
+        -----------------------------------
+            width      | The width of the window                    | int
+            height     | The height of the window                   | int
+            vsync      | Weather VSync is on or off                 | bool
+            resizable  | Weather the window is resizable or not     | bool
+            fullscreen | Weather fullscreen is on by default or not | bool
+        """
 
         # Create window
-        super().__init__(*args, **kwargs, screen=pyglet.canvas.Display.get_default_screen(pyglet.canvas.Display()))
+        super().__init__(
+            *args,
+            **kwargs,
+            screen=pyglet.canvas.Display.get_default_screen(
+                pyglet.canvas.Display()
+            )
+        )
 
         # Variable declaration
         self.mouse_lock         = False
         self.fullscreen_key     = fullscreen_key
 
         # Others
-        self.view_port          = camera
         self.lighting           = False
         engine.main_window      = self
         self.alive              = 1
 
         # Looks
-        self.set_center()
+        self.move_to_center()
 
-        # Time
-        pyglet.clock.schedule_interval(self.fixed_update, 1 / 120)
-
-        # Test
-        try:
-            camera.init()
-        except:
+        # Checks weather the camera is compatible
+        if not hasattr(camera, "init"):
             Log.critical("The specified camera is not valid")
+            return
+
+        self.view_port = camera
+        camera.init()
 
 
-    # Fixed Update
-    def fixed_update(self, fixed_delta_time):
-        pass
+    # -------------------------
+    #
+    #       PUBLIC METHODS
+    #
+    # -------------------------
 
-
-    # Center the window
-    def set_center(self):
+    def move_to_center(self) -> int:
         """
-        Brings the window to the center of the screen
-
-        :return: None
+        Description
+        -----------
+            Centers the window to the screen
         """
 
-        self.set_location(
-            round(self.screen.width / 2 - self.width / 2),
-            round(self.screen.height / 2 - self.height / 2)
-        )
+        x = int(self.screen.width / 2 - self.width / 2)
+        y = int(self.screen.height / 2 - self.height / 2)
+
+        self.set_location(x, y)
+        return x, y
 
 
-    # Set mouse lock
-    def set_lock(self, state):
+    def set_mouse_lock(self, state: bool) -> None:
         """
-        Switches on and off the mouse lock
+        Description
+        -----------
+            Sets the mouse lock state to the specified boolean value
 
-        :param state: State in which the mouse lock field should be set to (Boolean)
-        :return: None
+        Parameters
+        ----------
+            state | The new value that should be assigned to "Mouse lock state" | bool
         """
 
         if self.alive > 0:
@@ -124,102 +169,67 @@ class Window(pyglet.window.Window):
             self.set_exclusive_mouse(state)
 
 
-    # Rotate camera
-    def rotate_camera(self, dx, dy):
-        """
-        This method rotates the camera.
-        This method is called by another method.
-        DO NOT CALL THIS!
-
-        :param dx: The horizontal direction in which the mouse is moving
-        :param dy: The vertical direction in which the mouse is moving
-        :return: None
-        """
-
+    def rotate_camera(self, dx: float, dy: float) -> None:
         if not self.mouse_lock:
             return
 
         self.view_port.rotate(dx, dy)
 
 
-    # Enables a feature
-    def enable(self, feature):
+    def enable(self, feature) -> None:
         mode = "enable"
 
-        try:
-            exec(compile(source=feature, filename="feature", mode="exec", optimize=1))
-            Log.warning("Window.enable() is deprecated and will soon be removed")
-        except:
-            Log.critical(f"'{feature}' is not valid Python code. Thus, the Window is not able to run it")
+        exec(compile(source=feature, filename="feature", mode="exec", optimize=1))
+        Log.warning("Window.enable() is deprecated and will soon be removed")
 
 
-    # Disable a feature
-    def disable(self, feature):
+    def disable(self, feature) -> None:
         mode = "disable"
 
-        try:
-            exec(compile(source=feature, filename="feature", mode="exec", optimize=1))
-            Log.warning("Window.disable() is deprecated and will soon be removed")
-        except:
-            Log.critical(f"'{feature}' is not valid Python code. Thus, the Window is not able to run it")
+        exec(compile(source=feature, filename="feature", mode="exec", optimize=1))
+        Log.warning("Window.disable() is deprecated and will soon be removed")
 
 
 ########################################################################################################################
 
 
 class Window3D(Window):
-    """
-    Creates a pyglet Window (Accepts all pyglet.window.Window parameters)
+    # -------------------------
+    #
+    #       EVENT HANDLERS
+    #
+    # -------------------------
 
-    :param camera: A Capsian Camera (Camera())
-    :param args: All pyglet window args
-    :param kwargs: All pyglet window kwargs
-    """
-
-
-    # Every frame
-    def on_draw(self):
-        """
-        Calls rendering functions
-
-        :return: None
-        """
-
+    def on_draw(self) -> None:
         self.view_port.render(self)
-        # pyglet.clock.tick()
 
 
     # When mouse is moved
-    def on_mouse_motion(self, x, y, dx, dy):
-        """
-        None of the following parameters have to be specified since this method is not callable!
-        to override it though, you must list all of them as parameters for your override method.
-        This method is responsible for camera rotation in the 3D scene
-        """
-
+    def on_mouse_motion(self, x: int, y: int, dx: float, dy: float) -> None:
         self.rotate_camera(dx, dy)
 
 
     # Hot fix
-    def on_mouse_drag(self, x, y, dx, dy, buttons, modifiers):
-        """
-        None of the following parameters have to be specified since this method is not callable!
-        to override it though, you must list all of them as parameters for your override method.
-        This method is responsible for camera rotation in the 3D scene
-        """
-
+    def on_mouse_drag(self, x: int, y: int, dx: float, dy: float, buttons, modifiers) -> None:
         self.rotate_camera(dx, dy)
 
 
-    def set_viewport(self, camera):
+    def set_viewport(self, camera) -> None:
         """
-        Sets the window's Viewport (Camera) to a specified Capsian camera object
-        NOTE: It must be a class that inherits from Capsian.camera.Camera()
+        Description
+        -----------
+            Sets the rendering viewport to the specified one
 
-        :param camera: The new camera
-        :return: None
+        Parameters
+        ----------
+            camera | The new viewport | PerspectiveCamera\OrthographicCamera
         """
 
-        if self.alive > 0:
-            self.view_port = camera
-            camera.init()
+        if not self.alive > 0:
+            return
+
+        if not hasattr(camera, "init"):
+            Log.critical("The specified camera is not valid")
+            return
+
+        camera.init()

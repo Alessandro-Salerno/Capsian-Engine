@@ -51,5 +51,5 @@
 # ----------------------------------------------------------------------------
 
 
-from Capsian.GUI.label  import StaticLabel2D, StaticLabel3D, DynamicLabel3D
-from Capsian.GUI.sprite import DynamicSprite3D
+from Capsian.GUI.label  import Label2D, Label3D
+from Capsian.GUI.sprite import Sprite3D

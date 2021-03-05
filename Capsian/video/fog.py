@@ -54,33 +54,62 @@
 import pyglet
 
 
-fog_objs = []
-
-
 class Fog:
-    def __init__(self, color, start, end):
-        for obj in fog_objs:
-            del obj
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
 
+    def __init__(self, color: list, start: float, end: float):
         self.color = color
         self.start = float(start)
         self.end   = float(end)
 
-        fog_objs.clear()
         self.enable(color, start, end)
-        fog_objs.append(self)
 
+
+    # -------------------------
+    #
+    #       STATIC METHODS
+    #
+    # -------------------------
 
     @staticmethod
-    def enable(color, start, end):
+    def enable(color: list, start: float, end: float) -> None:
         pyglet.gl.glEnable(pyglet.gl.GL_FOG)
-        pyglet.gl.glFogfv(pyglet.gl.GL_FOG_COLOR, (pyglet.gl.GLfloat * 4)(color[0], color[1], color[2], color[3]))
-        pyglet.gl.glHint(pyglet.gl.GL_FOG_HINT  , pyglet.gl.GL_NICEST)
-        pyglet.gl.glFogf(pyglet.gl.GL_FOG_MODE  , pyglet.gl.GL_LINEAR)
-        pyglet.gl.glFogf(pyglet.gl.GL_FOG_START , float(start))
-        pyglet.gl.glFogf(pyglet.gl.GL_FOG_END   , float(end))
+        
+        pyglet.gl.glFogfv(
+            pyglet.gl.GL_FOG_COLOR,
+            (pyglet.gl.GLfloat * 4) (
+                color[0],
+                color[1],
+                color[2],
+                color[3]
+            )
+        )
+
+        pyglet.gl.glHint(
+            pyglet.gl.GL_FOG_HINT,
+            pyglet.gl.GL_NICEST
+        )
+
+        pyglet.gl.glFogf(
+            pyglet.gl.GL_FOG_MODE,
+            pyglet.gl.GL_LINEAR
+        )
+
+        pyglet.gl.glFogf(
+            pyglet.gl.GL_FOG_START,
+            float(start)
+        )
+
+        pyglet.gl.glFogf(
+            pyglet.gl.GL_FOG_END,
+            float(end)
+        )
 
 
     @staticmethod
-    def disable():
+    def disable() -> None:
         pyglet.gl.glDisable(GL_FOG)

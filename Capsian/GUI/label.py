@@ -51,48 +51,41 @@
 # ----------------------------------------------------------------------------
 
 
-from Capsian.log    import Log
-from Capsian.values import CPSN_HUD_SCENE
+from   Capsian.log                  import Log
+from   Capsian.values               import CPSN_HUD_SCENE
+from   Capsian.components.transform import Transform
+from   Capsian.video.scene          import PlaceholderScene
+import Capsian.engine               as     engine
 import pyglet
 
 
-class StaticLabel2D(pyglet.text.Label):
-    def __init__(self, font, font_size, transform, text, scene, color, *args, **kwargs):
-        """
-        Creates a text field in a 2D scene
+class Label(pyglet.text.Label):
+    """
+    Fields
+    ------
+        scene | A Capsian Scene Object | Scene2D/OverlayScene
 
-        :param font: The font of the text
-        :param font_size: The size of the font
-        :param transform: A Transform Component
-        :param text: The text of the label (String)
-        :param scene: The Scene in which the label should be rendered (Scene())
-        :param color: THe color of the text (Array, [R, G, B, A])
+    Methods
+    -------
+        move_to | Moves the label to the specified position
+    """
+
+    def __init__(self, font: str, font_size: float, text: str, color, transform=Transform(), scene=PlaceholderScene(), *args, **kwargs):
+        """
+        Parameters
+        ----------
+            font      | The font you want to use for the label          | str
+            font-size | The font size you want to use                   | float
+            text      | The text of the label                           | str
+            color     | The color of the label                          | list [R, G, B, A]
+            scene     | The Capsian Scene of which the label is part of | Scene2D
         """
 
-        if not scene.mode == CPSN_GUI_SCENE:
-            Log.critical(f"Invalid scene type {scene.mode} for Static GUI Label. This object can only be used in a GUI scene (CPSN_GUI_SCENE)")
+        if not isinstance(scene, CPSN_HUD_SCENE):
+            Log.critical(f"Invalid scene type for Static HUD Label. This object can only be used in a GUI scene (CPSN_HUD_SCENE)")
             return
 
-        super().__init__(text=text, font_name=font, font_size=font_size, bold=False, italic=False, x=transform.x,
-                             y=transform.y, width=transform.width, height=transform.height, batch=scene.batch, color=color, *args, **kwargs)
-
-
-class StaticLabel3D(pyglet.text.Label):
-    def __init__(self, font, font_size, transform, text, scene, color, *args, **kwargs):
-        """
-        Creates a text field in a 3D scene (The text is rendered in 2D)
-
-        :param font: The font of the text
-        :param font_size: The size of the font
-        :param transform: A Transform Component
-        :param text: The text of the label (String)
-        :param scene: The Scene in which the label should be rendered (Scene())
-        :param color: THe color of the text (Array, [R, G, B, A])
-        """
-
-        if not scene.mode == CPSN_HUD_SCENE:
-            Log.critical(f"Invalid scene type {scene.mode} for Static HUD Label. This object can only be used in a GUI scene (CPSN_HUD_SCENE)")
-            return
+        self.scene = scene
 
         super().__init__(
             text=text,
@@ -104,49 +97,99 @@ class StaticLabel3D(pyglet.text.Label):
             y=transform.y,
             width=transform.width,
             height=transform.height,
-            batch=scene.batch,
             color=color,
             *args, **kwargs
         )
 
 
-class DynamicLabel3D(pyglet.text.Label):
-    """
-    A dynamic label object is much more flexible than a normal one, but it comes with a performance cost
-    """
-
-    def __init__(self, font, font_size, transform, text, color, scene, *args, **kwargs):
+    def move_to(self, x: int, y: int) -> None:
         """
-        Creates a text field in a 3D scene (The text is rendered in 2D)
-
-        :param font: The font of the text
-        :param font_size: The size of the font
-        :param transfom: A Transform Component
-        :param text: The text of the label (String)
-        :param color: THe color of the text (Array, [R, G, B, A])
+        Parameters
+        ----------
+            x | The new X position | int
+            y | The new Y position | int
         """
 
-        self.text_pointer = text
-        self.scene        = scene
+        self.x = int(x)
+        self.y = int(y)
+
+
+####################################################################
+
+
+class Label2D(Label):
+    """
+    Fields
+    ------
+        scene | A Capsian Scene Object | Scene2D/OverlayScene
+
+    Methods
+    -------
+        move_to | Moves the label to the specified position
+    """
+    
+    def __init__(self, font: str, font_size: float, text: str, color, transform=Transform(), scene=PlaceholderScene, *args, **kwargs):
+        """
+        Parameters
+        ----------
+            font      | The font you want to use for the label          | str
+            font-size | The font size you want to use                   | float
+            text      | The text of the label                           | str
+            color     | The color of the label                          | list [R, G, B, A]
+            scene     | The Capsian Scene of which the label is part of | Scene2D
+        """
 
         super().__init__(
-            text=str(text),
-            font_name=str(font),
-            font_size=float(font_size),
+            font=font,
+            font_size=font_size,
+            transform=transform,
+            text=text,
+            scene=scene,
             color=color,
-            x=transform.x,
-            y=transform.y,
-            width=transform.width,
-            height=transform.height,
             *args, **kwargs
         )
 
+        self.scene.dynamic_gui.append(self)
+
+
+class Label3D(Label):
+    """
+    Fields
+    ------
+        scene | A Capsian Scene Object | Scene2D/OverlayScene
+
+    Methods
+    -------
+        move_to | Moves the label to the specified position
+    """
+
+    def __init__(self, font: str, font_size: float, text: str, color, transform=Transform(), scene=PlaceholderScene, *args, **kwargs):
+        """
+        Parameters
+        ----------
+            font      | The font you want to use for the label          | str
+            font-size | The font size you want to use                   | float
+            text      | The text of the label                           | str
+            color     | The color of the label                          | list [R, G, B, A]
+            scene     | The Capsian Scene of which the label is part of | Scene2D
+        """
+
+        super().__init__(
+            font=font,
+            font_size=font_size,
+            transform=transform,
+            text="",
+            scene=scene,
+            color=color,
+            *args, **kwargs
+        )
+
+        self.text_pointer = text
         scene.dynamic_hud.append(self)
+        engine.default_clock.Schedule.call_with_interval(self.update_text, 1/10)
 
-        pyglet.clock.schedule_interval(self.update_text, 1/5)
 
-
-    def update_text(self, delta_time):
+    def update_text(self, dt: float) -> None:
         """
         Updates the label's text. This is used for multiple reasons:
         1. Setting the text when the label is created
@@ -158,21 +201,7 @@ class DynamicLabel3D(pyglet.text.Label):
 
         try:
             self.text     = str(self.text_pointer())
+        except TypeError:
+            self.text = str(self.text_pointer)
         except:
-            try:
-                self.text = str(self.text_pointer)
-            except:
-                self.text = "DynamicLabel3D"
-
-
-    def move_to(self, x, y):
-        """
-        Moves the label to the given coordinates.
-
-        :param x: The new x position
-        :param y: The new y position
-        :return: None
-        """
-
-        self.x = int(x)
-        self.y = int(y)
+            self.text = "Invalid Pointer!"

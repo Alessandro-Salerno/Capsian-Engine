@@ -66,15 +66,13 @@ To get a local copy up and running follow these simple steps.
 
 ### Requirements
 
-<p>Capsian now includes a Python Virtual Environment (venv) to insure everybody has the same experience, regardless of what they have installed on their machine. This doesn't mean, though, that there's nothing you need or may want to do to improve your coding experience.
+<p>Capsian is currently going through a transition period, this means that requirements are more than usual.
+    - Python 3.7.3 (Or higher)
+    - Pyglet 1.5.6
+    - PyOpenGL
+    - A Code Editor/IDE that supports Python (Like VS Code)
 
-    - Windows 10
-    - Visual Studio Code with all the necessary extensions
-
-Unfortunately I don't have a Linux machine (And not even a VM right now), thus worsening your coding experience on Linux. This doesn't mean you can't use Capsian on Linux though. Yuo can, it's just that you'll have to install pyglet 1.5.6 and Python 3.7.3 on your machine for now.
 The Linux version will probably be available in March 2021 thanks to a contributor and friend [ [Gyro](https://github.com/Gyro7/) ].
-
-Visual Studio Code is a great text editor as it doesn't force you to use your machine's Python Interpreter, but allows you to choose it. Read the next block for more information.
   <br>
 </p>
 
@@ -85,8 +83,8 @@ Using VSCode:
 # In the bottom-left of the VS Code window, you should see a few buttons
 
     - Make sure you have the Python extension installed
-    - Select your python interpreter (Recommended: Python/Windows/python.exe)
-    - Always run your app with the "WinRuntime.bat" file!
+    - Select your python interpreter
+    - To run, use main.py
 
 ```
 
@@ -112,7 +110,7 @@ Contributions are what make the open source community such an amazing place to l
 
 ## License
 
-Distributed under the Pyglet license and my own license. See `LICENSE.txt` for more information.
+Distributed under the Pyglet license and the Apache license. See `LICENSE.txt` for more information.
 
 <!-- CONTACT -->
 
@@ -129,7 +127,7 @@ Project Link: [Link](https://github.com/tzyvoski/Capsian-Engine/)
 -   [Liam](https://github.com/Gyro7) ( for the README and the future Linux version )
 -   Lorenzo Bergadano, a friend of mine
 -   [Pyglet](http://pyglet.org/) ( for providing the amazing toolkit used to make Capsian possible )
--   [Myself](https://github.com/tzyvoski), Alessandro Salerno, AKA tzyvoski. I was born in Italy and I still live there, and yes, I love Pizza. I study IT in high school and I have been working on Capsian (And its predecessors) for one and a half years.
+-   [Myself](https://github.com/tzyvoski), AKA A. Salerno, AKA tzyvoski
 
 [contributors-shield]: https://img.shields.io/github/contributors/tzyvoski/Capsian-Engine.svg?style=flat-square
 [contributors-url]: https://github.com/tzyvoski/Capsian-Engine/graphs/contributors

@@ -74,12 +74,12 @@ class Line(Command):
 
     def run(self):
         import os
-        os.system("start Python\Windows\pythonw.exe -u main.py")
+        os.system("pythonw main.py")
 
 
     def debug(self):
         import os
-        os.system("Python\Windows\python.exe -u main.py")
+        os.system("python main.py")
 
 
     def reload(self):
@@ -87,3 +87,20 @@ class Line(Command):
         import CapsianLine.design   as design
         system.clear()
         design.draw()
+
+
+    def build(self, onefile=True, windowed=True, icon=None):
+        import os
+        command: str = "pyinstaller "
+        
+        if windowed:
+            command += "-w "
+
+        if onefile:
+            command += "--onefile "
+
+        if icon is not None:
+            command += f"--icon={icon} "
+
+        command += "main.py"
+        os.system(command)

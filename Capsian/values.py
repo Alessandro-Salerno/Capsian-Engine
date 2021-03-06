@@ -51,11 +51,11 @@
 # ----------------------------------------------------------------------------
 
 
+from   Capsian.video.sky_color      import SkyColorClass
+from   Capsian.video.scene          import Scene, Scene3D, Scene2D, OverlayScene, PlaceholderScene
+from   Capsian.video.camera         import PerspectiveCamera, OrthographicCamera, Camera
+from   Capsian.components.component import Component
 import pyglet
-from Capsian.video.sky_color      import SkyColorClass
-from Capsian.video.scene          import Scene, Scene3D, Scene2D, OverlayScene, PlaceholderScene
-from Capsian.video.camera         import PerspectiveCamera, OrthographicCamera, Camera
-from Capsian.components.component import Component
 
 
 CPSN_DEFAULT_DELTA_TIME   = 1/120

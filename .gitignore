@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 .vscode
 .VSCodeCounter
+whiteboard.txt
 
 # C extensions
 *.so

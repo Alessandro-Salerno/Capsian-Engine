@@ -37,7 +37,7 @@
 <p>The latest version of Capsian brings with it numerous improvements to performance. Previous versions struggled to handle over 500 non-batched objects in a scene. This version, though, with the new clock and ticking mechanics, pushes performance to the sky: with an average of 2000 FPS at 5120x2880 and 4700FPS at 1280x720. You can read the code in files "Capsian/video/scene.py" , "Capsian/video/window.py" and "Capsian/world/clock.py" to find out what makes it so performant.
 <br>
 </p>
-<i><strong>ALL TESTS WERE CONDUCTED ON A GTX 1080 AND INTEL CORE i7 8700K 3.70GHz</strong></i>
+<i><strong>ALL TESTS WERE CONDUCTED ON A GTX 1080 AND INTEL CORE i7 8700K 3.70GHz (Windows 10)</strong></i>
   <br>
   <br>
 <div align="center">
@@ -51,6 +51,7 @@
 -   [Python](https://www.python.org/)
 -   [OpenGL](https://www.opengl.org/)
 -   [Pyglet](http://pyglet.org/)
+-   [Pyinstaller](https://www.pyinstaller.org/)
 
 ### Languages
 
@@ -70,9 +71,12 @@ To get a local copy up and running follow these simple steps.
     - Python 3.7.3 (Or higher)
     - Pyglet 1.5.6
     - PyOpenGL
+    - Pyinstaller
     - A Code Editor/IDE that supports Python (Like VS Code)
 
-The Linux version will probably be available in March 2021 thanks to a contributor and friend [ [Gyro](https://github.com/Gyro7/) ].
+To get the libs, just run the `prepare.py` file.
+To build an executable, just run the `line build` command in CapsianLine (`console.py`) and wait.
+It should be able to build for any desktop platform given that you're running on such platform. 
   <br>
 </p>
 

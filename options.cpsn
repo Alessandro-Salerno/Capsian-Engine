@@ -8,5 +8,5 @@
     "fog color"          :  CPSN_DEFAULT_FOG_COLOR,
     "fog start"          :  CPSN_DEFAULT_FOG_START,
     "fog end"            :  CPSN_DEFAULT_FOG_END,
-    "clear color"        :  [0, 0, 0, 0],
+    "clear color"        :  [0, 0, 0, 0]
 }

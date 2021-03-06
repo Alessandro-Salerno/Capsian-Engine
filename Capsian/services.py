@@ -1,7 +1,7 @@
-from Capsian.input.keyboard              import KeyboardInputHandler
-from Capsian.entities.components_handler import ComponentsHandler
-from pyglet.window                       import key as Key
-import Capsian.engine                               as engine
+from   Capsian.input.keyboard              import KeyboardInputHandler
+from   Capsian.entities.components_handler import ComponentsHandler
+from   pyglet.window                       import key                  as Key
+import Capsian.engine                                                  as engine
 import pyglet
 
 

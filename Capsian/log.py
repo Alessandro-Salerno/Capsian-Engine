@@ -51,17 +51,15 @@
 # ----------------------------------------------------------------------------
 
 
-
-from datetime import datetime
-from Capsian  import *
-from os       import system
+from   datetime import datetime
+from   Capsian  import *
+from   os       import system
 import sys
 
 
 class TermColor:
     """
     Gives colors for the Terminal/Command Prompt
-
     """
 
     HEADER    = '\033[95m'

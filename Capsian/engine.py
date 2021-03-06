@@ -51,7 +51,7 @@
 # ----------------------------------------------------------------------------
 
 
-from Capsian.world import Clock
+from   Capsian.world import Clock
 import pyglet
 
 
@@ -63,13 +63,17 @@ default_clock = Clock()
 
 # Returns a version sting
 def version():
-    return "Capsian Engine v1.0 a1"
+    return "Capsian Engine v1.0 a2"
 
 
 # Prepares the application
 def run():
     from datetime import datetime
     import Capsian.services
+
+    if not pyglet.version == "1.5.6":
+        print("CompatibilityError: Your version of Pyglet is not supported. Please run prepare.py to get the right onw!")
+        return
 
     default_clock.entry_points.call(datetime.now())
     pyglet.app.run()

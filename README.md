@@ -83,9 +83,9 @@ It should be able to build for any desktop platform given that you're running on
 
 ### Setup
 Using VSCode:
-    * Make sure you have the Python extension installed
-    * Select your python interpreter
-    * To run, use main.py
+    - Make sure you have the Python extension installed
+    - Select your python interpreter
+    - To run, use main.py
 
 <!-- ROADMAP -->
 

@@ -61,21 +61,11 @@
 
 <!-- GETTING STARTED -->
 
-## Getting Started
-
-To get a local copy up and running follow these simple steps.
-
 ### Requirements
 
-<p>Capsian is currently going through a transition period, this means that requirements are more than usual.
-* Python 3.7.3 (Or higher)
-* Pyglet 1.5.6
-* PyOpenGL
-* Pyinstaller
-* A Code Editor/IDE that supports Python (Like VS Code)
-
+<p>
 To get the libs, just run the `prepare.py` file.
-To build an executable, just run the `line build` command in CapsianLine (`console.py`) and wait.
+To build an executable, just run the `app build` command in CapsianLine (`console.py`) and wait.
 It should be able to build for any desktop platform given that you're running on such platform. 
 
 Capsianline will be your best friend while using Capsian. You can use it to run, debug and build your game among other things.

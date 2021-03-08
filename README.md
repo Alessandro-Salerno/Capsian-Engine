@@ -77,15 +77,14 @@ To get a local copy up and running follow these simple steps.
 To get the libs, just run the `prepare.py` file.
 To build an executable, just run the `line build` command in CapsianLine (`console.py`) and wait.
 It should be able to build for any desktop platform given that you're running on such platform. 
+
+Capsianline will be your best friend while using Capsian. You can use it to run, debug and build your game among other things.
+    - Debug: `app debug`
+    - Run: `app run`
+    - Build: `app build`
+You can also use the `package install` command to install packages
   <br>
 </p>
-
-
-### Setup
-Using VSCode:
-    - Make sure you have the Python extension installed
-    - Select your python interpreter
-    - To run, use main.py
 
 <!-- ROADMAP -->
 

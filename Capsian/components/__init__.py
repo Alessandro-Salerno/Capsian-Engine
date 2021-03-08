@@ -55,3 +55,4 @@ from Capsian.components.component            import Component
 from Capsian.components.character_controller import CharacterController
 from Capsian.components.transform            import Transform
 from Capsian.components.light                import Light, AmbientLight, DiffusedLight, SpecularLight
+from Capsian.components.script               import Script

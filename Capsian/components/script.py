@@ -8,7 +8,7 @@
 # modification, are permitted provided that the following conditions
 # are met:
 #
-#  * Redistributions of source code must retain the above copyright
+#  * Redistributioans of source code must retain the above copyright
 #    notice, this list of conditions and the following disclaimer.
 #  * Redistributions in binary form must reproduce the above copyright
 #    notice, this list of conditions and the following disclaimer in
@@ -51,49 +51,7 @@
 # ----------------------------------------------------------------------------
 
 
-from   Capsian  import *
-from   os      import system
-import os
+from Capsian.components.component import Component
 
 
-system("cls") if os.name == "nt" else system("clear")
-
-
-# Eval the contens of the options file
-with open("options.cpsn", "r") as preferences:
-    global options
-    _options = preferences.read()
-    options  = eval(compile(source=_options, filename="options", mode="eval", optimize=1))
-
-
-# Compiles and runs scripts
-import scripts
-
-
-try:
-    # Enable Capsian Basic Lighting if required
-    if options["use basic lighting"]:
-        engine.main_window.enable(CPSN_LIGHTING)
-
-    # Set OpenGL Clear Color
-    SkyColor << options["clear color"]
-
-    # Set fog settings
-    if options["enable fog"]:
-        fog_color = options["fog color"]
-        fog_start = options["fog start"]
-        fog_end   = options["fog end"]
-
-        Fog(fog_color, fog_start, fog_end)
-except:
-    _errcam = OrthographicCamera()
-    _errwin = Window3D(camera=_errcam, width=1024, height=680)
-    Log.critical("Something went wrong while setting up your game. This is usually caused by the absence of a default window and/or camera")
-
-
-# Runs all the code3
-engine.run()
-
-
-# Random print() to make the output look cleaner
-print()
+class Script(Component): pass

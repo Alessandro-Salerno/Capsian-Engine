@@ -62,7 +62,7 @@ class Parser:
       # expect -
       self.expect_symbol("-")
       # expect the flag, maybe other flags in the future
-      self.expect_keyword("arg")
+      self.expect_keyword("-")
       
       # returns the value of the next token
       return self.expect(Token.VALUE)[1] # 1 of a tuple with two elements, the first is the token kind, the second the token value

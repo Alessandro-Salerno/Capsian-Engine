@@ -51,12 +51,19 @@
 # ----------------------------------------------------------------------------
 
 
-from CapsianLine.commands.system import *
-from CapsianLine.commands.line   import *
+from CapsianLine.commands.system  import System
+from CapsianLine.commands.line    import Line
+from CapsianLine.commands.capsian import CapsianCommand
+from CapsianLine.commands.package import Package
+from CapsianLine.commands.app     import App
+
 
 commands = {
-    "line"  : Line(),
-    "system": System(),
+    "app"     : App(),
+    "capsian" : CapsianCommand(),
+    "line"    : Line(),
+    "package" : Package(),
+    "system"  : System(),
 }
 
 system = commands["system"]

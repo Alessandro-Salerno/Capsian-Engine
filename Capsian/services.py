@@ -1,10 +1,11 @@
-from   Capsian.input.keyboard              import KeyboardInputHandler
-from   Capsian.entities.components_handler import ComponentsHandler
-from   pyglet.window                       import key                  as Key
-import Capsian.engine                                                  as engine
+from   Capsian.input.keyboard                 import KeyboardInputHandler
+from   Capsian.entities.independent_component import IndependentComponent
+from   pyglet.window                          import key                  as Key
+import Capsian.engine                                                     as engine
 import pyglet
 
 
+@IndependentComponent
 class CapsianKeyboardHandler(KeyboardInputHandler):
     def on_key_pressed(self, symbol, modifiers):
         if not engine.main_window.alive > 0:
@@ -39,6 +40,3 @@ class CapsianKeyboardHandler(KeyboardInputHandler):
             lock = engine.main_window.mouse_lock
             engine.main_window.set_mouse_lock(False)
             engine.main_window.set_mouse_lock(lock)
-
-
-ComponentsHandler(CapsianKeyboardHandler())

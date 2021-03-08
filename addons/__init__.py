@@ -1,1 +1,1 @@
-# Import here all your addons
+# All package imports

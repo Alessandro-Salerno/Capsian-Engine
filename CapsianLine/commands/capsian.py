@@ -51,22 +51,18 @@
 # ----------------------------------------------------------------------------
 
 
-from Capsian.entities.entity import Entity
+from CapsianLine.commands.command import Command
 
 
-class ComponentsHandler(Entity):
-    """
-    A ComponentsHandler object allows you to add components to an empty entity more easily.
-    Where you would normallly have to create an Entity, assign it a transform etc etc... You can just create one of these and go
-    """
+class CapsianCommand(Command):
+    def __str__(self):
+        return "capsian"
 
-    # -------------------------
-    #
-    #       DUNDERSCORE
-    #
-    # -------------------------
-    
-    def __init__(self, component):
-        super().__init__()
 
-        self.components.add(component)
+    def version(self):
+        print(Capsian.engine.version())
+
+
+    def github(self):
+        import os
+        os.system("start https://github.com/tzyvoski/Capsian-Engine")

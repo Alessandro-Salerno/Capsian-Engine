@@ -122,6 +122,22 @@ class Clock:
             pyglet.clock.time.sleep(milliseconds / 1000)
 
 
+        @staticmethod
+        def loop(**kwargs):
+            if "interval" not in kwargs.keys():
+                kwargs.__setitem__("interval", 0)
+
+            def inner(func):
+                if not kwargs["interval"] == 0:
+                    Clock.Schedule.call_with_interval(func, **kwargs)
+                    return
+
+                kwargs.pop("interval")
+                Clock.Schedule.call_every_tick(func, **kwargs)
+
+            return inner
+
+
     entry_points = _Points()
     exit_points  = _Points()
 

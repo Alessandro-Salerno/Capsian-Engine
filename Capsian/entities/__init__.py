@@ -50,8 +50,8 @@
 # limitations under the License.
 # ----------------------------------------------------------------------------
 
-from Capsian.entities.entity             import Entity
-from Capsian.entities.components_handler import ComponentsHandler
-from Capsian.entities.cube               import Cube
-from Capsian.entities.particle_system    import Particles3D
-from Capsian.entities.square             import Square, TexturedSquare, RotatingSquare
+from Capsian.entities.entity                import Entity
+from Capsian.entities.independent_component import IndependentComponent
+from Capsian.entities.cube                  import Cube
+from Capsian.entities.particle_system       import Particles3D
+from Capsian.entities.square                import Square, TexturedSquare, RotatingSquare

@@ -52,7 +52,6 @@
 
 
 from CapsianLine.commands.command import Command
-import Capsian
 
 
 class Line(Command):
@@ -62,24 +61,15 @@ class Line(Command):
 
     def commands(self):
         from CapsianLine.commands import commands
+        from Capsian.log          import TermColor
 
         for command in commands:
-            Capsian.TermColor.begin(TermColor.BOLD)
-            Capsian.TermColor.begin(TermColor.OK_GREEN)
+            TermColor.begin(TermColor.BOLD)
+            TermColor.begin(TermColor.OK_GREEN)
             print(f"\n{command.upper()}")
-            Capsian.TermColor.end()
+            TermColor.end()
 
             Command.help(commands[command])
-
-
-    def run(self):
-        import os
-        os.system("pythonw main.py")
-
-
-    def debug(self):
-        import os
-        os.system("python main.py")
 
 
     def reload(self):
@@ -87,20 +77,3 @@ class Line(Command):
         import CapsianLine.design   as design
         system.clear()
         design.draw()
-
-
-    def build(self, onefile=True, windowed=True, icon=None):
-        import os
-        command: str = "pyinstaller "
-        
-        if windowed:
-            command += "-w "
-
-        if onefile:
-            command += "--onefile "
-
-        if icon is not None:
-            command += f"--icon={icon} "
-
-        command += "main.py"
-        os.system(command)

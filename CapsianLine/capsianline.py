@@ -29,7 +29,8 @@ CapsianLine.design.draw()
 while True:
    try:
       # parse the command
-      parser      = Parser(input("\nCapsian$ "))
+      parser      = Parser(input(f"\n{Capsian.TermColor.FAIL}Capsian${Capsian.TermColor.WARNING} "))
+      Capsian.TermColor.end()
 
       # get the tree
       tree        = parser.parse()

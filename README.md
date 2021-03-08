@@ -83,32 +83,16 @@ It should be able to build for any desktop platform given that you're running on
 
 ### Setup
 Using VSCode:
-```shell
-# In the bottom-left of the VS Code window, you should see a few buttons
-
-    - Make sure you have the Python extension installed
-    - Select your python interpreter
-    - To run, use main.py
-
-```
+    * Make sure you have the Python extension installed
+    * Select your python interpreter
+    * To run, use main.py
 
 <!-- ROADMAP -->
 
 ## Older Versions
 
 See the [open issues](https://github.com/tzyvoski/Capsian-Engine/issues) for a list of proposed features (and known issues).<br>
-You can find all older versions of Capsian (KeyFire) at: https://tzyvoski.wixsite.com/keyfire
-
-<!-- CONTRIBUTING -->
-
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-<br><br>```But please follow these simple rules:```<br><br>
-- Please do NOT commit and push to the master branch.
-- You can clone the repository or create another branch as stated by the license in the LICENSE.txt file. 
-- If you think your contributions could help a lot, then write to my email address (miro.salerno@icloud.com).
-- I may or may not accept the contribution and implement it in the engine directly. In case I do, you'll be listed in the credits
+You can find all older versions of Capsian (KeyFire) at: [here](https://tzyvoski.wixsite.com/keyfire)
 
 <!-- LICENSE -->
 
@@ -129,7 +113,7 @@ Project Link: [Link](https://github.com/tzyvoski/Capsian-Engine/)
 
 -   [Carpal](https://github.com/Carpall) ( for [CapsianLine](https://github.com/Carpall/capsianline) )
 -   [Liam](https://github.com/Gyro7) ( for the README and the future Linux version )
--   Lorenzo Bergadano, a friend of mine
+-   [lolloberga](https://github.com/lolloberga?tab=overview&from=2021-03-01&to=2021-03-08)
 -   [Pyglet](http://pyglet.org/) ( for providing the amazing toolkit used to make Capsian possible )
 -   [Myself](https://github.com/tzyvoski), AKA A. Salerno, AKA tzyvoski
 

@@ -5,6 +5,12 @@ __pycache__/
 .vscode
 .VSCodeCounter
 whiteboard.txt
+scripts/*.py
+assets/
+*.exe
+options.cpsn
+addons/
+
 
 # C extensions
 *.so

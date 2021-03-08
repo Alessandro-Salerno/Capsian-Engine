@@ -87,10 +87,17 @@ class Cube(Entity):
             material  | A Capsian Material Object     | Material
         """
 
-        super().__init__(scene=scene, transform=transform)
+        super().__init__(
+            scene=scene,
+            transform=transform
+        )
 
         self.texture  = material.texture
-        self._add_block(transform.x, transform.y, transform.z)
+        self._add_block(
+            transform.x,
+            transform.y,
+            transform.z
+        )
 
 
     # -------------------------

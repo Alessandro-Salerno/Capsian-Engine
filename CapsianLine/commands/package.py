@@ -51,49 +51,66 @@
 # ----------------------------------------------------------------------------
 
 
-from   Capsian  import *
-from   os      import system
-import os
+from CapsianLine.commands.command import Command
 
 
-system("cls") if os.name == "nt" else system("clear")
+class Package(Command):
+    def __str__(self):
+        return "package"
 
 
-# Eval the contens of the options file
-with open("options.cpsn", "r") as preferences:
-    global options
-    _options = preferences.read()
-    options  = eval(compile(source=_options, filename="options", mode="eval", optimize=1))
+    def install(self, folder: str) -> None:
+        import shutil
+        
+        with open(f"{folder}\\setup.json", "r") as setup:
+            import json
+            
+            # load JSON
+            try:
+                from Capsian import Log
+                Log.info(f"About to load setup file for package '{folder}'")
+                global content, pkg_name, files
+                content  = json.loads(setup.read())
+                pkg_name = str(content["name"])
+                files    = list(content["files"])
+                Log.successful("Operation completed successfuly!")
+            except:
+                from Capsian import Log
+                Log.error(f"Unable to load setup file for package '{folder}'")
+                return
 
+            # Create addon folder
+            try:
+                import os
+                os.mkdir(f"addons\\{pkg_name}")
+            except OSError as e:
+                from Capsian import Log
+                Log.error(f"Unable to create directory 'addons\\{pkg_name}'")
+                return
+            except Exception as e:
+                raise e
 
-# Compiles and runs scripts
-import scripts
+            # Copy all files
+            try:
+                from   Capsian import Log
+                import shutil
 
+                for file in files:
+                    target = f"addons\\{pkg_name}\\{file}"
+                    origin = f"{folder}\\src\\{file}"
+                    Log.info(f"About to load file {origin} and copy to {target}")
+                    shutil.copyfile(origin, target)
+                    Log.successful("Operation complete successfuly!")
+                
+                Log.successful("Copied all files!")
+            except:
+                from   Capsian import Log
+                Log.error("Failed to copy files!")
+                return
 
-try:
-    # Enable Capsian Basic Lighting if required
-    if options["use basic lighting"]:
-        engine.main_window.enable(CPSN_LIGHTING)
+            with open("addons\\__init__.py", "w") as packages:
+                for file in files:
+                    packages.write(f"\nfrom addons.{pkg_name}.{file.replace('.py', '')} import *")
 
-    # Set OpenGL Clear Color
-    SkyColor << options["clear color"]
-
-    # Set fog settings
-    if options["enable fog"]:
-        fog_color = options["fog color"]
-        fog_start = options["fog start"]
-        fog_end   = options["fog end"]
-
-        Fog(fog_color, fog_start, fog_end)
-except:
-    _errcam = OrthographicCamera()
-    _errwin = Window3D(camera=_errcam, width=1024, height=680)
-    Log.critical("Something went wrong while setting up your game. This is usually caused by the absence of a default window and/or camera")
-
-
-# Runs all the code3
-engine.run()
-
-
-# Random print() to make the output look cleaner
-print()
+            from Capsian import Log
+            Log.successful("Package fully installed!")

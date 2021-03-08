@@ -119,19 +119,42 @@ class Entity:
                 setattr(self, repr(component), component)
                 component.on_ready(datetime.now())
 
+            
+            def component(self, **kwargs):
+                import inspect
+
+                def inner(component):
+                    if not inspect.isclass(component):
+                        if not isinstance(component, Component):
+                            return
+
+                        self.add(component)
+                        return
+
+                    try:
+                        self.add(component(**kwargs))
+                    except TypeError:
+                        self.add(component())
+                    except:
+                        pass
+
+                return inner
+
 
         self.components = Components(self)
         self.active     = active
         self.components.add(transform)
 
         self.next_pos = [
-            [transform.x + 1,  transform.y,      transform.z    ],
-            [transform.x - 1,  transform.y,      transform.z    ],
-            [transform.x,      transform.y,      transform.z + 1],
-            [transform.x,      transform.y,      transform.z - 1],
-            [transform.x,      transform.y + 1,  transform.z    ],
-            [transform.x,      transform.y - 1,  transform.z    ],
+            [transform.x + 1,  transform.y    ,  transform.z    ],
+            [transform.x - 1,  transform.y    ,  transform.z    ],
+            [transform.x    ,  transform.y    ,  transform.z + 1],
+            [transform.x    ,  transform.y    ,  transform.z - 1],
+            [transform.x    ,  transform.y + 1,  transform.z    ],
+            [transform.x    ,  transform.y - 1,  transform.z    ],
         ]
+
+        self.scene  = scene
 
         if not isinstance(scene, CPSN_STANDARD_SCENE):
             self.scene = None
@@ -140,9 +163,6 @@ class Entity:
         if scene == None:
             from Capsian.video.scene import PlaceholderScene
             self.scene = PlaceholderScene()
-            return
-
-        self.scene  = scene
 
         if active:
             scene.stack.append(self)

@@ -111,6 +111,7 @@ class PerspectiveCamera(Camera):
 
     def init(self):
         engine.main_camera = self
+        engine.main_window.view_port = self
 
         pyglet.gl.glEnable(pyglet.gl.GL_DEPTH_TEST)
         pyglet.gl.glEnable(pyglet.gl.GL_NORMALIZE)
@@ -245,6 +246,7 @@ class OrthographicCamera(Camera):
 
     def init(self):
         engine.main_camera = self
+        engine.main_window.view_port = self
 
         pyglet.gl.glDisable(pyglet.gl.GL_DEPTH_TEST)
         engine.main_window.set_mouse_lock(False)

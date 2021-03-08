@@ -126,13 +126,6 @@ class CharacterController(Component):
 
 
     def move(self, direction: str) -> None:
-        """
-        This method actually moves the camera, it's called by your input handler
-
-        :param direction: The direction in which the camera should move (String)
-        :return: None
-        """
-
         if direction    == "forwards":
             self.parent.components.transform.x += self.parent.dx * self.speed * engine.main_window.alive
             self.parent.components.transform.z -= self.parent.dz * self.speed * engine.main_window.alive
@@ -150,7 +143,7 @@ class CharacterController(Component):
             self.parent.components.transform.z -= self.parent.dx * self.speed * engine.main_window.alive
 
         if direction    == "down":
-            self.parent.components.transform.y -= self.s / self.dividend * engine.main_window.alive
+            self.parent.components.transform.y -= self.parent.dz * self.speed * engine.main_window.alive
 
         if direction    == "up":
-            self.parent.components.transform.y += self.s / self.dividend * engine.main_window.alive
+            self.parent.components.transform.y += self.parent.dz * self.speed * engine.main_window.alive

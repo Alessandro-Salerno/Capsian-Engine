@@ -51,49 +51,38 @@
 # ----------------------------------------------------------------------------
 
 
-from   Capsian  import *
-from   os      import system
-import os
+from CapsianLine.commands.command import Command
 
 
-system("cls") if os.name == "nt" else system("clear")
+class App(Command):
+    def __str__(self):
+        return "app"
 
 
-# Eval the contens of the options file
-with open("options.cpsn", "r") as preferences:
-    global options
-    _options = preferences.read()
-    options  = eval(compile(source=_options, filename="options", mode="eval", optimize=1))
+    def run(self):
+        import os
+        os.system("pythonw main.py")
 
 
-# Compiles and runs scripts
-import scripts
+    def debug(self):
+        import os
+        os.system("python main.py")
 
 
-try:
-    # Enable Capsian Basic Lighting if required
-    if options["use basic lighting"]:
-        engine.main_window.enable(CPSN_LIGHTING)
+    def build(self, onefile=True, windowed=True, icon=None):
+        import os
+        command: str = "pyinstaller "
+        
+        if eval(str(windowed)):
+            print("Building for Windowed MOde")
+            command += "-w "
 
-    # Set OpenGL Clear Color
-    SkyColor << options["clear color"]
+        if eval(str(onefile)):
+            print("Building for Single Binary Mode")
+            command += "--onefile "
 
-    # Set fog settings
-    if options["enable fog"]:
-        fog_color = options["fog color"]
-        fog_start = options["fog start"]
-        fog_end   = options["fog end"]
+        if icon is not None:
+            command += f"--icon={icon} "
 
-        Fog(fog_color, fog_start, fog_end)
-except:
-    _errcam = OrthographicCamera()
-    _errwin = Window3D(camera=_errcam, width=1024, height=680)
-    Log.critical("Something went wrong while setting up your game. This is usually caused by the absence of a default window and/or camera")
-
-
-# Runs all the code3
-engine.run()
-
-
-# Random print() to make the output look cleaner
-print()
+        command += "main.py"
+        os.system(command)

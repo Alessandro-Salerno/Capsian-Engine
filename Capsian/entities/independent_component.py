@@ -51,49 +51,22 @@
 # ----------------------------------------------------------------------------
 
 
-from   Capsian  import *
-from   os      import system
-import os
+from Capsian.entities.entity import Entity
 
 
-system("cls") if os.name == "nt" else system("clear")
+class IndependentComponent(Entity):
+    """
+    An IndependentComponent object allows you to add components to an empty entity more easily.
+    Where you would normallly have to create an Entity, assign it a transform etc etc... You can just create one of these and go
+    """
 
+    # -------------------------
+    #
+    #       DUNDERSCORE
+    #
+    # -------------------------
+    
+    def __init__(self, component):
+        super().__init__(active=True)
 
-# Eval the contens of the options file
-with open("options.cpsn", "r") as preferences:
-    global options
-    _options = preferences.read()
-    options  = eval(compile(source=_options, filename="options", mode="eval", optimize=1))
-
-
-# Compiles and runs scripts
-import scripts
-
-
-try:
-    # Enable Capsian Basic Lighting if required
-    if options["use basic lighting"]:
-        engine.main_window.enable(CPSN_LIGHTING)
-
-    # Set OpenGL Clear Color
-    SkyColor << options["clear color"]
-
-    # Set fog settings
-    if options["enable fog"]:
-        fog_color = options["fog color"]
-        fog_start = options["fog start"]
-        fog_end   = options["fog end"]
-
-        Fog(fog_color, fog_start, fog_end)
-except:
-    _errcam = OrthographicCamera()
-    _errwin = Window3D(camera=_errcam, width=1024, height=680)
-    Log.critical("Something went wrong while setting up your game. This is usually caused by the absence of a default window and/or camera")
-
-
-# Runs all the code3
-engine.run()
-
-
-# Random print() to make the output look cleaner
-print()
+        self.components.component()(component)

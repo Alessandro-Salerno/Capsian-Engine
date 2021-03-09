@@ -64,20 +64,40 @@ class Package(Command):
         
         with open(f"{folder}\\setup.json", "r") as setup:
             import json
+            import Capsian.engine as engine
             
             # load JSON
             try:
                 from Capsian import Log
                 Log.info(f"About to load setup file for package '{folder}'")
-                global content, pkg_name, files
-                content  = json.loads(setup.read())
-                pkg_name = str(content["name"])
-                files    = list(content["files"])
+                global content, pkg_name, files, cpsn, ver, description
+                content     = json.loads(setup.read())
+                cpsn        = str(content["capsian"])
+                ver         = str(content["version"])
+                description = list(content["description"])
+                pkg_name    = str(content["name"])
+                files       = list(content["files"])
                 Log.successful("Operation completed successfuly!")
             except:
                 from Capsian import Log
                 Log.error(f"Unable to load setup file for package '{folder}'")
                 return
+
+            if not cpsn == engine.version().replace("Capsian Engine v1.0 ", ""):
+                from Capsian import Log
+                Log.warning("This package is not compatible with your version of Capsian. Do you want to install it anyway?")
+                ans = input(" [y/n] ")
+
+                if ans == "n":
+                    Log.info("Installation aborted!")
+                    return
+
+                elif ans == "y":
+                    pass
+
+                else:
+                    Log.error("Invalid answer. Installation aborted!")
+                    return
 
             # Create addon folder
             try:
@@ -108,9 +128,102 @@ class Package(Command):
                 Log.error("Failed to copy files!")
                 return
 
-            with open("addons\\__init__.py", "w") as packages:
+            with open(f"addons\\{pkg_name}\\__init__.py", "w") as packages:
                 for file in files:
                     packages.write(f"\nfrom addons.{pkg_name}.{file.replace('.py', '')} import *")
 
+            with open("addons\\__init__.py", "r") as packages:
+                global lines
+                lines = packages.readlines()
+
+            with open("addons\\__init__.py", "w") as packages:
+                lines.append(f"\nimport addons.{pkg_name} as {pkg_name}")
+                packages.writelines(lines)
+
+            pkg_info = json.dumps({
+                "capsian": cpsn,
+                "package": ver,
+                "description": description
+            })
+
+            with open(f"addons\\{pkg_name}\\info.json", "w") as file:
+                file.write(str(pkg_info))
+
             from Capsian import Log
             Log.successful("Package fully installed!")
+
+
+    def list(self, output=True) -> list or None:
+        import os
+        _dirs = os.listdir("addons\\")
+        dirs = []
+
+        for _dir in _dirs:
+            if os.path.isdir(f"addons\\{_dir}") and _dir:
+                dirs.append(_dir)
+
+        if "__pycache__" in dirs:
+            dirs.remove("__pycache__")
+
+        if not output:
+            return dirs
+
+        if len(dirs) == 0:
+            print("No package installed")
+            return
+
+        for _dir in dirs:
+            print(_dir)
+
+
+    def uninstall(self, name: str) -> None:
+        import shutil
+        import os
+        from   Capsian.log import Log
+
+        if not name in self.list(False):
+            from Capsian import Log
+            Log.error(f"No such package '{name}'")
+            return
+
+        shutil.rmtree(f"addons\\{name}\\")
+
+        with open("addons\\__init__.py", "r+") as imports:
+            global lines
+            lines = imports.readlines()
+
+            for line in lines:
+                if name in line:
+                    lines.remove(line)
+
+        with open("addons\\__init__.py", "w") as imports:
+            imports.writelines(lines)
+
+        Log.successful("Operation completed successfuly!")
+
+
+    def info(self, name: str) -> None:
+        import json
+        from   Capsian import TermColor
+        
+        if not name in self.list(False):
+            from Capsian import Log
+            Log.error(f"No such package '{name}'")
+            return
+
+        with open(f"addons\\{name}\\info.json", "r") as info:
+            content     = json.loads(info.read())
+            cpsn        = content["capsian"]
+            ver         = content["package"]
+            description = content["description"]
+
+            TermColor.begin(TermColor.OK_GREEN)
+            print(f"Capsian Package {name}")
+            TermColor.end()
+
+            print(f"Made for Capsian {cpsn}")
+            print(f"Package Version: {ver}")
+            print()
+            
+            for row in description:
+                print(row)

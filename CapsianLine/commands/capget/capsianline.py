@@ -1,41 +1,6 @@
 # ----------------------------------------------------------------------------
-# pyglet
-# Copyright (c) 2006-2008 Alex Holkner
-# Copyright (c) 2008-2020 pyglet contributors
-# All rights reserved.
-#
-# Redistribution and use in source and binary forms, with or without
-# modification, are permitted provided that the following conditions
-# are met:
-#
-#  * Redistributions of source code must retain the above copyright
-#    notice, this list of conditions and the following disclaimer.
-#  * Redistributions in binary form must reproduce the above copyright
-#    notice, this list of conditions and the following disclaimer in
-#    the documentation and/or other materials provided with the
-#    distribution.
-#  * Neither the name of pyglet nor the names of its
-#    contributors may be used to endorse or promote products
-#    derived from this software without specific prior written
-#    permission.
-#
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
-# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
-# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
-# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
-# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-# POSSIBILITY OF SUCH DAMAGE.
-# ----------------------------------------------------------------------------
-
-# ----------------------------------------------------------------------------
-# Capsian Engine
-# Copyright 2020 - 2021 Alessandro Salerno (Tzyvoski)
+# CapsianLine
+# Copyright 2021 Carpal
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -51,18 +16,27 @@
 # ----------------------------------------------------------------------------
 
 
+import Capsian
 from CapsianLine.commands.command import Command
 
 
-class Package(Command):
+class CapGet(Command):
     def __str__(self):
-        return "package"
+        return "capget"
+
+    def __repr__(self) -> str:
+        return f"""
+{Capsian.TermColor.OK_GREEN}CAPGET{Capsian.TermColor.END_COLOR}
+------
+Capget is Capsian's new package manager.
+The above-listed commands are all available and working!
+"""
 
 
     def install(self, folder: str) -> None:
         import shutil
         
-        with open(f"{folder}\\setup.json", "r") as setup:
+        with open(f"{folder}/setup.json", "r") as setup:
             import json
             import Capsian.engine as engine
             
@@ -102,10 +76,10 @@ class Package(Command):
             # Create addon folder
             try:
                 import os
-                os.mkdir(f"addons\\{pkg_name}")
+                os.mkdir(f"addons/{pkg_name}")
             except OSError as e:
                 from Capsian import Log
-                Log.error(f"Unable to create directory 'addons\\{pkg_name}'")
+                Log.error(f"Unable to create directory 'addons/{pkg_name}'")
                 return
             except Exception as e:
                 raise e
@@ -116,8 +90,8 @@ class Package(Command):
                 import shutil
 
                 for file in files:
-                    target = f"addons\\{pkg_name}\\{file}"
-                    origin = f"{folder}\\src\\{file}"
+                    target = f"addons/{pkg_name}/{file}"
+                    origin = f"{folder}/src/{file}"
                     Log.info(f"About to load file {origin} and copy to {target}")
                     shutil.copyfile(origin, target)
                     Log.successful("Operation complete successfuly!")
@@ -128,15 +102,15 @@ class Package(Command):
                 Log.error("Failed to copy files!")
                 return
 
-            with open(f"addons\\{pkg_name}\\__init__.py", "w") as packages:
+            with open(f"addons/{pkg_name}/__init__.py", "w") as packages:
                 for file in files:
                     packages.write(f"\nfrom addons.{pkg_name}.{file.replace('.py', '')} import *")
 
-            with open("addons\\__init__.py", "r") as packages:
+            with open("addons/__init__.py", "r") as packages:
                 global lines
                 lines = packages.readlines()
 
-            with open("addons\\__init__.py", "w") as packages:
+            with open("addons/__init__.py", "w") as packages:
                 lines.append(f"\nimport addons.{pkg_name} as {pkg_name}")
                 packages.writelines(lines)
 
@@ -146,7 +120,7 @@ class Package(Command):
                 "description": description
             })
 
-            with open(f"addons\\{pkg_name}\\info.json", "w") as file:
+            with open(f"addons/{pkg_name}/info.json", "w") as file:
                 file.write(str(pkg_info))
 
             from Capsian import Log
@@ -155,11 +129,11 @@ class Package(Command):
 
     def list(self, output=True) -> list or None:
         import os
-        _dirs = os.listdir("addons\\")
+        _dirs = os.listdir("addons/")
         dirs = []
 
         for _dir in _dirs:
-            if os.path.isdir(f"addons\\{_dir}") and _dir:
+            if os.path.isdir(f"addons/{_dir}") and _dir:
                 dirs.append(_dir)
 
         if "__pycache__" in dirs:
@@ -186,9 +160,9 @@ class Package(Command):
             Log.error(f"No such package '{name}'")
             return
 
-        shutil.rmtree(f"addons\\{name}\\")
+        shutil.rmtree(f"addons/{name}/")
 
-        with open("addons\\__init__.py", "r+") as imports:
+        with open("addons/__init__.py", "r+") as imports:
             global lines
             lines = imports.readlines()
 
@@ -196,7 +170,7 @@ class Package(Command):
                 if name in line:
                     lines.remove(line)
 
-        with open("addons\\__init__.py", "w") as imports:
+        with open("addons/__init__.py", "w") as imports:
             imports.writelines(lines)
 
         Log.successful("Operation completed successfuly!")
@@ -211,7 +185,7 @@ class Package(Command):
             Log.error(f"No such package '{name}'")
             return
 
-        with open(f"addons\\{name}\\info.json", "r") as info:
+        with open(f"addons/{name}/info.json", "r") as info:
             content     = json.loads(info.read())
             cpsn        = content["capsian"]
             ver         = content["package"]
@@ -227,3 +201,6 @@ class Package(Command):
             
             for row in description:
                 print(row)
+
+
+__linecommand__ = CapGet()

@@ -25,6 +25,40 @@ import Capsian
 # Draw the design for the header
 CapsianLine.design.draw()
 
+def get_package_list(dir: str):
+   import os
+   _dirs = os.listdir(dir)
+   dirs = []
+
+   for _dir in _dirs:
+      if os.path.isdir(f"addons\\{_dir}") and _dir:
+            dirs.append(_dir)
+
+   if "__pycache__" in dirs:
+      dirs.remove("__pycache__")
+
+   return dirs
+
+
+def command_exists(command: str):
+   import json
+   global jsfile
+
+   with open("CapsianLine/paths.json", "r") as file:
+      jsfile = json.loads(file.read())
+
+   paths = jsfile["PATH"]
+
+   for path in paths:
+      try:
+         file = open(f"{path}/{command}/capsianline.py", "r")
+         file.close()
+         return f"{path}/{command}/capsianline.py"
+      except:
+         continue
+
+   return False
+
 
 while True:
    try:
@@ -40,15 +74,26 @@ while True:
       sub_command = tree[1] # .. the method
       args        = tree[2] # .. the function args
 
-      # load the class from the dictionary
-      entry      = commands[command]
+      cmd_exists = command_exists(command)
+      
+      if cmd_exists == False:
+         Capsian.Log.error(f"No such command \"{command}\"")
+         continue
+      
+      __linecommand__ = None
+      cmdcode = open(cmd_exists, "r")
+      exec(compile(source=cmdcode.read(), filename="command", mode="exec"))
 
-      # load the method from the class
-      ptr = getattr(entry, sub_command)(*args)
+      if not hasattr(__linecommand__, sub_command):
+         Capsian.Log.error(f"Command \"{command}\" has no subcommand \"{sub_command}\"")
+         continue
 
+      getattr(__linecommand__, sub_command)(*args)
+      cmdcode.close()
    except KeyboardInterrupt:
       # catch ctrl + c
       print("\n\nTerminating program....")
+      Capsian.TermColor.end()
       break
 
    except Exception as e:

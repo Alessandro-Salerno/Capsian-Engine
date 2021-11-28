@@ -52,8 +52,11 @@
 
 
 class Command:
-    def __str__(self):
-        return "Generic Capsian Console Command Object"
+    def __str__(self) -> str:
+        return "command"
+    
+    def __repr__(self) -> str:
+        return "A Generic Capsianline Command"
 
 
     def help(self):
@@ -62,3 +65,5 @@ class Command:
         for method in method_list:
             if "__" not in method:
                 print(f"{self} {method}")
+
+        print(f"\n\n{repr(self)}")

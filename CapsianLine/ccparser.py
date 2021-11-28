@@ -60,9 +60,6 @@ class Parser:
    def expect_arg(self):
       # when pass an arg there must be the -arg flag
       # expect -
-      self.expect_symbol("-")
-      # expect the flag, maybe other flags in the future
-      self.expect_keyword("-")
       
       # returns the value of the next token
       return self.expect(Token.VALUE)[1] # 1 of a tuple with two elements, the first is the token kind, the second the token value

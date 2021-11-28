@@ -165,9 +165,9 @@ class Lexer:
       # get the char to convert
       char = self.current()
       
-      if char == "'": return "'"
-      if char == "n": return '\n'
-      if char == "t": return '\t'
+      if char == "\"": return "\""
+      if char == "n":  return '\n'
+      if char == "t":  return '\t'
       if char == "\\": return '\\'
 
       # this is not a valid escaped char, I don't know what to return, so I raise an error
@@ -200,7 +200,7 @@ class Lexer:
          self.advance()
 
          # the next was a string quote ?
-         if self.current() == "'":
+         if self.current() == "\"":
             # break the string collecting
             break
       
@@ -224,7 +224,7 @@ class Lexer:
          # then collect it
          token = self.collect_value()
 
-      elif self.current() == "'":
+      elif self.current() == "\"":
          # collect the string
          token = self.collect_string()
       

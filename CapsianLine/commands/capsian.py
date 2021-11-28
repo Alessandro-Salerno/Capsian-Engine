@@ -51,7 +51,8 @@
 # ----------------------------------------------------------------------------
 
 
-from CapsianLine.commands.command import Command
+import Capsian
+from   CapsianLine.commands.command import Command
 
 
 class CapsianCommand(Command):

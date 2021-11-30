@@ -67,7 +67,7 @@
 
 <p>
 To get the libs, just run the `prepare.py` file.
-To build an executable, just run the `app build` command in CapsianLine (`console.py`) and wait.
+To build an executable, just run the `app build` command in Capsianline (`console.py`) and wait.
 It should be able to build for any desktop platform given that you're running on such platform. 
 
 Capsianline will be your best friend while using Capsian. You can use it to run, debug and build your game among other things.
@@ -102,7 +102,7 @@ Project Link: [Link](https://github.com/tzyvoski/Capsian-Engine/)
 
 ## Acknowledgements
 
--   [Carpal](https://github.com/Carpall) ( for [CapsianLine](https://github.com/Carpall/capsianline) )
+-   [Carpal](https://github.com/Carpall) ( for [Capsianline](https://github.com/Carpall/Capsianline) )
 -   [Liam](https://github.com/Gyro7) ( for the README and the future Linux version )
 -   [lolloberga](https://github.com/lolloberga?tab=overview&from=2021-03-01&to=2021-03-08)
 -   [Pyglet](http://pyglet.org/) ( for providing the amazing toolkit used to make Capsian possible )

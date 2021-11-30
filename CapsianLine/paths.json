@@ -1,6 +1,6 @@
 {
     "PATH": [
         "./addons/",
-        "./CapsianLine/commands"
+        "./Capsianline/commands"
     ]
 }

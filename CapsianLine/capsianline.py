@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------
-# CapsianLine
+# Capsianline
 # Copyright 2021 Carpal
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,14 +16,14 @@
 # ----------------------------------------------------------------------------
 
 
-from   CapsianLine.commands import *
-from   CapsianLine.ccparser import *
-import CapsianLine.design
+from   Capsianline.commands import *
+from   Capsianline.ccparser import *
+import Capsianline.design
 import Capsian
 
 
 # Draw the design for the header
-CapsianLine.design.draw()
+Capsianline.design.draw()
 
 def get_package_list(dir: str):
    import os
@@ -44,16 +44,16 @@ def command_exists(command: str):
    import json
    global jsfile
 
-   with open("CapsianLine/paths.json", "r") as file:
+   with open("Capsianline/paths.json", "r") as file:
       jsfile = json.loads(file.read())
 
    paths = jsfile["PATH"]
 
    for path in paths:
       try:
-         file = open(f"{path}/{command}/capsianline.py", "r")
+         file = open(f"{path}/{command}/Capsianline.py", "r")
          file.close()
-         return f"{path}/{command}/capsianline.py"
+         return f"{path}/{command}/Capsianline.py"
       except:
          continue
 

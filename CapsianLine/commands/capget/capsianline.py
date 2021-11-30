@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------
-# CapsianLine
+# Capsianline
 # Copyright 2021 Carpal
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,7 +18,7 @@
 
 import shutil
 import Capsian
-from CapsianLine.commands.command import Command
+from Capsianline.commands.command import Command
 
 
 class CapGet(Command):

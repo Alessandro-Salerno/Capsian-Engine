@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------
-# CapsianLine
+# Capsianline
 # Copyright 2021 Carpal
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,8 +16,8 @@
 # ----------------------------------------------------------------------------
 
 
-from CapsianLine.cclexer import *
-from CapsianLine.ccerror import *
+from Capsianline.cclexer import *
+from Capsianline.ccerror import *
 
 
 class Parser:

@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------
-# CapsianLine
+# Capsianline
 # Copyright 2021 Carpal
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,5 +28,5 @@ def draw():
     TermColor.begin(TermColor.OK_BLUE)
     print(f"Capsianline v2.0 for {engine.version()}")
     print("Capsian: https://github.com/tzyvoski/Capsian-Engine")
-    print("Capsianline: https://github.com/Carpall/capsianline", end="\n")
+    print("Capsianline: https://github.com/Carpall/Capsianline", end="\n")
     TermColor.end()

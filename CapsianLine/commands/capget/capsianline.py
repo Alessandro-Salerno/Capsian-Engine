@@ -197,8 +197,10 @@ The above-listed commands are all available and working!
             print("No package installed")
             return
 
+        print(f"{len(dirs)} package(s) installed\n")
+
         for _dir in dirs:
-            print(_dir)
+            print(f"-- {_dir}")
 
 
     def uninstall(self, name: str, output=True) -> None:

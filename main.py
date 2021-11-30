@@ -67,7 +67,7 @@ with open("options.cpsn", "r") as preferences:
 
 
 # Compiles and runs scripts
-import scripts
+import projects
 
 
 try:

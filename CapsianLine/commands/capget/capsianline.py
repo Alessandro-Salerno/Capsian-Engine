@@ -16,6 +16,7 @@
 # ----------------------------------------------------------------------------
 
 
+import shutil
 import Capsian
 from CapsianLine.commands.command import Command
 
@@ -32,6 +33,50 @@ Capget is Capsian's new package manager.
 The above-listed commands are all available and working!
 """
 
+
+    def github(self, url: str, branch="master") -> None:
+        import requests
+        import zipfile
+        import os
+        import shutil
+        
+        try:
+            Capsian.Log.info("About to download file...")
+            req = requests.get(f"{url}//archive/refs/heads/{branch}.zip", allow_redirects=True)
+            Capsian.Log.successful("Successfuly downloaded file!")
+
+            Capsian.Log.info("About to store file...")
+            with open("./addons/download.zip", "wb") as target:
+                target.write(req.content)
+            Capsian.Log.successful("Successfuly saved zip file!")
+
+            Capsian.Log.info("About to unpack zip file...")
+            with zipfile.ZipFile("./addons/download.zip", 'r') as zip_ref:
+                zip_ref.extractall("./addons/download")
+            Capsian.Log.successful("Successfuly unpacked zip file!")
+
+            _dirs = os.listdir("./addons/download")
+
+            for _dir in _dirs:
+                if os.path.isdir(f"./addons/download/{_dir}"):
+                    if os.path.exists(f"./addons/download/{_dir}/setup.json"):
+                        self.install(f"./addons/download/{_dir}")
+                    else:
+                        dirs = os.listdir(f"./addons/download/{_dir}")
+                        for dir in dirs:
+                            if os.path.isdir(f"./addons/download/{_dir}/{dir}"):
+                                self.install(f"./addons/download/{_dir}/{dir}")
+
+            Capsian.Log.info ("About ot dele all cache files...")
+        except Exception as e:
+            Capsian.Log.error(e)
+
+        try:
+            os.remove("./addons/download.zip")
+            shutil.rmtree("./addons/download")
+            Capsian.Log.successful("Successfuly deleted all cache files!")
+        except:
+            pass
 
     def install(self, folder: str) -> None:
         import shutil
@@ -94,7 +139,7 @@ The above-listed commands are all available and working!
                     origin = f"{folder}/src/{file}"
                     Log.info(f"About to load file {origin} and copy to {target}")
                     shutil.copyfile(origin, target)
-                    Log.successful("Operation complete successfuly!")
+                    Log.successful("Operation completed successfuly!")
                 
                 Log.successful("Copied all files!")
             except:

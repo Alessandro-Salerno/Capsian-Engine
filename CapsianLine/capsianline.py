@@ -31,7 +31,7 @@ def get_package_list(dir: str):
    dirs = []
 
    for _dir in _dirs:
-      if os.path.isdir(f"addons\\{_dir}") and _dir:
+      if os.path.isdir(f"addons/{_dir}") and _dir:
             dirs.append(_dir)
 
    if "__pycache__" in dirs:

@@ -63,7 +63,7 @@ default_clock = Clock()
 
 # Returns a version sting
 def version():
-    return "Capsian Engine v1.0 #2021.2.4"
+    return "Capsian Engine v1.0 #2021.2.5"
 
 
 # Prepares the application

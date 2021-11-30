@@ -78,11 +78,13 @@ The above-listed commands are all available and working!
         except:
             pass
 
+
     def install(self, folder: str) -> None:
         import shutil
         
         with open(f"{folder}/setup.json", "r") as setup:
             import json
+            import os
             import Capsian.engine as engine
             
             # load JSON
@@ -96,6 +98,10 @@ The above-listed commands are all available and working!
                 description = list(content["description"])
                 pkg_name    = str(content["name"])
                 files       = list(content["files"])
+
+                if os.path.exists(f"./addons/{pkg_name}"):
+                    self.uninstall(pkg_name, False)
+
                 Log.successful("Operation completed successfuly!")
             except:
                 from Capsian import Log
@@ -108,7 +114,7 @@ The above-listed commands are all available and working!
                 ans = input(" [y/n] ")
 
                 if ans == "n":
-                    Log.info("Installation aborted!")
+                    Log.info("Installation aborted.")
                     return
 
                 elif ans == "y":
@@ -195,14 +201,16 @@ The above-listed commands are all available and working!
             print(_dir)
 
 
-    def uninstall(self, name: str) -> None:
+    def uninstall(self, name: str, output=True) -> None:
         import shutil
         import os
         from   Capsian.log import Log
 
         if not name in self.list(False):
             from Capsian import Log
-            Log.error(f"No such package '{name}'")
+            if output:
+                Log.error(f"No such package '{name}'")
+            
             return
 
         shutil.rmtree(f"addons/{name}/")
@@ -218,7 +226,8 @@ The above-listed commands are all available and working!
         with open("addons/__init__.py", "w") as imports:
             imports.writelines(lines)
 
-        Log.successful("Operation completed successfuly!")
+        if output:
+            Log.successful("Operation completed successfuly!")
 
 
     def info(self, name: str) -> None:
@@ -246,6 +255,17 @@ The above-listed commands are all available and working!
             
             for row in description:
                 print(row)
+
+
+    def reset(self):
+        import shutil
+        import os
+
+        shutil.rmtree("./addons")
+        os.mkdir("./addons")
+        impts = open("./addons/__init__.py", "w")
+        impts.close()
+        Capsian.Log.successful("Operation completed successfuly!")
 
 
 __linecommand__ = CapGet()

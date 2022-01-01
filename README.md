@@ -102,7 +102,7 @@ Project Link: [Link](https://github.com/tzyvoski/Capsian-Engine/)
 
 -   [Carpal](https://github.com/Carpall) ( for [Capsianline](https://github.com/Carpall/Capsianline) )
 -   [Liam](https://github.com/Gyro7) ( for the README and the future Linux version )
--   [lolloberga](https://github.com/lolloberga?tab=overview&from=2021-03-01&to=2021-03-08)
+-   [lolloberga](https://github.com/lolloberga?tab=overview&from=2022-03-01&to=2022-03-08)
 -   [Pyglet](http://pyglet.org/) ( for providing the amazing toolkit used to make Capsian possible )
 -   [Myself](https://github.com/tzyvoski), AKA A. Salerno, AKA tzyvoski
 

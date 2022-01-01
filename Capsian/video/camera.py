@@ -35,7 +35,7 @@
 
 # ----------------------------------------------------------------------------
 # Capsian Engine
-# Copyright 2020 - 2021 Alessandro Salerno (Tzyvoski)
+# Copyright 2020 - 2022 Alessandro Salerno (Tzyvoski)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -176,7 +176,7 @@ class PerspectiveCamera(Camera):
         pyglet.gl.glDisable(pyglet.gl.GL_LIGHTING)
         
         width, height = window.get_size()
-        viewport     = window.get_viewport_size()
+        viewport      = window.get_viewport_size()
 
         pyglet.gl.glViewport(
             0,

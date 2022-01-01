@@ -35,7 +35,7 @@
 
 # ----------------------------------------------------------------------------
 # Capsian Engine
-# Copyright 2020 - 2021 Alessandro Salerno (Tzyvoski)
+# Copyright 2020 - 2022 Alessandro Salerno (Tzyvoski)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -63,7 +63,7 @@ default_clock = Clock()
 
 # Returns a version sting
 def version():
-    return "Capsian Engine v1.0 #2021.2.6"
+    return "Capsian Engine v1.0 #2022.2.6"
 
 
 # Prepares the application

@@ -77,10 +77,10 @@ Distributed under the Apache license 2.0. See `LICENSE` for more information.
 ## Acknowledgements
 
 -   [Carpal](https://github.com/Carpall) ( for [Capsianline](https://github.com/Carpall/Capsianline) )
--   [Liam](https://github.com/Gyro7) ( for the README and the future Linux version )
+-   [Liam](https://github.com/Gyro7) ( for the README)
 -   [lolloberga](https://github.com/lolloberga?tab=overview&from=2022-03-01&to=2022-03-08)
 -   [Pyglet](http://pyglet.org/) ( for providing the amazing toolkit used to make Capsian possible )
--   [Myself](https://github.com/tzyvoski), AKA A. Salerno, AKA tzyvoski
+-   [Myself](https://github.com/tzyvoski)
 
 [contributors-shield]: https://img.shields.io/github/contributors/tzyvoski/Capsian-Engine.svg?style=flat-square
 [contributors-url]: https://github.com/tzyvoski/Capsian-Engine/graphs/contributors

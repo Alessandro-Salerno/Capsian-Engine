@@ -3,6 +3,8 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
+![](https://tokei.rs/b1/github/Alessandro-Salerno/Capsian-Engine)
+
 
 <!-- PROJECT LOGO -->
 <p align="center">

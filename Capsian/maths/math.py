@@ -69,8 +69,7 @@ def clamp(maximum, minimum, var):
     if var > maximum:
         return maximum
 
-    elif var < minimum:
+    if var < minimum:
         return minimum
 
-    else:
-        return var
+    return var

@@ -67,7 +67,7 @@ The above-listed commands are all available and working!
                             if os.path.isdir(f"./addons/download/{_dir}/{dir}"):
                                 self.install(f"./addons/download/{_dir}/{dir}")
 
-            Capsian.Log.info ("About to dele all cache files...")
+            Capsian.Log.info ("About to delete all cache files...")
         except Exception as e:
             Capsian.Log.error(e)
 

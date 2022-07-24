@@ -51,10 +51,12 @@
 # ----------------------------------------------------------------------------
 
 
+from turtle import width
 from   capsian  import *
 from   os      import system
 import os
 import sys
+import json
 
 
 class Capsianline:
@@ -70,30 +72,55 @@ def main(argv: list) -> int:
         return 0
 
     # Eval the contens of the options file
-    with open("options.cpsn", "r") as preferences:
+    with open("capsian.json", "r") as preferences:
         global options
         _options = preferences.read()
-        options  = eval(compile(source=_options, filename="options", mode="eval", optimize=1))
+        options  = json.loads(_options)
 
     try:
+        # Camera setup
+        cmtype = options["camera"]["type"]
+        camera = PerspectiveCamera() if cmtype == "perspective" else OrthographicCamera()
+    
+        camera.components.transform.x = options["camera"]["position"]["x"]
+        camera.components.transform.y = options["camera"]["position"]["y"]
+        camera.components.transform.z = options["camera"]["position"]["z"]
+
+        camera.components.transform.rotX = options["camera"]["rotation"]["x"]
+        camera.components.transform.rotY = options["camera"]["rotation"]["y"]
+        camera.components.transform.rotZ = options["camera"]["rotation"]["z"]
+
+        camera.fov  = options["camera"]["fov"]
+        camera.far  = options["camera"]["far"]
+        camera.near = options["camera"]["near"]
+
+        # Window setup
+        window = Window3D(
+            camera=camera,
+            width=options["window"]["width"],
+            height=options["window"]["height"],
+            fullscreen=options["window"]["fullscreen"],
+            vsync=options["window"]["vsync"]
+        )
+
         # Enable Capsian Basic Lighting if required
-        if options["use basic lighting"]:
+        if options["lighting"]["enabled"]:
             engine.main_window.enable(CPSN_LIGHTING)
 
         # Set OpenGL Clear Color
-        SkyColor << options["clear color"]
+        SkyColor << options["sky color"]
 
         # Set fog settings
-        if options["enable fog"]:
-            fog_color = options["fog color"]
-            fog_start = options["fog start"]
-            fog_end   = options["fog end"]
+        if options["fog"]["enabled"]:
+            fog_color = options["fog"]["color"]
+            fog_start = options["fog"]["start"]
+            fog_end   = options["fog"]["end"]
 
             Fog(fog_color, fog_start, fog_end)
-    except:
+    except Exception as e:
         _errcam = OrthographicCamera()
         _errwin = Window3D(camera=_errcam, width=512, height=240)
-        Log.critical("Something went wrong while setting up your game. This is usually caused by the absence of a default window and/or camera")
+        Log.critical(f"{e}")
 
     # Start the engine
     engine.run()

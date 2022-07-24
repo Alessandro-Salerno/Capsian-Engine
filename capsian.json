@@ -1,0 +1,41 @@
+{
+    "sky color":  [0, 0, 0, 0],
+
+    "lighting": {
+        "enabled": true
+    },
+
+    "fog": {
+        "enabled": false,
+        "color": [0.5, 0.69, 1.0, 1.0],
+        "start": 40,
+        "end": 50
+    },
+
+    "camera": {
+        "type": "perspective",
+
+        "position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+        },
+
+        "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+        },
+
+        "fov": 90,
+        "far": 5000,
+        "near": 0.05
+    },
+
+    "window": {
+        "width": 800,
+        "height": 600,
+        "fullscreen": true,
+        "vsync": false
+    }
+}

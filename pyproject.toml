@@ -1,0 +1,23 @@
+[build-system]
+requires = ["hatchling", "pyglet==1.5.6", "PyOpenGL"]
+build-backend = "hatchling.build"
+
+[project]
+name = "Capsian"
+version = "2022.1.0"
+authors = [
+  { name="Alessandro Salerno" },
+]
+description = "A 3D Graphics Engine written in Python, featuring a Commandline interface, a package manager, ECS and more. "
+license = { file="LICENSE" }
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache v2.0 License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/Alessandro-Salerno/Capsian-Engine"
+"Bug Tracker" = "https://github.com/Alessandro-Salerno/Capsian-Engine/issues"

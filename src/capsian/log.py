@@ -152,8 +152,6 @@ class Log:
             SkyColor << [0.0, 0.0, 0.0, 1.0]
             engine.main_window.set_viewport(camera)   
 
-            engine.main_window.set_caption("Capsian")
-
             # Print the error to the console
             print(f"{TermColor.FAIL} [{time()} FATAL ERROR] {text} {TermColor.END_COLOR}")
 

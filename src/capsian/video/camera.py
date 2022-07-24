@@ -121,7 +121,7 @@ class PerspectiveCamera(Camera):
         pyglet.gl.glBlendFunc(pyglet.gl.GL_SRC_ALPHA, pyglet.gl.GL_ONE_MINUS_SRC_ALPHA)
 
         engine.main_window.set_mouse_lock(True)
-        engine.main_window.set_caption("Capsian 1.0 Window - 3D Mode")
+        engine.main_window.set_caption("Capsian Window - 3D Mode")
 
 
     def render(self, window: Window3D) -> None:
@@ -250,7 +250,7 @@ class OrthographicCamera(Camera):
 
         pyglet.gl.glDisable(pyglet.gl.GL_DEPTH_TEST)
         engine.main_window.set_mouse_lock(False)
-        engine.main_window.set_caption("Capsian 1.0 Window - GUI Mode")
+        engine.main_window.set_caption("Capsian Window - GUI Mode")
 
 
     def render(self, window: Window3D) -> None:

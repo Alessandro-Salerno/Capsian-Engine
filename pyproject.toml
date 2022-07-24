@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling", "pyglet==1.5.6", "PyOpenGL"]
+requires = ["hatchling", "pyglet==1.5.6"]
 build-backend = "hatchling.build"
 
 [project]

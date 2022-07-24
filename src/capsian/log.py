@@ -152,7 +152,7 @@ class Log:
             SkyColor << [0.0, 0.0, 0.0, 1.0]
             engine.main_window.set_viewport(camera)   
 
-            engine.main_window.set_caption("Capsian 1.0 - UNSTABLE STATE")
+            engine.main_window.set_caption("Capsian")
 
             # Print the error to the console
             print(f"{TermColor.FAIL} [{time()} FATAL ERROR] {text} {TermColor.END_COLOR}")
@@ -161,10 +161,10 @@ class Log:
             error_scene = Scene2D(camera)
 
             error = pyglet.text.Label(
-                text=f"{text}\n\nPress ENTER or ESCAPE to terminate the execution of the program.\n_",
-                font_name="MS Gothic",
-                font_size=24,
-                bold=True,
+                text=f"{text}\n\nPress ENTER or ESCAPE to terminate the execution of the program.",
+                font_name="Arial",
+                font_size=12,
+                bold=False,
                 italic=False,
                 width=engine.main_window.width - 25, 
                 x=10, y=engine.main_window.height,
@@ -172,7 +172,7 @@ class Log:
                 anchor_y="top",
                 batch=error_scene.batch,
                 multiline=True,
-                color=(0, 255, 0, 255)
+                color=(255, 255, 255, 255)
             )
         except:
             print(f"{TermColor.FAIL} [{time()} FATAL ERROR] {text} {TermColor.END_COLOR}")

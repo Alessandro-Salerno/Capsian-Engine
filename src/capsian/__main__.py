@@ -92,7 +92,7 @@ def main(argv: list) -> int:
             Fog(fog_color, fog_start, fog_end)
     except:
         _errcam = OrthographicCamera()
-        _errwin = Window3D(camera=_errcam, width=1024, height=680)
+        _errwin = Window3D(camera=_errcam, width=512, height=240)
         Log.critical("Something went wrong while setting up your game. This is usually caused by the absence of a default window and/or camera")
 
     # Start the engine

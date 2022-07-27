@@ -137,6 +137,10 @@ def main(argv: list) -> int:
     if len(argv) >= 2 and hasattr(Capsianline, str(argv[1]).replace("--", "")):
         return getattr(Capsianline, str(argv[1]).replace("--", ""))(*argv[2:])
 
+    if not os.path.exists("./capsian.json"):
+        Log.error("Unable to locate Capsian Configuration File in working directory.")
+        return -1
+
     # Eval the contens of the options file
     with open("capsian.json", "r") as preferences:
         global options

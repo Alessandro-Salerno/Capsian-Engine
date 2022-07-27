@@ -51,6 +51,7 @@
 # ----------------------------------------------------------------------------
 
 
+from distutils.command.config import config
 from   capsian  import *
 from   os      import system
 import os
@@ -108,11 +109,71 @@ def generate_capsian_config(project_name):
 }
 """.replace("__PROJECT__", project_name)
 
+def generate_script_template(projname, name):
+    return \
+f"""
+# PROJECT: {projname}
+# SCRIPT: {name}
+
+
+from capsian import *
+from addons import *
+
+
+@IndependentComponent
+class {name.capitalize()}Keyboard(KeyboardInputHandler):
+    def on_key_press(self, symbol, modifiers):
+        if symbol == Key.ENTER:
+            print("Enter pressed")
+
+    def on_key_released(self, symbol, modifiers) -> None:
+        if symbol == Key.ENTER:
+            print("Enter released")
+
+    def on_key_held(self, keys: dict) -> None:
+        if keys[Key.A]:
+            print("A is held down")
+
+
+@IndependentComponent
+class {name.capitalize()}Mouse(MouseInputHandler):
+    def on_button_press(self, x, y, button, modifiers) ->None:
+        if button == MouseButton.LEFT:
+            print("Left button pressed")
+
+    def on_button_released(self, x, y, button, modifiers) -> None:
+        if button == MouseButton.LEFT:
+            print("Left button released")
+
+    def on_button_held(self, buttons: dict) -> None:
+        if buttons[MouseButton.LEFT]:
+            print("Left button held down")
+
+
+@IndependentComponent
+class {name.capitalize()}(Script):
+    def on_start(self, time) -> None:
+        print("Hello world")
+
+    def on_update(self, dt, time) -> None:
+        print("Updated")
+
+    def on_close(self, time) -> None:
+        print("Closed")
+"""
+
+
 class Capsianline:
     @staticmethod
     def newproject(project_name="project"):
         if not os.path.exists(f"./{project_name}"):
             os.mkdir(f"./{project_name}")
+            with open(f"./{project_name}/__init__.py", "w") as initfile:
+                initfile.write(f"# Init file for project '{project_name}'")
+
+            if not os.path.exists("./addons"):
+                os.mkdir("./addons")
+
             if not os.path.exists("./capsian.json"):
                 with open("./capsian.json", "w") as capconfig:
                     capconfig.write(generate_capsian_config(project_name))
@@ -127,8 +188,39 @@ class Capsianline:
         return -1
 
     @staticmethod
-    def capsianline():
-        return 0
+    def newscript(name):
+        if not os.path.exists("./capsian.json"):
+            Log.error("The current directory is not a valid Capsian Project")
+            return -1
+
+        with open("./capsian.json", "r") as preferences:
+            configuration = json.loads(preferences.read())
+            
+            if "project" not in dict(configuration).keys():
+                Log.error("Invalid Capsian Configuration File")
+                return -2
+
+            if "package" not in dict(configuration["project"]).keys():
+                Log.error("Invalid Capsian Configuration File")
+                return -3
+
+            project_name = configuration["project"]["package"]
+            if not os.path.exists(f"./{project_name}"):
+                Log.warning("Project directory does not exist. About to create one...")
+                Capsianline.newproject(project_name)
+
+            with open(f"./{project_name}/{name}.py", "w") as script:
+                script.write(generate_script_template(project_name, name))
+
+            initfile_content = []
+            with open(f"./{project_name}/__init__.py", "r") as initfile:
+                initfile_content = initfile.readlines()
+
+            with open(f"./{project_name}/__init__.py", "w") as initfile:
+                initfile_content.append(f"\nimport {project_name}.{name}")
+                initfile.writelines(initfile_content)
+
+            Log.successful("Script created!")
 
 
 # Main function

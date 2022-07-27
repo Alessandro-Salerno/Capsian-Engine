@@ -51,7 +51,6 @@
 # ----------------------------------------------------------------------------
 
 
-from distutils.command.config import config
 from   capsian  import *
 from   os      import system
 import os

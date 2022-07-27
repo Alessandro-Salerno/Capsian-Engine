@@ -97,8 +97,8 @@ def main(argv: list) -> int:
         # Window setup
         window = Window3D(
             camera=camera,
-            width=options["window"]["width"],
-            height=options["window"]["height"],
+            width=options["window"]["width"] if options["window"]["width"] != 0 else None,
+            height=options["window"]["height"] if options["window"]["height"] != 0 else None,
             fullscreen=options["window"]["fullscreen"],
             vsync=options["window"]["vsync"]
         )

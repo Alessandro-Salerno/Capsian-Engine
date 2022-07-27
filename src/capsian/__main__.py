@@ -60,6 +60,7 @@ import json
 
 
 class Capsianline:
+    @staticmethod
     def capsianline():
         return 0
 
@@ -76,6 +77,9 @@ def main(argv: list) -> int:
         global options
         _options = preferences.read()
         options  = json.loads(_options)
+
+    # Import the Capsian Project
+    __import__(options["project"]["package"])
 
     try:
         # Camera setup

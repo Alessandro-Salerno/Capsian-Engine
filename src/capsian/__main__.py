@@ -51,7 +51,6 @@
 # ----------------------------------------------------------------------------
 
 
-from turtle import width
 from   capsian  import *
 from   os      import system
 import os
@@ -59,7 +58,74 @@ import sys
 import json
 
 
+def generate_capsian_config(project_name):
+    return \
+"""
+{
+    "sky color":  [0, 0, 0, 0],
+
+    "lighting": {
+        "enabled": true
+    },
+
+    "fog": {
+        "enabled": false,
+        "color": [0.5, 0.69, 1.0, 1.0],
+        "start": 40,
+        "end": 50
+    },
+
+    "camera": {
+        "type": "perspective",
+
+        "position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+        },
+
+        "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+        },
+
+        "fov": 90,
+        "far": 5000,
+        "near": 0.05
+    },
+
+    "window": {
+        "width": 800,
+        "height": 600,
+        "fullscreen": false,
+        "vsync": false
+    },
+
+    "project": {
+        "package": "__PROJECT__"
+    }
+}
+""".replace("__PROJECT__", project_name)
+
 class Capsianline:
+    @staticmethod
+    def newproject(project_name="project"):
+        if not os.path.exists(f"./{project_name}"):
+            os.mkdir(f"./{project_name}")
+            if not os.path.exists("./capsian.json"):
+                with open("./capsian.json", "w") as capconfig:
+                    capconfig.write(generate_capsian_config(project_name))
+
+                    Log.successful("Project created!")
+                    return 0
+
+            Log.successful("Project updated!")
+            return 0
+        
+        Log.error("Project already exists")
+        return -1
+
     @staticmethod
     def capsianline():
         return 0
@@ -69,8 +135,7 @@ class Capsianline:
 def main(argv: list) -> int:
     # Simple command
     if len(argv) >= 2 and hasattr(Capsianline, str(argv[1]).replace("--", "")):
-        getattr(Capsianline, str(argv[1]).replace("--", ""))(*argv[2:])
-        return 0
+        return getattr(Capsianline, str(argv[1]).replace("--", ""))(*argv[2:])
 
     # Eval the contens of the options file
     with open("capsian.json", "r") as preferences:

@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "Capsian"
 version = "2022.1.0"
 authors = [
-  { name="Alessandro Salerno" },
+    { name="Alessandro Salerno" },
 ]
 description = "A 3D Graphics Engine written in Python, featuring a Commandline interface, a package manager, ECS and more. "
 license = { file="LICENSE" }

@@ -72,12 +72,13 @@ class LimitedLenghtObjectArray(list):
     #
     # -------------------------
 
-    def append(self, object):
+    def append(self, obj):
         if len(self) < self.max_size:
-            list.append(self, object)
+            list.append(self, obj)
+            return
 
-        elif self.auto_clear:
+        if self.auto_clear:
             self.clear()
-            
-        else:
-            Log.error(f"Cannot add more than {self.max_size} objects to LimitedLenghtObjectArray")
+            return
+
+        Log.error(f"Cannot add more than {self.max_size} objects to LimitedLenghtObjectArray")

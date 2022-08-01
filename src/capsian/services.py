@@ -3,6 +3,7 @@ from   capsian.entities.independent_component import IndependentComponent
 from   pyglet.window                          import key                  as Key
 import capsian.engine                                                     as engine
 import pyglet
+import os
 
 
 @IndependentComponent
@@ -15,8 +16,6 @@ class CapsianKeyboardHandler(KeyboardInputHandler):
             return
 
         if symbol == engine.main_window.fullscreen_key:
-            import os
-
             if os.name == "nt":
                 screen = pyglet.canvas.Screen(
                     display=engine.main_window.display,
@@ -31,8 +30,7 @@ class CapsianKeyboardHandler(KeyboardInputHandler):
                     not engine.main_window.fullscreen,
                     screen=screen
                 )
-
-            elif os.name is not "nt":
+            else:
                 engine.main_window.set_fullscreen(
                     not engine.main_window.fullscreen
                 )
